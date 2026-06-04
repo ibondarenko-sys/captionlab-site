@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CaptionLab — Auto Subtitles for Premiere Pro in 99 Languages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070A0E;
+  --bg2:#0C1118;
+  --card:#0F1620;
+  --card2:#131C28;
+  --border:#1C2A3A;
+  --cyan:#00E0FF;
+  --cyan-dim:#0096AD;
+  --white:#F2F6FA;
+  --mid:#7E91A6;
+  --dim:#4A5A6E;
+  --gold:#FFC94D;
+  --red:#FF5470;
+  --green:#1FE0A0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Space Grotesk',sans-serif;
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(7,10,14,0.8);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em}
+.logo-mark{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--cyan-dim));
+  display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:700;font-size:16px}
+.nav-cta{background:var(--cyan);color:var(--bg);padding:9px 18px;border-radius:8px;
+  font-weight:600;font-size:14px;text-decoration:none;transition:.2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,224,255,0.3)}
+
+/* ── HERO ── */
+.hero{position:relative;padding:160px 0 90px;overflow:hidden}
+.hero-glow{position:absolute;top:-10%;right:-5%;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(0,224,255,0.12),transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(255,84,112,0.07),transparent 65%);pointer-events:none}
+.grid-bg{position:absolute;inset:0;opacity:0.4;pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:54px 54px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black,transparent)}
+.hero-content{position:relative;z-index:2}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);
+  padding:7px 14px;border-radius:30px;font-size:13px;color:var(--mid);margin-bottom:28px;
+  animation:fadeUp .6s ease both}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+h1{font-size:clamp(40px,7vw,76px);line-height:1.02;letter-spacing:-0.03em;font-weight:700;margin-bottom:24px}
+h1 .hl{color:var(--cyan)}
+h1 .strike{position:relative;color:var(--mid)}
+h1 .strike::after{content:"";position:absolute;left:0;top:54%;width:100%;height:4px;background:var(--red);transform:rotate(-2deg)}
+.hero-sub{font-size:clamp(17px,2.2vw,21px);color:var(--mid);max-width:620px;margin-bottom:36px;line-height:1.55}
+.hero-sub b{color:var(--white);font-weight:600}
+.cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
+.btn-primary{background:var(--cyan);color:var(--bg);padding:16px 32px;border-radius:11px;
+  font-weight:700;font-size:16px;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:10px;
+  box-shadow:0 8px 30px rgba(0,224,255,0.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,224,255,0.4)}
+.btn-ghost{color:var(--white);padding:16px 24px;border-radius:11px;border:1px solid var(--border);
+  font-weight:600;font-size:16px;text-decoration:none;transition:.2s;background:var(--card)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.micro{font-size:13px;color:var(--dim);display:flex;gap:18px;flex-wrap:wrap}
+.micro span{display:flex;align-items:center;gap:6px}
+.micro .ck{color:var(--green)}
+.hero-anim{animation:fadeUp .7s ease both}
+.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}.d4{animation-delay:.32s}
+
+/* ── 99 BANNER ── */
+.bignum-sec{position:relative;padding:40px 0 80px;text-align:center}
+.bignum{font-family:'Archivo Black',sans-serif;font-size:clamp(120px,28vw,300px);line-height:.85;
+  background:linear-gradient(180deg,var(--cyan),var(--cyan-dim) 70%,transparent);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:-0.04em;position:relative}
+.bignum-label{font-size:clamp(20px,3vw,32px);font-weight:700;letter-spacing:0.3em;text-transform:uppercase;margin-top:-10px;color:var(--white)}
+.bignum-sub{color:var(--mid);font-size:16px;margin-top:14px}
+.flags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:30px;max-width:600px;margin-left:auto;margin-right:auto}
+.flag{font-size:26px;filter:saturate(1.1);transition:.2s}
+.flag:hover{transform:translateY(-4px) scale(1.15)}
+
+/* ── SECTION TITLES ── */
+.section{padding:80px 0;position:relative}
+.eyebrow{color:var(--cyan);font-size:13px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:16px;font-family:'JetBrains Mono',monospace}
+h2{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-0.02em;font-weight:700;margin-bottom:18px}
+h2 .hl{color:var(--cyan)}
+.section-lead{font-size:18px;color:var(--mid);max-width:600px;margin-bottom:48px}
+
+/* ── PAIN ── */
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.pain-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:.25s;position:relative;overflow:hidden}
+.pain-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--red);opacity:.5}
+.pain-card:hover{transform:translateY(-4px);border-color:var(--red)}
+.pain-icon{font-size:28px;margin-bottom:14px}
+.pain-card h3{font-size:19px;margin-bottom:10px;font-weight:600}
+.pain-card p{color:var(--mid);font-size:15px}
+.pain-card .old{color:var(--red);font-size:13px;font-weight:600;margin-top:14px;font-family:'JetBrains Mono',monospace}
+
+/* ── SOLUTION / STEPS ── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;counter-reset:step}
+.step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px;position:relative}
+.step-num{font-family:'Archivo Black',sans-serif;font-size:48px;color:var(--cyan);opacity:.25;line-height:1;margin-bottom:12px}
+.step h3{font-size:18px;margin-bottom:8px}
+.step p{color:var(--mid);font-size:14px}
+
+/* ── FEATURES (4 pillars) ── */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.pillar{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--border);
+  border-radius:18px;padding:32px;transition:.25s}
+.pillar:hover{border-color:var(--cyan);transform:translateY(-4px)}
+.pillar-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  padding:4px 10px;border-radius:6px;margin-bottom:16px;font-family:'JetBrains Mono',monospace}
+.pillar h3{font-size:22px;margin-bottom:12px;font-weight:700}
+.pillar p{color:var(--mid);font-size:15px;line-height:1.55}
+
+/* ── COMPARISON ── */
+.compare{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.compare table{width:100%;border-collapse:collapse}
+.compare th,.compare td{padding:18px 20px;text-align:left;border-bottom:1px solid var(--border);font-size:15px}
+.compare th{background:var(--bg2);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--mid)}
+.compare .us{color:var(--cyan);font-weight:700}
+.compare td.us-col{background:rgba(0,224,255,0.04)}
+.compare .yes{color:var(--green);font-weight:600}
+.compare .no{color:var(--red)}
+.compare tr:last-child td{border-bottom:none}
+.compare .price-us{font-size:18px;font-weight:700;color:var(--cyan)}
+
+/* ── PRIVACY QUOTE ── */
+.quote-sec{text-align:center;padding:90px 0}
+.big-quote{font-size:clamp(26px,4.5vw,44px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;max-width:800px;margin:0 auto}
+.big-quote .hl{color:var(--cyan)}
+.quote-attr{color:var(--dim);margin-top:24px;font-size:15px;font-family:'JetBrains Mono',monospace}
+
+/* ── PRICING ── */
+.price-box{max-width:480px;margin:0 auto;background:linear-gradient(160deg,var(--card2),var(--card));
+  border:1.5px solid var(--cyan);border-radius:24px;padding:44px;text-align:center;position:relative;overflow:hidden}
+.price-box::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle,rgba(0,224,255,0.08),transparent 60%);pointer-events:none}
+.price-flag{position:absolute;top:20px;right:-38px;background:var(--cyan);color:var(--bg);
+  font-size:12px;font-weight:700;padding:6px 44px;transform:rotate(45deg);letter-spacing:0.05em}
+.price-amount{font-family:'Archivo Black',sans-serif;font-size:72px;line-height:1;color:var(--white);margin:10px 0}
+.price-amount .cur{font-size:36px;vertical-align:top;color:var(--cyan)}
+.price-old{color:var(--dim);text-decoration:line-through;font-size:18px}
+.price-once{color:var(--gold);font-weight:600;font-size:15px;margin-bottom:24px;font-family:'JetBrains Mono',monospace}
+.price-list{text-align:left;margin:28px 0;display:flex;flex-direction:column;gap:12px}
+.price-list li{list-style:none;display:flex;align-items:center;gap:12px;font-size:15px;color:var(--white)}
+.price-list .ck{color:var(--green);font-weight:700;font-size:18px}
+.price-cta{width:100%;background:var(--cyan);color:var(--bg);padding:18px;border-radius:12px;
+  font-weight:700;font-size:17px;text-decoration:none;display:block;transition:.2s;border:none;cursor:pointer;
+  box-shadow:0 8px 30px rgba(0,224,255,0.3)}
+.price-cta:hover{transform:translateY(-2px);box-shadow:0 12px 44px rgba(0,224,255,0.45)}
+.price-guarantee{color:var(--dim);font-size:13px;margin-top:16px}
+
+/* ── FAQ ── */
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq-q{padding:20px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  font-weight:600;font-size:16px;user-select:none}
+.faq-q::after{content:"+";color:var(--cyan);font-size:22px;transition:.2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:.3s ease;color:var(--mid);font-size:15px;line-height:1.6}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a-inner{padding:0 24px 20px}
+
+/* ── FINAL CTA ── */
+.final{text-align:center;padding:100px 0;position:relative}
+.final-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;
+  background:radial-gradient(ellipse,rgba(0,224,255,0.1),transparent 65%);pointer-events:none}
+.final h2{font-size:clamp(34px,6vw,58px);margin-bottom:20px}
+.final p{color:var(--mid);font-size:18px;margin-bottom:36px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--dim);font-size:14px}
+footer .mono{color:var(--mid)}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:600px){
+  .hero{padding:120px 0 60px}
+  .micro{font-size:12px;gap:12px}
+  .compare{overflow-x:auto}
+  .compare table{min-width:560px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="logo-mark">C</span> CaptionLab</div>
+    <a href="#pricing" class="nav-cta">Get CaptionLab — $39</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="wrap hero-content">
+    <div class="badge hero-anim"><span class="dot"></span> Powered by OpenAI Whisper · Runs 100% offline</div>
+    <h1 class="hero-anim d1">Auto subtitles in Premiere Pro.<br><span class="hl">Finally, in your language.</span></h1>
+    <p class="hero-sub hero-anim d2">Adobe supports <span class="strike">16 languages</span>. CaptionLab supports <b>99</b> — including Polish, Turkish, Ukrainian, Arabic, Indonesian and dozens more Adobe never bothered with. <b>No cloud. No API keys. No subscription.</b></p>
+    <div class="cta-row hero-anim d3">
+      <a href="#pricing" class="btn-primary">Get CaptionLab — $39 →</a>
+      <a href="#how" class="btn-ghost">See how it works</a>
+    </div>
+    <div class="micro hero-anim d4">
+      <span><span class="ck">✓</span> One-time purchase</span>
+      <span><span class="ck">✓</span> Works offline forever</span>
+      <span><span class="ck">✓</span> Your footage never leaves your Mac</span>
+    </div>
+  </div>
+</header>
+
+<!-- 99 -->
+<section class="bignum-sec">
+  <div class="wrap">
+    <div class="bignum reveal">99</div>
+    <div class="bignum-label reveal">Languages</div>
+    <p class="bignum-sub reveal">Every language OpenAI Whisper supports. Not 16. Not 27. Ninety-nine.</p>
+    <div class="flags reveal">
+      <span class="flag">🇺🇦</span><span class="flag">🇵🇱</span><span class="flag">🇹🇷</span><span class="flag">🇮🇩</span>
+      <span class="flag">🇻🇳</span><span class="flag">🇸🇦</span><span class="flag">🇹🇭</span><span class="flag">🇷🇴</span>
+      <span class="flag">🇨🇿</span><span class="flag">🇭🇺</span><span class="flag">🇬🇷</span><span class="flag">🇮🇱</span>
+      <span class="flag">🇮🇷</span><span class="flag">🇵🇭</span><span class="flag">🇰🇿</span><span class="flag">🇷🇸</span>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Sound familiar?</div>
+    <h2 class="reveal">You know the pain.<br><span class="hl">We built the cure.</span></h2>
+    <p class="section-lead reveal">If you edit video in a language Adobe ignores, every project starts with the same dread.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-icon">⏳</div>
+        <h3>Typing every subtitle by hand</h3>
+        <p>3 to 5 hours of manual subtitling for every hour of footage. Time you'll never get back.</p>
+        <div class="old">// the old way</div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🚫</div>
+        <h3>"Your language isn't supported"</h3>
+        <p>Adobe's Speech-to-Text works great — if you speak one of 16 languages. Yours isn't one of them.</p>
+        <div class="old">// thanks, Adobe</div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">💸</div>
+        <h3>Another monthly subscription</h3>
+        <p>Creative Cloud. Spotify. Netflix. ChatGPT. Every tool wants $15/month — forever.</p>
+        <div class="old">// subscription fatigue</div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">☁️</div>
+        <h3>Uploading client footage to who-knows-where</h3>
+        <p>Cloud tools send your confidential footage to servers you don't control. NDA? What NDA?</p>
+        <div class="old">// privacy nightmare</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="eyebrow reveal">Dead simple</div>
+    <h2 class="reveal">Subtitles in <span class="hl">under 60 seconds</span></h2>
+    <p class="section-lead reveal">No export. No upload. No waiting for a server. Open the panel and go.</p>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num">01</div><h3>Open the panel</h3><p>CaptionLab lives right inside Premiere Pro. Window → Extensions → CaptionLab.</p></div>
+      <div class="step reveal"><div class="step-num">02</div><h3>Pick your language</h3><p>Choose from 99 languages — or let it auto-detect what's being spoken.</p></div>
+      <div class="step reveal"><div class="step-num">03</div><h3>Click Generate</h3><p>Whisper transcribes locally on your Mac. Nothing uploaded anywhere.</p></div>
+      <div class="step reveal"><div class="step-num">04</div><h3>Done</h3><p>Editable subtitles appear on your timeline as a native caption track. Tweak and ship.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 PILLARS -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Why CaptionLab</div>
+    <h2 class="reveal">Four reasons it just <span class="hl">feels right</span></h2>
+    <p class="section-lead reveal"></p>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="pillar-tag" style="background:rgba(31,224,160,0.12);color:var(--green)">Buy once</span>
+        <h3>No subscription. Ever.</h3>
+        <p>Pay $39 one time. Use it forever. No monthly invoice, no "your plan expired" message at 2am before a deadline. You own it.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-tag" style="background:rgba(0,224,255,0.12);color:var(--cyan)">Your machine</span>
+        <h3>100% offline. No API keys.</h3>
+        <p>No Deepgram account. No Groq key. No OpenAI credits. Whisper runs locally on your Mac. Your footage never touches the internet.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-tag" style="background:rgba(255,201,77,0.12);color:var(--gold)">Your language</span>
+        <h3>99 languages. Including yours.</h3>
+        <p>The Eastern European, Middle Eastern, and Asian languages Adobe never supported. If Whisper speaks it, CaptionLab subtitles it.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-tag" style="background:rgba(255,84,112,0.12);color:var(--red)">Your timeline</span>
+        <h3>Native Premiere integration.</h3>
+        <p>Subtitles appear as a real, editable Premiere caption track — not a screenshot, not an export. Edit timing and text like always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Honest comparison</div>
+    <h2 class="reveal">CaptionLab vs <span class="hl">everyone else</span></h2>
+    <p class="section-lead reveal">We did the research so you don't have to.</p>
+    <div class="compare reveal">
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Adobe built-in</th>
+          <th>Cloud tools</th>
+          <th class="us">CaptionLab</th>
+        </tr>
+        <tr><td>Languages</td><td>~16</td><td>99</td><td class="us-col us">99</td></tr>
+        <tr><td>Runs offline</td><td class="no">✗ cloud</td><td class="no">✗ cloud</td><td class="us-col yes">✓ local</td></tr>
+        <tr><td>API key required</td><td class="no">✗</td><td class="no">✗ yes</td><td class="us-col yes">✓ none</td></tr>
+        <tr><td>Footage stays private</td><td class="no">✗</td><td class="no">✗</td><td class="us-col yes">✓ always</td></tr>
+        <tr><td>Pricing</td><td>$55/mo CC</td><td>$15/mo+</td><td class="us-col price-us">$39 once</td></tr>
+        <tr><td>Subscription</td><td class="no">✗ required</td><td class="no">✗ required</td><td class="us-col yes">✓ never</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY QUOTE -->
+<section class="quote-sec">
+  <div class="wrap">
+    <p class="big-quote reveal">Your client's footage stays <span class="hl">on your machine.</span><br>That's not a feature. That's how it should work.</p>
+    <p class="quote-attr reveal">— the whole point of CaptionLab</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="text-align:center">Simple pricing</div>
+    <h2 class="reveal" style="text-align:center">One price. <span class="hl">Yours forever.</span></h2>
+    <p class="section-lead reveal" style="text-align:center;margin-left:auto;margin-right:auto">No tiers. No upsells. No catch.</p>
+    <div class="price-box reveal">
+      <div class="price-flag">LAUNCH</div>
+      <div class="price-old">normally $59</div>
+      <div class="price-amount"><span class="cur">$</span>39</div>
+      <div class="price-once">// one-time · permanent license</div>
+      <ul class="price-list">
+        <li><span class="ck">✓</span> CaptionLab plugin for Premiere Pro (Mac)</li>
+        <li><span class="ck">✓</span> All 99 Whisper languages</li>
+        <li><span class="ck">✓</span> 100% offline — no API keys, no cloud</li>
+        <li><span class="ck">✓</span> Step-by-step setup guide</li>
+        <li><span class="ck">✓</span> Free updates for this version</li>
+        <li><span class="ck">✓</span> Apple Silicon + Intel support</li>
+      </ul>
+      <a href="#" class="price-cta">Get CaptionLab now →</a>
+      <p class="price-guarantee">Premiere Pro 2023–2026 · macOS · Windows coming soon</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Questions</div>
+    <h2 class="reveal">Before you ask</h2>
+    <div style="margin-top:40px">
+      <div class="faq-item reveal"><div class="faq-q">Do I need an internet connection?</div><div class="faq-a"><div class="faq-a-inner">Only once — to download the Whisper model during setup (~1.5 GB). After that, CaptionLab runs 100% offline. No internet, no servers, no nothing.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q">Do I need an API key or an OpenAI account?</div><div class="faq-a"><div class="faq-a-inner">No. Unlike cloud tools, CaptionLab runs the Whisper model locally on your Mac. No Deepgram, no Groq, no OpenAI credits. Nothing to sign up for.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q">Is my footage uploaded anywhere?</div><div class="faq-a"><div class="faq-a-inner">Never. Every byte of audio is processed on your own machine. Perfect for client work under NDA.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q">Which Premiere Pro versions are supported?</div><div class="faq-a"><div class="faq-a-inner">Premiere Pro 2023 through 2026 (versions 23.x–26.x). Works on Apple Silicon (M1–M4) and Intel Macs.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q">Is there a Windows version?</div><div class="faq-a"><div class="faq-a-inner">In active development. Right now CaptionLab is Mac-only. Join the list and you'll be first to know when Windows drops.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q">What languages are supported?</div><div class="faq-a"><div class="faq-a-inner">All 99 languages Whisper supports — including Ukrainian, Polish, Turkish, Indonesian, Vietnamese, Arabic, Thai, Romanian, Czech, Slovak, Hungarian, Greek, Hebrew, Persian, Urdu, and dozens more.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="final-glow"></div>
+  <div class="wrap">
+    <h2 class="reveal">Stop typing subtitles.<br><span style="color:var(--cyan)">Start shipping faster.</span></h2>
+    <p class="reveal">One purchase. Your language. Your machine. Forever.</p>
+    <a href="#pricing" class="btn-primary reveal" style="font-size:18px;padding:18px 40px">Get CaptionLab — $39 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="mono">CaptionLab · by EditLab</p>
+    <p style="margin-top:8px">Powered by OpenAI Whisper · Built for Premiere Pro · Made by editors, for editors</p>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open)item.classList.add('open');
+  });
+});
+// Scroll reveal
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*0.06+'s';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
