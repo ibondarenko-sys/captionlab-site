@@ -192,8 +192,18 @@ h2 .hl{color:var(--cyan)}
 .final h2{font-size:clamp(34px,6vw,58px);margin-bottom:20px}
 .final p{color:var(--mid);font-size:18px;margin-bottom:36px}
 
+/* ── LEGAL ── */
+.legal-sec{padding:60px 0}
+.legal-block{max-width:760px;margin:0 auto 56px;scroll-margin-top:80px}
+.legal-block h2{margin-bottom:6px}
+.legal-updated{color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace;margin-bottom:20px}
+.legal-block p{color:var(--mid);font-size:15px;margin-bottom:14px;line-height:1.6}
+.legal-block p b{color:var(--white)}
+
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--dim);font-size:14px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--cyan)!important}
 footer .mono{color:var(--mid)}
 
 /* animations */
@@ -419,10 +429,59 @@ footer .mono{color:var(--mid)}
   </div>
 </section>
 
+<!-- LEGAL SECTIONS -->
+<section class="section legal-sec" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+
+    <div id="terms" class="legal-block">
+      <h2 style="font-size:28px">Terms of Service</h2>
+      <p class="legal-updated">Last updated: June 2026</p>
+      <p>CaptionLab ("the Software") is a digital plugin for Adobe Premiere Pro, developed and sold by EditLab ("we", "us"). By purchasing and using CaptionLab, you agree to these terms.</p>
+      <p><b>License.</b> Your purchase grants you a single, non-transferable, perpetual license to install and use CaptionLab on your own computer(s) for personal or commercial video editing. You may not resell, redistribute, sublicense, or share the Software or your license key with third parties.</p>
+      <p><b>Ownership.</b> CaptionLab and all associated intellectual property remain the property of EditLab. This license does not transfer ownership of the Software to you.</p>
+      <p><b>Acceptable use.</b> You agree to use CaptionLab only for lawful purposes and in compliance with all applicable laws. You may not reverse-engineer, decompile, or attempt to extract the source code except as permitted by law.</p>
+      <p><b>Third-party components.</b> CaptionLab uses OpenAI's Whisper model, which runs locally on your device. EditLab is not affiliated with or endorsed by OpenAI or Adobe.</p>
+      <p><b>Warranty disclaimer.</b> The Software is provided "as is" without warranty of any kind. We do not guarantee that transcription will be error-free or suitable for any specific purpose.</p>
+      <p><b>Limitation of liability.</b> To the maximum extent permitted by law, EditLab shall not be liable for any indirect, incidental, or consequential damages arising from the use of the Software.</p>
+      <p><b>Payments.</b> All sales are processed by Paddle.com, our Merchant of Record, who handles payment, invoicing, and applicable taxes.</p>
+      <p><b>Contact.</b> For questions about these terms, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a>.</p>
+    </div>
+
+    <div id="privacy" class="legal-block">
+      <h2 style="font-size:28px">Privacy Policy</h2>
+      <p class="legal-updated">Last updated: June 2026</p>
+      <p>EditLab respects your privacy. This policy explains what data we collect and how we use it.</p>
+      <p><b>Your footage stays local.</b> CaptionLab processes all audio and video entirely on your own device using a locally-run Whisper model. We never receive, access, store, or transmit your footage, audio, or transcriptions. Nothing you process with CaptionLab leaves your computer.</p>
+      <p><b>Purchase data.</b> When you buy CaptionLab, our payment processor Paddle.com collects the information necessary to complete your purchase (name, email, billing details). This data is handled under Paddle's privacy policy. We receive only limited information such as your email address and license key to provide support and updates.</p>
+      <p><b>Communications.</b> We may use your email to send your license key, important product updates, and respond to support requests. We do not sell or share your email with third parties.</p>
+      <p><b>Your rights.</b> You may request access to, correction of, or deletion of your personal data by contacting us.</p>
+      <p><b>Contact.</b> For privacy questions, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a>.</p>
+    </div>
+
+    <div id="refund" class="legal-block">
+      <h2 style="font-size:28px">Refund Policy</h2>
+      <p class="legal-updated">Last updated: June 2026</p>
+      <p>We want you to be satisfied with CaptionLab.</p>
+      <p><b>14-day refund.</b> If CaptionLab does not work as described, you may request a full refund within 14 days of purchase. To request a refund, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a> with your order number and a brief description of the issue.</p>
+      <p><b>Before requesting.</b> Because CaptionLab is Mac-only and has specific system requirements (macOS, Premiere Pro 2023–2026), please review the requirements before purchasing. We're happy to help troubleshoot setup issues before you request a refund.</p>
+      <p><b>Processing.</b> Refunds are processed through Paddle.com, our Merchant of Record. Approved refunds are returned to your original payment method, typically within 5–10 business days.</p>
+      <p><b>Contact.</b> For refund requests, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a>.</p>
+    </div>
+
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p class="mono">CaptionLab · by EditLab</p>
     <p style="margin-top:8px">Powered by OpenAI Whisper · Built for Premiere Pro · Made by editors, for editors</p>
+    <p style="margin-top:14px">
+      <a href="#terms" style="color:var(--mid);margin:0 10px">Terms of Service</a> ·
+      <a href="#privacy" style="color:var(--mid);margin:0 10px">Privacy Policy</a> ·
+      <a href="#refund" style="color:var(--mid);margin:0 10px">Refund Policy</a>
+    </p>
+    <p style="margin-top:14px">Contact: <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a></p>
+    <p class="mono" style="margin-top:14px;font-size:12px;color:var(--dim)">Payments handled by Paddle.com — our Merchant of Record</p>
   </div>
 </footer>
 
