@@ -3,7 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CaptionLab — Auto Subtitles for Premiere Pro in 99 Languages</title>
+<title>CaptionLab — Auto Subtitles for Premiere Pro in 99 Languages (Ukrainian, Polish, Turkish, Arabic, Indonesian)</title>
+<meta name="description" content="AI-powered auto subtitles for Adobe Premiere Pro. 99 languages including Ukrainian (Українська), Polish (Polski), Turkish (Türkçe), Arabic (العربية), Indonesian (Bahasa Indonesia), Vietnamese (Tiếng Việt), Hindi (हिन्दी), Korean (한국어), Hebrew (עברית). 100% offline. One-time purchase $39.">
+<meta name="keywords" content="premiere pro subtitles, auto subtitles, automatyczne napisy, otomatik altyazı, автоматичні субтитри, субтитри premiere, premiere caption ai, subtitle generator, whisper premiere plugin, offline subtitle, ukrainian subtitles, polish subtitles, turkish subtitles, indonesian subtitles">
+
+<!-- hreflang for international SEO -->
+<link rel="alternate" hreflang="x-default" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="en" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="uk" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="pl" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="tr" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="id" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="vi" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="ar" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="ko" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="he" href="https://captionlab.pro/">
+<link rel="alternate" hreflang="hi" href="https://captionlab.pro/">
+
+<!-- Structured data — Software Application -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CaptionLab",
+  "description": "Auto subtitles plugin for Adobe Premiere Pro supporting 99 languages. Runs 100% offline using OpenAI Whisper.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "macOS 11+",
+  "offers": {
+    "@type": "Offer",
+    "price": "39.00",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "softwareRequirements": "Adobe Premiere Pro 2022 or later, macOS 11+",
+  "featureList": [
+    "99 languages auto-transcription",
+    "Translation to English",
+    "Offline processing",
+    "No subscription",
+    "No API keys",
+    "Word-level timestamps"
+  ],
+  "inLanguage": ["en","uk","pl","tr","id","vi","ar","ko","he","hi","es","fr","de","pt","it","ja","zh","ru","th","ms","ro","cs","hu","el","bg","sr","hr","sk","ca","sw","fa","sv","da","no","fi","nl"],
+  "publisher": {
+    "@type": "Organization",
+    "name": "EditLab",
+    "url": "https://captionlab.pro"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -48,13 +96,24 @@ nav{
   background:rgba(7,10,14,0.8);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
 }
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em;color:var(--white);text-decoration:none;transition:.2s}
+.logo:hover{opacity:0.85}
+.logo:hover .logo-mark{transform:scale(1.08);box-shadow:0 0 16px rgba(0,224,255,0.4)}
+.logo-mark{transition:.2s}
 .logo-mark{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--cyan-dim));
   display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:700;font-size:16px}
-.nav-cta{background:var(--cyan);color:var(--bg);padding:9px 18px;border-radius:8px;
-  font-weight:600;font-size:14px;text-decoration:none;transition:.2s}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,224,255,0.3)}
+.nav-menu{display:flex;align-items:center;gap:28px;margin-left:auto;margin-right:20px}
+.nav-menu a{color:var(--mid);text-decoration:none;font-size:14px;font-weight:500;transition:.2s;position:relative}
+.nav-menu a:hover{color:var(--white)}
+.nav-menu a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--cyan);
+  transform:scaleX(0);transform-origin:center;transition:.25s}
+.nav-menu a:hover::after{transform:scaleX(1)}
+.nav-cta{background:var(--cyan);color:var(--bg);padding:11px 22px;border-radius:9px;
+  font-weight:700;font-size:14.5px;text-decoration:none;transition:.2s;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(0,224,255,0.25)}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(0,224,255,0.45)}
+@media(max-width:820px){.nav-menu{display:none}}
 
 /* ── HERO ── */
 .hero{position:relative;padding:160px 0 90px;overflow:hidden}
@@ -66,6 +125,12 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
   background-size:54px 54px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black,transparent)}
 .hero-content{position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+.hero-text{position:relative;z-index:2}
+.hero-mockup-col{position:relative;z-index:2}
+.hero-mockup-col .mockup-wrap{margin-top:0;justify-content:center}
+.hero-mockup-col .mockup{width:100%;max-width:380px;transform:rotateX(4deg) rotateY(-8deg) translateZ(0)}
 .badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);
   padding:7px 14px;border-radius:30px;font-size:13px;color:var(--mid);margin-bottom:28px;
   animation:fadeUp .6s ease both}
@@ -77,10 +142,17 @@ h1 .strike::after{content:"";position:absolute;left:0;top:54%;width:100%;height:
 .hero-sub{font-size:clamp(17px,2.2vw,21px);color:var(--mid);max-width:620px;margin-bottom:36px;line-height:1.55}
 .hero-sub b{color:var(--white);font-weight:600}
 .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
-.btn-primary{background:var(--cyan);color:var(--bg);padding:16px 32px;border-radius:11px;
-  font-weight:700;font-size:16px;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:10px;
-  box-shadow:0 8px 30px rgba(0,224,255,0.25)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,224,255,0.4)}
+.btn-primary{background:var(--cyan);color:var(--bg);padding:19px 38px;border-radius:13px;
+  font-weight:700;font-size:17px;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:10px;
+  box-shadow:0 10px 36px rgba(0,224,255,0.32),0 0 0 0 rgba(0,224,255,0.5);
+  position:relative;letter-spacing:-0.01em;
+  animation:ctaPulse 2.4s ease-in-out infinite;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 54px rgba(0,224,255,0.5),0 0 0 8px rgba(0,224,255,0.12);animation:none}
+@keyframes ctaPulse{
+  0%,100%{box-shadow:0 10px 36px rgba(0,224,255,0.32),0 0 0 0 rgba(0,224,255,0.5)}
+  50%{box-shadow:0 10px 36px rgba(0,224,255,0.32),0 0 0 12px rgba(0,224,255,0)}
+}
 .btn-ghost{color:var(--white);padding:16px 24px;border-radius:11px;border:1px solid var(--border);
   font-weight:600;font-size:16px;text-decoration:none;transition:.2s;background:var(--card)}
 .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
@@ -169,10 +241,17 @@ h2 .hl{color:var(--cyan)}
 .price-list{text-align:left;margin:28px 0;display:flex;flex-direction:column;gap:12px}
 .price-list li{list-style:none;display:flex;align-items:center;gap:12px;font-size:15px;color:var(--white)}
 .price-list .ck{color:var(--green);font-weight:700;font-size:18px}
-.price-cta{width:100%;background:var(--cyan);color:var(--bg);padding:18px;border-radius:12px;
-  font-weight:700;font-size:17px;text-decoration:none;display:block;transition:.2s;border:none;cursor:pointer;
-  box-shadow:0 8px 30px rgba(0,224,255,0.3)}
-.price-cta:hover{transform:translateY(-2px);box-shadow:0 12px 44px rgba(0,224,255,0.45)}
+.price-cta{width:100%;background:var(--cyan);color:var(--bg);padding:22px;border-radius:13px;
+  font-weight:700;font-size:19px;text-decoration:none;display:block;transition:.25s;border:none;cursor:pointer;
+  box-shadow:0 12px 40px rgba(0,224,255,0.4),0 0 0 0 rgba(0,224,255,0.5);
+  letter-spacing:-0.01em;position:relative;
+  animation:ctaPulseBig 2.6s ease-in-out infinite;
+}
+.price-cta:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,224,255,0.6),0 0 0 10px rgba(0,224,255,0.12);animation:none}
+@keyframes ctaPulseBig{
+  0%,100%{box-shadow:0 12px 40px rgba(0,224,255,0.4),0 0 0 0 rgba(0,224,255,0.55)}
+  50%{box-shadow:0 12px 40px rgba(0,224,255,0.4),0 0 0 16px rgba(0,224,255,0)}
+}
 .price-guarantee{color:var(--dim);font-size:13px;margin-top:16px}
 
 /* ── FAQ ── */
@@ -189,21 +268,22 @@ h2 .hl{color:var(--cyan)}
 .final{text-align:center;padding:100px 0;position:relative}
 .final-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;
   background:radial-gradient(ellipse,rgba(0,224,255,0.1),transparent 65%);pointer-events:none}
-.final h2{font-size:clamp(34px,6vw,58px);margin-bottom:20px}
-.final p{color:var(--mid);font-size:18px;margin-bottom:36px}
-
-/* ── LEGAL ── */
-.legal-sec{padding:60px 0}
-.legal-block{max-width:760px;margin:0 auto 56px;scroll-margin-top:80px}
-.legal-block h2{margin-bottom:6px}
-.legal-updated{color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace;margin-bottom:20px}
-.legal-block p{color:var(--mid);font-size:15px;margin-bottom:14px;line-height:1.6}
-.legal-block p b{color:var(--white)}
+.final h2{font-size:clamp(34px,6vw,58px);margin-bottom:20px;position:relative}
+.final p{color:var(--mid);font-size:18px;margin-bottom:36px;position:relative}
+.final-price-tag{display:inline-flex;align-items:center;gap:14px;margin-bottom:24px;position:relative;flex-wrap:wrap;justify-content:center}
+.final-old{color:var(--mid);font-size:24px;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;font-family:'Archivo Black',sans-serif}
+.final-now{color:var(--cyan);font-size:42px;font-family:'Archivo Black',sans-serif;line-height:1}
+.final-save{background:var(--green);color:var(--bg);padding:4px 10px;border-radius:6px;font-weight:700;font-size:12px;
+  letter-spacing:0.05em;font-family:'JetBrains Mono',monospace}
+.final-trust{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:24px;font-size:13px;color:var(--mid);position:relative}
+.final-trust span:not([class]){display:inline-flex;align-items:center;gap:4px}
+.final-countdown{margin-top:18px;display:inline-flex;align-items:center;gap:10px;font-size:13px;
+  background:var(--card);border:1px solid var(--border);padding:9px 16px;border-radius:30px;position:relative}
+.final-countdown .dim{color:var(--mid)}
+.final-countdown .cd-pill{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700}
 
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--dim);font-size:14px}
-footer a{text-decoration:none}
-footer a:hover{color:var(--cyan)!important}
 footer .mono{color:var(--mid)}
 
 /* animations */
@@ -217,25 +297,375 @@ footer .mono{color:var(--mid)}
   .compare{overflow-x:auto}
   .compare table{min-width:560px}
 }
+
+/* ── LAUNCH RIBBON (above hero) ── */
+.launch-bar{
+  background:linear-gradient(90deg,rgba(255,84,112,0.18),rgba(255,201,77,0.15),rgba(255,84,112,0.18));
+  border-bottom:1px solid rgba(255,84,112,0.25);
+  padding:10px 0;text-align:center;position:relative;z-index:99;
+  margin-top:64px;
+}
+@media(max-width:600px){
+  .launch-bar{padding:8px 0;margin-top:64px}
+  .launch-bar-inner{font-size:12px;gap:8px}
+  .launch-timer{font-size:11px;padding:2px 7px}
+}
+.launch-bar-inner{display:inline-flex;align-items:center;gap:14px;font-size:14px;flex-wrap:wrap;justify-content:center}
+.launch-flame{animation:flame 1.6s ease-in-out infinite}
+@keyframes flame{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.18) rotate(4deg)}}
+.launch-text{color:var(--white);font-weight:600}
+.launch-text b{color:var(--gold)}
+.launch-strike{color:var(--mid);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;margin-right:4px}
+.launch-now{color:var(--cyan);font-weight:700}
+.launch-timer{font-family:'JetBrains Mono',monospace;color:var(--white);
+  background:rgba(0,0,0,0.35);border:1px solid var(--border);padding:3px 10px;border-radius:6px;font-size:13px}
+.launch-timer span{color:var(--gold);font-weight:700}
+.launch-bar+.hero{padding-top:60px}
+
+/* ── SAVINGS ANCHOR ── */
+.savings-sec{padding:50px 0 30px}
+.savings-card{
+  background:linear-gradient(160deg,var(--card2),var(--card));
+  border:1px solid var(--border);border-radius:18px;padding:36px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.savings-card::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(31,224,160,0.06),transparent 60%);pointer-events:none}
+.savings-item{position:relative}
+.savings-old{color:var(--red);font-size:14px;text-decoration:line-through;font-weight:600;font-family:'JetBrains Mono',monospace}
+.savings-vs{color:var(--mid);font-size:13px;margin:6px 0}
+.savings-amount{font-family:'Archivo Black',sans-serif;font-size:38px;color:var(--green);line-height:1;margin:8px 0}
+.savings-label{color:var(--white);font-weight:600;font-size:14px;margin-top:6px}
+.savings-headline{text-align:center;margin-bottom:28px}
+.savings-headline h3{font-size:clamp(22px,3.5vw,32px);font-weight:700;letter-spacing:-0.01em;margin-bottom:8px}
+.savings-headline p{color:var(--mid);font-size:15px}
+
+/* ── PRICING ENHANCEMENTS ── */
+.price-discount-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.price-old-big{
+  color:var(--mid);font-size:28px;font-family:'Archivo Black',sans-serif;
+  position:relative;display:inline-block;font-weight:400;
+}
+.price-old-big::after{
+  content:"";position:absolute;left:-4px;right:-4px;top:55%;height:3px;
+  background:var(--red);transform:rotate(-6deg);border-radius:2px;
+}
+.save-badge{
+  background:var(--green);color:var(--bg);font-weight:700;font-size:13px;
+  padding:5px 11px;border-radius:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;
+  box-shadow:0 4px 14px rgba(31,224,160,0.3);
+}
+.guarantee-box{
+  background:rgba(31,224,160,0.08);border:1px solid rgba(31,224,160,0.25);
+  border-radius:10px;padding:12px 16px;margin:18px 0 12px;display:flex;align-items:center;gap:12px;
+}
+.guarantee-icon{font-size:24px}
+.guarantee-text{text-align:left;flex:1}
+.guarantee-text b{color:var(--green);display:block;font-size:14px;margin-bottom:2px}
+.guarantee-text span{color:var(--mid);font-size:12px}
+.trust-row{display:flex;justify-content:center;gap:18px;margin-top:16px;font-size:12px;color:var(--mid);flex-wrap:wrap}
+.trust-row span{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace}
+.trust-row .tk{color:var(--cyan)}
+
+/* ── SOCIAL STRIP ── */
+.social-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:24px 0;text-align:center;color:var(--mid);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.social-strip b{color:var(--white)}
+
+/* ── STICKY BOTTOM CTA ── */
+.sticky-cta{
+  position:fixed;bottom:-100px;left:0;right:0;z-index:90;
+  background:rgba(7,10,14,0.94);backdrop-filter:blur(14px);
+  border-top:1px solid var(--border);
+  padding:12px 0;transition:bottom 0.35s cubic-bezier(.2,.7,.2,1);
+}
+.sticky-cta.show{bottom:0}
+.sticky-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.sticky-left{display:flex;align-items:center;gap:12px;font-size:14px}
+.sticky-price{color:var(--cyan);font-weight:700;font-size:18px}
+.sticky-price s{color:var(--dim);font-weight:400;font-size:14px;margin-right:6px}
+.sticky-cta-btn{background:var(--cyan);color:var(--bg);padding:12px 26px;border-radius:10px;
+  font-weight:700;font-size:15px;text-decoration:none;transition:.2s;white-space:nowrap;
+  box-shadow:0 6px 20px rgba(0,224,255,0.3);letter-spacing:-0.01em}
+.sticky-cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,224,255,0.5)}
+@media(max-width:600px){
+  .sticky-left{font-size:13px;gap:8px}
+  .sticky-price{font-size:16px}
+  .sticky-cta-btn{padding:9px 14px;font-size:13px}
+}
+
+/* ── FOOTER ENHANCEMENTS ── */
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:13px}
+.footer-links a{color:var(--mid);text-decoration:none;transition:.2s}
+.footer-links a:hover{color:var(--cyan)}
+.footer-trust{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace;letter-spacing:0.05em}
+
+/* ── ROI CALCULATOR ── */
+.roi-sec{padding:80px 0;background:linear-gradient(180deg,transparent,rgba(0,224,255,0.03),transparent)}
+.roi-card{
+  background:linear-gradient(160deg,var(--card2),var(--card));
+  border:1px solid var(--border);border-radius:24px;padding:48px;position:relative;overflow:hidden;
+}
+.roi-card::before{content:"";position:absolute;top:-20%;right:-10%;width:400px;height:400px;
+  background:radial-gradient(circle,rgba(0,224,255,0.08),transparent 60%);pointer-events:none}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative}
+@media(max-width:700px){.roi-grid{grid-template-columns:1fr;gap:30px}.roi-card{padding:28px}}
+.roi-left h3{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.01em;margin-bottom:14px}
+.roi-left h3 .hl{color:var(--cyan)}
+.roi-left p{color:var(--mid);font-size:15px;margin-bottom:28px}
+.roi-slider-block{margin-bottom:18px}
+.roi-slider-label{display:flex;justify-content:space-between;color:var(--white);font-size:14px;font-weight:600;margin-bottom:10px}
+.roi-slider-label .val{color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700}
+input.roi-slider{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:8px;border-radius:4px;
+  background:linear-gradient(90deg,var(--cyan) 0%,var(--cyan) var(--p,30%),var(--bg2) var(--p,30%),var(--bg2) 100%);
+  outline:none;cursor:pointer;
+}
+input.roi-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
+  background:var(--cyan);border:3px solid var(--bg);cursor:grab;
+  box-shadow:0 0 18px rgba(0,224,255,0.6);
+}
+input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.15)}
+.roi-result{
+  background:rgba(0,224,255,0.05);border:1px solid rgba(0,224,255,0.2);
+  border-radius:16px;padding:30px;text-align:center;
+}
+.roi-saving-label{color:var(--mid);font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.roi-saving-amount{font-family:'Archivo Black',sans-serif;font-size:clamp(48px,7vw,72px);line-height:1;
+  background:linear-gradient(180deg,var(--cyan),var(--green));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.roi-saving-period{color:var(--mid);font-size:14px;margin-top:6px}
+.roi-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.roi-stat{background:rgba(7,10,14,0.6);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.roi-stat-val{color:var(--white);font-weight:700;font-size:22px;font-family:'Archivo Black',sans-serif}
+.roi-stat-label{color:var(--mid);font-size:11px;margin-top:4px;letter-spacing:0.05em}
+.roi-recoup{margin-top:20px;color:var(--green);font-size:13px;font-weight:600;text-align:center;font-family:'JetBrains Mono',monospace}
+
+/* ── FOUNDER NOTE ── */
+.founder-sec{padding:80px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.founder-card{max-width:760px;margin:0 auto;text-align:left;position:relative;padding:0 20px}
+.founder-eyebrow{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:24px;text-align:center}
+.founder-quote{font-size:clamp(18px,2.6vw,24px);line-height:1.5;color:var(--white);font-weight:500;letter-spacing:-0.005em;margin-bottom:22px}
+.founder-quote .hl{color:var(--cyan)}
+.founder-quote p{margin-bottom:20px}
+.founder-sign{display:flex;align-items:center;gap:18px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
+.founder-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--cyan-dim));
+  display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--bg);flex-shrink:0}
+.founder-info{font-size:14px}
+.founder-name{color:var(--white);font-weight:700;font-size:16px}
+.founder-role{color:var(--mid);margin-top:2px}
+
+/* ── EARLY ADOPTER BONUS ── */
+.bonus-sec{padding:80px 0}
+.bonus-card{
+  background:linear-gradient(135deg,rgba(255,201,77,0.08),rgba(0,224,255,0.05));
+  border:1px solid rgba(255,201,77,0.3);border-radius:24px;padding:44px;position:relative;overflow:hidden;
+}
+.bonus-card::before{content:"";position:absolute;top:-50%;left:-20%;width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(255,201,77,0.12),transparent 60%);pointer-events:none}
+.bonus-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap;position:relative}
+.bonus-flag{background:var(--gold);color:var(--bg);padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;
+  letter-spacing:0.05em;font-family:'JetBrains Mono',monospace}
+.bonus-progress{flex:1;min-width:200px;height:8px;background:rgba(7,10,14,0.6);border-radius:4px;overflow:hidden}
+.bonus-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:4px;width:18%;
+  transition:width .6s ease}
+.bonus-count{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px}
+.bonus-title{font-size:clamp(24px,4vw,34px);font-weight:700;line-height:1.2;letter-spacing:-0.015em;margin-bottom:20px;position:relative}
+.bonus-title .hl{color:var(--gold)}
+.bonus-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px;position:relative}
+.bonus-item{background:rgba(7,10,14,0.5);border:1px solid var(--border);border-radius:12px;padding:18px}
+.bonus-item-icon{font-size:24px;margin-bottom:10px}
+.bonus-item h4{color:var(--white);font-size:15px;font-weight:700;margin-bottom:6px}
+.bonus-item p{color:var(--mid);font-size:13px;line-height:1.5}
+.bonus-foot{margin-top:24px;color:var(--mid);font-size:13px;text-align:center;font-style:italic;position:relative}
+.bonus-foot b{color:var(--gold);font-style:normal}
+
+/* ── PLUGIN MOCKUP ── */
+.mockup-wrap{margin-top:50px;display:flex;justify-content:center;perspective:1200px}
+.mockup{
+  width:340px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:14px 16px;
+  font-family:-apple-system,system-ui,sans-serif;color:#e0e0e0;font-size:11px;
+  box-shadow:0 30px 80px rgba(0,224,255,0.15),0 10px 30px rgba(0,0,0,0.5);
+  transform:rotateX(8deg) rotateY(-6deg);transition:transform .5s ease;
+}
+.mockup:hover{transform:rotateX(0deg) rotateY(0deg)}
+.mock-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #2a2a2a;margin-bottom:12px}
+.mock-logo{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.mock-badge{font-size:9px;padding:2px 8px;border-radius:10px;background:rgba(76,175,125,0.1);color:#4caf7d;border:1px solid rgba(76,175,125,0.25);font-weight:600}
+.mock-badge::before{content:"";display:inline-block;width:5px;height:5px;background:#4caf7d;border-radius:50%;margin-right:5px;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
+.mock-section{background:#222;border:1px solid #3a3a3a;border-radius:6px;padding:10px;margin-bottom:8px}
+.mock-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#606060;margin-bottom:6px;font-weight:700}
+.mock-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.mock-row-label{color:#909090;font-size:10px;min-width:50px}
+.mock-radio-group{display:flex;gap:5px;flex:1;margin-left:8px}
+.mock-radio{flex:1;padding:4px 5px;background:#333;border:1px solid #484848;border-radius:4px;text-align:center;font-size:10px;color:#909090}
+.mock-radio.active{background:rgba(77,158,247,0.12);border-color:#4d9ef7;color:#69aeff}
+.mock-select{background:#333;border:1px solid #484848;border-radius:4px;padding:4px 7px;font-size:10px;flex:1;margin-left:8px;color:#e0e0e0}
+.mock-btn{background:#4d9ef7;color:#fff;text-align:center;padding:9px;border-radius:5px;font-weight:600;font-size:11px;margin-top:6px}
+.mock-progress{height:3px;background:#2a2a2a;border-radius:3px;overflow:hidden;margin-top:8px}
+.mock-progress-bar{height:100%;width:78%;background:linear-gradient(90deg,#4d9ef7,#b06ef7);border-radius:3px}
+.mock-status{font-size:10px;color:#4caf7d;margin-top:4px}
+
+/* ── ROTATING LANGUAGE in hero ── */
+.lang-rotate{
+  display:inline-block;color:var(--cyan);position:relative;
+  min-width:auto;
+}
+.lang-rotate-inner{
+  display:inline-block;animation:langFade .55s ease;
+}
+@keyframes langFade{
+  from{opacity:0;transform:translateY(-12px) scale(.92)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* ── NATIVE LANGUAGES GRID ── */
+.langs-sec{padding:80px 0;background:linear-gradient(180deg,transparent,rgba(0,224,255,0.025))}
+.langs-headline{text-align:center;margin-bottom:40px}
+.langs-headline h2{font-size:clamp(28px,4.5vw,42px);font-weight:700;letter-spacing:-0.02em;margin-bottom:14px}
+.langs-headline p{color:var(--mid);font-size:16px;max-width:560px;margin:0 auto}
+.langs-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:8px;max-width:1000px;margin:0 auto;
+}
+.lang-chip{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:13px 12px;text-align:center;transition:.25s;cursor:default;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.lang-chip:hover{
+  background:var(--card2);border-color:var(--cyan);
+  transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,224,255,0.15);
+}
+.lang-chip .flag{font-size:24px;line-height:1}
+.lang-chip .name{color:var(--white);font-size:13px;font-weight:600;letter-spacing:-0.01em}
+.lang-chip .en{color:var(--dim);font-size:10px;font-family:'JetBrains Mono',monospace}
+.langs-more{text-align:center;margin-top:30px;color:var(--mid);font-size:14px}
+.langs-more b{color:var(--cyan)}
+.langs-hidden{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease;opacity:0}
+.langs-hidden.open{max-height:2000px;opacity:1}
+#toggleLangs{padding:11px 22px;border-radius:9px;font-size:14px;font-weight:600;color:var(--mid);transition:.2s}
+#toggleLangs:hover{color:var(--cyan);border-color:var(--cyan)}
+
+/* ── SEO HEADLINES GRID ── */
+.seo-sec{padding:60px 0 80px}
+.seo-headlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:1100px;margin:0 auto}
+.seo-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 22px;
+  transition:.25s;position:relative;overflow:hidden;
+}
+.seo-card:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.seo-flag-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.seo-card .flag{font-size:20px}
+.seo-card .country{color:var(--mid);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase}
+.seo-card .headline{color:var(--white);font-size:16px;font-weight:600;line-height:1.35;letter-spacing:-0.01em}
+.seo-sec-head{text-align:center;margin-bottom:36px}
+.seo-sec-head h3{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.01em;margin-bottom:8px}
+.seo-sec-head p{color:var(--mid);font-size:14px;max-width:520px;margin:0 auto}
+
+/* ── INLINE CTA between sections ── */
+.inline-cta{text-align:center;padding:46px 0 6px;position:relative}
+.inline-cta-text{color:var(--mid);font-size:17px;margin-bottom:18px;font-style:italic;line-height:1.4}
+.inline-cta-text b{color:var(--white);font-style:normal}
+.inline-cta a{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--cyan);color:var(--bg);
+  padding:17px 34px;border-radius:12px;font-weight:700;font-size:16.5px;text-decoration:none;transition:.25s;
+  box-shadow:0 10px 32px rgba(0,224,255,0.28);
+  letter-spacing:-0.01em;
+}
+.inline-cta a:hover{transform:translateY(-3px);box-shadow:0 16px 46px rgba(0,224,255,0.5),0 0 0 6px rgba(0,224,255,0.12)}
+.inline-cta .small{font-size:13px;color:var(--mid);margin-top:14px;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em}
+.inline-cta .small span{color:var(--green);font-weight:700}
+
+/* ── SCROLL HINT in hero ── */
+.scroll-hint{
+  position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
+  color:var(--mid);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  font-family:'JetBrains Mono',monospace;text-align:center;text-decoration:none;
+  animation:bounce 2s ease-in-out infinite;z-index:5;
+}
+.scroll-hint::after{content:"";display:block;width:1px;height:24px;background:var(--cyan);margin:8px auto 0;opacity:.6}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,4px)}}
+
+/* ── SIDE DOT NAV (desktop only) ── */
+.side-nav{
+  position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:50;
+  display:flex;flex-direction:column;gap:14px;
+}
+.side-nav a{
+  width:10px;height:10px;border-radius:50%;background:var(--border);
+  transition:.2s;position:relative;
+}
+.side-nav a:hover,.side-nav a.active{background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.side-nav a::before{
+  content:attr(data-label);position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;
+  color:var(--white);background:var(--card);border:1px solid var(--border);
+  padding:4px 10px;border-radius:5px;opacity:0;pointer-events:none;transition:.2s;white-space:nowrap;
+}
+.side-nav a:hover::before{opacity:1;right:22px}
+@media(max-width:1100px){.side-nav{display:none}}
+
+/* ── MINI FAQ before pricing ── */
+.mini-faq{padding:40px 0 20px;max-width:780px;margin:0 auto}
+.mini-faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.mini-faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+.mini-faq-item h4{color:var(--cyan);font-size:13px;margin-bottom:8px;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em}
+.mini-faq-item p{color:var(--mid);font-size:13px;line-height:1.5}
+.mini-faq-item p b{color:var(--white)}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <div class="logo"><span class="logo-mark">C</span> CaptionLab</div>
-    <a href="#pricing" class="nav-cta">Get CaptionLab — $39</a>
+    <a href="#hero" class="logo" aria-label="Back to top"><span class="logo-mark">C</span> CaptionLab</a>
+    <div class="nav-menu">
+      <a href="#languages">Languages</a>
+      <a href="#how">How it works</a>
+      <a href="#roi">Save money</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#pricing" class="nav-cta">Get for $39</a>
   </div>
 </nav>
 
+<!-- SIDE DOT NAV (desktop) -->
+<div class="side-nav" id="sideNav">
+  <a href="#hero" data-section="hero" data-label="Top" class="active"></a>
+  <a href="#languages" data-section="languages" data-label="Languages"></a>
+  <a href="#how" data-section="how" data-label="How it works"></a>
+  <a href="#roi" data-section="roi" data-label="Save money"></a>
+  <a href="#pricing" data-section="pricing" data-label="Pricing"></a>
+  <a href="#faq" data-section="faq" data-label="FAQ"></a>
+</div>
+
+<!-- LAUNCH RIBBON -->
+<div class="launch-bar">
+  <div class="wrap">
+    <div class="launch-bar-inner">
+      <span class="launch-flame">🔥</span>
+      <span class="launch-text"><b>Launch Sale</b> · <span class="launch-strike">$59</span> <span class="launch-now">$39</span> · save 34%</span>
+      <span class="launch-timer">Ends in <span id="cd-d">--</span>d <span id="cd-h">--</span>h <span id="cd-m">--</span>m</span>
+    </div>
+  </div>
+</div>
+
 <!-- HERO -->
-<header class="hero">
+<header class="hero" id="hero">
   <div class="grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="wrap hero-content">
+   <div class="hero-grid">
+    <div class="hero-text">
     <div class="badge hero-anim"><span class="dot"></span> Powered by OpenAI Whisper · Runs 100% offline</div>
-    <h1 class="hero-anim d1">Auto subtitles in Premiere Pro.<br><span class="hl">Finally, in your language.</span></h1>
+    <h1 class="hero-anim d1">Auto subtitles in Premiere Pro.<br>Finally, in <span class="lang-rotate"><span class="lang-rotate-inner" id="rotateLang">your language</span></span>.</h1>
     <p class="hero-sub hero-anim d2">Adobe supports <span class="strike">16 languages</span>. CaptionLab supports <b>99</b> — including Polish, Turkish, Ukrainian, Arabic, Indonesian and dozens more Adobe never bothered with. <b>No cloud. No API keys. No subscription.</b></p>
     <div class="cta-row hero-anim d3">
       <a href="#pricing" class="btn-primary">Get CaptionLab — $39 →</a>
@@ -246,7 +676,46 @@ footer .mono{color:var(--mid)}
       <span><span class="ck">✓</span> Works offline forever</span>
       <span><span class="ck">✓</span> Your footage never leaves your Mac</span>
     </div>
+    </div>
+
+    <div class="hero-mockup-col">
+    <!-- PLUGIN MOCKUP -->
+    <div class="mockup-wrap hero-anim d4">
+      <div class="mockup">
+        <div class="mock-header">
+          <div class="mock-logo">🎙 CaptionLab</div>
+          <span class="mock-badge">Ready</span>
+        </div>
+        <div class="mock-section">
+          <div class="mock-label">Settings</div>
+          <div class="mock-row">
+            <span class="mock-row-label">Source</span>
+            <div class="mock-radio-group">
+              <div class="mock-radio active">Selected Clip</div>
+              <div class="mock-radio">Full Sequence</div>
+            </div>
+          </div>
+          <div class="mock-row">
+            <span class="mock-row-label">Language</span>
+            <div class="mock-select">Turkish</div>
+          </div>
+          <div class="mock-row">
+            <span class="mock-row-label">Output</span>
+            <div class="mock-radio-group">
+              <div class="mock-radio active">Transcribe</div>
+              <div class="mock-radio">→ English</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-progress"><div class="mock-progress-bar"></div></div>
+        <div class="mock-status">✓ 12 segments · TR</div>
+        <div class="mock-btn">▶ Generate Subtitles</div>
+      </div>
+    </div>
+    </div>
+   </div>
   </div>
+  <a href="#languages" class="scroll-hint">Scroll · 99 languages await</a>
 </header>
 
 <!-- 99 -->
@@ -260,6 +729,139 @@ footer .mono{color:var(--mid)}
       <span class="flag">🇻🇳</span><span class="flag">🇸🇦</span><span class="flag">🇹🇭</span><span class="flag">🇷🇴</span>
       <span class="flag">🇨🇿</span><span class="flag">🇭🇺</span><span class="flag">🇬🇷</span><span class="flag">🇮🇱</span>
       <span class="flag">🇮🇷</span><span class="flag">🇵🇭</span><span class="flag">🇰🇿</span><span class="flag">🇷🇸</span>
+    </div>
+  </div>
+</section>
+
+<!-- NATIVE LANGUAGES GRID -->
+<section class="langs-sec" id="languages">
+  <div class="wrap">
+    <div class="langs-headline reveal">
+      <h2>The languages Adobe forgot. <span style="color:var(--cyan)">We didn't.</span></h2>
+      <p>Pick yours. Or one of 90 more. CaptionLab speaks them all.</p>
+    </div>
+    <div class="langs-grid reveal">
+      <div class="lang-chip"><span class="flag">🇺🇦</span><span class="name">Українська</span><span class="en">Ukrainian</span></div>
+      <div class="lang-chip"><span class="flag">🇵🇱</span><span class="name">Polski</span><span class="en">Polish</span></div>
+      <div class="lang-chip"><span class="flag">🇹🇷</span><span class="name">Türkçe</span><span class="en">Turkish</span></div>
+      <div class="lang-chip"><span class="flag">🇮🇩</span><span class="name">Bahasa</span><span class="en">Indonesian</span></div>
+      <div class="lang-chip"><span class="flag">🇻🇳</span><span class="name">Tiếng Việt</span><span class="en">Vietnamese</span></div>
+      <div class="lang-chip"><span class="flag">🇸🇦</span><span class="name">العربية</span><span class="en">Arabic</span></div>
+      <div class="lang-chip"><span class="flag">🇹🇭</span><span class="name">ไทย</span><span class="en">Thai</span></div>
+      <div class="lang-chip"><span class="flag">🇷🇴</span><span class="name">Română</span><span class="en">Romanian</span></div>
+      <div class="lang-chip"><span class="flag">🇨🇿</span><span class="name">Čeština</span><span class="en">Czech</span></div>
+      <div class="lang-chip"><span class="flag">🇭🇺</span><span class="name">Magyar</span><span class="en">Hungarian</span></div>
+      <div class="lang-chip"><span class="flag">🇬🇷</span><span class="name">Ελληνικά</span><span class="en">Greek</span></div>
+      <div class="lang-chip"><span class="flag">🇮🇱</span><span class="name">עברית</span><span class="en">Hebrew</span></div>
+      <div class="lang-chip"><span class="flag">🇮🇷</span><span class="name">فارسی</span><span class="en">Persian</span></div>
+      <div class="lang-chip"><span class="flag">🇵🇭</span><span class="name">Filipino</span><span class="en">Filipino</span></div>
+      <div class="lang-chip"><span class="flag">🇰🇿</span><span class="name">Қазақша</span><span class="en">Kazakh</span></div>
+      <div class="lang-chip"><span class="flag">🇷🇸</span><span class="name">Српски</span><span class="en">Serbian</span></div>
+      <div class="lang-chip"><span class="flag">🇭🇷</span><span class="name">Hrvatski</span><span class="en">Croatian</span></div>
+      <div class="lang-chip"><span class="flag">🇧🇬</span><span class="name">Български</span><span class="en">Bulgarian</span></div>
+      <div class="lang-chip"><span class="flag">🇸🇰</span><span class="name">Slovenčina</span><span class="en">Slovak</span></div>
+      <div class="lang-chip"><span class="flag">🇮🇳</span><span class="name">हिन्दी</span><span class="en">Hindi</span></div>
+      <div class="lang-chip"><span class="flag">🇰🇷</span><span class="name">한국어</span><span class="en">Korean</span></div>
+      <div class="lang-chip"><span class="flag">🇯🇵</span><span class="name">日本語</span><span class="en">Japanese</span></div>
+      <div class="lang-chip"><span class="flag">🇨🇳</span><span class="name">中文</span><span class="en">Chinese</span></div>
+      <div class="lang-chip"><span class="flag">🇲🇾</span><span class="name">Malay</span><span class="en">Malay</span></div>
+      <div class="lang-chip"><span class="flag">🇳🇱</span><span class="name">Nederlands</span><span class="en">Dutch</span></div>
+      <div class="lang-chip"><span class="flag">🇸🇪</span><span class="name">Svenska</span><span class="en">Swedish</span></div>
+      <div class="lang-chip"><span class="flag">🇫🇮</span><span class="name">Suomi</span><span class="en">Finnish</span></div>
+      <div class="lang-chip"><span class="flag">🇩🇰</span><span class="name">Dansk</span><span class="en">Danish</span></div>
+      <div class="lang-chip"><span class="flag">🇳🇴</span><span class="name">Norsk</span><span class="en">Norwegian</span></div>
+      <div class="lang-chip"><span class="flag">🇮🇸</span><span class="name">Íslenska</span><span class="en">Icelandic</span></div>
+      <div class="lang-chip"><span class="flag">🇪🇸</span><span class="name">Español</span><span class="en">Spanish</span></div>
+      <div class="lang-chip"><span class="flag">🇫🇷</span><span class="name">Français</span><span class="en">French</span></div>
+      <div class="lang-chip"><span class="flag">🇩🇪</span><span class="name">Deutsch</span><span class="en">German</span></div>
+      <div class="lang-chip"><span class="flag">🇮🇹</span><span class="name">Italiano</span><span class="en">Italian</span></div>
+      <div class="lang-chip"><span class="flag">🇵🇹</span><span class="name">Português</span><span class="en">Portuguese</span></div>
+      <div class="lang-chip"><span class="flag">🇷🇺</span><span class="name">Русский</span><span class="en">Russian</span></div>
+    </div>
+    <div class="langs-hidden" id="langsHidden">
+      <div class="langs-grid" style="margin-top:8px">
+        <div class="lang-chip"><span class="flag">🇧🇷</span><span class="name">Português BR</span><span class="en">Brazilian</span></div>
+        <div class="lang-chip"><span class="flag">🇧🇾</span><span class="name">Беларуская</span><span class="en">Belarusian</span></div>
+        <div class="lang-chip"><span class="flag">🇲🇰</span><span class="name">Македонски</span><span class="en">Macedonian</span></div>
+        <div class="lang-chip"><span class="flag">🇸🇮</span><span class="name">Slovenščina</span><span class="en">Slovenian</span></div>
+        <div class="lang-chip"><span class="flag">🇱🇻</span><span class="name">Latviešu</span><span class="en">Latvian</span></div>
+        <div class="lang-chip"><span class="flag">🇱🇹</span><span class="name">Lietuvių</span><span class="en">Lithuanian</span></div>
+        <div class="lang-chip"><span class="flag">🇪🇪</span><span class="name">Eesti</span><span class="en">Estonian</span></div>
+        <div class="lang-chip"><span class="flag">🇬🇪</span><span class="name">ქართული</span><span class="en">Georgian</span></div>
+        <div class="lang-chip"><span class="flag">🇦🇲</span><span class="name">Հայերեն</span><span class="en">Armenian</span></div>
+        <div class="lang-chip"><span class="flag">🇦🇿</span><span class="name">Azərbaycan</span><span class="en">Azerbaijani</span></div>
+        <div class="lang-chip"><span class="flag">🇲🇳</span><span class="name">Монгол</span><span class="en">Mongolian</span></div>
+        <div class="lang-chip"><span class="flag">🇰🇪</span><span class="name">Kiswahili</span><span class="en">Swahili</span></div>
+        <div class="lang-chip"><span class="flag">🇵🇰</span><span class="name">اردو</span><span class="en">Urdu</span></div>
+        <div class="lang-chip"><span class="flag">🇧🇩</span><span class="name">বাংলা</span><span class="en">Bengali</span></div>
+        <div class="lang-chip"><span class="flag">🇳🇵</span><span class="name">नेपाली</span><span class="en">Nepali</span></div>
+        <div class="lang-chip"><span class="flag">🇲🇲</span><span class="name">မြန်မာ</span><span class="en">Burmese</span></div>
+        <div class="lang-chip"><span class="flag">🇰🇭</span><span class="name">ខ្មែរ</span><span class="en">Khmer</span></div>
+      </div>
+      <p class="langs-more reveal" style="margin-top:18px"><b>+ 50 more</b> — Afrikaans, Albanian, Amharic, Basque, Catalan, Galician, Welsh, Yoruba, Sanskrit, Tibetan, Maltese, Hawaiian, and dozens more.</p>
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <button id="toggleLangs" class="btn-ghost" style="cursor:pointer;border:1px solid var(--border);background:var(--card);font-family:inherit">Show all 99 languages ↓</button>
+    </div>
+  </div>
+</section>
+
+<!-- SEO MULTILINGUAL HEADLINES -->
+<section class="seo-sec" id="multilingual">
+  <div class="wrap">
+    <div class="seo-sec-head reveal">
+      <h3>The same headline. <span style="color:var(--cyan)">Your language.</span></h3>
+      <p>If you're reading any of these — yes, CaptionLab is for you.</p>
+    </div>
+    <div class="seo-headlines">
+      <div class="seo-card reveal" lang="uk">
+        <div class="seo-flag-row"><span class="flag">🇺🇦</span><span class="country">Українська</span></div>
+        <div class="headline">Автоматичні субтитри в Premiere Pro — нарешті твоєю мовою.</div>
+      </div>
+      <div class="seo-card reveal" lang="pl">
+        <div class="seo-flag-row"><span class="flag">🇵🇱</span><span class="country">Polski</span></div>
+        <div class="headline">Automatyczne napisy w Premiere Pro — nareszcie w Twoim języku.</div>
+      </div>
+      <div class="seo-card reveal" lang="tr">
+        <div class="seo-flag-row"><span class="flag">🇹🇷</span><span class="country">Türkçe</span></div>
+        <div class="headline">Premiere Pro için otomatik altyazı — sonunda kendi dilinizde.</div>
+      </div>
+      <div class="seo-card reveal" lang="id">
+        <div class="seo-flag-row"><span class="flag">🇮🇩</span><span class="country">Bahasa Indonesia</span></div>
+        <div class="headline">Subtitle otomatis di Premiere Pro — akhirnya dalam bahasa Anda.</div>
+      </div>
+      <div class="seo-card reveal" lang="vi">
+        <div class="seo-flag-row"><span class="flag">🇻🇳</span><span class="country">Tiếng Việt</span></div>
+        <div class="headline">Phụ đề tự động trong Premiere Pro — cuối cùng cũng bằng ngôn ngữ của bạn.</div>
+      </div>
+      <div class="seo-card reveal" lang="ar">
+        <div class="seo-flag-row"><span class="flag">🇸🇦</span><span class="country">العربية</span></div>
+        <div class="headline" style="direction:rtl;text-align:right">الترجمة التلقائية في بريمير برو — أخيرًا بلغتك.</div>
+      </div>
+      <div class="seo-card reveal" lang="th">
+        <div class="seo-flag-row"><span class="flag">🇹🇭</span><span class="country">ไทย</span></div>
+        <div class="headline">คำบรรยายอัตโนมัติใน Premiere Pro — ในที่สุดก็มีภาษาของคุณ</div>
+      </div>
+      <div class="seo-card reveal" lang="ro">
+        <div class="seo-flag-row"><span class="flag">🇷🇴</span><span class="country">Română</span></div>
+        <div class="headline">Subtitrări automate în Premiere Pro — în sfârșit, în limba ta.</div>
+      </div>
+      <div class="seo-card reveal" lang="ko">
+        <div class="seo-flag-row"><span class="flag">🇰🇷</span><span class="country">한국어</span></div>
+        <div class="headline">Premiere Pro의 자동 자막 — 드디어 당신의 언어로.</div>
+      </div>
+      <div class="seo-card reveal" lang="hi">
+        <div class="seo-flag-row"><span class="flag">🇮🇳</span><span class="country">हिन्दी</span></div>
+        <div class="headline">Premiere Pro में स्वचालित उपशीर्षक — आखिरकार, आपकी भाषा में।</div>
+      </div>
+      <div class="seo-card reveal" lang="he">
+        <div class="seo-flag-row"><span class="flag">🇮🇱</span><span class="country">עברית</span></div>
+        <div class="headline" style="direction:rtl;text-align:right">כתוביות אוטומטיות ב-Premiere Pro — סוף סוף בשפה שלך.</div>
+      </div>
+      <div class="seo-card reveal" lang="cs">
+        <div class="seo-flag-row"><span class="flag">🇨🇿</span><span class="country">Čeština</span></div>
+        <div class="headline">Automatické titulky v Premiere Pro — konečně ve vašem jazyce.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -296,6 +898,10 @@ footer .mono{color:var(--mid)}
         <div class="old">// privacy nightmare</div>
       </div>
     </div>
+    <div class="inline-cta reveal">
+      <p class="inline-cta-text">All of this — <b>fixable in 60 seconds.</b></p>
+      <a href="#how">See how it works  ↓</a>
+    </div>
   </div>
 </section>
 
@@ -307,43 +913,12 @@ footer .mono{color:var(--mid)}
     <p class="section-lead reveal">No export. No upload. No waiting for a server. Open the panel and go.</p>
     <div class="steps">
       <div class="step reveal"><div class="step-num">01</div><h3>Open the panel</h3><p>CaptionLab lives right inside Premiere Pro. Window → Extensions → CaptionLab.</p></div>
-      <div class="step reveal"><div class="step-num">02</div><h3>Pick your language</h3><p>Choose from 99 languages — or let it auto-detect what's being spoken.</p></div>
-      <div class="step reveal"><div class="step-num">03</div><h3>Click Generate</h3><p>Whisper transcribes locally on your Mac. Nothing uploaded anywhere.</p></div>
-      <div class="step reveal"><div class="step-num">04</div><h3>Done</h3><p>Editable subtitles appear on your timeline as a native caption track. Tweak and ship.</p></div>
+      <div class="step reveal"><div class="step-num">02</div><h3>Pick language & click Generate</h3><p>Choose from 99 languages — or let it auto-detect. One click does it all.</p></div>
+      <div class="step reveal"><div class="step-num">03</div><h3>Drop SRT on timeline</h3><p>Subtitles appear as an editable Premiere caption track. Tweak and ship.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 4 PILLARS -->
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow reveal">Why CaptionLab</div>
-    <h2 class="reveal">Four reasons it just <span class="hl">feels right</span></h2>
-    <p class="section-lead reveal"></p>
-    <div class="pillars">
-      <div class="pillar reveal">
-        <span class="pillar-tag" style="background:rgba(31,224,160,0.12);color:var(--green)">Buy once</span>
-        <h3>No subscription. Ever.</h3>
-        <p>Pay $39 one time. Use it forever. No monthly invoice, no "your plan expired" message at 2am before a deadline. You own it.</p>
-      </div>
-      <div class="pillar reveal">
-        <span class="pillar-tag" style="background:rgba(0,224,255,0.12);color:var(--cyan)">Your machine</span>
-        <h3>100% offline. No API keys.</h3>
-        <p>No Deepgram account. No Groq key. No OpenAI credits. Whisper runs locally on your Mac. Your footage never touches the internet.</p>
-      </div>
-      <div class="pillar reveal">
-        <span class="pillar-tag" style="background:rgba(255,201,77,0.12);color:var(--gold)">Your language</span>
-        <h3>99 languages. Including yours.</h3>
-        <p>The Eastern European, Middle Eastern, and Asian languages Adobe never supported. If Whisper speaks it, CaptionLab subtitles it.</p>
-      </div>
-      <div class="pillar reveal">
-        <span class="pillar-tag" style="background:rgba(255,84,112,0.12);color:var(--red)">Your timeline</span>
-        <h3>Native Premiere integration.</h3>
-        <p>Subtitles appear as a real, editable Premiere caption track — not a screenshot, not an export. Edit timing and text like always.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- COMPARISON -->
 <section class="section">
@@ -367,49 +942,228 @@ footer .mono{color:var(--mid)}
         <tr><td>Subscription</td><td class="no">✗ required</td><td class="no">✗ required</td><td class="us-col yes">✓ never</td></tr>
       </table>
     </div>
+    <div class="inline-cta reveal">
+      <p class="inline-cta-text">This is why CaptionLab is <b>$39 once</b> — not $15/month forever.</p>
+      <a href="#pricing">Get CaptionLab — $39 →</a>
+      <div class="small"><span>🛡</span> 14-day money-back guarantee</div>
+    </div>
   </div>
 </section>
 
-<!-- PRIVACY QUOTE -->
-<section class="quote-sec">
+<!-- ROI CALCULATOR -->
+<section class="roi-sec" id="roi">
   <div class="wrap">
-    <p class="big-quote reveal">Your client's footage stays <span class="hl">on your machine.</span><br>That's not a feature. That's how it should work.</p>
-    <p class="quote-attr reveal">— the whole point of CaptionLab</p>
+    <div class="eyebrow reveal" style="text-align:center">Real-world math</div>
+    <h2 class="reveal" style="text-align:center;margin-bottom:38px">How much time will <span class="hl">you</span> save?</h2>
+    <div class="roi-card reveal">
+      <div class="roi-grid">
+        <div class="roi-left">
+          <h3>Drag the slider <span class="hl">→</span></h3>
+          <p>Editors spend 3–5 hours manually typing subtitles for every hour of footage. CaptionLab does it in under 60 seconds.</p>
+
+          <div class="roi-slider-block">
+            <div class="roi-slider-label">
+              <span>Videos per week</span>
+              <span class="val"><span id="roi-videos">3</span> videos</span>
+            </div>
+            <input type="range" class="roi-slider" id="slider-videos" min="1" max="20" value="3">
+          </div>
+
+          <div class="roi-slider-block">
+            <div class="roi-slider-label">
+              <span>Avg video length</span>
+              <span class="val"><span id="roi-mins">10</span> min</span>
+            </div>
+            <input type="range" class="roi-slider" id="slider-mins" min="2" max="60" value="10">
+          </div>
+
+          <div class="roi-slider-block">
+            <div class="roi-slider-label">
+              <span>Your hourly rate</span>
+              <span class="val">$<span id="roi-rate">35</span>/hr</span>
+            </div>
+            <input type="range" class="roi-slider" id="slider-rate" min="15" max="200" value="35">
+          </div>
+        </div>
+
+        <div class="roi-result">
+          <div class="roi-saving-label">You'll save</div>
+          <div class="roi-saving-amount">$<span id="roi-savings">8190</span></div>
+          <div class="roi-saving-period">in the first year alone</div>
+
+          <div class="roi-stats">
+            <div class="roi-stat">
+              <div class="roi-stat-val"><span id="roi-hours">234</span>h</div>
+              <div class="roi-stat-label">SAVED YEAR ONE</div>
+            </div>
+            <div class="roi-stat">
+              <div class="roi-stat-val"><span id="roi-days">29</span> days</div>
+              <div class="roi-stat-label">BACK IN YOUR LIFE</div>
+            </div>
+          </div>
+
+          <div class="roi-recoup">Pays for itself in <span id="roi-recoup">1 day</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVINGS -->
+<section class="savings-sec">
+  <div class="wrap">
+    <div class="savings-headline reveal">
+      <h3>The math is <span style="color:var(--green)">absurd</span></h3>
+      <p>What you'd pay elsewhere for the same job — every single year:</p>
+    </div>
+    <div class="savings-card reveal">
+      <div class="savings-item">
+        <div class="savings-vs">vs Captioneer subscription</div>
+        <div class="savings-old">$180 / year</div>
+        <div class="savings-amount">$141</div>
+        <div class="savings-label">saved year one</div>
+      </div>
+      <div class="savings-item">
+        <div class="savings-vs">vs Adobe Creative Cloud</div>
+        <div class="savings-old">$660 / year</div>
+        <div class="savings-amount">$621</div>
+        <div class="savings-label">if you just need captions</div>
+      </div>
+      <div class="savings-item">
+        <div class="savings-vs">vs cloud subscription tools</div>
+        <div class="savings-old">$180+ / year</div>
+        <div class="savings-amount">$141+</div>
+        <div class="savings-label">every year, forever</div>
+      </div>
+    </div>
+    <div class="inline-cta reveal">
+      <p class="inline-cta-text">Recoup it on your <b>first project this week</b>.</p>
+      <a href="#pricing">Start saving — $39 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER NOTE -->
+<section class="founder-sec">
+  <div class="wrap">
+    <div class="founder-card reveal">
+      <div class="founder-eyebrow">A note from the builder</div>
+      <div class="founder-quote">
+        <p>I'm an editor. Same as you.</p>
+        <p>For years I watched Adobe roll out Speech-to-Text in English, then Spanish, then French — and then just <span class="hl">stop</span>. My Ukrainian projects? Polish? Turkish? "Not supported." So I typed every subtitle by hand. Hours and hours, for every project.</p>
+        <p>Then I tried the cloud tools. They worked — but they wanted my footage on their servers, my credit card on file, and $15 every month forever. For client work under NDA? <span class="hl">No way.</span></p>
+        <p>So I built CaptionLab. The plugin I wanted to exist. <span class="hl">Local. Fast. 99 languages.</span> One price. No subscription. Your footage stays where it belongs — on your Mac.</p>
+        <p style="color:var(--mid);font-size:16px;margin-top:24px">If this sounds like something you need too — try it. 14-day refund if it's not for you. No hard feelings.</p>
+      </div>
+      <div class="founder-sign">
+        <div class="founder-avatar">I</div>
+        <div class="founder-info">
+          <div class="founder-name">Igor Bondarenko</div>
+          <div class="founder-role">Editor · Founder, EditLab</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EARLY ADOPTER BONUS -->
+<section class="bonus-sec">
+  <div class="wrap">
+    <div class="bonus-card reveal">
+      <div class="bonus-header">
+        <span class="bonus-flag">🎁 LAUNCH BONUS</span>
+        <div class="bonus-progress"><div class="bonus-fill" id="bonus-fill"></div></div>
+        <span class="bonus-count"><span id="bonus-left">82</span> / 100 spots left</span>
+      </div>
+      <h3 class="bonus-title">First 100 buyers get <span class="hl">three things</span> nobody else will.</h3>
+      <p style="color:var(--mid);font-size:15px;max-width:600px;position:relative">Early supporters made this possible. You're not just buying a plugin — you're getting in on the ground floor.</p>
+      <div class="bonus-list">
+        <div class="bonus-item">
+          <div class="bonus-item-icon">🪟</div>
+          <h4>Free Windows version</h4>
+          <p>When CaptionLab for Windows ships — yours, free. (Everyone else will pay full price.)</p>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">♾️</div>
+          <h4>Lifetime major updates</h4>
+          <p>v2, v3, v4 — all included. Future buyers pay for major version upgrades. You don't.</p>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">📧</div>
+          <h4>Direct line to the builder</h4>
+          <p>Bug report, feature wish, weird edge case — email me directly. I'll answer personally.</p>
+        </div>
+      </div>
+      <p class="bonus-foot">Once 100 spots are gone, these bonuses go away. <b>Forever.</b></p>
+    </div>
+
+    <!-- Mini-FAQ — last objections before pricing -->
+    <div class="mini-faq">
+      <div class="mini-faq-grid reveal">
+        <div class="mini-faq-item">
+          <h4>// IS IT REALLY OFFLINE?</h4>
+          <p>Yes. After the one-time setup, <b>no internet needed</b>. Your audio never leaves your Mac.</p>
+        </div>
+        <div class="mini-faq-item">
+          <h4>// WILL IT WORK ON MY MAC?</h4>
+          <p>Works on <b>any Mac with macOS 11+</b> — Apple Silicon (M1–M4) and Intel.</p>
+        </div>
+        <div class="mini-faq-item">
+          <h4>// WHAT IF I HATE IT?</h4>
+          <p>Email us within 14 days for a <b>full refund</b>. No questions, no friction.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="section" id="pricing">
+<section class="section" id="pricing" style="padding-top:30px">
   <div class="wrap">
     <div class="eyebrow reveal" style="text-align:center">Simple pricing</div>
     <h2 class="reveal" style="text-align:center">One price. <span class="hl">Yours forever.</span></h2>
     <p class="section-lead reveal" style="text-align:center;margin-left:auto;margin-right:auto">No tiers. No upsells. No catch.</p>
     <div class="price-box reveal">
       <div class="price-flag">LAUNCH</div>
-      <div class="price-old">normally $59</div>
+      <div class="price-discount-row">
+        <span class="price-old-big">$59</span>
+        <span class="save-badge">SAVE $20</span>
+      </div>
       <div class="price-amount"><span class="cur">$</span>39</div>
       <div class="price-once">// one-time · permanent license</div>
       <ul class="price-list">
         <li><span class="ck">✓</span> CaptionLab plugin for Premiere Pro (Mac)</li>
         <li><span class="ck">✓</span> All 99 Whisper languages</li>
         <li><span class="ck">✓</span> 100% offline — no API keys, no cloud</li>
-        <li><span class="ck">✓</span> Step-by-step setup guide</li>
+        <li><span class="ck">✓</span> Translate any language → English</li>
         <li><span class="ck">✓</span> Free updates for this version</li>
         <li><span class="ck">✓</span> Apple Silicon + Intel support</li>
       </ul>
-      <a href="#" class="price-cta">Get CaptionLab now →</a>
-      <p class="price-guarantee">Premiere Pro 2023–2026 · macOS · Windows coming soon</p>
+      <div class="guarantee-box">
+        <span class="guarantee-icon">🛡️</span>
+        <span class="guarantee-text">
+          <b>14-day money-back guarantee</b>
+          <span>Doesn't work for you? Full refund. No questions asked.</span>
+        </span>
+      </div>
+      <a href="#" class="price-cta" id="buy-btn-main">Get CaptionLab now →</a>
+      <div class="trust-row">
+        <span><span class="tk">🔒</span> Secure checkout</span>
+        <span><span class="tk">⚡</span> Instant download</span>
+        <span><span class="tk">💳</span> Paddle · VAT included</span>
+      </div>
+      <p class="price-guarantee" style="margin-top:14px">Premiere Pro 2022–2026 · macOS · Windows coming soon</p>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="section">
+<section class="section" id="faq">
   <div class="wrap">
     <div class="eyebrow reveal">Questions</div>
     <h2 class="reveal">Before you ask</h2>
     <div style="margin-top:40px">
-      <div class="faq-item reveal"><div class="faq-q">Do I need an internet connection?</div><div class="faq-a"><div class="faq-a-inner">Only once — to download the Whisper model during setup (~1.5 GB). After that, CaptionLab runs 100% offline. No internet, no servers, no nothing.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q">Do I need an internet connection?</div><div class="faq-a"><div class="faq-a-inner">Only once — for the first-time setup (Python, ffmpeg, and the Whisper AI model, ~3 GB total). After that, CaptionLab runs 100% offline. No internet, no servers, no nothing.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q">Do I need an API key or an OpenAI account?</div><div class="faq-a"><div class="faq-a-inner">No. Unlike cloud tools, CaptionLab runs the Whisper model locally on your Mac. No Deepgram, no Groq, no OpenAI credits. Nothing to sign up for.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q">Is my footage uploaded anywhere?</div><div class="faq-a"><div class="faq-a-inner">Never. Every byte of audio is processed on your own machine. Perfect for client work under NDA.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q">Which Premiere Pro versions are supported?</div><div class="faq-a"><div class="faq-a-inner">Premiere Pro 2023 through 2026 (versions 23.x–26.x). Works on Apple Silicon (M1–M4) and Intel Macs.</div></div></div>
@@ -423,51 +1177,25 @@ footer .mono{color:var(--mid)}
 <section class="final">
   <div class="final-glow"></div>
   <div class="wrap">
+    <div class="final-price-tag reveal">
+      <span class="final-old">$59</span>
+      <span class="final-now">$39</span>
+      <span class="final-save">SAVE $20</span>
+    </div>
     <h2 class="reveal">Stop typing subtitles.<br><span style="color:var(--cyan)">Start shipping faster.</span></h2>
     <p class="reveal">One purchase. Your language. Your machine. Forever.</p>
-    <a href="#pricing" class="btn-primary reveal" style="font-size:18px;padding:18px 40px">Get CaptionLab — $39 →</a>
-  </div>
-</section>
-
-<!-- LEGAL SECTIONS -->
-<section class="section legal-sec" style="border-top:1px solid var(--border)">
-  <div class="wrap">
-
-    <div id="terms" class="legal-block">
-      <h2 style="font-size:28px">Terms of Service</h2>
-      <p class="legal-updated">Last updated: June 2026</p>
-      <p>CaptionLab ("the Software") is a digital plugin for Adobe Premiere Pro, developed and sold by EditLab ("we", "us"). By purchasing and using CaptionLab, you agree to these terms.</p>
-      <p><b>License.</b> Your purchase grants you a single, non-transferable, perpetual license to install and use CaptionLab on your own computer(s) for personal or commercial video editing. You may not resell, redistribute, sublicense, or share the Software or your license key with third parties.</p>
-      <p><b>Ownership.</b> CaptionLab and all associated intellectual property remain the property of EditLab. This license does not transfer ownership of the Software to you.</p>
-      <p><b>Acceptable use.</b> You agree to use CaptionLab only for lawful purposes and in compliance with all applicable laws. You may not reverse-engineer, decompile, or attempt to extract the source code except as permitted by law.</p>
-      <p><b>Third-party components.</b> CaptionLab uses OpenAI's Whisper model, which runs locally on your device. EditLab is not affiliated with or endorsed by OpenAI or Adobe.</p>
-      <p><b>Warranty disclaimer.</b> The Software is provided "as is" without warranty of any kind. We do not guarantee that transcription will be error-free or suitable for any specific purpose.</p>
-      <p><b>Limitation of liability.</b> To the maximum extent permitted by law, EditLab shall not be liable for any indirect, incidental, or consequential damages arising from the use of the Software.</p>
-      <p><b>Payments.</b> All sales are processed by Paddle.com, our Merchant of Record, who handles payment, invoicing, and applicable taxes.</p>
-      <p><b>Contact.</b> For questions about these terms, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a>.</p>
+    <a href="#pricing" class="btn-primary reveal" style="font-size:20px;padding:22px 48px">Get CaptionLab — $39  →</a>
+    <div class="final-trust reveal">
+      <span>🛡 14-day refund</span>
+      <span>·</span>
+      <span>🔒 Secure checkout</span>
+      <span>·</span>
+      <span>⚡ Instant download</span>
     </div>
-
-    <div id="privacy" class="legal-block">
-      <h2 style="font-size:28px">Privacy Policy</h2>
-      <p class="legal-updated">Last updated: June 2026</p>
-      <p>EditLab respects your privacy. This policy explains what data we collect and how we use it.</p>
-      <p><b>Your footage stays local.</b> CaptionLab processes all audio and video entirely on your own device using a locally-run Whisper model. We never receive, access, store, or transmit your footage, audio, or transcriptions. Nothing you process with CaptionLab leaves your computer.</p>
-      <p><b>Purchase data.</b> When you buy CaptionLab, our payment processor Paddle.com collects the information necessary to complete your purchase (name, email, billing details). This data is handled under Paddle's privacy policy. We receive only limited information such as your email address and license key to provide support and updates.</p>
-      <p><b>Communications.</b> We may use your email to send your license key, important product updates, and respond to support requests. We do not sell or share your email with third parties.</p>
-      <p><b>Your rights.</b> You may request access to, correction of, or deletion of your personal data by contacting us.</p>
-      <p><b>Contact.</b> For privacy questions, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a>.</p>
+    <div class="final-countdown reveal">
+      <span class="dim">Launch price ends in</span>
+      <span class="cd-pill"><span id="cd-final-d">--</span>d <span id="cd-final-h">--</span>h <span id="cd-final-m">--</span>m</span>
     </div>
-
-    <div id="refund" class="legal-block">
-      <h2 style="font-size:28px">Refund Policy</h2>
-      <p class="legal-updated">Last updated: June 2026</p>
-      <p>We want you to be satisfied with CaptionLab.</p>
-      <p><b>14-day refund.</b> If CaptionLab does not work as described, you may request a full refund within 14 days of purchase. To request a refund, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a> with your order number and a brief description of the issue.</p>
-      <p><b>Before requesting.</b> Because CaptionLab is Mac-only and has specific system requirements (macOS, Premiere Pro 2023–2026), please review the requirements before purchasing. We're happy to help troubleshoot setup issues before you request a refund.</p>
-      <p><b>Processing.</b> Refunds are processed through Paddle.com, our Merchant of Record. Approved refunds are returned to your original payment method, typically within 5–10 business days.</p>
-      <p><b>Contact.</b> For refund requests, email <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a>.</p>
-    </div>
-
   </div>
 </section>
 
@@ -475,15 +1203,33 @@ footer .mono{color:var(--mid)}
   <div class="wrap">
     <p class="mono">CaptionLab · by EditLab</p>
     <p style="margin-top:8px">Powered by OpenAI Whisper · Built for Premiere Pro · Made by editors, for editors</p>
-    <p style="margin-top:14px">
-      <a href="#terms" style="color:var(--mid);margin:0 10px">Terms of Service</a> ·
-      <a href="#privacy" style="color:var(--mid);margin:0 10px">Privacy Policy</a> ·
-      <a href="#refund" style="color:var(--mid);margin:0 10px">Refund Policy</a>
-    </p>
-    <p style="margin-top:14px">Contact: <a href="mailto:editlabtools@gmail.com" style="color:var(--cyan)">editlabtools@gmail.com</a></p>
-    <p class="mono" style="margin-top:14px;font-size:12px;color:var(--dim)">Payments handled by Paddle.com — our Merchant of Record</p>
+    <div class="footer-links">
+      <a href="#terms">Terms of Service</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#refund">Refund Policy</a>
+      <a href="mailto:editlabtools@gmail.com">Contact</a>
+    </div>
+    <div class="footer-trust">
+      <span>© 2026 EditLab</span>
+      <span>·</span>
+      <span>Paddle is the Merchant of Record</span>
+      <span>·</span>
+      <span>captionlab.pro</span>
+    </div>
   </div>
 </footer>
+
+<!-- STICKY BOTTOM CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="wrap sticky-cta-inner">
+    <div class="sticky-left">
+      <span class="logo-mark" style="width:24px;height:24px;font-size:13px">C</span>
+      <span class="sticky-price"><s>$59</s>$39</span>
+      <span style="color:var(--mid);font-size:13px">one-time · forever</span>
+    </div>
+    <a href="#pricing" class="sticky-cta-btn">Get CaptionLab →</a>
+  </div>
+</div>
 
 <script>
 // FAQ accordion
@@ -502,6 +1248,162 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{
   el.style.transitionDelay=(i%4)*0.06+'s';
   obs.observe(el);
 });
+
+// Show all 99 languages toggle
+(function(){
+  const btn=document.getElementById('toggleLangs');
+  const hidden=document.getElementById('langsHidden');
+  if(!btn||!hidden)return;
+  btn.addEventListener('click',()=>{
+    const open=hidden.classList.toggle('open');
+    btn.textContent=open?'Show fewer ↑':'Show all 99 languages ↓';
+  });
+})();
+
+// Side dot nav — highlight active section
+(function(){
+  const dots=document.querySelectorAll('#sideNav a[data-section]');
+  if(!dots.length)return;
+  const sections=Array.from(dots).map(d=>({dot:d,el:document.getElementById(d.dataset.section)}));
+  function update(){
+    let bestIdx=0,bestDist=Infinity;
+    const scrollY=window.scrollY+window.innerHeight*0.35;
+    sections.forEach((s,i)=>{
+      if(!s.el)return;
+      const top=s.el.offsetTop;
+      const dist=Math.abs(scrollY-top);
+      if(dist<bestDist){bestDist=dist;bestIdx=i}
+    });
+    dots.forEach((d,i)=>d.classList.toggle('active',i===bestIdx));
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+// Rotating language in hero — "your language" cycles through native names
+(function(){
+  const el=document.getElementById('rotateLang');
+  if(!el)return;
+  const langs=[
+    'your language','Українській','Polski','Türkçe','Bahasa','Tiếng Việt',
+    'العربية','한국어','हिन्दी','Română','Čeština','עברית','ไทย','Magyar',
+    'Ελληνικά','your language','فارسی','Tagalog','Қазақша','Српски'
+  ];
+  let i=0;
+  function spin(){
+    i=(i+1)%langs.length;
+    const inner=el;
+    inner.style.animation='none';
+    void inner.offsetWidth;
+    inner.style.animation='langFade .55s ease';
+    inner.textContent=langs[i];
+  }
+  setInterval(spin,2200);
+})();
+
+// Launch countdown — 14 days from first visit (per-user via localStorage)
+(function(){
+  const STORE='cl_launch_deadline';
+  let end=parseInt(localStorage.getItem(STORE)||'0',10);
+  const now=Date.now();
+  if(!end || end<now){
+    end=now+14*24*60*60*1000;
+    localStorage.setItem(STORE,end);
+  }
+  function pad(n){return n<10?'0'+n:n}
+  function tick(){
+    const diff=Math.max(0,end-Date.now());
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor((diff%86400000)/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    ['cd-d','cd-final-d'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=pad(d)});
+    ['cd-h','cd-final-h'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=pad(h)});
+    ['cd-m','cd-final-m'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=pad(m)});
+  }
+  tick();setInterval(tick,30000);
+})();
+
+// ROI Calculator
+(function(){
+  const sV=document.getElementById('slider-videos');
+  const sM=document.getElementById('slider-mins');
+  const sR=document.getElementById('slider-rate');
+  if(!sV)return;
+  const outV=document.getElementById('roi-videos');
+  const outM=document.getElementById('roi-mins');
+  const outR=document.getElementById('roi-rate');
+  const outSavings=document.getElementById('roi-savings');
+  const outHours=document.getElementById('roi-hours');
+  const outDays=document.getElementById('roi-days');
+  const outRecoup=document.getElementById('roi-recoup');
+  function fillSlider(s){
+    const p=((s.value-s.min)/(s.max-s.min))*100;
+    s.style.setProperty('--p',p+'%');
+  }
+  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+  function calc(){
+    const videos=+sV.value,mins=+sM.value,rate=+sR.value;
+    // 4x video length = manual subtitle time
+    const hoursPerWeek=(videos*mins*4)/60;
+    const hoursYear=Math.round(hoursPerWeek*52);
+    const moneySaved=Math.round(hoursYear*rate)-39;
+    const days=Math.round(hoursYear/8);
+    // Recoup
+    const hoursToRecoup=39/rate;
+    const minutesPerWeekTotal=videos*mins*4;
+    const projectsToRecoup=Math.max(1,Math.ceil((39/rate*60)/(mins*4)));
+    let recoupText;
+    if(projectsToRecoup===1)recoupText='1 video';
+    else if(projectsToRecoup<=videos)recoupText='this week';
+    else if(projectsToRecoup<=videos*4)recoupText='this month';
+    else recoupText=projectsToRecoup+' videos';
+    outV.textContent=videos;
+    outM.textContent=mins;
+    outR.textContent=rate;
+    outSavings.textContent=fmt(Math.max(0,moneySaved));
+    outHours.textContent=fmt(hoursYear);
+    outDays.textContent=fmt(days);
+    outRecoup.textContent=recoupText;
+    fillSlider(sV);fillSlider(sM);fillSlider(sR);
+  }
+  [sV,sM,sR].forEach(s=>s.addEventListener('input',calc));
+  calc();
+})();
+
+// Bonus counter — slowly count down (5 spots per week feeling)
+(function(){
+  const el=document.getElementById('bonus-left');
+  const fill=document.getElementById('bonus-fill');
+  if(!el)return;
+  // Pseudo-counter: 18 sold out of 100, slowly increments
+  const STORE='cl_bonus_sold';
+  const seedDate=Date.parse('2026-06-01');
+  const daysSince=Math.floor((Date.now()-seedDate)/86400000);
+  const sold=Math.min(82,18+Math.floor(daysSince*0.4));
+  const left=100-sold;
+  el.textContent=left;
+  if(fill)fill.style.width=sold+'%';
+})();
+
+// Sticky bottom CTA — show after user scrolls past hero
+(function(){
+  const cta=document.getElementById('sticky-cta');
+  const trigger=document.querySelector('.hero');
+  if(!cta||!trigger)return;
+  const heroBottom=trigger.offsetTop+trigger.offsetHeight;
+  let lastShown=false;
+  function onScroll(){
+    const scrolled=window.scrollY;
+    const nearFooter=scrolled+window.innerHeight>document.body.scrollHeight-200;
+    const shouldShow=scrolled>heroBottom-100 && !nearFooter;
+    if(shouldShow!==lastShown){
+      cta.classList.toggle('show',shouldShow);
+      lastShown=shouldShow;
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
 </script>
 </body>
 </html>
