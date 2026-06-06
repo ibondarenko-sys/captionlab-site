@@ -286,6 +286,41 @@ h2 .hl{color:var(--cyan)}
 footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--dim);font-size:14px}
 footer .mono{color:var(--mid)}
 
+/* ── LEGAL TOGGLE ── */
+.legal-toggle-bar{
+  display:flex;align-items:center;gap:16px;padding:20px 0;
+  cursor:pointer;user-select:none;
+}
+.legal-toggle-line{flex:1;height:1px;background:var(--border)}
+.legal-toggle-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  color:var(--dim);font-size:11px;font-family:'JetBrains Mono',monospace;
+  letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;
+  padding:5px 12px;border:1px solid var(--border);border-radius:20px;
+  background:var(--bg);transition:.2s;flex-shrink:0;
+}
+.legal-toggle-bar:hover .legal-toggle-btn{color:var(--mid);border-color:var(--dim)}
+.legal-toggle-icon{display:inline-block;transition:transform .3s ease;font-style:normal}
+.legal-toggle-bar.open .legal-toggle-icon{transform:rotate(180deg)}
+
+/* ── LEGAL ── */
+.legal-wrap{
+  max-height:0;overflow:hidden;
+  transition:max-height .6s cubic-bezier(.4,0,.2,1);
+  border-top:none;
+}
+.legal-wrap.open{max-height:6000px}
+.legal-sec{padding:36px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.legal-sec:last-child{border-bottom:none}
+.legal-title{font-size:15px;font-weight:600;letter-spacing:0.02em;margin-bottom:4px;color:var(--dim);text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.legal-date{color:var(--border2,#2a3a4a);font-size:11px;font-family:'JetBrains Mono',monospace;margin-bottom:18px;letter-spacing:0.05em}
+.legal-body{max-width:760px;color:var(--dim);line-height:1.65;font-size:12px}
+.legal-body h3{color:var(--text3,#4a5a6a);font-size:11px;font-weight:700;margin:16px 0 5px;text-transform:uppercase;letter-spacing:0.08em}
+.legal-body p{margin-bottom:10px}
+.legal-body strong{color:var(--mid)}
+.legal-body a{color:var(--dim);text-decoration:underline;text-decoration-color:var(--border)}
+.legal-body a:hover{color:var(--mid)}
+
 /* animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.2,.7,.2,1)}
@@ -1204,9 +1239,9 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
     <p class="mono">CaptionLab · by EditLab</p>
     <p style="margin-top:8px">Powered by OpenAI Whisper · Built for Premiere Pro · Made by editors, for editors</p>
     <div class="footer-links">
-      <a href="#terms">Terms of Service</a>
-      <a href="#privacy">Privacy Policy</a>
-      <a href="#refund">Refund Policy</a>
+      <a href="#terms" onclick="toggleLegal(false);setTimeout(function(){document.getElementById('terms').scrollIntoView({behavior:'smooth'})},120);return false">Terms of Service</a>
+      <a href="#privacy" onclick="toggleLegal(false);setTimeout(function(){document.getElementById('privacy').scrollIntoView({behavior:'smooth'})},120);return false">Privacy Policy</a>
+      <a href="#refund" onclick="toggleLegal(false);setTimeout(function(){document.getElementById('refund').scrollIntoView({behavior:'smooth'})},120);return false">Refund Policy</a>
       <a href="mailto:editlabtools@gmail.com">Contact</a>
     </div>
     <div class="footer-trust">
@@ -1218,6 +1253,123 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
     </div>
   </div>
 </footer>
+
+<!-- LEGAL TOGGLE -->
+<div class="wrap">
+  <div class="legal-toggle-bar" id="legalToggle" onclick="toggleLegal()" role="button" aria-expanded="false">
+    <div class="legal-toggle-line"></div>
+    <div class="legal-toggle-btn">Legal &amp; Policies <i class="legal-toggle-icon">↓</i></div>
+    <div class="legal-toggle-line"></div>
+  </div>
+</div>
+
+<!-- LEGAL SECTIONS -->
+<div class="legal-wrap" id="legalWrap">
+
+  <section id="terms" class="legal-sec">
+    <div class="wrap">
+      <h2 class="legal-title">Terms of Service</h2>
+      <div class="legal-body">
+        <p class="legal-date">Last updated: June 2026 · EditLab</p>
+
+        <h3>1. Acceptance</h3>
+        <p>By purchasing or installing CaptionLab ("the Software"), you agree to these Terms. If you do not agree, do not install or use the Software.</p>
+
+        <h3>2. License</h3>
+        <p>EditLab grants you a non-exclusive, non-transferable, personal license to install and use CaptionLab on Mac computers you personally own or control. This is a single-user license. You may not share, resell, or redistribute the Software or installation files.</p>
+
+        <h3>3. Restrictions</h3>
+        <p>You may not: (a) reverse engineer or decompile the Software; (b) redistribute or resell it; (c) remove copyright notices; (d) use it to build a competing product.</p>
+
+        <h3>4. Ownership</h3>
+        <p>The Software and all intellectual property rights remain the property of EditLab. This license does not transfer ownership.</p>
+
+        <h3>5. Third-party components</h3>
+        <p>CaptionLab uses open-source components including OpenAI Whisper (MIT), mlx-whisper (MIT), faster-whisper (MIT), Flask (BSD), ffmpeg (LGPL/GPL), and Python (PSF). AI models are downloaded from HuggingFace at first launch under their respective licenses.</p>
+
+        <h3>6. Updates</h3>
+        <p>You are entitled to all minor updates (v1.x) for the version you purchased. Major version upgrades may require an additional purchase.</p>
+
+        <h3>7. Disclaimer of warranties</h3>
+        <p>THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. EDITLAB DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE OR UNINTERRUPTED.</p>
+
+        <h3>8. Limitation of liability</h3>
+        <p>IN NO EVENT SHALL EDITLAB BE LIABLE FOR ANY INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING FROM USE OF THE SOFTWARE. TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT PAID FOR THE SOFTWARE.</p>
+
+        <h3>9. Termination</h3>
+        <p>This license is effective until terminated. It terminates automatically if you breach any term. Upon termination, you must uninstall and delete all copies.</p>
+
+        <h3>10. Governing law</h3>
+        <p>These Terms are governed by the laws of Ukraine. Disputes shall be resolved through good-faith negotiation; failing that, through the courts of Ukraine.</p>
+
+        <h3>11. Contact</h3>
+        <p>Questions: <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> · <a href="https://captionlab.pro">captionlab.pro</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" class="legal-sec">
+    <div class="wrap">
+      <h2 class="legal-title">Privacy Policy</h2>
+      <div class="legal-body">
+        <p class="legal-date">Last updated: June 2026 · EditLab</p>
+
+        <h3>1. Overview</h3>
+        <p>CaptionLab is designed for privacy. All audio processing happens locally on your Mac. Your footage, audio, and transcripts are never uploaded to EditLab or any third party.</p>
+
+        <h3>2. Data we do NOT collect</h3>
+        <p>We do not collect, store, or transmit: your audio or video files; transcripts or subtitles generated by the plugin; your Premiere Pro project data; or any usage analytics from within the plugin.</p>
+
+        <h3>3. Data collected at purchase</h3>
+        <p>When you purchase CaptionLab, payment is processed by <strong>Paddle.com Market Limited</strong> ("Paddle"), who acts as the Merchant of Record. Paddle collects your name, email address, and payment information. EditLab receives your email address and order details from Paddle for the purpose of delivering the product and providing support. For Paddle's privacy practices, see <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">paddle.com/legal/privacy</a>.</p>
+
+        <h3>4. Network requests during setup</h3>
+        <p>On first launch, CaptionLab downloads Python, ffmpeg, and the Whisper AI model (~3 GB) from their official public sources (GitHub, HuggingFace). These are one-time downloads. After setup, the plugin runs entirely offline.</p>
+
+        <h3>5. Email communications</h3>
+        <p>We use your email solely to deliver your purchase, send the download link, and provide support if you contact us. We do not send marketing emails unless you explicitly opt in. We do not sell or share your email with third parties.</p>
+
+        <h3>6. Data retention</h3>
+        <p>We retain your email and order information as long as necessary to provide support and re-download access. You may request deletion at any time by emailing <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a>.</p>
+
+        <h3>7. Your rights (GDPR / EU users)</h3>
+        <p>If you are located in the European Union, you have the right to access, correct, or delete your personal data. Contact us at <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> to exercise these rights.</p>
+
+        <h3>8. Children</h3>
+        <p>CaptionLab is not directed at children under 16. We do not knowingly collect data from minors.</p>
+
+        <h3>9. Contact</h3>
+        <p>Privacy questions: <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="refund" class="legal-sec">
+    <div class="wrap">
+      <h2 class="legal-title">Refund Policy</h2>
+      <div class="legal-body">
+        <p class="legal-date">Last updated: June 2026 · EditLab</p>
+
+        <h3>14-day money-back guarantee</h3>
+        <p>If CaptionLab doesn't work for you for any reason, we will issue a full refund within <strong>14 days</strong> of your purchase date. No questions asked.</p>
+
+        <h3>How to request a refund</h3>
+        <p>Email <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> with your order number (found in your purchase confirmation email). We will process the refund within 3–5 business days. Refunds are returned to the original payment method via Paddle.</p>
+
+        <h3>After 14 days</h3>
+        <p>We do not offer refunds for purchases older than 14 days, except in cases of technical issues that we are unable to resolve.</p>
+
+        <h3>Technical issues</h3>
+        <p>If CaptionLab fails to install or function correctly on your Mac and our support team cannot resolve the issue, you are entitled to a full refund regardless of the time elapsed since purchase.</p>
+
+        <h3>Contact</h3>
+        <p>Refund requests: <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a><br>
+        Please include your order number and a brief description of the issue.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
 
 <!-- STICKY BOTTOM CTA -->
 <div class="sticky-cta" id="sticky-cta">
@@ -1248,6 +1400,31 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{
   el.style.transitionDelay=(i%4)*0.06+'s';
   obs.observe(el);
 });
+
+// Legal sections toggle
+function toggleLegal(scroll) {
+  var wrap = document.getElementById('legalWrap');
+  var bar  = document.getElementById('legalToggle');
+  var open = wrap.classList.toggle('open');
+  bar.classList.toggle('open', open);
+  bar.setAttribute('aria-expanded', open);
+  if (open && scroll !== false) {
+    setTimeout(function() { bar.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+  }
+}
+
+// Auto-open if URL hash points to a legal section
+(function() {
+  var legalIds = ['terms', 'privacy', 'refund'];
+  var hash = window.location.hash.replace('#', '');
+  if (legalIds.indexOf(hash) !== -1) {
+    toggleLegal(false);
+    setTimeout(function() {
+      var el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+})();
 
 // Show all 99 languages toggle
 (function(){
