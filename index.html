@@ -703,7 +703,7 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
     <h1 class="hero-anim d1">Auto subtitles in Premiere Pro.<br>Finally, in <span class="lang-rotate"><span class="lang-rotate-inner" id="rotateLang">your language</span></span>.</h1>
     <p class="hero-sub hero-anim d2">Adobe supports <span class="strike">16 languages</span>. CaptionLab supports <b>99</b> — including Polish, Turkish, Ukrainian, Arabic, Indonesian and dozens more Adobe never bothered with. <b>No cloud. No API keys. No subscription.</b></p>
     <div class="cta-row hero-anim d3">
-      <a href="#pricing" class="btn-primary">Get CaptionLab — $39 →</a>
+      <a href="#pricing" class="btn-primary" onclick="openCheckout(event)">Get CaptionLab — $39 →</a>
       <a href="#how" class="btn-ghost">See how it works</a>
     </div>
     <div class="micro hero-anim d4">
@@ -1181,7 +1181,7 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
           <span>Doesn't work for you? Full refund. No questions asked.</span>
         </span>
       </div>
-      <a href="#" class="price-cta" id="buy-btn-main">Get CaptionLab now →</a>
+      <a href="#" class="price-cta" id="buy-btn-main" onclick="openCheckout(event)">Get CaptionLab now →</a>
       <div class="trust-row">
         <span><span class="tk">🔒</span> Secure checkout</span>
         <span><span class="tk">⚡</span> Instant download</span>
@@ -1219,7 +1219,7 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
     </div>
     <h2 class="reveal">Stop typing subtitles.<br><span style="color:var(--cyan)">Start shipping faster.</span></h2>
     <p class="reveal">One purchase. Your language. Your machine. Forever.</p>
-    <a href="#pricing" class="btn-primary reveal" style="font-size:20px;padding:22px 48px">Get CaptionLab — $39  →</a>
+    <a href="#pricing" class="btn-primary reveal" style="font-size:20px;padding:22px 48px" onclick="openCheckout(event)">Get CaptionLab — $39  →</a>
     <div class="final-trust reveal">
       <span>🛡 14-day refund</span>
       <span>·</span>
@@ -1379,7 +1379,7 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
       <span class="sticky-price"><s>$59</s>$39</span>
       <span style="color:var(--mid);font-size:13px">one-time · forever</span>
     </div>
-    <a href="#pricing" class="sticky-cta-btn">Get CaptionLab →</a>
+    <a href="#pricing" class="sticky-cta-btn" onclick="openCheckout(event)">Get CaptionLab →</a>
   </div>
 </div>
 
@@ -1581,6 +1581,24 @@ function toggleLegal(scroll) {
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
 })();
+</script>
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script>
+  Paddle.Initialize({
+    token: 'live_545a45354dfaa4698263d489644',
+    eventCallback: function(data) {
+      if (data.name === 'checkout.completed') {
+        window.location.href = '#thank-you';
+      }
+    }
+  });
+
+  function openCheckout(e) {
+    e.preventDefault();
+    Paddle.Checkout.open({
+      items: [{ priceId: 'pri_01ktd16mrvbmac1r09es8dn19y', quantity: 1 }]
+    });
+  }
 </script>
 </body>
 </html>
