@@ -673,6 +673,36 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
 .scroll-hint::after{content:"";display:block;width:1px;height:24px;background:var(--cyan);margin:8px auto 0;opacity:.6}
 @keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,4px)}}
 
+/* ── WATCH DEMO trigger + lightbox ── */
+.watch-demo{
+  display:inline-flex;align-items:center;gap:10px;background:var(--card);
+  border:1px solid var(--border);border-radius:10px;padding:10px 16px 10px 10px;
+  cursor:pointer;text-decoration:none;transition:border-color .2s,transform .2s;
+}
+.watch-demo:hover{border-color:var(--cyan);transform:translateY(-1px)}
+.watch-demo .play-ic{
+  width:34px;height:34px;border-radius:50%;background:#ff0000;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
+}
+.watch-demo .wd-text{display:flex;flex-direction:column;line-height:1.3}
+.watch-demo .wd-title{color:var(--white);font-weight:600;font-size:14px}
+.watch-demo .wd-sub{color:var(--mid);font-size:11.5px}
+
+.video-lightbox{
+  display:none;position:fixed;inset:0;z-index:9998;background:rgba(3,5,8,.92);
+  align-items:center;justify-content:center;padding:24px;
+}
+.video-lightbox.open{display:flex}
+.video-lightbox-inner{width:100%;max-width:920px;position:relative}
+.video-lightbox iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);background:#000}
+.video-lightbox-close{
+  position:absolute;top:-44px;right:0;width:34px;height:34px;border-radius:50%;
+  background:var(--card);border:1px solid var(--border);color:var(--white);
+  font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.video-lightbox-close:hover{border-color:var(--cyan);color:var(--cyan)}
+
 /* ── SIDE DOT NAV (desktop only) ── */
 .side-nav{
   position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:50;
@@ -702,6 +732,11 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
 
 /* ── LANGUAGE SWITCHER ── */
 .nav-right{display:flex;align-items:center;gap:14px}
+.nav-yt{
+  width:38px;height:26px;border-radius:8px;background:#ff0000;border:none;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .2s,box-shadow .2s;
+}
+.nav-yt:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,0,0,0.4)}
 .lang-switch{position:relative}
 .lang-btn{background:var(--card);border:1px solid var(--border);color:var(--white);font-family:inherit;font-size:13px;padding:7px 11px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1}
 .lang-btn:hover{border-color:var(--cyan)}
@@ -733,6 +768,9 @@ html[dir="rtl"] .micro{direction:rtl}
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
     </div>
     <div class="nav-right">
+      <button class="nav-yt" onclick="openVideoLightbox()" aria-label="Watch demo video" title="Watch demo video">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 6l10 6-10 6V6Z" fill="#fff"/></svg>
+      </button>
       <div class="lang-switch">
         <button class="lang-btn" id="langBtn" aria-label="Language">🌐 <span id="langCurrent">EN</span> <span class="lang-caret">▾</span></button>
         <div class="lang-menu" id="langMenu">
@@ -782,7 +820,13 @@ html[dir="rtl"] .micro{direction:rtl}
     <p class="hero-sub hero-anim d2" data-i18n="hero.sub">Adobe supports <span class="strike">16 languages</span>. CaptionLab supports <b>99</b> — including Polish, Turkish, Ukrainian, Arabic, Indonesian and dozens more Adobe never bothered with. <b>It installs as a panel right inside Premiere — not a web app, not a subscription, no API keys.</b></p>
     <div class="cta-row hero-anim d3">
       <a href="#pricing" class="btn-primary" data-i18n="hero.cta1">Get CaptionLab →</a>
-      <a href="#how" class="btn-ghost" data-i18n="hero.cta2">See how it works</a>
+      <a href="javascript:void(0)" class="watch-demo" onclick="openVideoLightbox()">
+        <span class="play-ic">▶</span>
+        <span class="wd-text">
+          <span class="wd-title" data-i18n="hero.watch1">Watch it in 60 sec</span>
+          <span class="wd-sub" data-i18n="hero.watch2">Real demo + quick tutorial</span>
+        </span>
+      </a>
     </div>
     <div class="micro hero-anim d4">
       <span data-i18n="hero.m1"><span class="ck">✓</span> One-time purchase</span>
@@ -835,6 +879,14 @@ html[dir="rtl"] .micro{direction:rtl}
   </div>
   <a href="#languages" class="scroll-hint" data-i18n="hero.scroll">Scroll · 99 languages await</a>
 </header>
+
+<!-- Video lightbox: iframe src is only injected on open, so no load-time cost -->
+<div class="video-lightbox" id="videoLightbox" onclick="if(event.target===this)closeVideoLightbox()">
+  <div class="video-lightbox-inner">
+    <button class="video-lightbox-close" onclick="closeVideoLightbox()" aria-label="Close">✕</button>
+    <div id="videoLightboxFrame"></div>
+  </div>
+</div>
 
 <!-- 99 -->
 <section class="bignum-sec">
@@ -1029,6 +1081,13 @@ html[dir="rtl"] .micro{direction:rtl}
     <div class="eyebrow reveal" data-i18n="how.eyebrow">Dead simple</div>
     <h2 class="reveal" data-i18n="how.h2">Subtitles in <span class="hl">under 60 seconds</span></h2>
     <p class="section-lead reveal" data-i18n="how.lead">No export. No upload. No waiting for a server. Open the panel and go.</p>
+    <a class="watch-demo reveal" onclick="openVideoLightbox()" style="margin-bottom:36px">
+      <span class="play-ic">▶</span>
+      <span class="wd-text">
+        <span class="wd-title" data-i18n="how.watchtitle">Watch it in action</span>
+        <span class="wd-sub" data-i18n="how.watchsub">60-second walkthrough, real timeline</span>
+      </span>
+    </a>
     <div class="steps">
       <div class="step-row reveal">
         <div class="step-media"><img class="step-gif" src="how-1-open-panel.gif" alt="Opening the CaptionLab panel inside Premiere Pro" loading="lazy" width="800" height="500"></div>
@@ -1746,6 +1805,7 @@ function toggleLegal(scroll) {
       "hero.h1":"Автоматичні субтитри в Premiere Pro.<br>Нарешті <b>твоєю мовою</b>.",
       "hero.sub":"Adobe підтримує <span class='strike'>16 мов</span>. CaptionLab — <b>99</b>: польська, турецька, українська, арабська, індонезійська й десятки інших, до яких Adobe так і не дійшли руки. <b>Встановлюється як панель прямо в Premiere — не вебзастосунок, не підписка, без API-ключів.</b>",
       "hero.cta1":"Отримати CaptionLab →","hero.cta2":"Подивитись, як працює",
+      "hero.watch1":"Подивись за 60 секунд","hero.watch2":"Реальне демо + міні-туторіал",
       "hero.m1":"<span class='ck'>✓</span> Одноразова покупка","hero.m2":"<span class='ck'>✓</span> Працює офлайн назавжди","hero.m3":"<span class='ck'>✓</span> Відео не залишає твій Mac",
       "hero.scroll":"Прокрути · на тебе чекає 99 мов",
       "big.label":"Мов","big.sub":"Кожна мова, яку підтримує OpenAI Whisper. Не 16. Не 27. Дев'яносто дев'ять.",
@@ -1759,7 +1819,7 @@ function toggleLegal(scroll) {
       "pain.c3h":"Ще одна щомісячна підписка","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. Кожен інструмент хоче $15/місяць — вічно.",
       "pain.c4h":"Заливати матеріал клієнта хтозна-куди","pain.c4p":"Хмарні сервіси відправляють твоє конфіденційне відео на чужі сервери. NDA? Який NDA?",
       "pain.ctatext":"Усе це — <b>виправляється за 60 секунд.</b>","pain.ctalink":"Подивитись, як це працює ↓",
-      "how.eyebrow":"Простіше нікуди","how.h2":"Субтитри за <span class='hl'>менш ніж 60 секунд</span>","how.lead":"Без експорту. Без завантажень. Без очікування сервера. Відкрий панель — і вперед.",
+      "how.eyebrow":"Простіше нікуди","how.h2":"Субтитри за <span class='hl'>менш ніж 60 секунд</span>","how.lead":"Без експорту. Без завантажень. Без очікування сервера. Відкрий панель — і вперед.","how.watchtitle":"Подивись у дії","how.watchsub":"60-секундний огляд на реальному таймлайні",
       "how.s1h":"Відкрий панель","how.s1p":"CaptionLab живе прямо в Premiere Pro. Window → Extensions → CaptionLab.",
       "how.s2h":"Обери мову й натисни Generate","how.s2p":"Обери з 99 мов — або дай визначити автоматично. Один клік робить усе.",
       "how.s3h":"Кинь SRT на таймлайн","how.s3p":"Субтитри з'являються як редагована доріжка Premiere. Підправ — і готово.",
@@ -1794,6 +1854,7 @@ function toggleLegal(scroll) {
       "hero.h1":"Automatyczne napisy w Premiere Pro —<br>wreszcie <b>w Twoim języku</b>.",
       "hero.sub":"Adobe obsługuje <span class='strike'>16 języków</span>. CaptionLab — <b>99</b>: polski, turecki, ukraiński, arabski, indonezyjski i dziesiątki innych, którymi Adobe się nie zajęło. <b>Instaluje się jako panel bezpośrednio w Premiere — to nie aplikacja webowa, nie subskrypcja, bez kluczy API.</b>",
       "hero.cta1":"Pobierz CaptionLab →","hero.cta2":"Zobacz, jak działa",
+      "hero.watch1":"Zobacz w 60 sekund","hero.watch2":"Prawdziwe demo + mini-samouczek",
       "hero.m1":"<span class='ck'>✓</span> Jednorazowy zakup","hero.m2":"<span class='ck'>✓</span> Działa offline na zawsze","hero.m3":"<span class='ck'>✓</span> Materiał nie opuszcza Maca",
       "hero.scroll":"Przewiń · czeka 99 języków",
       "big.label":"Języków","big.sub":"Każdy język obsługiwany przez OpenAI Whisper. Nie 16. Nie 27. Dziewięćdziesiąt dziewięć.",
@@ -1807,7 +1868,7 @@ function toggleLegal(scroll) {
       "pain.c3h":"Kolejna miesięczna subskrypcja","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. Każde narzędzie chce 15 $/miesiąc — na zawsze.",
       "pain.c4h":"Wysyłanie materiału klienta nie wiadomo gdzie","pain.c4p":"Narzędzia chmurowe wysyłają Twój poufny materiał na serwery, których nie kontrolujesz. NDA? Jakie NDA?",
       "pain.ctatext":"To wszystko — <b>do naprawienia w 60 sekund.</b>","pain.ctalink":"Zobacz, jak to działa ↓",
-      "how.eyebrow":"Prościej się nie da","how.h2":"Napisy w <span class='hl'>mniej niż 60 sekund</span>","how.lead":"Bez eksportu. Bez wysyłania. Bez czekania na serwer. Otwórz panel i działaj.",
+      "how.eyebrow":"Prościej się nie da","how.h2":"Napisy w <span class='hl'>mniej niż 60 sekund</span>","how.lead":"Bez eksportu. Bez wysyłania. Bez czekania na serwer. Otwórz panel i działaj.","how.watchtitle":"Zobacz w akcji","how.watchsub":"60-sekundowy pokaz na prawdziwej osi czasu",
       "how.s1h":"Otwórz panel","how.s1p":"CaptionLab żyje wprost w Premiere Pro. Window → Extensions → CaptionLab.",
       "how.s2h":"Wybierz język i kliknij Generate","how.s2p":"Wybierz z 99 języków — albo pozwól wykryć automatycznie. Jedno kliknięcie robi wszystko.",
       "how.s3h":"Upuść SRT na oś czasu","how.s3p":"Napisy pojawiają się jako edytowalna ścieżka Premiere. Popraw i wysyłaj.",
@@ -1842,6 +1903,7 @@ function toggleLegal(scroll) {
       "hero.h1":"Premiere Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>.",
       "hero.sub":"Adobe <span class='strike'>16 dil</span> destekliyor. CaptionLab <b>99</b> dil destekler: Lehçe, Türkçe, Ukraynaca, Arapça, Endonezce ve Adobe'nin hiç ilgilenmediği onlarca dil. <b>Doğrudan Premiere içine panel olarak kurulur — web uygulaması değil, abonelik değil, API anahtarı yok.</b>",
       "hero.cta1":"CaptionLab'i al →","hero.cta2":"Nasıl çalıştığını gör",
+      "hero.watch1":"60 saniyede izle","hero.watch2":"Gerçek demo + mini eğitim",
       "hero.m1":"<span class='ck'>✓</span> Tek seferlik ödeme","hero.m2":"<span class='ck'>✓</span> Sonsuza dek çevrimdışı","hero.m3":"<span class='ck'>✓</span> Görüntüleriniz Mac'ten çıkmaz",
       "hero.scroll":"Kaydır · 99 dil seni bekliyor",
       "big.label":"Dil","big.sub":"OpenAI Whisper'ın desteklediği her dil. 16 değil. 27 değil. Doksan dokuz.",
@@ -1855,7 +1917,7 @@ function toggleLegal(scroll) {
       "pain.c3h":"Bir aylık abonelik daha","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. Her araç ayda 15 $ istiyor — sonsuza dek.",
       "pain.c4h":"Müşteri görüntülerini kim bilir nereye yüklemek","pain.c4p":"Bulut araçları gizli görüntülerini kontrol etmediğin sunuculara gönderir. NDA? Ne NDA'sı?",
       "pain.ctatext":"Bunların hepsi — <b>60 saniyede çözülür.</b>","pain.ctalink":"Nasıl çalıştığını gör ↓",
-      "how.eyebrow":"Çocuk oyuncağı","how.h2":"<span class='hl'>60 saniyeden kısa</span> sürede altyazı","how.lead":"Dışa aktarma yok. Yükleme yok. Sunucu beklemek yok. Paneli aç ve başla.",
+      "how.eyebrow":"Çocuk oyuncağı","how.h2":"<span class='hl'>60 saniyeden kısa</span> sürede altyazı","how.lead":"Dışa aktarma yok. Yükleme yok. Sunucu beklemek yok. Paneli aç ve başla.","how.watchtitle":"Aksiyonu izle","how.watchsub":"Gerçek zaman çizelgesinde 60 saniyelik tanıtım",
       "how.s1h":"Paneli aç","how.s1p":"CaptionLab tam Premiere Pro içinde yaşar. Window → Extensions → CaptionLab.",
       "how.s2h":"Dili seç ve Generate'e tıkla","how.s2p":"99 dil arasından seç — ya da otomatik algılasın. Tek tık her şeyi yapar.",
       "how.s3h":"SRT'yi zaman çizelgesine bırak","how.s3p":"Altyazılar düzenlenebilir bir Premiere altyazı kanalı olarak görünür. Rötuşla ve yayınla.",
@@ -1890,6 +1952,7 @@ function toggleLegal(scroll) {
       "hero.h1":"ترجمة تلقائية في Premiere Pro —<br>أخيرًا <b>بلغتك</b>.",
       "hero.sub":"يدعم Adobe <span class='strike'>16 لغة</span>. أما CaptionLab فيدعم <b>99</b> لغة: البولندية والتركية والأوكرانية والعربية والإندونيسية وعشرات غيرها لم تهتم بها Adobe. <b>يُثبَّت كلوحة داخل Premiere مباشرة — ليس تطبيق ويب، ولا اشتراك، ولا مفاتيح API.</b>",
       "hero.cta1":"احصل على CaptionLab ←","hero.cta2":"شاهد كيف يعمل",
+      "hero.watch1":"شاهد خلال 60 ثانية","hero.watch2":"عرض حقيقي + شرح مصغّر",
       "hero.m1":"<span class='ck'>✓</span> دفعة واحدة","hero.m2":"<span class='ck'>✓</span> يعمل دون إنترنت للأبد","hero.m3":"<span class='ck'>✓</span> لقطاتك لا تغادر جهاز Mac",
       "hero.scroll":"مرّر · 99 لغة بانتظارك",
       "big.label":"لغة","big.sub":"كل لغة يدعمها OpenAI Whisper. ليس 16. ولا 27. تسعٌ وتسعون.",
@@ -1903,7 +1966,7 @@ function toggleLegal(scroll) {
       "pain.c3h":"اشتراك شهري آخر","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. كل أداة تريد 15$ شهريًا — للأبد.",
       "pain.c4h":"رفع لقطات العميل إلى مكان مجهول","pain.c4p":"أدوات السحابة ترسل لقطاتك السرية إلى خوادم لا تتحكم بها. اتفاقية سرية؟ أي اتفاقية؟",
       "pain.ctatext":"كل هذا — <b>يُحلّ في 60 ثانية.</b>","pain.ctalink":"شاهد كيف يعمل ↓",
-      "how.eyebrow":"بسيط للغاية","how.h2":"ترجمة في <span class='hl'>أقل من 60 ثانية</span>","how.lead":"بلا تصدير. بلا رفع. بلا انتظار خادم. افتح اللوحة وابدأ.",
+      "how.eyebrow":"بسيط للغاية","how.h2":"ترجمة في <span class='hl'>أقل من 60 ثانية</span>","how.lead":"بلا تصدير. بلا رفع. بلا انتظار خادم. افتح اللوحة وابدأ.","how.watchtitle":"شاهدها أثناء العمل","how.watchsub":"جولة مدتها 60 ثانية على جدول زمني حقيقي",
       "how.s1h":"افتح اللوحة","how.s1p":"CaptionLab يعيش داخل Premiere Pro مباشرة. Window → Extensions → CaptionLab.",
       "how.s2h":"اختر اللغة واضغط Generate","how.s2p":"اختر من 99 لغة — أو دع الأداة تكتشفها تلقائيًا. نقرة واحدة تفعل كل شيء.",
       "how.s3h":"أفلِت ملف SRT على الخط الزمني","how.s3p":"تظهر الترجمة كمسار ترجمة قابل للتحرير في Premiere. عدّلها وانشرها.",
@@ -1977,6 +2040,27 @@ function toggleLegal(scroll) {
   if (document.readyState !== 'loading') init();
   else document.addEventListener('DOMContentLoaded', init);
 })();
+</script>
+<script>
+// ── Video lightbox (hero "Watch it in 60 sec") ──────────────────────────────
+var VIDEO_ID = 'v8j_Ik5C1IA';
+function openVideoLightbox(){
+  var box = document.getElementById('videoLightbox');
+  var frame = document.getElementById('videoLightboxFrame');
+  frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + VIDEO_ID +
+    '?autoplay=1&rel=0" title="CaptionLab demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  box.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideoLightbox(){
+  var box = document.getElementById('videoLightbox');
+  box.classList.remove('open');
+  document.getElementById('videoLightboxFrame').innerHTML = ''; // stop playback
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeVideoLightbox();
+});
 </script>
 </body>
 </html>
