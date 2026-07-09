@@ -1786,6 +1786,22 @@ function toggleLegal(scroll) {
 </script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <script>
+  // TikTok pixel: SHA-256 hash for Advanced Matching (identify) — must never send raw PII
+  async function ttSha256(str) {
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(String(str).trim().toLowerCase()));
+    return Array.prototype.map.call(new Uint8Array(buf), function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  var TT_PRODUCT = { content_id: 'captionlab', content_type: 'product', content_name: 'CaptionLab', currency: 'USD', value: 39 };
+
+  if (window.ttq) {
+    ttq.track('ViewContent', {
+      contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type }],
+      value: TT_PRODUCT.value,
+      currency: TT_PRODUCT.currency
+    });
+  }
+
   Paddle.Initialize({
     token: 'live_545a45354dfaa4698263d489644',
     eventCallback: function(data) {
@@ -1794,12 +1810,35 @@ function toggleLegal(scroll) {
         var ty = document.getElementById('thank-you');
         if (ty) { ty.style.display = 'block'; }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (window.ttq) {
+          var email = data.data && data.data.customer && data.data.customer.email;
+          var totals = data.data && data.data.totals;
+          var value = totals && totals.total ? Number(totals.total) / 100 : TT_PRODUCT.value;
+          var currency = (totals && totals.currency_code) || TT_PRODUCT.currency;
+
+          Promise.resolve(email ? ttSha256(email) : null).then(function(hashedEmail) {
+            if (hashedEmail) ttq.identify({ email: hashedEmail });
+            ttq.track('Purchase', {
+              contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type, content_name: TT_PRODUCT.content_name }],
+              value: value,
+              currency: currency
+            });
+          });
+        }
       }
     }
   });
 
   function openCheckout(e) {
     e.preventDefault();
+    if (window.ttq) {
+      ttq.track('InitiateCheckout', {
+        contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type, content_name: TT_PRODUCT.content_name }],
+        value: TT_PRODUCT.value,
+        currency: TT_PRODUCT.currency
+      });
+    }
     Paddle.Checkout.open({
       items: [{ priceId: 'pri_01ktd16mrvbmac1r09es8dn19y', quantity: 1 }]
     });
