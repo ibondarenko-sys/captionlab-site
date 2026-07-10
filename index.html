@@ -304,16 +304,9 @@ h2 .hl{color:var(--cyan)}
 .final h2{font-size:clamp(34px,6vw,58px);margin-bottom:20px;position:relative}
 .final p{color:var(--mid);font-size:18px;margin-bottom:36px;position:relative}
 .final-price-tag{display:inline-flex;align-items:center;gap:14px;margin-bottom:24px;position:relative;flex-wrap:wrap;justify-content:center}
-.final-old{color:var(--mid);font-size:24px;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;font-family:'Archivo Black',sans-serif}
 .final-now{color:var(--cyan);font-size:42px;font-family:'Archivo Black',sans-serif;line-height:1}
-.final-save{background:var(--green);color:var(--bg);padding:4px 10px;border-radius:6px;font-weight:700;font-size:12px;
-  letter-spacing:0.05em;font-family:'JetBrains Mono',monospace}
 .final-trust{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:24px;font-size:13px;color:var(--mid);position:relative}
 .final-trust span:not([class]){display:inline-flex;align-items:center;gap:4px}
-.final-countdown{margin-top:18px;display:inline-flex;align-items:center;gap:10px;font-size:13px;
-  background:var(--card);border:1px solid var(--border);padding:9px 16px;border-radius:30px;position:relative}
-.final-countdown .dim{color:var(--mid)}
-.final-countdown .cd-pill{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700}
 
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--dim);font-size:14px}
@@ -376,62 +369,29 @@ footer .mono{color:var(--mid)}
 @media(max-width:600px){
   .launch-bar{padding:8px 0;margin-top:64px}
   .launch-bar-inner{font-size:12px;gap:8px}
-  .launch-timer{font-size:11px;padding:2px 7px}
 }
 .launch-bar-inner{display:inline-flex;align-items:center;gap:14px;font-size:14px;flex-wrap:wrap;justify-content:center}
 .launch-flame{animation:flame 1.6s ease-in-out infinite}
 @keyframes flame{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.18) rotate(4deg)}}
 .launch-text{color:var(--white);font-weight:600}
 .launch-text b{color:var(--gold)}
-.launch-strike{color:var(--mid);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;margin-right:4px}
 .launch-now{color:var(--cyan);font-weight:700}
-.launch-timer{font-family:'JetBrains Mono',monospace;color:var(--white);
-  background:rgba(0,0,0,0.35);border:1px solid var(--border);padding:3px 10px;border-radius:6px;font-size:13px}
-.launch-timer span{color:var(--gold);font-weight:700}
 .launch-bar+.hero{padding-top:60px}
 
-/* ── SAVINGS ANCHOR ── */
-.savings-sec{padding:50px 0 30px}
-.savings-card{
-  background:linear-gradient(160deg,var(--card2),var(--card));
-  border:1px solid var(--border);border-radius:18px;padding:36px;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;text-align:center;
-  position:relative;overflow:hidden;
-}
-.savings-card::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(31,224,160,0.06),transparent 60%);pointer-events:none}
-.savings-item{position:relative}
-.savings-old{color:var(--red);font-size:14px;text-decoration:line-through;font-weight:600;font-family:'JetBrains Mono',monospace}
-.savings-vs{color:var(--mid);font-size:13px;margin:6px 0}
-.savings-amount{font-family:'Archivo Black',sans-serif;font-size:38px;color:var(--green);line-height:1;margin:8px 0}
-.savings-label{color:var(--white);font-weight:600;font-size:14px;margin-top:6px}
-.savings-headline{text-align:center;margin-bottom:28px}
-.savings-headline h3{font-size:clamp(22px,3.5vw,32px);font-weight:700;letter-spacing:-0.01em;margin-bottom:8px}
-.savings-headline p{color:var(--mid);font-size:15px}
-
 /* ── PRICING ENHANCEMENTS ── */
-.price-discount-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:6px;flex-wrap:wrap}
-.price-old-big{
-  color:var(--mid);font-size:28px;font-family:'Archivo Black',sans-serif;
-  position:relative;display:inline-block;font-weight:400;
-}
-.price-old-big::after{
-  content:"";position:absolute;left:-4px;right:-4px;top:55%;height:3px;
-  background:var(--red);transform:rotate(-6deg);border-radius:2px;
-}
-.save-badge{
-  background:var(--green);color:var(--bg);font-weight:700;font-size:13px;
-  padding:5px 11px;border-radius:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;
-  box-shadow:0 4px 14px rgba(31,224,160,0.3);
-}
 .guarantee-box{
   background:rgba(31,224,160,0.08);border:1px solid rgba(31,224,160,0.25);
   border-radius:10px;padding:12px 16px;margin:18px 0 12px;display:flex;align-items:center;gap:12px;
 }
 .guarantee-icon{font-size:24px}
 .guarantee-text{text-align:left;flex:1}
-.guarantee-text b{color:var(--green);display:block;font-size:14px;margin-bottom:2px}
+.guarantee-text b{color:var(--white);display:block;font-size:14px;margin-bottom:4px}
 .guarantee-text span{color:var(--mid);font-size:12px}
+.trial-badge{
+  display:inline-block;background:var(--green);color:var(--bg);font-weight:800;
+  font-size:12px;letter-spacing:0.04em;padding:3px 10px;border-radius:99px;
+  margin-bottom:6px;
+}
 .trust-row{display:flex;justify-content:center;gap:18px;margin-top:16px;font-size:12px;color:var(--mid);flex-wrap:wrap}
 .trust-row span{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace}
 .trust-row .tk{color:var(--cyan)}
@@ -469,48 +429,6 @@ footer .mono{color:var(--mid)}
 .footer-links a:hover{color:var(--cyan)}
 .footer-trust{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace;letter-spacing:0.05em}
 
-/* ── ROI CALCULATOR ── */
-.roi-sec{padding:80px 0;background:linear-gradient(180deg,transparent,rgba(0,224,255,0.03),transparent)}
-.roi-card{
-  background:linear-gradient(160deg,var(--card2),var(--card));
-  border:1px solid var(--border);border-radius:24px;padding:48px;position:relative;overflow:hidden;
-}
-.roi-card::before{content:"";position:absolute;top:-20%;right:-10%;width:400px;height:400px;
-  background:radial-gradient(circle,rgba(0,224,255,0.08),transparent 60%);pointer-events:none}
-.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative}
-@media(max-width:700px){.roi-grid{grid-template-columns:1fr;gap:30px}.roi-card{padding:28px}}
-.roi-left h3{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.01em;margin-bottom:14px}
-.roi-left h3 .hl{color:var(--cyan)}
-.roi-left p{color:var(--mid);font-size:15px;margin-bottom:28px}
-.roi-slider-block{margin-bottom:18px}
-.roi-slider-label{display:flex;justify-content:space-between;color:var(--white);font-size:14px;font-weight:600;margin-bottom:10px}
-.roi-slider-label .val{color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700}
-input.roi-slider{
-  -webkit-appearance:none;appearance:none;
-  width:100%;height:8px;border-radius:4px;
-  background:linear-gradient(90deg,var(--cyan) 0%,var(--cyan) var(--p,30%),var(--bg2) var(--p,30%),var(--bg2) 100%);
-  outline:none;cursor:pointer;
-}
-input.roi-slider::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
-  background:var(--cyan);border:3px solid var(--bg);cursor:grab;
-  box-shadow:0 0 18px rgba(0,224,255,0.6);
-}
-input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.15)}
-.roi-result{
-  background:rgba(0,224,255,0.05);border:1px solid rgba(0,224,255,0.2);
-  border-radius:16px;padding:30px;text-align:center;
-}
-.roi-saving-label{color:var(--mid);font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
-.roi-saving-amount{font-family:'Archivo Black',sans-serif;font-size:clamp(48px,7vw,72px);line-height:1;
-  background:linear-gradient(180deg,var(--cyan),var(--green));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.roi-saving-period{color:var(--mid);font-size:14px;margin-top:6px}
-.roi-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
-.roi-stat{background:rgba(7,10,14,0.6);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
-.roi-stat-val{color:var(--white);font-weight:700;font-size:22px;font-family:'Archivo Black',sans-serif}
-.roi-stat-label{color:var(--mid);font-size:11px;margin-top:4px;letter-spacing:0.05em}
-.roi-recoup{margin-top:20px;color:var(--green);font-size:13px;font-weight:600;text-align:center;font-family:'JetBrains Mono',monospace}
-
 /* ── FOUNDER NOTE ── */
 .founder-sec{padding:80px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .founder-card{max-width:760px;margin:0 auto;text-align:left;position:relative;padding:0 20px}
@@ -521,35 +439,15 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
 .founder-quote p{margin-bottom:20px}
 .founder-sign{display:flex;align-items:center;gap:18px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
 .founder-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--cyan-dim));
-  display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--bg);flex-shrink:0}
+  display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--bg);flex-shrink:0;
+  position:relative;overflow:hidden}
+.founder-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
 .founder-info{font-size:14px}
 .founder-name{color:var(--white);font-weight:700;font-size:16px}
 .founder-role{color:var(--mid);margin-top:2px}
 
-/* ── EARLY ADOPTER BONUS ── */
+/* ── MINI FAQ SECTION (formerly bonus section) ── */
 .bonus-sec{padding:80px 0}
-.bonus-card{
-  background:linear-gradient(135deg,rgba(255,201,77,0.08),rgba(0,224,255,0.05));
-  border:1px solid rgba(255,201,77,0.3);border-radius:24px;padding:44px;position:relative;overflow:hidden;
-}
-.bonus-card::before{content:"";position:absolute;top:-50%;left:-20%;width:600px;height:400px;
-  background:radial-gradient(ellipse,rgba(255,201,77,0.12),transparent 60%);pointer-events:none}
-.bonus-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap;position:relative}
-.bonus-flag{background:var(--gold);color:var(--bg);padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;
-  letter-spacing:0.05em;font-family:'JetBrains Mono',monospace}
-.bonus-progress{flex:1;min-width:200px;height:8px;background:rgba(7,10,14,0.6);border-radius:4px;overflow:hidden}
-.bonus-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:4px;width:18%;
-  transition:width .6s ease}
-.bonus-count{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px}
-.bonus-title{font-size:clamp(24px,4vw,34px);font-weight:700;line-height:1.2;letter-spacing:-0.015em;margin-bottom:20px;position:relative}
-.bonus-title .hl{color:var(--gold)}
-.bonus-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px;position:relative}
-.bonus-item{background:rgba(7,10,14,0.5);border:1px solid var(--border);border-radius:12px;padding:18px}
-.bonus-item-icon{font-size:24px;margin-bottom:10px}
-.bonus-item h4{color:var(--white);font-size:15px;font-weight:700;margin-bottom:6px}
-.bonus-item p{color:var(--mid);font-size:13px;line-height:1.5}
-.bonus-foot{margin-top:24px;color:var(--mid);font-size:13px;text-align:center;font-style:italic;position:relative}
-.bonus-foot b{color:var(--gold);font-style:normal}
 
 /* ── PLUGIN MOCKUP ── */
 .mockup-wrap{margin-top:50px;display:flex;justify-content:center;perspective:1200px}
@@ -703,6 +601,45 @@ input.roi-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.
 }
 .video-lightbox-close:hover{border-color:var(--cyan);color:var(--cyan)}
 
+/* ── PRE-CHECKOUT MODAL ── */
+.precheck-modal{
+  display:none;position:fixed;inset:0;z-index:9998;background:rgba(3,5,8,.92);
+  align-items:center;justify-content:center;padding:24px;
+}
+.precheck-modal.open{display:flex}
+.precheck-inner{
+  width:100%;max-width:520px;position:relative;background:var(--card);
+  border:1px solid var(--border);border-radius:18px;padding:36px 32px 32px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);
+}
+.precheck-eyebrow{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px}
+.precheck-inner h3{font-size:23px;font-weight:800;letter-spacing:-0.01em;margin-bottom:24px;color:var(--white)}
+.precheck-steps{display:flex;flex-direction:column;gap:18px;margin-bottom:24px}
+.precheck-step{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--white);line-height:1.55}
+.precheck-step b{color:var(--cyan);font-weight:700}
+.precheck-num{
+  flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(0,224,255,0.14);
+  border:1px solid rgba(0,224,255,0.5);color:var(--cyan);font-weight:800;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+}
+.precheck-trial{
+  display:flex;flex-direction:column;gap:10px;align-items:flex-start;background:rgba(31,224,160,0.08);
+  border:1px solid rgba(31,224,160,0.35);border-radius:10px;padding:16px;
+  margin-bottom:24px;
+}
+.precheck-trial-badge{
+  display:inline-flex;align-items:center;gap:6px;background:var(--green);color:var(--bg);
+  font-weight:800;font-size:13px;letter-spacing:0.05em;padding:5px 12px;border-radius:99px;
+}
+.precheck-trial-text{font-size:14px;color:var(--white);line-height:1.55}
+.precheck-trial-text b{color:var(--green);font-weight:700}
+.precheck-cta{width:100%;text-align:center;justify-content:center;display:flex}
+.precheck-cancel{
+  display:block;width:100%;text-align:center;margin-top:12px;background:none;border:none;
+  color:var(--mid);font-size:13px;cursor:pointer;font-family:inherit;padding:8px;
+}
+.precheck-cancel:hover{color:var(--white)}
+
 /* ── SIDE DOT NAV (desktop only) ── */
 .side-nav{
   position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:50;
@@ -776,7 +713,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="nav-menu">
       <a href="#languages" data-i18n="nav.languages">Languages</a>
       <a href="#how" data-i18n="nav.how">How it works</a>
-      <a href="#roi" data-i18n="nav.save">Save money</a>
       <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
     </div>
@@ -804,7 +740,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <a href="#hero" data-section="hero" data-label="Top" class="active"></a>
   <a href="#languages" data-section="languages" data-label="Languages"></a>
   <a href="#how" data-section="how" data-label="How it works"></a>
-  <a href="#roi" data-section="roi" data-label="Save money"></a>
   <a href="#pricing" data-section="pricing" data-label="Pricing"></a>
   <a href="#faq" data-section="faq" data-label="FAQ"></a>
 </div>
@@ -814,8 +749,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="wrap">
     <div class="launch-bar-inner">
       <span class="launch-flame">🔥</span>
-      <span class="launch-text" data-i18n="launch.text"><b>Launch Sale</b> · <span class="launch-strike">$59</span> <span class="launch-now">$39</span> · save 34%</span>
-      <span class="launch-timer" data-i18n="launch.timer">Ends in <span id="cd-d">--</span>d <span id="cd-h">--</span>h <span id="cd-m">--</span>m</span>
+      <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="launch-now">$39</span> one-time</span>
     </div>
   </div>
 </div>
@@ -836,7 +770,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <a href="javascript:void(0)" class="watch-demo" onclick="openVideoLightbox()">
         <span class="play-ic">▶</span>
         <span class="wd-text">
-          <span class="wd-title" data-i18n="hero.watch1">Watch it in 60 sec</span>
+          <span class="wd-title" data-i18n="hero.watch1">Watch Demo</span>
           <span class="wd-sub" data-i18n="hero.watch2">Real demo + quick tutorial</span>
         </span>
       </a>
@@ -901,6 +835,35 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   </div>
 </div>
 
+<!-- Pre-checkout modal: explains what happens after payment before Paddle opens -->
+<div class="precheck-modal" id="precheckModal" onclick="if(event.target===this)closePreCheckout()">
+  <div class="precheck-inner">
+    <button class="video-lightbox-close" onclick="closePreCheckout()" aria-label="Close">✕</button>
+    <div class="precheck-eyebrow" data-i18n="pc.eyebrow">Before you check out</div>
+    <h3 data-i18n="pc.h3">Here's exactly what happens next</h3>
+    <div class="precheck-steps">
+      <div class="precheck-step">
+        <span class="precheck-num">1</span>
+        <span data-i18n="pc.s1">Enter your <b>email</b> on the next screen — Paddle's secure checkout, encrypted, nothing stored by us.</span>
+      </div>
+      <div class="precheck-step">
+        <span class="precheck-num">2</span>
+        <span data-i18n="pc.s2">Check your inbox — your <b>download link</b> + <b>install instructions</b> land immediately after payment.</span>
+      </div>
+      <div class="precheck-step">
+        <span class="precheck-num">3</span>
+        <span data-i18n="pc.s3">Open the plugin in Premiere and <b>activate</b> it with your <b>email + license key</b> from that same email.</span>
+      </div>
+    </div>
+    <div class="precheck-trial">
+      <span class="precheck-trial-badge"><span class="precheck-trial-icon">🛡️</span> <span data-i18n="pc.trialbadge">14-DAY TRIAL</span></span>
+      <span class="precheck-trial-text" data-i18n="pc.trial">Not sure yet? Go ahead and try it on a real project. Doesn't fit your workflow? <b>Full refund</b>, no questions asked.</span>
+    </div>
+    <a href="#" class="btn-primary precheck-cta" onclick="proceedToCheckout(event)" data-i18n="pc.cta">Continue to secure checkout →</a>
+    <button class="precheck-cancel" onclick="closePreCheckout()" data-i18n="pc.cancel">Not right now</button>
+  </div>
+</div>
+
 <!-- 99 -->
 <section class="bignum-sec">
   <div class="wrap">
@@ -959,11 +922,12 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <div class="lang-chip"><span class="flag">🇩🇪</span><span class="name">Deutsch</span><span class="en">German</span></div>
       <div class="lang-chip"><span class="flag">🇮🇹</span><span class="name">Italiano</span><span class="en">Italian</span></div>
       <div class="lang-chip"><span class="flag">🇵🇹</span><span class="name">Português</span><span class="en">Portuguese</span></div>
-      <div class="lang-chip"><span class="flag">🇷🇺</span><span class="name">Русский</span><span class="en">Russian</span></div>
+      <div class="lang-chip"><span class="flag">🇺🇿</span><span class="name">Oʻzbekcha</span><span class="en">Uzbek</span></div>
     </div>
     <div class="langs-hidden" id="langsHidden">
       <div class="langs-grid" style="margin-top:8px">
         <div class="lang-chip"><span class="flag">🇧🇷</span><span class="name">Português BR</span><span class="en">Brazilian</span></div>
+        <div class="lang-chip"><span class="flag">🇷🇺</span><span class="name">Русский</span><span class="en">Russian</span></div>
         <div class="lang-chip"><span class="flag">🇧🇾</span><span class="name">Беларуская</span><span class="en">Belarusian</span></div>
         <div class="lang-chip"><span class="flag">🇲🇰</span><span class="name">Македонски</span><span class="en">Macedonian</span></div>
         <div class="lang-chip"><span class="flag">🇸🇮</span><span class="name">Slovenščina</span><span class="en">Slovenian</span></div>
@@ -1091,8 +1055,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <!-- HOW -->
 <section class="section" id="how">
   <div class="wrap">
-    <div class="eyebrow reveal" data-i18n="how.eyebrow">Dead simple</div>
-    <h2 class="reveal" data-i18n="how.h2">Subtitles in <span class="hl">under 60 seconds</span></h2>
+    <div class="eyebrow reveal" data-i18n="how.eyebrow">Simple as that</div>
+    <h2 class="reveal" data-i18n="how.h2">Subtitles <span class="hl">straight on your timeline</span></h2>
     <p class="section-lead reveal" data-i18n="how.lead">No export. No upload. No waiting for a server. Open the panel and go.</p>
     <a class="watch-demo reveal" onclick="openVideoLightbox()" style="margin-bottom:36px">
       <span class="play-ic">▶</span>
@@ -1150,99 +1114,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   </div>
 </section>
 
-<!-- ROI CALCULATOR -->
-<section class="roi-sec" id="roi">
-  <div class="wrap">
-    <div class="eyebrow reveal" style="text-align:center" data-i18n="roi.eyebrow">Real-world math</div>
-    <h2 class="reveal" style="text-align:center;margin-bottom:38px" data-i18n="roi.h2">How much time will <span class="hl">you</span> save?</h2>
-    <div class="roi-card reveal">
-      <div class="roi-grid">
-        <div class="roi-left">
-          <h3 data-i18n="roi.drag">Drag the slider <span class="hl">→</span></h3>
-          <p data-i18n="roi.intro">Editors spend 3–5 hours manually typing subtitles for every hour of footage. CaptionLab does it in under 60 seconds.</p>
-
-          <div class="roi-slider-block">
-            <div class="roi-slider-label">
-              <span data-i18n="roi.videos">Videos per week</span>
-              <span class="val"><span id="roi-videos">3</span> <span data-i18n="roi.videosU">videos</span></span>
-            </div>
-            <input type="range" class="roi-slider" id="slider-videos" min="1" max="20" value="3">
-          </div>
-
-          <div class="roi-slider-block">
-            <div class="roi-slider-label">
-              <span data-i18n="roi.length">Avg video length</span>
-              <span class="val"><span id="roi-mins">10</span> <span data-i18n="roi.min">min</span></span>
-            </div>
-            <input type="range" class="roi-slider" id="slider-mins" min="2" max="60" value="10">
-          </div>
-
-          <div class="roi-slider-block">
-            <div class="roi-slider-label">
-              <span data-i18n="roi.rate">Your hourly rate</span>
-              <span class="val">$<span id="roi-rate">35</span><span data-i18n="roi.hr">/hr</span></span>
-            </div>
-            <input type="range" class="roi-slider" id="slider-rate" min="15" max="200" value="35">
-          </div>
-        </div>
-
-        <div class="roi-result">
-          <div class="roi-saving-label" data-i18n="roi.save">You'll save</div>
-          <div class="roi-saving-amount">$<span id="roi-savings">8190</span></div>
-          <div class="roi-saving-period" data-i18n="roi.period">in the first year alone</div>
-
-          <div class="roi-stats">
-            <div class="roi-stat">
-              <div class="roi-stat-val"><span id="roi-hours">234</span>h</div>
-              <div class="roi-stat-label" data-i18n="roi.saved1">SAVED YEAR ONE</div>
-            </div>
-            <div class="roi-stat">
-              <div class="roi-stat-val"><span id="roi-days">29</span> <span data-i18n="roi.daysU">days</span></div>
-              <div class="roi-stat-label" data-i18n="roi.back">BACK IN YOUR LIFE</div>
-            </div>
-          </div>
-
-          <div class="roi-recoup" data-i18n="roi.recoup">Pays for itself in <span id="roi-recoup">1 day</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SAVINGS -->
-<section class="savings-sec">
-  <div class="wrap">
-    <div class="savings-headline reveal">
-      <h3 data-i18n="sav.h3">The math is <span style="color:var(--green)">absurd</span></h3>
-      <p data-i18n="sav.sub">What you'd pay elsewhere for the same job — every single year:</p>
-    </div>
-    <div class="savings-card reveal">
-      <div class="savings-item">
-        <div class="savings-vs" data-i18n="sav.v1">vs Captioneer subscription</div>
-        <div class="savings-old">$180 / year</div>
-        <div class="savings-amount">$141</div>
-        <div class="savings-label" data-i18n="sav.l1">saved year one</div>
-      </div>
-      <div class="savings-item">
-        <div class="savings-vs" data-i18n="sav.v2">vs Adobe Creative Cloud</div>
-        <div class="savings-old">$660 / year</div>
-        <div class="savings-amount">$621</div>
-        <div class="savings-label" data-i18n="sav.l2">if you just need captions</div>
-      </div>
-      <div class="savings-item">
-        <div class="savings-vs" data-i18n="sav.v3">vs cloud subscription tools</div>
-        <div class="savings-old">$180+ / year</div>
-        <div class="savings-amount">$141+</div>
-        <div class="savings-label" data-i18n="sav.l3">every year, forever</div>
-      </div>
-    </div>
-    <div class="inline-cta reveal">
-      <p class="inline-cta-text" data-i18n="sav.ctatext">Recoup it on your <b>first project this week</b>.</p>
-      <a href="#pricing" data-i18n="sav.ctalink">Start saving — $39 →</a>
-    </div>
-  </div>
-</section>
-
 <!-- FOUNDER NOTE -->
 <section class="founder-sec">
   <div class="wrap">
@@ -1256,7 +1127,11 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <p style="color:var(--mid);font-size:16px;margin-top:24px" data-i18n="fnd.p5">If this sounds like something you need too — try it. 14-day refund if it's not for you. No hard feelings.</p>
       </div>
       <div class="founder-sign">
-        <div class="founder-avatar">I</div>
+        <div class="founder-avatar">
+          I
+          <!-- Drop the real photo in at brand/founder-photo.jpg — falls back to the "I" letter above until the file exists. -->
+          <img src="brand/founder-photo.jpg" alt="Igor Bondarenko" onerror="this.style.display='none'">
+        </div>
         <div class="founder-info">
           <div class="founder-name">Igor Bondarenko</div>
           <div class="founder-role" data-i18n="fnd.role">Editor · Founder, Edit Lab Tools</div>
@@ -1266,37 +1141,9 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   </div>
 </section>
 
-<!-- EARLY ADOPTER BONUS -->
+<!-- MINI FAQ — last objections before pricing -->
 <section class="bonus-sec">
   <div class="wrap">
-    <div class="bonus-card reveal">
-      <div class="bonus-header">
-        <span class="bonus-flag" data-i18n="bon.flag">🎁 LAUNCH BONUS</span>
-        <div class="bonus-progress"><div class="bonus-fill" id="bonus-fill"></div></div>
-        <span class="bonus-count" data-i18n="bon.count"><span id="bonus-left">82</span> / 100 spots left</span>
-      </div>
-      <h3 class="bonus-title" data-i18n="bon.title">First 100 buyers get <span class="hl">three things</span> nobody else will.</h3>
-      <p style="color:var(--mid);font-size:15px;max-width:600px;position:relative" data-i18n="bon.intro">Early supporters made this possible. You're not just buying a plugin — you're getting in on the ground floor.</p>
-      <div class="bonus-list">
-        <div class="bonus-item">
-          <div class="bonus-item-icon">🪟</div>
-          <h4 data-i18n="bon.i1h">Free Windows version</h4>
-          <p data-i18n="bon.i1p">When CaptionLab for Windows ships — yours, free. (Everyone else will pay full price.)</p>
-        </div>
-        <div class="bonus-item">
-          <div class="bonus-item-icon">♾️</div>
-          <h4 data-i18n="bon.i2h">Lifetime major updates</h4>
-          <p data-i18n="bon.i2p">v2, v3, v4 — all included. Future buyers pay for major version upgrades. You don't.</p>
-        </div>
-        <div class="bonus-item">
-          <div class="bonus-item-icon">📧</div>
-          <h4 data-i18n="bon.i3h">Direct line to the builder</h4>
-          <p data-i18n="bon.i3p">Bug report, feature wish, weird edge case — email me directly. I'll answer personally.</p>
-        </div>
-      </div>
-      <p class="bonus-foot" data-i18n="bon.foot">Once 100 spots are gone, these bonuses go away. <b>Forever.</b></p>
-    </div>
-
     <!-- Mini-FAQ — last objections before pricing -->
     <div class="mini-faq">
       <div class="mini-faq-grid reveal">
@@ -1325,10 +1172,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <p class="section-lead reveal" style="text-align:center;margin-left:auto;margin-right:auto" data-i18n="pr.lead">No tiers. No upsells. No catch.</p>
     <div class="price-box reveal">
       <div class="price-flag" data-i18n="pr.flag">LAUNCH</div>
-      <div class="price-discount-row">
-        <span class="price-old-big">$59</span>
-        <span class="save-badge" data-i18n="pr.save">SAVE $20</span>
-      </div>
       <div class="price-amount"><span class="cur">$</span>39</div>
       <div class="price-once" data-i18n="pr.once">// one-time · permanent license</div>
       <ul class="price-list">
@@ -1343,11 +1186,12 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <div class="guarantee-box">
         <span class="guarantee-icon">🛡️</span>
         <span class="guarantee-text">
-          <b data-i18n="pr.gh">14-day money-back guarantee</b>
-          <span data-i18n="pr.gt">Doesn't work for you? Full refund. No questions asked.</span>
+          <span class="trial-badge" data-i18n="pr.trialbadge">14-DAY TRIAL</span>
+          <b data-i18n="pr.gh">Try it risk-free, no questions asked</b>
+          <span data-i18n="pr.gt">Doesn't work for you? Full refund within 14 days.</span>
         </span>
       </div>
-      <a href="#" class="price-cta" id="buy-btn-main" onclick="openCheckout(event)" data-i18n="pr.cta">Get CaptionLab now →</a>
+      <a href="#" class="price-cta" id="buy-btn-main" onclick="openPreCheckout(event)" data-i18n="pr.cta">Get CaptionLab now →</a>
       <div class="trust-row">
         <span data-i18n="pr.t1"><span class="tk">🔒</span> Secure checkout</span>
         <span data-i18n="pr.t2"><span class="tk">⚡</span> Instant download</span>
@@ -1364,6 +1208,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="eyebrow reveal" data-i18n="faq.eyebrow">Questions</div>
     <h2 class="reveal" data-i18n="faq.h2">Before you ask</h2>
     <div style="margin-top:40px">
+      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q0">How do I install it?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a0">Two steps. First, install the CaptionLab panel itself (a couple clicks). Then, the first time you open it inside Premiere, click "Install AI Engine" — it automatically downloads the AI engine it runs on (Python, ffmpeg, and the Whisper model, ~3 GB total, 15–20 minutes depending on your connection). After that one-time setup, it's ready to use offline, forever.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q1">Do I need an internet connection?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a1">Only once — for the first-time setup (Python, ffmpeg, and the Whisper AI model, ~3 GB total). After that, CaptionLab runs 100% offline. No internet, no servers, no nothing.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q2">Do I need an API key or an OpenAI account?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">No. Unlike cloud tools, CaptionLab runs the Whisper model locally on your Mac. No Deepgram, no Groq, no OpenAI credits. Nothing to sign up for.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q3">Is my footage uploaded anywhere?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">Never. Every byte of audio is processed on your own machine. Perfect for client work under NDA.</div></div></div>
@@ -1379,12 +1224,10 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="final-glow"></div>
   <div class="wrap">
     <div class="final-price-tag reveal">
-      <span class="final-old">$59</span>
       <span class="final-now">$39</span>
-      <span class="final-save" data-i18n="fin.save">SAVE $20</span>
     </div>
-    <h2 class="reveal" data-i18n="fin.h2">Stop typing subtitles.<br><span style="color:var(--cyan)">Start shipping faster.</span></h2>
-    <p class="reveal" data-i18n="fin.p">One purchase. Your language. Your machine. Forever.</p>
+    <h2 class="reveal" data-i18n="fin.h2">Stop typing subtitles.<br><span style="color:var(--cyan)">Deliver projects faster.</span></h2>
+    <p class="reveal" data-i18n="fin.p">Buy once. Use forever.</p>
     <a href="#pricing" class="btn-primary reveal" style="font-size:20px;padding:22px 48px" data-i18n="fin.cta">Get CaptionLab →</a>
     <div class="final-trust reveal">
       <span data-i18n="fin.t1">🛡 14-day refund</span>
@@ -1392,10 +1235,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <span data-i18n="fin.t2">🔒 Secure checkout</span>
       <span>·</span>
       <span data-i18n="fin.t3">⚡ Instant download</span>
-    </div>
-    <div class="final-countdown reveal">
-      <span class="dim" data-i18n="fin.cdlabel">Launch price ends in</span>
-      <span class="cd-pill"><span id="cd-final-d">--</span>d <span id="cd-final-h">--</span>h <span id="cd-final-m">--</span>m</span>
     </div>
   </div>
 </section>
@@ -1659,7 +1498,7 @@ function toggleLegal(scroll) {
   var status=document.getElementById('mockStatus');
   if(!lang && !document.getElementById('rotateLang')) return;
   var seq=[
-    {h:'Українській',p:'Ukrainian',  s:'Привіт! Це автоматичні субтитри.',   c:'UA',n:12},
+    {h:'Українська',p:'Ukrainian',  s:'Привіт! Це автоматичні субтитри.',   c:'UA',n:12},
     {h:'Polski',     p:'Polish',     s:'Cześć! To są automatyczne napisy.',  c:'PL',n:11},
     {h:'Türkçe',     p:'Turkish',    s:'Merhaba! Bunlar otomatik altyazı.',  c:'TR',n:13},
     {h:'العربية',    p:'Arabic',     s:'مرحبا! هذه ترجمة تلقائية.',           c:'AR',n:9},
@@ -1682,86 +1521,26 @@ function toggleLegal(scroll) {
     if(status)status.textContent='✓ '+o.n+' segments · '+o.c;
     typeOut(o.s);
   }
+  // Lock the rotating word's box to the widest entry's rendered width so the
+  // H1/hero layout never reflows when switching between scripts (Cyrillic,
+  // Arabic, Devanagari, Latin all render at different widths per character —
+  // measuring is the only reliable way, guessing ch-counts isn't).
+  (function(){
+    var rot=document.getElementById('rotateLang');
+    if(!rot)return;
+    var box=rot.parentElement; // .lang-rotate
+    var probe=document.createElement('span');
+    var cs=getComputedStyle(rot);
+    probe.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;top:-9999px;left:-9999px;font-size:'+cs.fontSize+';font-weight:'+cs.fontWeight+';font-family:'+cs.fontFamily+';letter-spacing:'+cs.letterSpacing+';';
+    document.body.appendChild(probe);
+    var maxW=0;
+    seq.forEach(function(o){ probe.textContent=o.h; maxW=Math.max(maxW,probe.offsetWidth); });
+    document.body.removeChild(probe);
+    box.style.minWidth=Math.ceil(maxW)+'px';
+  })();
+
   apply(seq[0]);
   setInterval(function(){ i=(i+1)%seq.length; apply(seq[i]); }, 3200);
-})();
-
-// Launch countdown — 14 days from first visit (per-user via localStorage)
-(function(){
-  const STORE='cl_launch_deadline';
-  let end=parseInt(localStorage.getItem(STORE)||'0',10);
-  const now=Date.now();
-  if(!end || end<now){
-    end=now+14*24*60*60*1000;
-    localStorage.setItem(STORE,end);
-  }
-  function pad(n){return n<10?'0'+n:n}
-  function tick(){
-    const diff=Math.max(0,end-Date.now());
-    const d=Math.floor(diff/86400000);
-    const h=Math.floor((diff%86400000)/3600000);
-    const m=Math.floor((diff%3600000)/60000);
-    ['cd-d','cd-final-d'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=pad(d)});
-    ['cd-h','cd-final-h'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=pad(h)});
-    ['cd-m','cd-final-m'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=pad(m)});
-  }
-  tick();setInterval(tick,30000);
-  document.addEventListener('langapplied',tick); // re-fill after i18n swaps the spans
-})();
-
-// ROI Calculator
-(function(){
-  const sV=document.getElementById('slider-videos');
-  const sM=document.getElementById('slider-mins');
-  const sR=document.getElementById('slider-rate');
-  if(!sV)return;
-  const $=function(id){return document.getElementById(id);};
-  function fillSlider(s){
-    const p=((s.value-s.min)/(s.max-s.min))*100;
-    s.style.setProperty('--p',p+'%');
-  }
-  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
-  function calc(){
-    const t=window.__t||function(k,f){return f;};
-    const videos=+sV.value,mins=+sM.value,rate=+sR.value;
-    const hoursPerWeek=(videos*mins*4)/60;
-    const hoursYear=Math.round(hoursPerWeek*52);
-    const moneySaved=Math.round(hoursYear*rate)-39;
-    const days=Math.round(hoursYear/8);
-    const projectsToRecoup=Math.max(1,Math.ceil((39/rate*60)/(mins*4)));
-    let recoupText;
-    if(projectsToRecoup===1)recoupText=t('roi.rc1','1 video');
-    else if(projectsToRecoup<=videos)recoupText=t('roi.rcweek','this week');
-    else if(projectsToRecoup<=videos*4)recoupText=t('roi.rcmonth','this month');
-    else recoupText=projectsToRecoup+' '+t('roi.rcvideos','videos');
-    var e;
-    if(e=$('roi-videos'))e.textContent=videos;
-    if(e=$('roi-mins'))e.textContent=mins;
-    if(e=$('roi-rate'))e.textContent=rate;
-    if(e=$('roi-savings'))e.textContent=fmt(Math.max(0,moneySaved));
-    if(e=$('roi-hours'))e.textContent=fmt(hoursYear);
-    if(e=$('roi-days'))e.textContent=fmt(days);
-    if(e=$('roi-recoup'))e.textContent=recoupText;
-    fillSlider(sV);fillSlider(sM);fillSlider(sR);
-  }
-  [sV,sM,sR].forEach(s=>s.addEventListener('input',calc));
-  document.addEventListener('langapplied',calc);
-  calc();
-})();
-
-// Bonus counter — slowly count down (5 spots per week feeling)
-(function(){
-  const el=document.getElementById('bonus-left');
-  const fill=document.getElementById('bonus-fill');
-  if(!el)return;
-  // Pseudo-counter: 18 sold out of 100, slowly increments
-  const STORE='cl_bonus_sold';
-  const seedDate=Date.parse('2026-06-01');
-  const daysSince=Math.floor((Date.now()-seedDate)/86400000);
-  const sold=Math.min(82,18+Math.floor(daysSince*0.4));
-  const left=100-sold;
-  el.textContent=left;
-  if(fill)fill.style.width=sold+'%';
 })();
 
 // Sticky bottom CTA — show after user scrolls past hero
@@ -1830,8 +1609,20 @@ function toggleLegal(scroll) {
     }
   });
 
-  function openCheckout(e) {
-    e.preventDefault();
+  function openPreCheckout(e) {
+    if (e) e.preventDefault();
+    var m = document.getElementById('precheckModal');
+    if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  }
+
+  function closePreCheckout() {
+    var m = document.getElementById('precheckModal');
+    if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+  }
+
+  function proceedToCheckout(e) {
+    if (e) e.preventDefault();
+    closePreCheckout();
     if (window.ttq) {
       ttq.track('InitiateCheckout', {
         contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type, content_name: TT_PRODUCT.content_name }],
@@ -1850,14 +1641,13 @@ function toggleLegal(scroll) {
 (function(){
   var DICT = {
     uk:{
-      "nav.languages":"Мови","nav.how":"Як це працює","nav.save":"Економія","nav.pricing":"Ціна","nav.faq":"Питання","nav.cta":"Отримати плагін",
-      "launch.text":"<b>Знижка на старт</b> · <span class='launch-strike'>$59</span> <span class='launch-now'>$39</span> · −34%",
-      "launch.timer":"Ще <span id='cd-d'>--</span>д <span id='cd-h'>--</span>г <span id='cd-m'>--</span>хв",
+      "nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.faq":"Питання","nav.cta":"Отримати плагін",
+      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово",
       "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
       "hero.h1":"Автоматичні субтитри в Premiere Pro.<br>Нарешті <b>твоєю мовою</b>.",
       "hero.sub":"Adobe підтримує <span class='strike'>16 мов</span>. CaptionLab — <b>99</b>: польська, турецька, українська, арабська, індонезійська й десятки інших, до яких Adobe так і не дійшли руки. <b>Встановлюється як панель прямо в Premiere — не вебзастосунок, не підписка, без API-ключів.</b>",
       "hero.cta1":"Отримати CaptionLab →","hero.cta2":"Подивитись, як працює",
-      "hero.watch1":"Подивись за 60 секунд","hero.watch2":"Реальне демо + міні-туторіал",
+      "hero.watch1":"Дивитись демо","hero.watch2":"Реальне демо + міні-туторіал",
       "hero.m1":"<span class='ck'>✓</span> Одноразова покупка","hero.m2":"<span class='ck'>✓</span> Працює офлайн назавжди","hero.m3":"<span class='ck'>✓</span> Відео не залишає твій Mac",
       "hero.scroll":"Прокрути · на тебе чекає 99 мов",
       "big.label":"Мов","big.sub":"Кожна мова, яку підтримує OpenAI Whisper. Не 16. Не 27. Дев'яносто дев'ять.",
@@ -1871,42 +1661,33 @@ function toggleLegal(scroll) {
       "pain.c3h":"Ще одна щомісячна підписка","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. Кожен інструмент хоче $15/місяць — вічно.",
       "pain.c4h":"Заливати матеріал клієнта хтозна-куди","pain.c4p":"Хмарні сервіси відправляють твоє конфіденційне відео на чужі сервери. NDA? Який NDA?",
       "pain.ctatext":"Усе це — <b>виправляється за 60 секунд.</b>","pain.ctalink":"Подивитись, як це працює ↓",
-      "how.eyebrow":"Простіше нікуди","how.h2":"Субтитри за <span class='hl'>менш ніж 60 секунд</span>","how.lead":"Без експорту. Без завантажень. Без очікування сервера. Відкрий панель — і вперед.","how.watchtitle":"Подивись у дії","how.watchsub":"60-секундний огляд на реальному таймлайні",
+      "how.eyebrow":"Простіше нікуди","how.h2":"Субтитри <span class='hl'>прямо на таймлайні</span>","how.lead":"Без експорту. Без завантажень. Без очікування сервера. Відкрий панель — і вперед.","how.watchtitle":"Подивись у дії","how.watchsub":"60-секундний огляд на реальному таймлайні",
       "how.s1h":"Відкрий панель","how.s1p":"CaptionLab живе прямо в Premiere Pro. Window → Extensions → CaptionLab.",
       "how.s2h":"Обери мову й натисни Generate","how.s2p":"Обери з 99 мов — або дай визначити автоматично. Один клік робить усе.",
       "how.s3h":"Кинь SRT на таймлайн","how.s3p":"Субтитри з'являються як редагована доріжка Premiere. Підправ — і готово.",
       "cmp.eyebrow":"Чесне порівняння","cmp.h2":"CaptionLab проти <span class='hl'>усіх інших</span>","cmp.lead":"Ми зробили дослідження, щоб тобі не довелось.","cmp.feature":"Функція","cmp.adobe":"Adobe вбудований","cmp.cloud":"Хмарні сервіси","cmp.r1":"Мови","cmp.r2":"Працює офлайн","cmp.r3":"Потрібен API-ключ","cmp.r4":"Матеріал лишається приватним","cmp.r5":"Ціна","cmp.r6":"Підписка","cmp.r7":"Плата за хвилини / ліміти","cmp.once":"$39 разово","cmp.vcloud":"✗ хмара","cmp.local":"✓ локально","cmp.yes":"✗ так","cmp.none":"✓ немає","cmp.always":"✓ завжди","cmp.required":"✗ потрібна","cmp.never":"✓ ніколи","cmp.freen":"немає","cmp.metered":"✗ з лічильником","cmp.unlimited":"✓ без лімітів","cmp.price1":"$55/міс CC","cmp.price2":"$15/міс+",
       "cmp.ctatext":"Саме тому CaptionLab — <b>$39 разово</b>, а не $15/місяць вічно.","cmp.ctalink":"Переглянути ціну →","cmp.guarantee":"<span>🛡</span> 14 днів на повернення коштів",
-      "roi.eyebrow":"Реальна математика","roi.h2":"Скільки часу заощадиш <span class='hl'>саме ти</span>?","roi.drag":"Потягни повзунок <span class='hl'>→</span>","roi.intro":"Монтажери витрачають 3–5 годин на ручні субтитри до кожної години відео. CaptionLab робить це менш ніж за 60 секунд.",
-      "roi.videos":"Відео на тиждень","roi.videosU":"відео","roi.length":"Середня тривалість відео","roi.min":"хв","roi.rate":"Твоя ставка за годину","roi.hr":"/год",
-      "roi.save":"Ти заощадиш","roi.period":"лише за перший рік","roi.saved1":"ГОДИН ЗА ПЕРШИЙ РІК","roi.daysU":"днів","roi.back":"ПОВЕРНУТО В ЖИТТЯ","roi.recoup":"Окупається за <span id='roi-recoup'>1 день</span>",
-      "roi.rc1":"1 відео","roi.rcweek":"цей тиждень","roi.rcmonth":"цей місяць","roi.rcvideos":"відео",
-      "sav.h3":"Математика <span style='color:var(--green)'>абсурдна</span>","sav.sub":"Скільки б ти платив деінде за ту саму роботу — щороку:","sav.v1":"проти підписки Captioneer","sav.l1":"заощаджено за рік","sav.v2":"проти Adobe Creative Cloud","sav.l2":"якщо тобі потрібні лише субтитри","sav.v3":"проти хмарних підписок","sav.l3":"щороку, вічно",
-      "sav.ctatext":"Окупиться на <b>першому ж проєкті цього тижня</b>.","sav.ctalink":"Почати заощаджувати — $39 →",
       "fnd.eyebrow":"Кілька слів від автора","fnd.p1":"Я режисер монтажу. Такий самий, як і ти.","fnd.p2":"Роками я дивився, як Adobe випускає Speech-to-Text англійською, потім іспанською, потім французькою — і просто <span class='hl'>зупиняється</span>. Мої українські проєкти? Польські? Турецькі? «Не підтримується». Тож я друкував кожен субтитр вручну. Години за годинами, у кожному проєкті.",
       "fnd.p3":"Тоді я спробував хмарні сервіси. Вони працювали — але відправляли моє відео на свої сервери, зберігали мою картку й брали з мене $15 щомісяця довічно. Для клієнтської роботи під NDA? <span class='hl'>Не треба, дякую.</span>",
       "fnd.p4":"Тож я створив CaptionLab — плагін, який хотів би мати сам. <span class='hl'>Працює офлайн. Швидкий. 99 мов.</span> Одна ціна. <span class='hl-nosub'>Без підписки.</span> Твоє відео залишається там, де має бути — на твоєму Mac.",
       "fnd.p5":"Якщо це схоже на те, що потрібно й тобі — спробуй. 14 днів на повернення, якщо не підійде. Без образ.","fnd.role":"Режисер монтажу · Засновник Edit Lab Tools",
-      "bon.flag":"🎁 БОНУС НА СТАРТ","bon.count":"<span id='bonus-left'>82</span> / 100 місць лишилось","bon.title":"Перші 100 покупців отримають <span class='hl'>три речі</span>, яких не отримає ніхто інший.","bon.intro":"Ранні прихильники зробили це можливим. Ти не просто купуєш плагін — ти заходиш на самому старті.",
-      "bon.i1h":"Безкоштовна версія для Windows","bon.i1p":"Коли вийде CaptionLab для Windows — твоя, безкоштовно. (Усі інші платитимуть повну ціну.)","bon.i2h":"Довічні великі оновлення","bon.i2p":"v2, v3, v4 — усе включено. Майбутні покупці платять за великі версії. Ти — ні.","bon.i3h":"Пряма лінія до автора","bon.i3p":"Баг, побажання, дивний кейс — пиши мені напряму. Відповім особисто.",
-      "bon.foot":"Щойно 100 місць розберуть, ці бонуси зникнуть. <b>Назавжди.</b>",
       "mf.q1":"// ЦЕ СПРАВДІ ОФЛАЙН?","mf.a1":"Так. Після одноразового налаштування <b>інтернет не потрібен</b>. Твоє аудіо не залишає Mac.","mf.q2":"// ПРАЦЮВАТИМЕ НА МОЄМУ MAC?","mf.a2":"Працює на <b>будь-якому Mac з macOS 11+</b> — Apple Silicon (M1–M4) та Intel.","mf.q3":"// А ЯКЩО НЕ СПОДОБАЄТЬСЯ?","mf.a3":"Напиши нам протягом 14 днів — <b>повне повернення</b>. Без питань, без тертя.",
-      "pr.eyebrow":"Проста ціна","pr.h2":"Одна ціна. <span class='hl'>Твоя назавжди.</span>","pr.lead":"Без тарифів. Без допродажів. Без підводних каменів.","pr.flag":"СТАРТ","pr.save":"ЗНИЖКА $20","pr.once":"// разово · безстрокова ліцензія",
+      "pr.eyebrow":"Проста ціна","pr.h2":"Одна ціна. <span class='hl'>Твоя назавжди.</span>","pr.lead":"Без тарифів. Без допродажів. Без підводних каменів.","pr.flag":"СТАРТ","pr.once":"// разово · безстрокова ліцензія",
       "pr.l1":"<span class='ck'>✓</span> Плагін CaptionLab для Premiere Pro (Mac)","pr.l2":"<span class='ck'>✓</span> Усі 99 мов Whisper","pr.l3":"<span class='ck'>✓</span> 100% офлайн — без API-ключів, без хмари","pr.l4":"<span class='ck'>✓</span> Необмежена транскрипція — без плати за хвилини й лімітів","pr.l5":"<span class='ck'>✓</span> Переклад будь-якої мови → англійською","pr.l6":"<span class='ck'>✓</span> Безкоштовні оновлення цієї версії","pr.l7":"<span class='ck'>✓</span> Підтримка Apple Silicon + Intel",
-      "pr.gh":"14 днів на повернення коштів","pr.gt":"Не підійшло? Повне повернення. Без питань.","pr.cta":"Отримати CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Безпечна оплата","pr.t2":"<span class='tk'>⚡</span> Миттєве завантаження","pr.t3":"<span class='tk'>💳</span> Paddle · з ПДВ","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows скоро",
-      "faq.eyebrow":"Питання","faq.h2":"Відповіді на твої питання","faq.q1":"Чи потрібен інтернет?","faq.a1":"Лише раз — для першого налаштування (Python, ffmpeg і модель Whisper, ~3 ГБ разом). Далі CaptionLab працює на 100% офлайн. Ні інтернету, ні серверів, нічого.","faq.q2":"Чи потрібен API-ключ або акаунт OpenAI?","faq.a2":"Ні. На відміну від хмарних сервісів, CaptionLab запускає модель Whisper локально на твоєму Mac. Ні Deepgram, ні Groq, ні кредитів OpenAI. Реєструватися нікуди не треба.","faq.q3":"Чи завантажується моє відео кудись?","faq.a3":"Ніколи. Кожен байт аудіо обробляється на твоїй машині. Ідеально для клієнтської роботи під NDA.","faq.q4":"Які версії Premiere Pro підтримуються?","faq.a4":"Premiere Pro 2023–2026 (версії 23.x–26.x). Працює на Apple Silicon (M1–M4) та Intel Mac.","faq.q5":"Чи є версія для Windows?","faq.a5":"В активній розробці. Зараз CaptionLab лише для Mac. Долучайся до списку — дізнаєшся першим, коли вийде Windows.","faq.q6":"Які мови підтримуються?","faq.a6":"Усі 99 мов, які підтримує Whisper — зокрема українська, польська, турецька, індонезійська, в'єтнамська, арабська, тайська, румунська, чеська, словацька, угорська, грецька, іврит, перська, урду й десятки інших.",
-      "fin.save":"ЗНИЖКА $20","fin.h2":"Годі друкувати субтитри.<br><span style='color:var(--cyan)'>Здавай проєкти швидше.</span>","fin.p":"Одна покупка. Твоя мова. Твоя машина. Назавжди.","fin.cta":"Отримати CaptionLab →","fin.t1":"🛡 14 днів на повернення","fin.t2":"🔒 Безпечна оплата","fin.t3":"⚡ Миттєве завантаження","fin.cdlabel":"Стартова ціна діє ще",
+      "pr.trialbadge":"14 ДНІВ TRIAL","pr.gh":"Спробуй без ризику, без питань","pr.gt":"Не підійшло? Повне повернення протягом 14 днів.","pr.cta":"Отримати CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Безпечна оплата","pr.t2":"<span class='tk'>⚡</span> Миттєве завантаження","pr.t3":"<span class='tk'>💳</span> Paddle · з ПДВ","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows скоро",
+      "pc.eyebrow":"Перед оплатою","pc.h3":"Ось що буде далі","pc.s1":"Введеш <b>email</b> на наступному екрані — безпечна оплата через Paddle, зашифровано, ми нічого не зберігаємо.","pc.s2":"Перевір пошту — <b>лінк на завантаження</b> + <b>інструкція з установки</b> прийдуть одразу після оплати.","pc.s3":"Відкрий плагін у Premiere і <b>активуй</b> його своїм <b>email + license key</b> з листа.","pc.trialbadge":"14 ДНІВ TRIAL","pc.trial":"Ще не впевнений? Спробуй на реальному проєкті. Не підійшло? <b>Повне повернення</b>, без питань.","pc.cta":"Продовжити до оплати →","pc.cancel":"Не зараз",
+      "faq.eyebrow":"Питання","faq.h2":"Відповіді на твої питання","faq.q0":"Як це встановити?","faq.a0":"Два кроки. Спочатку встановлюєш саму панель CaptionLab (кілька кліків). Потім, при першому відкритті в Premiere, натискаєш «Install AI Engine» — і плагін автоматично довантажує AI-рушій, на якому працює (Python, ffmpeg і модель Whisper, ~3 ГБ разом, 15–20 хв залежно від інтернету). Після цього одноразового налаштування все працює офлайн, назавжди.","faq.q1":"Чи потрібен інтернет?","faq.a1":"Лише раз — для першого налаштування (Python, ffmpeg і модель Whisper, ~3 ГБ разом). Далі CaptionLab працює на 100% офлайн. Ні інтернету, ні серверів, нічого.","faq.q2":"Чи потрібен API-ключ або акаунт OpenAI?","faq.a2":"Ні. На відміну від хмарних сервісів, CaptionLab запускає модель Whisper локально на твоєму Mac. Ні Deepgram, ні Groq, ні кредитів OpenAI. Реєструватися нікуди не треба.","faq.q3":"Чи завантажується моє відео кудись?","faq.a3":"Ніколи. Кожен байт аудіо обробляється на твоїй машині. Ідеально для клієнтської роботи під NDA.","faq.q4":"Які версії Premiere Pro підтримуються?","faq.a4":"Premiere Pro 2023–2026 (версії 23.x–26.x). Працює на Apple Silicon (M1–M4) та Intel Mac.","faq.q5":"Чи є версія для Windows?","faq.a5":"В активній розробці. Зараз CaptionLab лише для Mac. Долучайся до списку — дізнаєшся першим, коли вийде Windows.","faq.q6":"Які мови підтримуються?","faq.a6":"Усі 99 мов, які підтримує Whisper — зокрема українська, польська, турецька, індонезійська, в'єтнамська, арабська, тайська, румунська, чеська, словацька, угорська, грецька, іврит, перська, урду й десятки інших.",
+      "fin.h2":"Годі друкувати субтитри.<br><span style='color:var(--cyan)'>Здавай проєкти швидше.</span>","fin.p":"Купи раз. Користуйся назавжди.","fin.cta":"Отримати CaptionLab →","fin.t1":"🛡 14 днів на повернення","fin.t2":"🔒 Безпечна оплата","fin.t3":"⚡ Миттєве завантаження",
       "ft.tag":"На базі OpenAI Whisper · Створено для Premiere Pro · Зроблено монтажерами для монтажерів","ft.terms":"Умови користування","ft.privacy":"Політика конфіденційності","ft.refund":"Політика повернення","ft.contact":"Контакт","lg.toggle":"Юридична інформація <i class='legal-toggle-icon'>↓</i>","stk.note":"разово · без підписки","stk.cta":"Отримати плагін →"
     },
     pl:{
-      "nav.languages":"Języki","nav.how":"Jak to działa","nav.save":"Oszczędzaj","nav.pricing":"Cennik","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
-      "launch.text":"<b>Promocja startowa</b> · <span class='launch-strike'>$59</span> <span class='launch-now'>$39</span> · −34%",
-      "launch.timer":"Koniec za <span id='cd-d'>--</span>d <span id='cd-h'>--</span>h <span id='cd-m'>--</span>m",
+      "nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
+      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo",
       "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
       "hero.h1":"Automatyczne napisy w Premiere Pro —<br>wreszcie <b>w Twoim języku</b>.",
       "hero.sub":"Adobe obsługuje <span class='strike'>16 języków</span>. CaptionLab — <b>99</b>: polski, turecki, ukraiński, arabski, indonezyjski i dziesiątki innych, którymi Adobe się nie zajęło. <b>Instaluje się jako panel bezpośrednio w Premiere — to nie aplikacja webowa, nie subskrypcja, bez kluczy API.</b>",
       "hero.cta1":"Pobierz CaptionLab →","hero.cta2":"Zobacz, jak działa",
-      "hero.watch1":"Zobacz w 60 sekund","hero.watch2":"Prawdziwe demo + mini-samouczek",
+      "hero.watch1":"Obejrzyj demo","hero.watch2":"Prawdziwe demo + mini-samouczek",
       "hero.m1":"<span class='ck'>✓</span> Jednorazowy zakup","hero.m2":"<span class='ck'>✓</span> Działa offline na zawsze","hero.m3":"<span class='ck'>✓</span> Materiał nie opuszcza Maca",
       "hero.scroll":"Przewiń · czeka 99 języków",
       "big.label":"Języków","big.sub":"Każdy język obsługiwany przez OpenAI Whisper. Nie 16. Nie 27. Dziewięćdziesiąt dziewięć.",
@@ -1920,42 +1701,33 @@ function toggleLegal(scroll) {
       "pain.c3h":"Kolejna miesięczna subskrypcja","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. Każde narzędzie chce 15 $/miesiąc — na zawsze.",
       "pain.c4h":"Wysyłanie materiału klienta nie wiadomo gdzie","pain.c4p":"Narzędzia chmurowe wysyłają Twój poufny materiał na serwery, których nie kontrolujesz. NDA? Jakie NDA?",
       "pain.ctatext":"To wszystko — <b>do naprawienia w 60 sekund.</b>","pain.ctalink":"Zobacz, jak to działa ↓",
-      "how.eyebrow":"Prościej się nie da","how.h2":"Napisy w <span class='hl'>mniej niż 60 sekund</span>","how.lead":"Bez eksportu. Bez wysyłania. Bez czekania na serwer. Otwórz panel i działaj.","how.watchtitle":"Zobacz w akcji","how.watchsub":"60-sekundowy pokaz na prawdziwej osi czasu",
+      "how.eyebrow":"Prościej się nie da","how.h2":"Napisy <span class='hl'>prosto na osi czasu</span>","how.lead":"Bez eksportu. Bez wysyłania. Bez czekania na serwer. Otwórz panel i działaj.","how.watchtitle":"Zobacz w akcji","how.watchsub":"60-sekundowy pokaz na prawdziwej osi czasu",
       "how.s1h":"Otwórz panel","how.s1p":"CaptionLab żyje wprost w Premiere Pro. Window → Extensions → CaptionLab.",
       "how.s2h":"Wybierz język i kliknij Generate","how.s2p":"Wybierz z 99 języków — albo pozwól wykryć automatycznie. Jedno kliknięcie robi wszystko.",
       "how.s3h":"Upuść SRT na oś czasu","how.s3p":"Napisy pojawiają się jako edytowalna ścieżka Premiere. Popraw i wysyłaj.",
       "cmp.eyebrow":"Uczciwe porównanie","cmp.h2":"CaptionLab kontra <span class='hl'>reszta</span>","cmp.lead":"Zrobiliśmy research, żebyś Ty nie musiał.","cmp.feature":"Funkcja","cmp.adobe":"Adobe wbudowane","cmp.cloud":"Narzędzia chmurowe","cmp.r1":"Języki","cmp.r2":"Działa offline","cmp.r3":"Wymaga klucza API","cmp.r4":"Materiał pozostaje prywatny","cmp.r5":"Cena","cmp.r6":"Subskrypcja","cmp.r7":"Opłaty za minutę / limity","cmp.once":"$39 jednorazowo","cmp.vcloud":"✗ chmura","cmp.local":"✓ lokalnie","cmp.yes":"✗ tak","cmp.none":"✓ brak","cmp.always":"✓ zawsze","cmp.required":"✗ wymagana","cmp.never":"✓ nigdy","cmp.freen":"brak","cmp.metered":"✗ licznikowe","cmp.unlimited":"✓ bez limitu","cmp.price1":"$55/mies CC","cmp.price2":"$15/mies+",
       "cmp.ctatext":"Dlatego CaptionLab kosztuje <b>$39 raz</b> — nie 15 $/miesiąc na zawsze.","cmp.ctalink":"Zobacz cennik →","cmp.guarantee":"<span>🛡</span> 14-dniowa gwarancja zwrotu",
-      "roi.eyebrow":"Matematyka z życia","roi.h2":"Ile czasu zaoszczędzisz <span class='hl'>Ty</span>?","roi.drag":"Przeciągnij suwak <span class='hl'>→</span>","roi.intro":"Montażyści spędzają 3–5 godzin na ręcznym pisaniu napisów do każdej godziny materiału. CaptionLab robi to w mniej niż 60 sekund.",
-      "roi.videos":"Filmy tygodniowo","roi.videosU":"filmów","roi.length":"Śr. długość filmu","roi.min":"min","roi.rate":"Twoja stawka godzinowa","roi.hr":"/godz",
-      "roi.save":"Zaoszczędzisz","roi.period":"tylko w pierwszym roku","roi.saved1":"GODZIN W PIERWSZYM ROKU","roi.daysU":"dni","roi.back":"ODZYSKANE DLA ŻYCIA","roi.recoup":"Zwraca się w <span id='roi-recoup'>1 dzień</span>",
-      "roi.rc1":"1 film","roi.rcweek":"w tym tygodniu","roi.rcmonth":"w tym miesiącu","roi.rcvideos":"filmów",
-      "sav.h3":"Matematyka jest <span style='color:var(--green)'>absurdalna</span>","sav.sub":"Ile zapłaciłbyś gdzie indziej za tę samą pracę — co roku:","sav.v1":"vs subskrypcja Captioneer","sav.l1":"zaoszczędzone w pierwszym roku","sav.v2":"vs Adobe Creative Cloud","sav.l2":"jeśli potrzebujesz tylko napisów","sav.v3":"vs chmurowe narzędzia subskrypcyjne","sav.l3":"co roku, na zawsze",
-      "sav.ctatext":"Zwróci się przy <b>pierwszym projekcie w tym tygodniu</b>.","sav.ctalink":"Zacznij oszczędzać — $39 →",
       "fnd.eyebrow":"Słowo od twórcy","fnd.p1":"Jestem montażystą. Tak jak Ty.","fnd.p2":"Przez lata patrzyłem, jak Adobe wypuszcza Speech-to-Text po angielsku, potem hiszpańsku, potem francusku — i po prostu <span class='hl'>przestaje</span>. Moje ukraińskie projekty? Polskie? Tureckie? „Nieobsługiwane”. Więc wpisywałem każdy napis ręcznie. Godzinami, w każdym projekcie.",
       "fnd.p3":"Potem spróbowałem narzędzi chmurowych. Działały — ale chciały mój materiał na swoich serwerach, moją kartę w pliku i 15 $ co miesiąc na zawsze. Do pracy dla klienta pod NDA? <span class='hl'>Nie ma mowy.</span>",
       "fnd.p4":"Więc zbudowałem CaptionLab. Wtyczkę, którą chciałem mieć. <span class='hl'>Lokalna. Szybka. 99 języków.</span> Jedna cena. <span class='hl-nosub'>Bez subskrypcji.</span> Twój materiał zostaje tam, gdzie powinien — na Twoim Macu.",
       "fnd.p5":"Jeśli brzmi to jak coś, czego i Ty potrzebujesz — wypróbuj. 14 dni na zwrot, jeśli nie pasuje. Bez urazy.","fnd.role":"Montażysta · Założyciel Edit Lab Tools",
-      "bon.flag":"🎁 BONUS NA START","bon.count":"<span id='bonus-left'>82</span> / 100 miejsc zostało","bon.title":"Pierwszych 100 kupujących dostanie <span class='hl'>trzy rzeczy</span>, których nie dostanie nikt inny.","bon.intro":"Wcześni wspierający to umożliwili. Nie kupujesz tylko wtyczki — wchodzisz na samym początku.",
-      "bon.i1h":"Darmowa wersja na Windows","bon.i1p":"Gdy pojawi się CaptionLab na Windows — Twoja, za darmo. (Wszyscy inni zapłacą pełną cenę.)","bon.i2h":"Dożywotnie duże aktualizacje","bon.i2p":"v2, v3, v4 — wszystko w cenie. Przyszli kupujący płacą za duże wersje. Ty nie.","bon.i3h":"Bezpośredni kontakt z twórcą","bon.i3p":"Błąd, życzenie, dziwny przypadek — napisz do mnie wprost. Odpowiem osobiście.",
-      "bon.foot":"Gdy zniknie 100 miejsc, te bonusy przepadają. <b>Na zawsze.</b>",
       "mf.q1":"// CZY TO NAPRAWDĘ OFFLINE?","mf.a1":"Tak. Po jednorazowej konfiguracji <b>internet nie jest potrzebny</b>. Twoje audio nie opuszcza Maca.","mf.q2":"// CZY ZADZIAŁA NA MOIM MACU?","mf.a2":"Działa na <b>każdym Macu z macOS 11+</b> — Apple Silicon (M1–M4) i Intel.","mf.q3":"// A JEŚLI MI SIĘ NIE SPODOBA?","mf.a3":"Napisz do nas w ciągu 14 dni — <b>pełny zwrot</b>. Bez pytań, bez tarcia.",
-      "pr.eyebrow":"Prosty cennik","pr.h2":"Jedna cena. <span class='hl'>Twoja na zawsze.</span>","pr.lead":"Bez poziomów. Bez dopłat. Bez haczyków.","pr.flag":"START","pr.save":"OSZCZĘDŹ $20","pr.once":"// jednorazowo · licencja bezterminowa",
+      "pr.eyebrow":"Prosty cennik","pr.h2":"Jedna cena. <span class='hl'>Twoja na zawsze.</span>","pr.lead":"Bez poziomów. Bez dopłat. Bez haczyków.","pr.flag":"START","pr.once":"// jednorazowo · licencja bezterminowa",
       "pr.l1":"<span class='ck'>✓</span> Wtyczka CaptionLab do Premiere Pro (Mac)","pr.l2":"<span class='ck'>✓</span> Wszystkie 99 języków Whisper","pr.l3":"<span class='ck'>✓</span> 100% offline — bez kluczy API, bez chmury","pr.l4":"<span class='ck'>✓</span> Nielimitowana transkrypcja — bez opłat za minutę i limitów","pr.l5":"<span class='ck'>✓</span> Tłumaczenie dowolnego języka → na angielski","pr.l6":"<span class='ck'>✓</span> Darmowe aktualizacje tej wersji","pr.l7":"<span class='ck'>✓</span> Wsparcie Apple Silicon + Intel",
-      "pr.gh":"14-dniowa gwarancja zwrotu pieniędzy","pr.gt":"Nie działa u Ciebie? Pełny zwrot. Bez pytań.","pr.cta":"Pobierz CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Bezpieczna płatność","pr.t2":"<span class='tk'>⚡</span> Natychmiastowe pobranie","pr.t3":"<span class='tk'>💳</span> Paddle · VAT w cenie","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows wkrótce",
-      "faq.eyebrow":"Pytania","faq.h2":"Zanim zapytasz","faq.q1":"Czy potrzebuję połączenia z internetem?","faq.a1":"Tylko raz — do pierwszej konfiguracji (Python, ffmpeg i model AI Whisper, łącznie ~3 GB). Potem CaptionLab działa w 100% offline. Bez internetu, bez serwerów, bez niczego.","faq.q2":"Czy potrzebuję klucza API lub konta OpenAI?","faq.a2":"Nie. W przeciwieństwie do narzędzi chmurowych, CaptionLab uruchamia model Whisper lokalnie na Twoim Macu. Bez Deepgram, bez Groq, bez kredytów OpenAI. Nie trzeba się nigdzie rejestrować.","faq.q3":"Czy mój materiał jest gdzieś przesyłany?","faq.a3":"Nigdy. Każdy bajt audio jest przetwarzany na Twoim komputerze. Idealne do pracy dla klienta pod NDA.","faq.q4":"Które wersje Premiere Pro są obsługiwane?","faq.a4":"Premiere Pro 2023 do 2026 (wersje 23.x–26.x). Działa na Apple Silicon (M1–M4) i Macach Intel.","faq.q5":"Czy jest wersja na Windows?","faq.a5":"W aktywnym rozwoju. Na razie CaptionLab jest tylko na Maca. Dołącz do listy, a dowiesz się pierwszy, gdy pojawi się Windows.","faq.q6":"Jakie języki są obsługiwane?","faq.a6":"Wszystkie 99 języków obsługiwanych przez Whisper — w tym ukraiński, polski, turecki, indonezyjski, wietnamski, arabski, tajski, rumuński, czeski, słowacki, węgierski, grecki, hebrajski, perski, urdu i dziesiątki innych.",
-      "fin.save":"OSZCZĘDŹ $20","fin.h2":"Przestań wpisywać napisy.<br><span style='color:var(--cyan)'>Zacznij wysyłać szybciej.</span>","fin.p":"Jeden zakup. Twój język. Twój komputer. Na zawsze.","fin.cta":"Pobierz CaptionLab →","fin.t1":"🛡 14 dni na zwrot","fin.t2":"🔒 Bezpieczna płatność","fin.t3":"⚡ Natychmiastowe pobranie","fin.cdlabel":"Cena startowa kończy się za",
+      "pr.trialbadge":"14 DNI TRIAL","pr.gh":"Wypróbuj bez ryzyka, bez pytań","pr.gt":"Nie działa u Ciebie? Pełny zwrot w ciągu 14 dni.","pr.cta":"Pobierz CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Bezpieczna płatność","pr.t2":"<span class='tk'>⚡</span> Natychmiastowe pobranie","pr.t3":"<span class='tk'>💳</span> Paddle · VAT w cenie","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows wkrótce",
+      "pc.eyebrow":"Zanim zapłacisz","pc.h3":"Oto co się dzieje dalej","pc.s1":"Podasz <b>email</b> na następnym ekranie — bezpieczna płatność przez Paddle, szyfrowana, niczego nie przechowujemy.","pc.s2":"Sprawdź skrzynkę — <b>link do pobrania</b> + <b>instrukcja instalacji</b> przyjdą od razu po płatności.","pc.s3":"Otwórz wtyczkę w Premiere i <b>aktywuj</b> ją swoim <b>e-mailem + kluczem licencyjnym</b> z tej wiadomości.","pc.trialbadge":"14 DNI TRIAL","pc.trial":"Jeszcze się wahasz? Śmiało spróbuj na prawdziwym projekcie. Nie pasuje? <b>Pełny zwrot</b>, bez pytań.","pc.cta":"Przejdź do płatności →","pc.cancel":"Nie teraz",
+      "faq.eyebrow":"Pytania","faq.h2":"Zanim zapytasz","faq.q0":"Jak to zainstalować?","faq.a0":"Dwa kroki. Najpierw instalujesz sam panel CaptionLab (kilka kliknięć). Potem, przy pierwszym otwarciu w Premiere, klikasz „Install AI Engine” — wtyczka automatycznie pobiera silnik AI, na którym działa (Python, ffmpeg i model Whisper, łącznie ~3 GB, 15–20 minut w zależności od połączenia). Po tej jednorazowej konfiguracji wszystko działa offline, na zawsze.","faq.q1":"Czy potrzebuję połączenia z internetem?","faq.a1":"Tylko raz — do pierwszej konfiguracji (Python, ffmpeg i model AI Whisper, łącznie ~3 GB). Potem CaptionLab działa w 100% offline. Bez internetu, bez serwerów, bez niczego.","faq.q2":"Czy potrzebuję klucza API lub konta OpenAI?","faq.a2":"Nie. W przeciwieństwie do narzędzi chmurowych, CaptionLab uruchamia model Whisper lokalnie na Twoim Macu. Bez Deepgram, bez Groq, bez kredytów OpenAI. Nie trzeba się nigdzie rejestrować.","faq.q3":"Czy mój materiał jest gdzieś przesyłany?","faq.a3":"Nigdy. Każdy bajt audio jest przetwarzany na Twoim komputerze. Idealne do pracy dla klienta pod NDA.","faq.q4":"Które wersje Premiere Pro są obsługiwane?","faq.a4":"Premiere Pro 2023 do 2026 (wersje 23.x–26.x). Działa na Apple Silicon (M1–M4) i Macach Intel.","faq.q5":"Czy jest wersja na Windows?","faq.a5":"W aktywnym rozwoju. Na razie CaptionLab jest tylko na Maca. Dołącz do listy, a dowiesz się pierwszy, gdy pojawi się Windows.","faq.q6":"Jakie języki są obsługiwane?","faq.a6":"Wszystkie 99 języków obsługiwanych przez Whisper — w tym ukraiński, polski, turecki, indonezyjski, wietnamski, arabski, tajski, rumuński, czeski, słowacki, węgierski, grecki, hebrajski, perski, urdu i dziesiątki innych.",
+      "fin.h2":"Przestań wpisywać napisy.<br><span style='color:var(--cyan)'>Realizuj projekty szybciej.</span>","fin.p":"Kup raz. Używaj na zawsze.","fin.cta":"Pobierz CaptionLab →","fin.t1":"🛡 14 dni na zwrot","fin.t2":"🔒 Bezpieczna płatność","fin.t3":"⚡ Natychmiastowe pobranie",
       "ft.tag":"Napędzane przez OpenAI Whisper · Stworzone dla Premiere Pro · Zrobione przez montażystów dla montażystów","ft.terms":"Regulamin","ft.privacy":"Polityka prywatności","ft.refund":"Polityka zwrotów","ft.contact":"Kontakt","lg.toggle":"Informacje prawne <i class='legal-toggle-icon'>↓</i>","stk.note":"jednorazowo · bez subskrypcji","stk.cta":"Pobierz wtyczkę →"
     },
     tr:{
-      "nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.save":"Tasarruf","nav.pricing":"Fiyat","nav.faq":"SSS","nav.cta":"Eklentiyi al",
-      "launch.text":"<b>Lansman indirimi</b> · <span class='launch-strike'>$59</span> <span class='launch-now'>$39</span> · %34 indirim",
-      "launch.timer":"Bitişe <span id='cd-d'>--</span>g <span id='cd-h'>--</span>s <span id='cd-m'>--</span>dk",
+      "nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.faq":"SSS","nav.cta":"Eklentiyi al",
+      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik",
       "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
       "hero.h1":"Premiere Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>.",
       "hero.sub":"Adobe <span class='strike'>16 dil</span> destekliyor. CaptionLab <b>99</b> dil destekler: Lehçe, Türkçe, Ukraynaca, Arapça, Endonezce ve Adobe'nin hiç ilgilenmediği onlarca dil. <b>Doğrudan Premiere içine panel olarak kurulur — web uygulaması değil, abonelik değil, API anahtarı yok.</b>",
       "hero.cta1":"CaptionLab'i al →","hero.cta2":"Nasıl çalıştığını gör",
-      "hero.watch1":"60 saniyede izle","hero.watch2":"Gerçek demo + mini eğitim",
+      "hero.watch1":"Demoyu izle","hero.watch2":"Gerçek demo + mini eğitim",
       "hero.m1":"<span class='ck'>✓</span> Tek seferlik ödeme","hero.m2":"<span class='ck'>✓</span> Sonsuza dek çevrimdışı","hero.m3":"<span class='ck'>✓</span> Görüntüleriniz Mac'ten çıkmaz",
       "hero.scroll":"Kaydır · 99 dil seni bekliyor",
       "big.label":"Dil","big.sub":"OpenAI Whisper'ın desteklediği her dil. 16 değil. 27 değil. Doksan dokuz.",
@@ -1969,42 +1741,33 @@ function toggleLegal(scroll) {
       "pain.c3h":"Bir aylık abonelik daha","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. Her araç ayda 15 $ istiyor — sonsuza dek.",
       "pain.c4h":"Müşteri görüntülerini kim bilir nereye yüklemek","pain.c4p":"Bulut araçları gizli görüntülerini kontrol etmediğin sunuculara gönderir. NDA? Ne NDA'sı?",
       "pain.ctatext":"Bunların hepsi — <b>60 saniyede çözülür.</b>","pain.ctalink":"Nasıl çalıştığını gör ↓",
-      "how.eyebrow":"Çocuk oyuncağı","how.h2":"<span class='hl'>60 saniyeden kısa</span> sürede altyazı","how.lead":"Dışa aktarma yok. Yükleme yok. Sunucu beklemek yok. Paneli aç ve başla.","how.watchtitle":"Aksiyonu izle","how.watchsub":"Gerçek zaman çizelgesinde 60 saniyelik tanıtım",
+      "how.eyebrow":"Çocuk oyuncağı","how.h2":"Altyazılar <span class='hl'>doğrudan zaman çizelgenizde</span>","how.lead":"Dışa aktarma yok. Yükleme yok. Sunucu beklemek yok. Paneli aç ve başla.","how.watchtitle":"Aksiyonu izle","how.watchsub":"Gerçek zaman çizelgesinde 60 saniyelik tanıtım",
       "how.s1h":"Paneli aç","how.s1p":"CaptionLab tam Premiere Pro içinde yaşar. Window → Extensions → CaptionLab.",
       "how.s2h":"Dili seç ve Generate'e tıkla","how.s2p":"99 dil arasından seç — ya da otomatik algılasın. Tek tık her şeyi yapar.",
       "how.s3h":"SRT'yi zaman çizelgesine bırak","how.s3p":"Altyazılar düzenlenebilir bir Premiere altyazı kanalı olarak görünür. Rötuşla ve yayınla.",
       "cmp.eyebrow":"Dürüst karşılaştırma","cmp.h2":"CaptionLab'e karşı <span class='hl'>herkes</span>","cmp.lead":"Araştırmayı biz yaptık, sen yapma.","cmp.feature":"Özellik","cmp.adobe":"Adobe yerleşik","cmp.cloud":"Bulut araçları","cmp.r1":"Diller","cmp.r2":"Çevrimdışı çalışır","cmp.r3":"API anahtarı gerekir","cmp.r4":"Görüntüler gizli kalır","cmp.r5":"Fiyat","cmp.r6":"Abonelik","cmp.r7":"Dakika ücreti / limit","cmp.once":"$39 tek sefer","cmp.vcloud":"✗ bulut","cmp.local":"✓ yerel","cmp.yes":"✗ evet","cmp.none":"✓ yok","cmp.always":"✓ her zaman","cmp.required":"✗ gerekli","cmp.never":"✓ asla","cmp.freen":"yok","cmp.metered":"✗ sayaçlı","cmp.unlimited":"✓ sınırsız","cmp.price1":"$55/ay CC","cmp.price2":"$15/ay+",
       "cmp.ctatext":"İşte bu yüzden CaptionLab <b>$39 tek sefer</b> — ayda 15 $ sonsuza dek değil.","cmp.ctalink":"Fiyatı gör →","cmp.guarantee":"<span>🛡</span> 14 gün para iade garantisi",
-      "roi.eyebrow":"Gerçek matematik","roi.h2":"<span class='hl'>Sen</span> ne kadar zaman kazanırsın?","roi.drag":"Kaydırıcıyı sürükle <span class='hl'>→</span>","roi.intro":"Kurgucular her saatlik görüntü için altyazıları elle yazarak 3–5 saat harcar. CaptionLab bunu 60 saniyeden kısa sürede yapar.",
-      "roi.videos":"Haftalık video","roi.videosU":"video","roi.length":"Ort. video süresi","roi.min":"dk","roi.rate":"Saatlik ücretin","roi.hr":"/saat",
-      "roi.save":"Kazancın","roi.period":"yalnızca ilk yılda","roi.saved1":"İLK YIL KAZANILAN","roi.daysU":"gün","roi.back":"HAYATINA GERİ DÖNEN","roi.recoup":"Kendini <span id='roi-recoup'>1 günde</span> amorti eder",
-      "roi.rc1":"1 video","roi.rcweek":"bu hafta","roi.rcmonth":"bu ay","roi.rcvideos":"video",
-      "sav.h3":"Matematik <span style='color:var(--green)'>saçma</span>","sav.sub":"Aynı iş için başka yerde ödeyeceğin — her yıl:","sav.v1":"Captioneer aboneliğine karşı","sav.l1":"ilk yıl tasarruf","sav.v2":"Adobe Creative Cloud'a karşı","sav.l2":"sadece altyazı gerekiyorsa","sav.v3":"bulut abonelik araçlarına karşı","sav.l3":"her yıl, sonsuza dek",
-      "sav.ctatext":"<b>Bu haftaki ilk projende</b> kendini geri öder.","sav.ctalink":"Tasarrufa başla — $39 →",
       "fnd.eyebrow":"Yapımcıdan bir not","fnd.p1":"Ben bir kurgucuyum. Tıpkı senin gibi.","fnd.p2":"Yıllarca Adobe'nin Speech-to-Text'i önce İngilizce, sonra İspanyolca, sonra Fransızca çıkarıp <span class='hl'>durmasını</span> izledim. Ukraynaca projelerim? Lehçe? Türkçe? «Desteklenmiyor.» Ben de her altyazıyı elle yazdım. Her projede, saatlerce.",
       "fnd.p3":"Sonra bulut araçlarını denedim. Çalıştılar — ama görüntülerimi kendi sunucularında, kartımı kayıtlı ve ayda 15 $'ı sonsuza dek istediler. NDA'lı müşteri işi için mi? <span class='hl'>Asla.</span>",
       "fnd.p4":"Ben de CaptionLab'i yaptım. Var olmasını istediğim eklenti. <span class='hl'>Yerel. Hızlı. 99 dil.</span> Tek fiyat. <span class='hl-nosub'>Abonelik yok.</span> Görüntülerin ait olduğu yerde kalır — senin Mac'inde.",
       "fnd.p5":"Bu sana da gerekli geliyorsa — dene. Uymazsa 14 gün içinde iade. Alınganlık yok.","fnd.role":"Kurgucu · Kurucu, Edit Lab Tools",
-      "bon.flag":"🎁 LANSMAN BONUSU","bon.count":"<span id='bonus-left'>82</span> / 100 yer kaldı","bon.title":"İlk 100 alıcı, başka kimsenin alamayacağı <span class='hl'>üç şey</span> kazanır.","bon.intro":"Erken destekçiler bunu mümkün kıldı. Sadece bir eklenti almıyorsun — en baştan içindesin.",
-      "bon.i1h":"Ücretsiz Windows sürümü","bon.i1p":"CaptionLab Windows sürümü çıkınca — senin, ücretsiz. (Herkes tam fiyat ödeyecek.)","bon.i2h":"Ömür boyu büyük güncellemeler","bon.i2p":"v2, v3, v4 — hepsi dahil. Gelecekteki alıcılar büyük sürümler için öder. Sen ödemezsin.","bon.i3h":"Yapımcıya doğrudan hat","bon.i3p":"Hata, istek, tuhaf bir durum — bana doğrudan yaz. Kişisel olarak yanıtlarım.",
-      "bon.foot":"100 yer dolunca bu bonuslar kaybolur. <b>Sonsuza dek.</b>",
       "mf.q1":"// GERÇEKTEN ÇEVRİMDIŞI MI?","mf.a1":"Evet. Tek seferlik kurulumdan sonra <b>internete gerek yok</b>. Sesin Mac'inden asla çıkmaz.","mf.q2":"// MAC'İMDE ÇALIŞIR MI?","mf.a2":"<b>macOS 11+ olan her Mac'te</b> çalışır — Apple Silicon (M1–M4) ve Intel.","mf.q3":"// YA SEVMEZSEM?","mf.a3":"14 gün içinde bize yaz — <b>tam iade</b>. Soru yok, sürtüşme yok.",
-      "pr.eyebrow":"Basit fiyat","pr.h2":"Tek fiyat. <span class='hl'>Sonsuza dek senin.</span>","pr.lead":"Katman yok. Ek satış yok. Bit yeniği yok.","pr.flag":"LANSMAN","pr.save":"$20 KAZAN","pr.once":"// tek sefer · kalıcı lisans",
+      "pr.eyebrow":"Basit fiyat","pr.h2":"Tek fiyat. <span class='hl'>Sonsuza dek senin.</span>","pr.lead":"Katman yok. Ek satış yok. Bit yeniği yok.","pr.flag":"LANSMAN","pr.once":"// tek sefer · kalıcı lisans",
       "pr.l1":"<span class='ck'>✓</span> Premiere Pro için CaptionLab eklentisi (Mac)","pr.l2":"<span class='ck'>✓</span> 99 Whisper dilinin tümü","pr.l3":"<span class='ck'>✓</span> %100 çevrimdışı — API anahtarı yok, bulut yok","pr.l4":"<span class='ck'>✓</span> Sınırsız transkripsiyon — dakika ücreti ve limit yok","pr.l5":"<span class='ck'>✓</span> Her dili → İngilizceye çevir","pr.l6":"<span class='ck'>✓</span> Bu sürüm için ücretsiz güncellemeler","pr.l7":"<span class='ck'>✓</span> Apple Silicon + Intel desteği",
-      "pr.gh":"14 gün para iade garantisi","pr.gt":"Sana uymadı mı? Tam iade. Soru sorulmaz.","pr.cta":"CaptionLab'i al →","pr.t1":"<span class='tk'>🔒</span> Güvenli ödeme","pr.t2":"<span class='tk'>⚡</span> Anında indirme","pr.t3":"<span class='tk'>💳</span> Paddle · KDV dahil","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows yakında",
-      "faq.eyebrow":"Sorular","faq.h2":"Sormadan önce","faq.q1":"İnternet bağlantısı gerekir mi?","faq.a1":"Sadece bir kez — ilk kurulum için (Python, ffmpeg ve Whisper AI modeli, toplam ~3 GB). Sonrasında CaptionLab %100 çevrimdışı çalışır. İnternet yok, sunucu yok, hiçbir şey yok.","faq.q2":"API anahtarı veya OpenAI hesabı gerekir mi?","faq.a2":"Hayır. Bulut araçlarının aksine, CaptionLab Whisper modelini Mac'inde yerel olarak çalıştırır. Deepgram yok, Groq yok, OpenAI kredisi yok. Kaydolacak hiçbir şey yok.","faq.q3":"Görüntülerim bir yere yükleniyor mu?","faq.a3":"Asla. Sesin her baytı kendi makinende işlenir. NDA'lı müşteri işi için mükemmel.","faq.q4":"Hangi Premiere Pro sürümleri destekleniyor?","faq.a4":"Premiere Pro 2023–2026 (23.x–26.x sürümleri). Apple Silicon (M1–M4) ve Intel Mac'lerde çalışır.","faq.q5":"Windows sürümü var mı?","faq.a5":"Aktif geliştirmede. Şu an CaptionLab yalnızca Mac için. Listeye katıl, Windows çıkınca ilk sen haberdar ol.","faq.q6":"Hangi diller destekleniyor?","faq.a6":"Whisper'ın desteklediği 99 dilin tümü — Ukraynaca, Lehçe, Türkçe, Endonezce, Vietnamca, Arapça, Tayca, Rumence, Çekçe, Slovakça, Macarca, Yunanca, İbranice, Farsça, Urduca ve düzinelerce dil dahil.",
-      "fin.save":"$20 KAZAN","fin.h2":"Altyazı yazmayı bırak.<br><span style='color:var(--cyan)'>Daha hızlı teslim et.</span>","fin.p":"Tek satın alma. Senin dilin. Senin makinen. Sonsuza dek.","fin.cta":"CaptionLab'i al →","fin.t1":"🛡 14 gün iade","fin.t2":"🔒 Güvenli ödeme","fin.t3":"⚡ Anında indirme","fin.cdlabel":"Lansman fiyatı bitişine",
+      "pr.trialbadge":"14 GÜN TRIAL","pr.gh":"Risksiz dene, soru sorulmaz","pr.gt":"Sana uymadı mı? 14 gün içinde tam iade.","pr.cta":"CaptionLab'i al →","pr.t1":"<span class='tk'>🔒</span> Güvenli ödeme","pr.t2":"<span class='tk'>⚡</span> Anında indirme","pr.t3":"<span class='tk'>💳</span> Paddle · KDV dahil","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows yakında",
+      "pc.eyebrow":"Ödemeden önce","pc.h3":"İşte sırada olanlar","pc.s1":"Bir sonraki ekranda <b>e-postanı</b> gireceksin — Paddle üzerinden güvenli, şifreli ödeme, bizde hiçbir şey saklanmaz.","pc.s2":"Gelen kutunu kontrol et — <b>indirme bağlantın</b> + <b>kurulum talimatları</b> ödemeden hemen sonra gelir.","pc.s3":"Premiere'de eklentiyi aç ve aynı <b>e-posta + lisans anahtarıyla</b> <b>etkinleştir</b>.","pc.trialbadge":"14 GÜN TRIAL","pc.trial":"Hâlâ emin değil misin? Gerçek bir projede dene. Uymadı mı? <b>Tam iade</b>, soru sorulmaz.","pc.cta":"Güvenli ödemeye geç →","pc.cancel":"Şimdi değil",
+      "faq.eyebrow":"Sorular","faq.h2":"Sormadan önce","faq.q0":"Nasıl kurulur?","faq.a0":"İki adım. Önce CaptionLab panelinin kendisini kurarsın (birkaç tıklama). Sonra, Premiere'de ilk açtığında «Install AI Engine»e tıklarsın — eklenti, üzerinde çalıştığı AI motorunu (Python, ffmpeg ve Whisper modeli, toplam ~3 GB, bağlantına göre 15–20 dakika) otomatik olarak indirir. Bu tek seferlik kurulumdan sonra her şey sonsuza dek çevrimdışı çalışır.","faq.q1":"İnternet bağlantısı gerekir mi?","faq.a1":"Sadece bir kez — ilk kurulum için (Python, ffmpeg ve Whisper AI modeli, toplam ~3 GB). Sonrasında CaptionLab %100 çevrimdışı çalışır. İnternet yok, sunucu yok, hiçbir şey yok.","faq.q2":"API anahtarı veya OpenAI hesabı gerekir mi?","faq.a2":"Hayır. Bulut araçlarının aksine, CaptionLab Whisper modelini Mac'inde yerel olarak çalıştırır. Deepgram yok, Groq yok, OpenAI kredisi yok. Kaydolacak hiçbir şey yok.","faq.q3":"Görüntülerim bir yere yükleniyor mu?","faq.a3":"Asla. Sesin her baytı kendi makinende işlenir. NDA'lı müşteri işi için mükemmel.","faq.q4":"Hangi Premiere Pro sürümleri destekleniyor?","faq.a4":"Premiere Pro 2023–2026 (23.x–26.x sürümleri). Apple Silicon (M1–M4) ve Intel Mac'lerde çalışır.","faq.q5":"Windows sürümü var mı?","faq.a5":"Aktif geliştirmede. Şu an CaptionLab yalnızca Mac için. Listeye katıl, Windows çıkınca ilk sen haberdar ol.","faq.q6":"Hangi diller destekleniyor?","faq.a6":"Whisper'ın desteklediği 99 dilin tümü — Ukraynaca, Lehçe, Türkçe, Endonezce, Vietnamca, Arapça, Tayca, Rumence, Çekçe, Slovakça, Macarca, Yunanca, İbranice, Farsça, Urduca ve düzinelerce dil dahil.",
+      "fin.h2":"Altyazı yazmayı bırak.<br><span style='color:var(--cyan)'>Projeleri daha hızlı teslim et.</span>","fin.p":"Bir kez al. Sonsuza dek kullan.","fin.cta":"CaptionLab'i al →","fin.t1":"🛡 14 gün iade","fin.t2":"🔒 Güvenli ödeme","fin.t3":"⚡ Anında indirme",
       "ft.tag":"OpenAI Whisper ile · Premiere Pro için · Kurgucular tarafından, kurgucular için","ft.terms":"Kullanım Şartları","ft.privacy":"Gizlilik Politikası","ft.refund":"İade Politikası","ft.contact":"İletişim","lg.toggle":"Yasal &amp; Politikalar <i class='legal-toggle-icon'>↓</i>","stk.note":"tek sefer · aboneliksiz","stk.cta":"Eklentiyi al →"
     },
     ar:{
-      "nav.languages":"اللغات","nav.how":"كيف يعمل","nav.save":"وفّر المال","nav.pricing":"الأسعار","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
-      "launch.text":"<b>عرض الإطلاق</b> · <span class='launch-strike'>$59</span> <span class='launch-now'>$39</span> · وفّر 34%",
-      "launch.timer":"ينتهي خلال <span id='cd-d'>--</span> ي <span id='cd-h'>--</span> س <span id='cd-m'>--</span> د",
+      "nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
+      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة",
       "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
       "hero.h1":"ترجمة تلقائية في Premiere Pro —<br>أخيرًا <b>بلغتك</b>.",
       "hero.sub":"يدعم Adobe <span class='strike'>16 لغة</span>. أما CaptionLab فيدعم <b>99</b> لغة: البولندية والتركية والأوكرانية والعربية والإندونيسية وعشرات غيرها لم تهتم بها Adobe. <b>يُثبَّت كلوحة داخل Premiere مباشرة — ليس تطبيق ويب، ولا اشتراك، ولا مفاتيح API.</b>",
       "hero.cta1":"احصل على CaptionLab ←","hero.cta2":"شاهد كيف يعمل",
-      "hero.watch1":"شاهد خلال 60 ثانية","hero.watch2":"عرض حقيقي + شرح مصغّر",
+      "hero.watch1":"شاهد العرض","hero.watch2":"عرض حقيقي + شرح مصغّر",
       "hero.m1":"<span class='ck'>✓</span> دفعة واحدة","hero.m2":"<span class='ck'>✓</span> يعمل دون إنترنت للأبد","hero.m3":"<span class='ck'>✓</span> لقطاتك لا تغادر جهاز Mac",
       "hero.scroll":"مرّر · 99 لغة بانتظارك",
       "big.label":"لغة","big.sub":"كل لغة يدعمها OpenAI Whisper. ليس 16. ولا 27. تسعٌ وتسعون.",
@@ -2018,31 +1781,23 @@ function toggleLegal(scroll) {
       "pain.c3h":"اشتراك شهري آخر","pain.c3p":"Creative Cloud. Spotify. Netflix. ChatGPT. كل أداة تريد 15$ شهريًا — للأبد.",
       "pain.c4h":"رفع لقطات العميل إلى مكان مجهول","pain.c4p":"أدوات السحابة ترسل لقطاتك السرية إلى خوادم لا تتحكم بها. اتفاقية سرية؟ أي اتفاقية؟",
       "pain.ctatext":"كل هذا — <b>يُحلّ في 60 ثانية.</b>","pain.ctalink":"شاهد كيف يعمل ↓",
-      "how.eyebrow":"بسيط للغاية","how.h2":"ترجمة في <span class='hl'>أقل من 60 ثانية</span>","how.lead":"بلا تصدير. بلا رفع. بلا انتظار خادم. افتح اللوحة وابدأ.","how.watchtitle":"شاهدها أثناء العمل","how.watchsub":"جولة مدتها 60 ثانية على جدول زمني حقيقي",
+      "how.eyebrow":"بسيط للغاية","how.h2":"ترجمة <span class='hl'>مباشرة على الجدول الزمني</span>","how.lead":"بلا تصدير. بلا رفع. بلا انتظار خادم. افتح اللوحة وابدأ.","how.watchtitle":"شاهدها أثناء العمل","how.watchsub":"جولة مدتها 60 ثانية على جدول زمني حقيقي",
       "how.s1h":"افتح اللوحة","how.s1p":"CaptionLab يعيش داخل Premiere Pro مباشرة. Window → Extensions → CaptionLab.",
       "how.s2h":"اختر اللغة واضغط Generate","how.s2p":"اختر من 99 لغة — أو دع الأداة تكتشفها تلقائيًا. نقرة واحدة تفعل كل شيء.",
       "how.s3h":"أفلِت ملف SRT على الخط الزمني","how.s3p":"تظهر الترجمة كمسار ترجمة قابل للتحرير في Premiere. عدّلها وانشرها.",
       "cmp.eyebrow":"مقارنة صادقة","cmp.h2":"CaptionLab مقابل <span class='hl'>الجميع</span>","cmp.lead":"قمنا بالبحث كي لا تضطر أنت.","cmp.feature":"الميزة","cmp.adobe":"Adobe المدمج","cmp.cloud":"أدوات سحابية","cmp.r1":"اللغات","cmp.r2":"يعمل دون إنترنت","cmp.r3":"يتطلب مفتاح API","cmp.r4":"اللقطات تبقى خاصة","cmp.r5":"السعر","cmp.r6":"اشتراك","cmp.r7":"رسوم بالدقيقة / حدود","cmp.once":"$39 مرة واحدة","cmp.vcloud":"✗ سحابة","cmp.local":"✓ محلي","cmp.yes":"✗ نعم","cmp.none":"✓ لا شيء","cmp.always":"✓ دائمًا","cmp.required":"✗ مطلوب","cmp.never":"✓ أبدًا","cmp.freen":"لا شيء","cmp.metered":"✗ بعدّاد","cmp.unlimited":"✓ بلا حدود","cmp.price1":"$55/شهر CC","cmp.price2":"$15/شهر+",
       "cmp.ctatext":"لهذا السبب CaptionLab <b>$39 مرة واحدة</b> — وليس 15$ شهريًا للأبد.","cmp.ctalink":"شاهد السعر ←","cmp.guarantee":"<span>🛡</span> ضمان استرداد المال خلال 14 يومًا",
-      "roi.eyebrow":"حساب من الواقع","roi.h2":"كم من الوقت ستوفّر <span class='hl'>أنت</span>؟","roi.drag":"اسحب المؤشر <span class='hl'>←</span>","roi.intro":"يقضي المحررون من 3 إلى 5 ساعات في كتابة الترجمة يدويًا لكل ساعة تصوير. CaptionLab يفعلها في أقل من 60 ثانية.",
-      "roi.videos":"فيديوهات أسبوعيًا","roi.videosU":"فيديو","roi.length":"متوسط طول الفيديو","roi.min":"دقيقة","roi.rate":"أجرك بالساعة","roi.hr":"/ساعة",
-      "roi.save":"ستوفّر","roi.period":"في السنة الأولى وحدها","roi.saved1":"ساعات في السنة الأولى","roi.daysU":"يومًا","roi.back":"عادت إلى حياتك","roi.recoup":"يسدّد تكلفته في <span id='roi-recoup'>يوم واحد</span>",
-      "roi.rc1":"فيديو واحد","roi.rcweek":"هذا الأسبوع","roi.rcmonth":"هذا الشهر","roi.rcvideos":"فيديو",
-      "sav.h3":"الحساب <span style='color:var(--green)'>عبثي</span>","sav.sub":"ما كنت ستدفعه في مكان آخر للعمل نفسه — كل عام:","sav.v1":"مقابل اشتراك Captioneer","sav.l1":"وُفّرت في السنة الأولى","sav.v2":"مقابل Adobe Creative Cloud","sav.l2":"إن كنت تحتاج الترجمة فقط","sav.v3":"مقابل أدوات الاشتراك السحابية","sav.l3":"كل عام، للأبد",
-      "sav.ctatext":"يسترد قيمته في <b>أول مشروع لك هذا الأسبوع</b>.","sav.ctalink":"ابدأ التوفير — $39 ←",
       "fnd.eyebrow":"كلمة من صانع الأداة","fnd.p1":"أنا محرّر فيديو. مثلك تمامًا.","fnd.p2":"لسنوات شاهدت Adobe تطلق تحويل الكلام إلى نص بالإنجليزية، ثم الإسبانية، ثم الفرنسية — ثم <span class='hl'>تتوقف</span> ببساطة. مشاريعي الأوكرانية؟ البولندية؟ التركية؟ «غير مدعومة». فكتبت كل ترجمة يدويًا. ساعات وساعات، في كل مشروع.",
       "fnd.p3":"ثم جرّبت الأدوات السحابية. عملت — لكنها أرادت لقطاتي على خوادمها، وبطاقتي محفوظة، و15$ كل شهر للأبد. لعمل عميل تحت اتفاقية سرية؟ <span class='hl'>مستحيل.</span>",
       "fnd.p4":"فصنعت CaptionLab. الإضافة التي تمنيت وجودها. <span class='hl'>محلية. سريعة. 99 لغة.</span> سعر واحد. <span class='hl-nosub'>بلا اشتراك.</span> لقطاتك تبقى حيث يجب — على جهاز Mac الخاص بك.",
       "fnd.p5":"إن بدا هذا شيئًا تحتاجه أنت أيضًا — جرّبه. استرداد خلال 14 يومًا إن لم يناسبك. بلا زعل.","fnd.role":"محرّر · مؤسس Edit Lab Tools",
-      "bon.flag":"🎁 مكافأة الإطلاق","bon.count":"<span id='bonus-left'>82</span> / 100 مقعد متبقٍّ","bon.title":"أول 100 مشترٍ يحصلون على <span class='hl'>ثلاثة أشياء</span> لن يحصل عليها أحد غيرهم.","bon.intro":"الداعمون الأوائل جعلوا هذا ممكنًا. أنت لا تشتري إضافة فحسب — بل تدخل من الأساس.",
-      "bon.i1h":"نسخة Windows مجانية","bon.i1p":"عند إطلاق CaptionLab لـ Windows — نسختك مجانًا. (الجميع سيدفع السعر الكامل.)","bon.i2h":"تحديثات كبرى مدى الحياة","bon.i2p":"v2 وv3 وv4 — كلها مشمولة. المشترون لاحقًا يدفعون للنسخ الكبرى. أنت لا.","bon.i3h":"خط مباشر مع صانع الأداة","bon.i3p":"بلاغ خطأ، طلب ميزة، حالة غريبة — راسلني مباشرة. سأرد شخصيًا.",
-      "bon.foot":"بمجرد نفاد الـ100 مقعد، تختفي هذه المكافآت. <b>للأبد.</b>",
       "mf.q1":"// هل هو فعلًا دون إنترنت؟","mf.a1":"نعم. بعد الإعداد لمرة واحدة، <b>لا حاجة للإنترنت</b>. صوتك لا يغادر جهاز Mac أبدًا.","mf.q2":"// هل سيعمل على جهازي Mac؟","mf.a2":"يعمل على <b>أي Mac بنظام macOS 11+</b> — Apple Silicon (M1–M4) و Intel.","mf.q3":"// وماذا لو لم يعجبني؟","mf.a3":"راسلنا خلال 14 يومًا لـ<b>استرداد كامل</b>. بلا أسئلة، بلا تعقيد.",
-      "pr.eyebrow":"تسعير بسيط","pr.h2":"سعر واحد. <span class='hl'>لك للأبد.</span>","pr.lead":"بلا فئات. بلا عروض إضافية. بلا مفاجآت.","pr.flag":"الإطلاق","pr.save":"وفّر $20","pr.once":"// مرة واحدة · ترخيص دائم",
+      "pr.eyebrow":"تسعير بسيط","pr.h2":"سعر واحد. <span class='hl'>لك للأبد.</span>","pr.lead":"بلا فئات. بلا عروض إضافية. بلا مفاجآت.","pr.flag":"الإطلاق","pr.once":"// مرة واحدة · ترخيص دائم",
       "pr.l1":"<span class='ck'>✓</span> إضافة CaptionLab لـ Premiere Pro (Mac)","pr.l2":"<span class='ck'>✓</span> كل لغات Whisper الـ99","pr.l3":"<span class='ck'>✓</span> 100% دون إنترنت — بلا مفاتيح API، بلا سحابة","pr.l4":"<span class='ck'>✓</span> تفريغ غير محدود — بلا رسوم بالدقيقة وبلا حدود","pr.l5":"<span class='ck'>✓</span> ترجمة أي لغة → إلى الإنجليزية","pr.l6":"<span class='ck'>✓</span> تحديثات مجانية لهذه النسخة","pr.l7":"<span class='ck'>✓</span> دعم Apple Silicon + Intel",
-      "pr.gh":"ضمان استرداد المال خلال 14 يومًا","pr.gt":"لم يناسبك؟ استرداد كامل. بلا أسئلة.","pr.cta":"احصل على CaptionLab ←","pr.t1":"<span class='tk'>🔒</span> دفع آمن","pr.t2":"<span class='tk'>⚡</span> تنزيل فوري","pr.t3":"<span class='tk'>💳</span> Paddle · شامل الضريبة","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows قريبًا",
-      "faq.eyebrow":"أسئلة","faq.h2":"قبل أن تسأل","faq.q1":"هل أحتاج اتصالًا بالإنترنت؟","faq.a1":"مرة واحدة فقط — للإعداد الأول (Python وffmpeg ونموذج Whisper، نحو 3 غيغابايت إجمالًا). بعدها يعمل CaptionLab 100% دون إنترنت. لا إنترنت، لا خوادم، لا شيء.","faq.q2":"هل أحتاج مفتاح API أو حساب OpenAI؟","faq.a2":"لا. على عكس الأدوات السحابية، يشغّل CaptionLab نموذج Whisper محليًا على جهازك. لا Deepgram، لا Groq، لا رصيد OpenAI. لا شيء للتسجيل فيه.","faq.q3":"هل تُرفع لقطاتي إلى أي مكان؟","faq.a3":"أبدًا. تُعالَج كل بايت من الصوت على جهازك. مثالي لعمل العملاء تحت اتفاقية سرية.","faq.q4":"ما إصدارات Premiere Pro المدعومة؟","faq.a4":"Premiere Pro من 2023 إلى 2026 (الإصدارات 23.x–26.x). يعمل على Apple Silicon (M1–M4) وأجهزة Intel Mac.","faq.q5":"هل توجد نسخة Windows؟","faq.a5":"قيد التطوير النشط. حاليًا CaptionLab لـ Mac فقط. انضم إلى القائمة لتكون أول من يعلم عند إطلاق Windows.","faq.q6":"ما اللغات المدعومة؟","faq.a6":"كل اللغات الـ99 التي يدعمها Whisper — منها الأوكرانية والبولندية والتركية والإندونيسية والفيتنامية والعربية والتايلاندية والرومانية والتشيكية والسلوفاكية والمجرية واليونانية والعبرية والفارسية والأردية وعشرات غيرها.",
-      "fin.save":"وفّر $20","fin.h2":"توقّف عن كتابة الترجمة.<br><span style='color:var(--cyan)'>وابدأ التسليم أسرع.</span>","fin.p":"عملية شراء واحدة. لغتك. جهازك. للأبد.","fin.cta":"احصل على CaptionLab ←","fin.t1":"🛡 استرداد خلال 14 يومًا","fin.t2":"🔒 دفع آمن","fin.t3":"⚡ تنزيل فوري","fin.cdlabel":"ينتهي سعر الإطلاق خلال",
+      "pr.trialbadge":"تجربة 14 يومًا","pr.gh":"جرّبه بلا مخاطرة، بلا أسئلة","pr.gt":"لم يناسبك؟ استرداد كامل خلال 14 يومًا.","pr.cta":"احصل على CaptionLab ←","pr.t1":"<span class='tk'>🔒</span> دفع آمن","pr.t2":"<span class='tk'>⚡</span> تنزيل فوري","pr.t3":"<span class='tk'>💳</span> Paddle · شامل الضريبة","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows قريبًا",
+      "pc.eyebrow":"قبل الدفع","pc.h3":"إليك ما سيحدث بعد ذلك","pc.s1":"ستُدخل <b>بريدك الإلكتروني</b> في الشاشة التالية — دفع آمن عبر Paddle، مشفّر، ولا نحتفظ بشيء.","pc.s2":"تحقق من بريدك — <b>رابط التنزيل</b> و<b>تعليمات التثبيت</b> ستصلان فور الدفع.","pc.s3":"افتح الإضافة في Premiere و<b>فعّلها</b> بنفس <b>البريد الإلكتروني ومفتاح الترخيص</b> من تلك الرسالة.","pc.trialbadge":"تجربة 14 يومًا","pc.trial":"لست متأكدًا بعد؟ جرّبه على مشروع حقيقي. لم يناسبك؟ <b>استرداد كامل</b>، بلا أسئلة.","pc.cta":"المتابعة إلى الدفع الآمن ←","pc.cancel":"ليس الآن",
+      "faq.eyebrow":"أسئلة","faq.h2":"قبل أن تسأل","faq.q0":"كيف أثبّته؟","faq.a0":"خطوتان فقط. أولًا، ثبّت لوحة CaptionLab نفسها (بضع نقرات). ثم، عند فتحها لأول مرة داخل Premiere، اضغط «Install AI Engine» — ستقوم الإضافة تلقائيًا بتنزيل محرك الذكاء الاصطناعي الذي تعمل عليه (Python وffmpeg ونموذج Whisper، نحو 3 غيغابايت إجمالًا، 15–20 دقيقة حسب سرعة اتصالك). بعد هذا الإعداد لمرة واحدة، يعمل كل شيء دون إنترنت، للأبد.","faq.q1":"هل أحتاج اتصالًا بالإنترنت؟","faq.a1":"مرة واحدة فقط — للإعداد الأول (Python وffmpeg ونموذج Whisper، نحو 3 غيغابايت إجمالًا). بعدها يعمل CaptionLab 100% دون إنترنت. لا إنترنت، لا خوادم، لا شيء.","faq.q2":"هل أحتاج مفتاح API أو حساب OpenAI؟","faq.a2":"لا. على عكس الأدوات السحابية، يشغّل CaptionLab نموذج Whisper محليًا على جهازك. لا Deepgram، لا Groq، لا رصيد OpenAI. لا شيء للتسجيل فيه.","faq.q3":"هل تُرفع لقطاتي إلى أي مكان؟","faq.a3":"أبدًا. تُعالَج كل بايت من الصوت على جهازك. مثالي لعمل العملاء تحت اتفاقية سرية.","faq.q4":"ما إصدارات Premiere Pro المدعومة؟","faq.a4":"Premiere Pro من 2023 إلى 2026 (الإصدارات 23.x–26.x). يعمل على Apple Silicon (M1–M4) وأجهزة Intel Mac.","faq.q5":"هل توجد نسخة Windows؟","faq.a5":"قيد التطوير النشط. حاليًا CaptionLab لـ Mac فقط. انضم إلى القائمة لتكون أول من يعلم عند إطلاق Windows.","faq.q6":"ما اللغات المدعومة؟","faq.a6":"كل اللغات الـ99 التي يدعمها Whisper — منها الأوكرانية والبولندية والتركية والإندونيسية والفيتنامية والعربية والتايلاندية والرومانية والتشيكية والسلوفاكية والمجرية واليونانية والعبرية والفارسية والأردية وعشرات غيرها.",
+      "fin.h2":"توقّف عن كتابة الترجمة.<br><span style='color:var(--cyan)'>سلّم مشاريعك أسرع.</span>","fin.p":"اشترِ مرة واحدة. استخدمه للأبد.","fin.cta":"احصل على CaptionLab ←","fin.t1":"🛡 استرداد خلال 14 يومًا","fin.t2":"🔒 دفع آمن","fin.t3":"⚡ تنزيل فوري",
       "ft.tag":"مدعوم بـ OpenAI Whisper · مصمَّم لـ Premiere Pro · صُنع بأيدي محررين، للمحررين","ft.terms":"شروط الخدمة","ft.privacy":"سياسة الخصوصية","ft.refund":"سياسة الاسترداد","ft.contact":"تواصل","lg.toggle":"الشؤون القانونية والسياسات <i class='legal-toggle-icon'>↓</i>","stk.note":"مرة واحدة · بلا اشتراك","stk.cta":"احصل على الإضافة ←"
     }
   };
@@ -2111,7 +1866,7 @@ function closeVideoLightbox(){
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') closeVideoLightbox();
+  if (e.key === 'Escape') { closeVideoLightbox(); closePreCheckout(); }
 });
 </script>
 </body>
