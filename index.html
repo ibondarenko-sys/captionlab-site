@@ -1215,7 +1215,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q4">Which Premiere Pro versions are supported?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">Premiere Pro 2023 through 2026 (versions 23.x–26.x). Works on Apple Silicon (M1–M4) and Intel Macs.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q5">Is there a Windows version?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">In active development. Right now CaptionLab is Mac-only. Join the list and you'll be first to know when Windows drops.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q6">What languages are supported?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">All 99 languages Whisper supports — including Ukrainian, Polish, Turkish, Indonesian, Vietnamese, Arabic, Thai, Romanian, Czech, Slovak, Hungarian, Greek, Hebrew, Persian, Urdu, and dozens more.</div></div></div>
-      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q7">The panel doesn't respond / "scripting engine isn't responding" error?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a7">A known Premiere Pro quirk: if you're in the <b>Learning</b> workspace, Premiere doesn't fully hand scripting access to panels. Go to <b>Window → Workspaces → Editing</b> and it starts working immediately. If you're already on Editing and it still happens, quit Premiere Pro completely (Cmd+Q) and reopen it.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q7">The panel doesn't respond / "scripting engine isn't responding" error?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a7">A known Premiere Pro quirk: some workspace layouts (Learning in particular, but potentially others) don't fully hand scripting access to panels. Try switching to <b>Window → Workspaces → Editing</b> and click Refresh in the panel, then try again. If that doesn't help, try a different workspace layout. Still stuck? Quit Premiere Pro completely (Cmd+Q) and reopen it.</div></div></div>
     </div>
   </div>
 </section>
@@ -1387,12 +1387,13 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     </p>
     <a href="https://drive.google.com/file/d/1NNM0dS-5mrj8XQLOXuyCn-SLON0jpqf-/view?usp=sharing" target="_blank" rel="noopener"
        class="btn-primary" style="font-size:20px;padding:22px 48px;animation:none">
-      ⬇ Download CaptionLab v1.0
+      ⬇ Download CaptionLab v1.0.0
     </a>
     <div style="margin-top:40px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px;max-width:520px;margin-left:auto;margin-right:auto;text-align:left">
       <p style="color:var(--white);font-weight:700;margin-bottom:14px;font-size:16px">Quick start:</p>
       <ol style="color:var(--mid);line-height:1.8;padding-left:20px;margin:0">
-        <li>Unzip, then <strong style="color:var(--white)">right-click</strong> <code style="background:var(--bg);padding:2px 8px;border-radius:4px;color:var(--cyan)">Install CaptionLab.command</code> → <strong style="color:var(--white)">Open</strong> → click <strong style="color:var(--white)">Open</strong></li>
+        <li>Unzip, then quit Premiere Pro if it's running</li>
+        <li>Install a free <a href="https://aescripts.com/learn/zxp-installer/" style="color:var(--cyan)">ZXP Installer</a> app (skip if you already have one), then drag <strong style="color:var(--white)">CaptionLab-direct-v1.0.0.zxp</strong> onto it</li>
         <li>Open Premiere → <strong style="color:var(--white)">Window → Extensions → CaptionLab</strong></li>
         <li>Enter your <strong style="color:var(--white)">email</strong> and <strong style="color:var(--white)">Order ID</strong> (<code style="background:var(--bg);padding:2px 8px;border-radius:4px;color:var(--cyan)">txn_...</code> from receipt)</li>
         <li>Click <strong style="color:var(--white)">Activate</strong> — done!</li>
