@@ -50,14 +50,14 @@
   "name": "CaptionLab",
   "description": "Auto subtitles plugin for Adobe Premiere Pro supporting 99 languages. Runs 100% offline using OpenAI Whisper.",
   "applicationCategory": "MultimediaApplication",
-  "operatingSystem": "macOS 11+",
+  "operatingSystem": "macOS 11+, Windows 10+",
   "offers": {
     "@type": "Offer",
     "price": "39.00",
     "priceCurrency": "USD",
     "availability": "https://schema.org/InStock"
   },
-  "softwareRequirements": "Adobe Premiere Pro 2022 or later, macOS 11+",
+  "softwareRequirements": "Adobe Premiere Pro 2022 or later, macOS 11+ or Windows 10+",
   "featureList": [
     "99 languages auto-transcription",
     "Translation to English",
@@ -133,8 +133,14 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .nav-menu a:hover::after{transform:scaleX(1)}
 .nav-cta{background:var(--cyan);color:var(--bg);padding:11px 22px;border-radius:9px;
   font-weight:700;font-size:14.5px;text-decoration:none;transition:.2s;white-space:nowrap;
-  box-shadow:0 4px 16px rgba(0,224,255,0.25)}
+  box-shadow:0 4px 16px rgba(0,224,255,0.25);
+  display:inline-flex;align-items:center;gap:8px}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(0,224,255,0.45)}
+.nav-cta-icons{display:inline-flex;align-items:center;gap:7px;opacity:0.9}
+.nav-cta-icons svg{width:18px;height:18px;display:block}
+.icon-apple{transform:translateY(-1px)}
+.icon-windows{transform:translateY(1.5px)}
+.price-cta-icons .icon-windows{transform:translateY(2.5px)}
 @media(max-width:820px){.nav-menu{display:none}}
 
 /* ── HERO ── */
@@ -157,7 +163,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   padding:7px 14px;border-radius:30px;font-size:13px;color:var(--mid);margin-bottom:28px;
   animation:fadeUp .6s ease both}
 .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
-h1{font-size:clamp(40px,7vw,76px);line-height:1.02;letter-spacing:-0.03em;font-weight:700;margin-bottom:24px}
+h1{font-size:clamp(36px,6.5vw,72px);line-height:1.04;letter-spacing:-0.03em;font-weight:700;margin-bottom:24px}
 /* Non-English hero headline is wordier — scale it down so it doesn't overpower */
 html:not([lang="en"]) .hero-text h1{font-size:clamp(34px,5.4vw,60px);line-height:1.06}
 h1 .hl{color:var(--cyan)}
@@ -173,6 +179,13 @@ h1 .strike::after{content:"";position:absolute;left:0;top:54%;width:100%;height:
   animation:ctaPulse 2.4s ease-in-out infinite;
 }
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 54px rgba(0,224,255,0.5),0 0 0 8px rgba(0,224,255,0.12);animation:none}
+/* Non-English CTA row text runs longer (esp. the Watch Demo subtitle) and was
+   wrapping the two hero buttons onto separate lines instead of staying
+   side-by-side like English. Scale the row down a bit so it fits on one line. */
+html:not([lang="en"]) .cta-row .btn-primary{padding:15px 26px;font-size:14.5px;gap:8px}
+html:not([lang="en"]) .cta-row .watch-demo .wd-title{font-size:12.5px}
+html:not([lang="en"]) .cta-row .watch-demo .wd-sub{font-size:10px}
+html:not([lang="en"]) .cta-row{gap:10px}
 @keyframes ctaPulse{
   0%,100%{box-shadow:0 10px 36px rgba(0,224,255,0.32),0 0 0 0 rgba(0,224,255,0.5)}
   50%{box-shadow:0 10px 36px rgba(0,224,255,0.32),0 0 0 12px rgba(0,224,255,0)}
@@ -275,11 +288,14 @@ h2 .hl{color:var(--cyan)}
 .price-list li{list-style:none;display:flex;align-items:center;gap:12px;font-size:15px;color:var(--white)}
 .price-list .ck{color:var(--green);font-weight:700;font-size:18px}
 .price-cta{width:100%;background:var(--cyan);color:var(--bg);padding:22px;border-radius:13px;
-  font-weight:700;font-size:19px;text-decoration:none;display:block;transition:.25s;border:none;cursor:pointer;
+  font-weight:700;font-size:19px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:12px;transition:.25s;border:none;cursor:pointer;
   box-shadow:0 12px 40px rgba(0,224,255,0.4),0 0 0 0 rgba(0,224,255,0.5);
   letter-spacing:-0.01em;position:relative;
   animation:ctaPulseBig 2.6s ease-in-out infinite;
 }
+.price-cta-icons{display:inline-flex;align-items:center;gap:10px;opacity:0.9}
+.price-cta-icons svg{width:26px;height:26px;display:block}
+.price-cta-icons .icon-sep{width:1px;height:16px;background:currentColor;opacity:0.35;transform:translateY(1px)}
 .price-cta:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,224,255,0.6),0 0 0 10px rgba(0,224,255,0.12);animation:none}
 @keyframes ctaPulseBig{
   0%,100%{box-shadow:0 12px 40px rgba(0,224,255,0.4),0 0 0 0 rgba(0,224,255,0.55)}
@@ -294,7 +310,7 @@ h2 .hl{color:var(--cyan)}
 .faq-q::after{content:"+";color:var(--cyan);font-size:22px;transition:.2s}
 .faq-item.open .faq-q::after{transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;transition:.3s ease;color:var(--mid);font-size:15px;line-height:1.6}
-.faq-item.open .faq-a{max-height:200px}
+.faq-item.open .faq-a{max-height:600px}
 .faq-a-inner{padding:0 24px 20px}
 
 /* ── FINAL CTA ── */
@@ -376,6 +392,20 @@ footer .mono{color:var(--mid)}
 .launch-text{color:var(--white);font-weight:600}
 .launch-text b{color:var(--gold)}
 .launch-now{color:var(--cyan);font-weight:700}
+.launch-win-badge{
+  background:linear-gradient(90deg,#00E0FF,#3DFFC0,#00E0FF);
+  background-size:200% auto;
+  color:#070A0E;font-weight:800;
+  padding:6px 18px;border-radius:24px;font-size:15px;
+  letter-spacing:0.01em;
+  border:2px solid #fff;
+  text-transform:uppercase;
+  animation:winpulse 1.4s ease-in-out infinite, winshine 3s linear infinite;
+}
+.launch-win-badge b{color:#070A0E}
+@keyframes winpulse{0%,100%{box-shadow:0 0 0 0 rgba(0,224,255,0.65),0 0 18px 2px rgba(0,224,255,0.5)}50%{box-shadow:0 0 0 9px rgba(0,224,255,0),0 0 30px 6px rgba(0,224,255,0.8)}}
+@keyframes winshine{0%{background-position:0% center}100%{background-position:200% center}}
+@media(max-width:600px){.launch-win-badge{font-size:11px;padding:2px 9px}}
 .launch-bar+.hero{padding-top:60px}
 
 /* ── PRICING ENHANCEMENTS ── */
@@ -415,8 +445,12 @@ footer .mono{color:var(--mid)}
 .sticky-price s{color:var(--dim);font-weight:400;font-size:14px;margin-right:6px}
 .sticky-cta-btn{background:var(--cyan);color:var(--bg);padding:12px 26px;border-radius:10px;
   font-weight:700;font-size:15px;text-decoration:none;transition:.2s;white-space:nowrap;
-  box-shadow:0 6px 20px rgba(0,224,255,0.3);letter-spacing:-0.01em}
+  box-shadow:0 6px 20px rgba(0,224,255,0.3);letter-spacing:-0.01em;
+  display:inline-flex;align-items:center;gap:8px}
 .sticky-cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,224,255,0.5)}
+.sticky-cta-icons{display:inline-flex;align-items:center;gap:6px;opacity:0.9}
+.sticky-cta-icons svg{width:19px;height:19px;display:block}
+@media(max-width:600px){.sticky-cta-icons{display:none}}
 @media(max-width:600px){
   .sticky-left{font-size:13px;gap:8px}
   .sticky-price{font-size:16px}
@@ -730,7 +764,13 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
           <div class="lang-opt" data-lang="ar">العربية</div>
         </div>
       </div>
-      <a href="#pricing" class="nav-cta" data-i18n="nav.cta">Get the plugin</a>
+      <a href="#pricing" class="nav-cta">
+        <span data-i18n="nav.cta">Get the plugin</span>
+        <span class="nav-cta-icons">
+          <svg class="icon-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.014-.1-.04-.32-.04-.55 0-1.14.572-2.27 1.206-2.98.804-.94 2.14-1.64 3.248-1.68.03.13.05.34.05.59zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1 3.86-1 .62 0 2.833.06 4.29 2.15-.11.07-2.55 1.5-2.55 4.55 0 3.5 3.06 4.79 3.24 4.9z"/></svg>
+          <svg class="icon-windows" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5 10.5 2.4v8.1H3V3.5zM11.5 2.25 21 1v9.5H11.5V2.25zM3 11.5h7.5v8.1L3 18.5v-7zM11.5 11.5H21V21l-9.5-1.25V11.5z"/></svg>
+        </span>
+      </a>
     </div>
   </div>
 </nav>
@@ -750,6 +790,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="launch-bar-inner">
       <span class="launch-flame">🔥</span>
       <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="launch-now">$39</span> one-time</span>
+      <span class="launch-win-badge" data-i18n="launch.win">🪟 <b>NEW:</b> Now available on Windows too!</span>
     </div>
   </div>
 </div>
@@ -763,8 +804,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
    <div class="hero-grid">
     <div class="hero-text">
     <div class="badge hero-anim" data-i18n="hero.badge"><span class="pr-ic">Pr</span> A native Adobe Premiere Pro plugin · Powered by OpenAI Whisper</div>
-    <h1 class="hero-anim d1" data-i18n="hero.h1">Auto subtitles in Premiere Pro.<br>Finally, in <span class="lang-rotate"><span class="lang-rotate-inner" id="rotateLang">your language</span></span></h1>
-    <p class="hero-sub hero-anim d2" data-i18n="hero.sub">Adobe supports <span class="strike">16 languages</span>. CaptionLab supports <b>99</b> — including Polish, Turkish, Ukrainian, Arabic, Indonesian and dozens more Adobe never bothered with. <b>It installs as a panel right inside Premiere — not a web app, not a subscription, no API keys.</b></p>
+    <h1 class="hero-anim d1" data-i18n="hero.h1">Auto&nbsp;subtitles<br>in&nbsp;Premiere&nbsp;Pro.<br>Finally, in <span class="lang-rotate"><span class="lang-rotate-inner" id="rotateLang">your language</span></span></h1>
+    <p class="hero-sub hero-anim d2" data-i18n="hero.sub">A native plugin that lives right inside Premiere Pro. It runs <b>100% offline</b> on your own <b>Mac</b> or <b>Win</b>: your footage never leaves your machine, no cloud, <b>no API keys</b>, no internet, <b>no subscription</b>. It also happens to speak <b>99 languages</b>, including the ones Adobe forgot.</p>
     <div class="cta-row hero-anim d3">
       <a href="#pricing" class="btn-primary" data-i18n="hero.cta1">Get CaptionLab →</a>
       <a href="javascript:void(0)" class="watch-demo" onclick="openVideoLightbox()">
@@ -778,7 +819,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="micro hero-anim d4">
       <span data-i18n="hero.m1"><span class="ck">✓</span> One-time purchase</span>
       <span data-i18n="hero.m2"><span class="ck">✓</span> Works offline forever</span>
-      <span data-i18n="hero.m3"><span class="ck">✓</span> Your footage never leaves your Mac</span>
+      <span data-i18n="hero.m3"><span class="ck">✓</span> Your footage never leaves your computer</span>
     </div>
     </div>
 
@@ -857,7 +898,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     </div>
     <div class="precheck-trial">
       <span class="precheck-trial-badge"><span class="precheck-trial-icon">🛡️</span> <span data-i18n="pc.trialbadge">14-DAY TRIAL</span></span>
-      <span class="precheck-trial-text" data-i18n="pc.trial">Not sure yet? Go ahead and try it on a real project. Doesn't fit your workflow? <b>Full refund</b>, no questions asked.</span>
+      <span class="precheck-trial-text" data-i18n="pc.trial">Not sure yet? Go ahead and try it on a real project. Doesn't fit your workflow? <b>Full refund</b>.</span>
     </div>
     <a href="#" class="btn-primary precheck-cta" onclick="proceedToCheckout(event)" data-i18n="pc.cta">Continue to secure checkout →</a>
     <button class="precheck-cancel" onclick="closePreCheckout()" data-i18n="pc.cancel">Not right now</button>
@@ -1123,7 +1164,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <p data-i18n="fnd.p1">I'm an editor. Same as you.</p>
         <p data-i18n="fnd.p2">For years I watched Adobe roll out Speech-to-Text in English, then Spanish, then French — and then just <span class="hl">stop</span>. My Ukrainian projects? Polish? Turkish? "Not supported." So I typed every subtitle by hand. Hours and hours, for every project.</p>
         <p data-i18n="fnd.p3">Then I tried the cloud tools. They worked — but they wanted my footage on their servers, my credit card on file, and $15 every month forever. For client work under NDA? <span class="hl">No way.</span></p>
-        <p data-i18n="fnd.p4">So I built CaptionLab. The plugin I wanted to exist. <span class="hl">Local. Fast. 99 languages.</span> One price. <span class="hl-nosub">No subscription.</span> Your footage stays where it belongs — on your Mac.</p>
+        <p data-i18n="fnd.p4">So I built CaptionLab. The plugin I wanted to exist. <span class="hl">Local. Fast. 99 languages.</span> One price. <span class="hl-nosub">No subscription.</span> Your footage stays where it belongs — on your own computer.</p>
         <p style="color:var(--mid);font-size:16px;margin-top:24px" data-i18n="fnd.p5">If this sounds like something you need too — try it. 14-day refund if it's not for you. No hard feelings.</p>
       </div>
       <div class="founder-sign">
@@ -1149,15 +1190,15 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <div class="mini-faq-grid reveal">
         <div class="mini-faq-item">
           <h4 data-i18n="mf.q1">// IS IT REALLY OFFLINE?</h4>
-          <p data-i18n="mf.a1">Yes. After the one-time setup, <b>no internet needed</b>. Your audio never leaves your Mac.</p>
+          <p data-i18n="mf.a1">Yes. After the one-time setup, <b>no internet needed</b>. Your audio never leaves your computer.</p>
         </div>
         <div class="mini-faq-item">
-          <h4 data-i18n="mf.q2">// WILL IT WORK ON MY MAC?</h4>
-          <p data-i18n="mf.a2">Works on <b>any Mac with macOS 11+</b> — Apple Silicon (M1–M4) and Intel.</p>
+          <h4 data-i18n="mf.q2">// WILL IT WORK ON MY COMPUTER?</h4>
+          <p data-i18n="mf.a2">Works on <b>any Mac with macOS 11+</b> (Apple Silicon or Intel) <b>or Windows 10/11</b> — with optional NVIDIA GPU acceleration on Windows.</p>
         </div>
         <div class="mini-faq-item">
           <h4 data-i18n="mf.q3">// WHAT IF I HATE IT?</h4>
-          <p data-i18n="mf.a3">Email us within 14 days for a <b>full refund</b>. No questions, no friction.</p>
+          <p data-i18n="mf.a3">Email us within 14 days for a <b>full refund</b>.</p>
         </div>
       </div>
     </div>
@@ -1175,29 +1216,36 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <div class="price-amount"><span class="cur">$</span>39</div>
       <div class="price-once" data-i18n="pr.once">// one-time · permanent license</div>
       <ul class="price-list">
-        <li data-i18n="pr.l1"><span class="ck">✓</span> CaptionLab plugin for Premiere Pro (Mac)</li>
+        <li data-i18n="pr.l1"><span class="ck">✓</span> CaptionLab plugin for Premiere Pro (Mac &amp; Windows)</li>
         <li data-i18n="pr.l2"><span class="ck">✓</span> All 99 Whisper languages</li>
         <li data-i18n="pr.l3"><span class="ck">✓</span> 100% offline — no API keys, no cloud</li>
         <li data-i18n="pr.l4"><span class="ck">✓</span> Unlimited transcription — no per-minute fees, no caps</li>
         <li data-i18n="pr.l5"><span class="ck">✓</span> Translate any language → English</li>
         <li data-i18n="pr.l6"><span class="ck">✓</span> Free updates for this version</li>
-        <li data-i18n="pr.l7"><span class="ck">✓</span> Apple Silicon + Intel support</li>
+        <li data-i18n="pr.l7"><span class="ck">✓</span> Apple Silicon + Intel + Windows (NVIDIA GPU) support</li>
       </ul>
       <div class="guarantee-box">
         <span class="guarantee-icon">🛡️</span>
         <span class="guarantee-text">
           <span class="trial-badge" data-i18n="pr.trialbadge">14-DAY TRIAL</span>
-          <b data-i18n="pr.gh">Try it risk-free, no questions asked</b>
+          <b data-i18n="pr.gh">Try it risk-free</b>
           <span data-i18n="pr.gt">Doesn't work for you? Full refund within 14 days.</span>
         </span>
       </div>
-      <a href="#" class="price-cta" id="buy-btn-main" onclick="openPreCheckout(event)" data-i18n="pr.cta">Get CaptionLab now →</a>
+      <a href="#" class="price-cta" id="buy-btn-main" onclick="openPreCheckout(event)">
+        <span data-i18n="pr.cta">Get CaptionLab now →</span>
+        <span class="price-cta-icons">
+          <svg class="icon-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.014-.1-.04-.32-.04-.55 0-1.14.572-2.27 1.206-2.98.804-.94 2.14-1.64 3.248-1.68.03.13.05.34.05.59zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1 3.86-1 .62 0 2.833.06 4.29 2.15-.11.07-2.55 1.5-2.55 4.55 0 3.5 3.06 4.79 3.24 4.9z"/></svg>
+          <span class="icon-sep"></span>
+          <svg class="icon-windows" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5 10.5 2.4v8.1H3V3.5zM11.5 2.25 21 1v9.5H11.5V2.25zM3 11.5h7.5v8.1L3 18.5v-7zM11.5 11.5H21V21l-9.5-1.25V11.5z"/></svg>
+        </span>
+      </a>
       <div class="trust-row">
         <span data-i18n="pr.t1"><span class="tk">🔒</span> Secure checkout</span>
         <span data-i18n="pr.t2"><span class="tk">⚡</span> Instant download</span>
         <span data-i18n="pr.t3"><span class="tk">💳</span> Paddle · VAT included</span>
       </div>
-      <p class="price-guarantee" style="margin-top:14px" data-i18n="pr.foot">Premiere Pro 2022–2026 · macOS · Windows coming soon</p>
+      <p class="price-guarantee" style="margin-top:14px" data-i18n="pr.foot">Premiere Pro 2022–2026 · macOS &amp; Windows</p>
     </div>
   </div>
 </section>
@@ -1210,12 +1258,12 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div style="margin-top:40px">
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q0">How do I install it?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a0">Two steps. First, install the free ZXP Installer app (skip if you already have one), then drag the CaptionLab .zxp file onto it — it installs automatically, no Terminal. Then, the first time you open it inside Premiere, click "Install AI Engine" — it automatically downloads the AI engine it runs on (Python, ffmpeg, and the Whisper model, ~3 GB total, 15–20 minutes depending on your connection). After that one-time setup, it's ready to use offline, forever.</div><div style="margin-top:8px"><a href="https://aescripts.com/learn/zxp-installer/" style="color:var(--cyan);font-size:14px">↳ Get ZXP Installer →</a></div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q1">Do I need an internet connection?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a1">Only once — for the first-time setup (Python, ffmpeg, and the Whisper AI model, ~3 GB total). After that, CaptionLab runs 100% offline. No internet, no servers, no nothing.</div></div></div>
-      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q2">Do I need an API key or an OpenAI account?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">No. Unlike cloud tools, CaptionLab runs the Whisper model locally on your Mac. No Deepgram, no Groq, no OpenAI credits. Nothing to sign up for.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q2">Do I need an API key or an OpenAI account?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">No. Unlike cloud tools, CaptionLab runs the Whisper model locally on your own computer. No Deepgram, no Groq, no OpenAI credits. Nothing to sign up for.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q3">Is my footage uploaded anywhere?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">Never. Every byte of audio is processed on your own machine. Perfect for client work under NDA.</div></div></div>
-      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q4">Which Premiere Pro versions are supported?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">Premiere Pro 2023 through 2026 (versions 23.x–26.x). Works on Apple Silicon (M1–M4) and Intel Macs.</div></div></div>
-      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q5">Is there a Windows version?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">In active development. Right now CaptionLab is Mac-only. Join the list and you'll be first to know when Windows drops.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q4">Which Premiere Pro versions are supported?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">Premiere Pro 2023 through 2026 (versions 23.x–26.x). Works on Apple Silicon (M1–M4) and Intel Macs, and on Windows 10/11.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q5">Is there a Windows version?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">Yes! CaptionLab runs on Windows 10/11 as well as Mac — same features, same one-time price. On Windows it automatically uses an NVIDIA GPU if you have one (see the speed comparison below), and falls back to CPU if not.</div></div></div>
       <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q6">What languages are supported?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">All 99 languages Whisper supports — including Ukrainian, Polish, Turkish, Indonesian, Vietnamese, Arabic, Thai, Romanian, Czech, Slovak, Hungarian, Greek, Hebrew, Persian, Urdu, and dozens more.</div></div></div>
-      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q7">The panel doesn't respond / "scripting engine isn't responding" error?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a7">A known Premiere Pro quirk: some workspace layouts (Learning in particular, but potentially others) don't fully hand scripting access to panels. Try switching to <b>Window → Workspaces → Editing</b> and click Refresh in the panel, then try again. If that doesn't help, try a different workspace layout. Still stuck? Quit Premiere Pro completely (Cmd+Q) and reopen it.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" data-i18n="faq.q8">(Windows only) How fast is it, and do I need a specific GPU?</div><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a8">On Windows, CaptionLab automatically uses your NVIDIA GPU if you have one — it also works fine on CPU alone, just slower. This table is Windows-only (on Mac, CaptionLab uses Apple Silicon's Neural Engine instead, which is separately fast). Approximate real-time factor — minutes of audio transcribed per minute of processing:<br>• No GPU (CPU only): ~0.5–1x<br>• GTX 1660 Super: ~2–2.5x<br>• RTX 2060 / 3050: ~3.5–4x<br>• RTX 2070 Super <i>(measured)</i>: ~4.7–4.9x<br>• RTX 3060: ~4–4.5x<br>• RTX 3060 Ti / 3070: ~6–7x<br>• RTX 3080: ~9–10x<br>• RTX 3090 / 4070: ~10–11x<br>• RTX 4080: ~13–14x<br>• RTX 4090: ~18–20x<br><span style="color:var(--mid);font-size:12.5px">Estimates, not benchmarked on every card — laptop GPUs typically run ~70–80% of the desktop figure above.</span></div></div></div>
     </div>
   </div>
 </section>
@@ -1282,7 +1330,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <p>By purchasing or installing CaptionLab ("the Software"), you agree to these Terms. If you do not agree, do not install or use the Software.</p>
 
         <h3>2. License</h3>
-        <p>Edit Lab Tools grants you a non-exclusive, non-transferable, personal license to install and use CaptionLab on Mac computers you personally own or control. This is a single-user license. You may not share, resell, or redistribute the Software or installation files.</p>
+        <p>Edit Lab Tools grants you a non-exclusive, non-transferable, personal license to install and use CaptionLab on Mac or Windows computers you personally own or control. This is a single-user license. You may not share, resell, or redistribute the Software or installation files.</p>
 
         <h3>3. Restrictions</h3>
         <p>You may not: (a) reverse engineer or decompile the Software; (b) redistribute or resell it; (c) remove copyright notices; (d) use it to build a competing product.</p>
@@ -1321,7 +1369,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <p class="legal-date">Last updated: June 2026 · Edit Lab Tools</p>
 
         <h3>1. Overview</h3>
-        <p>CaptionLab is designed for privacy. All audio processing happens locally on your Mac. Your footage, audio, and transcripts are never uploaded to Edit Lab Tools or any third party.</p>
+        <p>CaptionLab is designed for privacy. All audio processing happens locally on your own computer (Mac or Windows). Your footage, audio, and transcripts are never uploaded to Edit Lab Tools or any third party.</p>
 
         <h3>2. Data we do NOT collect</h3>
         <p>We do not collect, store, or transmit: your audio or video files; transcripts or subtitles generated by the plugin; your Premiere Pro project data; or any usage analytics from within the plugin.</p>
@@ -1357,7 +1405,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <p class="legal-date">Last updated: June 2026 · Edit Lab Tools</p>
 
         <h3>14-day money-back guarantee</h3>
-        <p>If CaptionLab doesn't work for you for any reason, we will issue a full refund within <strong>14 days</strong> of your purchase date. No questions asked.</p>
+        <p>If CaptionLab doesn't work for you for any reason, we will issue a full refund within <strong>14 days</strong> of your purchase date.</p>
 
         <h3>How to request a refund</h3>
         <p>Email <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> with your order number (found in your purchase confirmation email). We will process the refund within 3–5 business days. Refunds are returned to the original payment method via Paddle.</p>
@@ -1366,7 +1414,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <p>We do not offer refunds for purchases older than 14 days, except in cases of technical issues that we are unable to resolve.</p>
 
         <h3>Technical issues</h3>
-        <p>If CaptionLab fails to install or function correctly on your Mac and our support team cannot resolve the issue, you are entitled to a full refund regardless of the time elapsed since purchase.</p>
+        <p>If CaptionLab fails to install or function correctly on your computer and our support team cannot resolve the issue, you are entitled to a full refund regardless of the time elapsed since purchase.</p>
 
         <h3>Contact</h3>
         <p>Refund requests: <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a><br>
@@ -1411,7 +1459,13 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <span class="sticky-price" style="color:var(--white)">CaptionLab</span>
       <span style="color:var(--mid);font-size:13px" data-i18n="stk.note">one-time · no subscription</span>
     </div>
-    <a href="#pricing" class="sticky-cta-btn" data-i18n="stk.cta">Get the plugin →</a>
+    <a href="#pricing" class="sticky-cta-btn">
+      <span data-i18n="stk.cta">Get the plugin →</span>
+      <span class="sticky-cta-icons">
+        <svg class="icon-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.014-.1-.04-.32-.04-.55 0-1.14.572-2.27 1.206-2.98.804-.94 2.14-1.64 3.248-1.68.03.13.05.34.05.59zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1 3.86-1 .62 0 2.833.06 4.29 2.15-.11.07-2.55 1.5-2.55 4.55 0 3.5 3.06 4.79 3.24 4.9z"/></svg>
+        <svg class="icon-windows" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5 10.5 2.4v8.1H3V3.5zM11.5 2.25 21 1v9.5H11.5V2.25zM3 11.5h7.5v8.1L3 18.5v-7zM11.5 11.5H21V21l-9.5-1.25V11.5z"/></svg>
+      </span>
+    </a>
   </div>
 </div>
 
@@ -1644,13 +1698,13 @@ function toggleLegal(scroll) {
   var DICT = {
     uk:{
       "nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.faq":"Питання","nav.cta":"Отримати плагін",
-      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово",
+      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово","launch.win":"🪟 <b>НОВИНКА:</b> тепер доступно і для Windows!",
       "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
-      "hero.h1":"Автоматичні субтитри в Premiere Pro.<br>Нарешті <b>твоєю мовою</b>.",
-      "hero.sub":"Adobe підтримує <span class='strike'>16 мов</span>. CaptionLab — <b>99</b>: польська, турецька, українська, арабська, індонезійська й десятки інших, до яких Adobe так і не дійшли руки. <b>Встановлюється як панель прямо в Premiere — не вебзастосунок, не підписка, без API-ключів.</b>",
+      "hero.h1":"Автоматичні субтитри в Premiere&nbsp;Pro.<br>Нарешті <b>твоєю мовою</b>",
+      "hero.sub":"Нативний плагін, який живе прямо всередині Premiere Pro. Працює <b>100% офлайн</b> на твоєму <b>Mac</b> чи <b>Win</b>: відео ніколи не покидає комп'ютер, без хмари, <b>без API-ключів</b>, без інтернету, <b>без підписки</b>. А ще розмовляє <b>99 мовами</b> — включно з тими, про які Adobe забула.",
       "hero.cta1":"Отримати CaptionLab →","hero.cta2":"Подивитись, як працює",
       "hero.watch1":"Дивитись демо","hero.watch2":"Реальне демо + міні-туторіал",
-      "hero.m1":"<span class='ck'>✓</span> Одноразова покупка","hero.m2":"<span class='ck'>✓</span> Працює офлайн назавжди","hero.m3":"<span class='ck'>✓</span> Відео не залишає твій Mac",
+      "hero.m1":"<span class='ck'>✓</span> Одноразова покупка","hero.m2":"<span class='ck'>✓</span> Працює офлайн назавжди","hero.m3":"<span class='ck'>✓</span> Відео не залишає твій комп'ютер",
       "hero.scroll":"Прокрути · на тебе чекає 99 мов",
       "big.label":"Мов","big.sub":"Кожна мова, яку підтримує OpenAI Whisper. Не 16. Не 27. Дев'яносто дев'ять.",
       "langs.h2":"Мови, які Adobe забула. <span style='color:var(--cyan)'>А ми — ні.</span>","langs.sub":"Обери свою. Або одну з 90 інших. CaptionLab говорить усіма.",
@@ -1671,26 +1725,26 @@ function toggleLegal(scroll) {
       "cmp.ctatext":"Саме тому CaptionLab — <b>$39 разово</b>, а не $15/місяць вічно.","cmp.ctalink":"Переглянути ціну →","cmp.guarantee":"<span>🛡</span> 14 днів на повернення коштів",
       "fnd.eyebrow":"Кілька слів від автора","fnd.p1":"Я режисер монтажу. Такий самий, як і ти.","fnd.p2":"Роками я дивився, як Adobe випускає Speech-to-Text англійською, потім іспанською, потім французькою — і просто <span class='hl'>зупиняється</span>. Мої українські проєкти? Польські? Турецькі? «Не підтримується». Тож я друкував кожен субтитр вручну. Години за годинами, у кожному проєкті.",
       "fnd.p3":"Тоді я спробував хмарні сервіси. Вони працювали — але відправляли моє відео на свої сервери, зберігали мою картку й брали з мене $15 щомісяця довічно. Для клієнтської роботи під NDA? <span class='hl'>Не треба, дякую.</span>",
-      "fnd.p4":"Тож я створив CaptionLab — плагін, який хотів би мати сам. <span class='hl'>Працює офлайн. Швидкий. 99 мов.</span> Одна ціна. <span class='hl-nosub'>Без підписки.</span> Твоє відео залишається там, де має бути — на твоєму Mac.",
+      "fnd.p4":"Тож я створив CaptionLab — плагін, який хотів би мати сам. <span class='hl'>Працює офлайн. Швидкий. 99 мов.</span> Одна ціна. <span class='hl-nosub'>Без підписки.</span> Твоє відео залишається там, де має бути — на твоєму комп'ютері.",
       "fnd.p5":"Якщо це схоже на те, що потрібно й тобі — спробуй. 14 днів на повернення, якщо не підійде. Без образ.","fnd.role":"Режисер монтажу · Засновник Edit Lab Tools",
-      "mf.q1":"// ЦЕ СПРАВДІ ОФЛАЙН?","mf.a1":"Так. Після одноразового налаштування <b>інтернет не потрібен</b>. Твоє аудіо не залишає Mac.","mf.q2":"// ПРАЦЮВАТИМЕ НА МОЄМУ MAC?","mf.a2":"Працює на <b>будь-якому Mac з macOS 11+</b> — Apple Silicon (M1–M4) та Intel.","mf.q3":"// А ЯКЩО НЕ СПОДОБАЄТЬСЯ?","mf.a3":"Напиши нам протягом 14 днів — <b>повне повернення</b>. Без питань, без тертя.",
+      "mf.q1":"// ЦЕ СПРАВДІ ОФЛАЙН?","mf.a1":"Так. Після одноразового налаштування <b>інтернет не потрібен</b>. Твоє аудіо не залишає комп'ютер.","mf.q2":"// ПРАЦЮВАТИМЕ НА МОЄМУ КОМП'ЮТЕРІ?","mf.a2":"Працює на <b>будь-якому Mac з macOS 11+</b> (Apple Silicon чи Intel) <b>або на Windows 10/11</b> — з опційним прискоренням через NVIDIA GPU на Windows.","mf.q3":"// А ЯКЩО НЕ СПОДОБАЄТЬСЯ?","mf.a3":"Напиши нам протягом 14 днів — <b>повне повернення</b>.",
       "pr.eyebrow":"Проста ціна","pr.h2":"Одна ціна. <span class='hl'>Твоя назавжди.</span>","pr.lead":"Без тарифів. Без допродажів. Без підводних каменів.","pr.flag":"СТАРТ","pr.once":"// разово · безстрокова ліцензія",
-      "pr.l1":"<span class='ck'>✓</span> Плагін CaptionLab для Premiere Pro (Mac)","pr.l2":"<span class='ck'>✓</span> Усі 99 мов Whisper","pr.l3":"<span class='ck'>✓</span> 100% офлайн — без API-ключів, без хмари","pr.l4":"<span class='ck'>✓</span> Необмежена транскрипція — без плати за хвилини й лімітів","pr.l5":"<span class='ck'>✓</span> Переклад будь-якої мови → англійською","pr.l6":"<span class='ck'>✓</span> Безкоштовні оновлення цієї версії","pr.l7":"<span class='ck'>✓</span> Підтримка Apple Silicon + Intel",
-      "pr.trialbadge":"14 ДНІВ TRIAL","pr.gh":"Спробуй без ризику, без питань","pr.gt":"Не підійшло? Повне повернення протягом 14 днів.","pr.cta":"Отримати CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Безпечна оплата","pr.t2":"<span class='tk'>⚡</span> Миттєве завантаження","pr.t3":"<span class='tk'>💳</span> Paddle · з ПДВ","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows скоро",
-      "pc.eyebrow":"Перед оплатою","pc.h3":"Ось що буде далі","pc.s1":"Введеш <b>email</b> на наступному екрані — безпечна оплата через Paddle, зашифровано, ми нічого не зберігаємо.","pc.s2":"Перевір пошту — <b>лінк на завантаження</b> + <b>інструкція з установки</b> прийдуть одразу після оплати.","pc.s3":"Відкрий плагін у Premiere і <b>активуй</b> його своїм <b>email + license key</b> з листа.","pc.trialbadge":"14 ДНІВ TRIAL","pc.trial":"Ще не впевнений? Спробуй на реальному проєкті. Не підійшло? <b>Повне повернення</b>, без питань.","pc.cta":"Продовжити до оплати →","pc.cancel":"Не зараз",
-      "faq.eyebrow":"Питання","faq.h2":"Відповіді на твої питання","faq.q0":"Як це встановити?","faq.a0":"Два кроки. Спочатку встановлюєш безкоштовний застосунок ZXP Installer (пропусти, якщо він уже є), потім перетягуєш файл CaptionLab .zxp на нього — все ставиться автоматично, без термінала. Потім, при першому відкритті в Premiere, натискаєш «Install AI Engine» — і плагін автоматично довантажує AI-рушій, на якому працює (Python, ffmpeg і модель Whisper, ~3 ГБ разом, 15–20 хв залежно від інтернету). Після цього одноразового налаштування все працює офлайн, назавжди.","faq.q1":"Чи потрібен інтернет?","faq.a1":"Лише раз — для першого налаштування (Python, ffmpeg і модель Whisper, ~3 ГБ разом). Далі CaptionLab працює на 100% офлайн. Ні інтернету, ні серверів, нічого.","faq.q2":"Чи потрібен API-ключ або акаунт OpenAI?","faq.a2":"Ні. На відміну від хмарних сервісів, CaptionLab запускає модель Whisper локально на твоєму Mac. Ні Deepgram, ні Groq, ні кредитів OpenAI. Реєструватися нікуди не треба.","faq.q3":"Чи завантажується моє відео кудись?","faq.a3":"Ніколи. Кожен байт аудіо обробляється на твоїй машині. Ідеально для клієнтської роботи під NDA.","faq.q4":"Які версії Premiere Pro підтримуються?","faq.a4":"Premiere Pro 2023–2026 (версії 23.x–26.x). Працює на Apple Silicon (M1–M4) та Intel Mac.","faq.q5":"Чи є версія для Windows?","faq.a5":"В активній розробці. Зараз CaptionLab лише для Mac. Долучайся до списку — дізнаєшся першим, коли вийде Windows.","faq.q6":"Які мови підтримуються?","faq.a6":"Усі 99 мов, які підтримує Whisper — зокрема українська, польська, турецька, індонезійська, в'єтнамська, арабська, тайська, румунська, чеська, словацька, угорська, грецька, іврит, перська, урду й десятки інших.",
+      "pr.l1":"<span class='ck'>✓</span> Плагін CaptionLab для Premiere Pro (Mac і Windows)","pr.l2":"<span class='ck'>✓</span> Усі 99 мов Whisper","pr.l3":"<span class='ck'>✓</span> 100% офлайн — без API-ключів, без хмари","pr.l4":"<span class='ck'>✓</span> Необмежена транскрипція — без плати за хвилини й лімітів","pr.l5":"<span class='ck'>✓</span> Переклад будь-якої мови → англійською","pr.l6":"<span class='ck'>✓</span> Безкоштовні оновлення цієї версії","pr.l7":"<span class='ck'>✓</span> Підтримка Apple Silicon + Intel + Windows (NVIDIA GPU)",
+      "pr.trialbadge":"14 ДНІВ TRIAL","pr.gh":"Спробуй без ризику","pr.gt":"Не підійшло? Повне повернення протягом 14 днів.","pr.cta":"Отримати CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Безпечна оплата","pr.t2":"<span class='tk'>⚡</span> Миттєве завантаження","pr.t3":"<span class='tk'>💳</span> Paddle · з ПДВ","pr.foot":"Premiere Pro 2022–2026 · macOS і Windows",
+      "pc.eyebrow":"Перед оплатою","pc.h3":"Ось що буде далі","pc.s1":"Введеш <b>email</b> на наступному екрані — безпечна оплата через Paddle, зашифровано, ми нічого не зберігаємо.","pc.s2":"Перевір пошту — <b>лінк на завантаження</b> + <b>інструкція з установки</b> прийдуть одразу після оплати.","pc.s3":"Відкрий плагін у Premiere і <b>активуй</b> його своїм <b>email + license key</b> з листа.","pc.trialbadge":"14 ДНІВ TRIAL","pc.trial":"Ще не впевнений? Спробуй на реальному проєкті. Не підійшло? <b>Повне повернення</b>.","pc.cta":"Продовжити до оплати →","pc.cancel":"Не зараз",
+      "faq.eyebrow":"Питання","faq.h2":"Відповіді на твої питання","faq.q0":"Як це встановити?","faq.a0":"Два кроки. Спочатку встановлюєш безкоштовний застосунок ZXP Installer (пропусти, якщо він уже є), потім перетягуєш файл CaptionLab .zxp на нього — все ставиться автоматично, без термінала. Потім, при першому відкритті в Premiere, натискаєш «Install AI Engine» — і плагін автоматично довантажує AI-рушій, на якому працює (Python, ffmpeg і модель Whisper, ~3 ГБ разом, 15–20 хв залежно від інтернету). Після цього одноразового налаштування все працює офлайн, назавжди.","faq.q1":"Чи потрібен інтернет?","faq.a1":"Лише раз — для першого налаштування (Python, ffmpeg і модель Whisper, ~3 ГБ разом). Далі CaptionLab працює на 100% офлайн. Ні інтернету, ні серверів, нічого.","faq.q2":"Чи потрібен API-ключ або акаунт OpenAI?","faq.a2":"Ні. На відміну від хмарних сервісів, CaptionLab запускає модель Whisper локально на твоєму комп'ютері. Ні Deepgram, ні Groq, ні кредитів OpenAI. Реєструватися нікуди не треба.","faq.q3":"Чи завантажується моє відео кудись?","faq.a3":"Ніколи. Кожен байт аудіо обробляється на твоїй машині. Ідеально для клієнтської роботи під NDA.","faq.q4":"Які версії Premiere Pro підтримуються?","faq.a4":"Premiere Pro 2023–2026 (версії 23.x–26.x). Працює на Apple Silicon (M1–M4) та Intel Mac, а також на Windows 10/11.","faq.q5":"Чи є версія для Windows?","faq.a5":"Так! CaptionLab працює на Windows 10/11 так само, як і на Mac — ті самі функції, та сама одноразова ціна. На Windows він автоматично використовує NVIDIA GPU, якщо він є (дивись порівняння швидкості нижче), і переходить на CPU, якщо GPU немає.","faq.q6":"Які мови підтримуються?","faq.a6":"Усі 99 мов, які підтримує Whisper — зокрема українська, польська, турецька, індонезійська, в'єтнамська, арабська, тайська, румунська, чеська, словацька, угорська, грецька, іврит, перська, урду й десятки інших.","faq.q8":"(Тільки для Windows) Наскільки це швидко, і чи потрібна конкретна відеокарта?","faq.a8":"На Windows CaptionLab автоматично використовує твою NVIDIA-карту, якщо вона є — без GPU теж працює, просто повільніше. Ця таблиця стосується лише Windows (на Mac CaptionLab використовує Neural Engine Apple Silicon, який окремо швидкий). Орієнтовна швидкість — скільки хвилин аудіо обробляється за хвилину:<br>• Без GPU (лише CPU): ~0.5–1x<br>• GTX 1660 Super: ~2–2.5x<br>• RTX 2060 / 3050: ~3.5–4x<br>• RTX 2070 Super <i>(виміряно)</i>: ~4.7–4.9x<br>• RTX 3060: ~4–4.5x<br>• RTX 3060 Ti / 3070: ~6–7x<br>• RTX 3080: ~9–10x<br>• RTX 3090 / 4070: ~10–11x<br>• RTX 4080: ~13–14x<br>• RTX 4090: ~18–20x<br><span style=\"color:var(--mid);font-size:12.5px\">Орієнтовні цифри, не протестовано на кожній карті — ноутбучні GPU зазвичай дають ~70–80% від показника десктопної версії вище.</span>",
       "fin.h2":"Годі друкувати субтитри.<br><span style='color:var(--cyan)'>Здавай проєкти швидше.</span>","fin.p":"Купи раз. Користуйся назавжди.","fin.cta":"Отримати CaptionLab →","fin.t1":"🛡 14 днів на повернення","fin.t2":"🔒 Безпечна оплата","fin.t3":"⚡ Миттєве завантаження",
       "ft.tag":"На базі OpenAI Whisper · Створено для Premiere Pro · Зроблено монтажерами для монтажерів","ft.terms":"Умови користування","ft.privacy":"Політика конфіденційності","ft.refund":"Політика повернення","ft.contact":"Контакт","lg.toggle":"Юридична інформація <i class='legal-toggle-icon'>↓</i>","stk.note":"разово · без підписки","stk.cta":"Отримати плагін →"
     },
     pl:{
       "nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
-      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo",
+      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo","launch.win":"🪟 <b>NOWOŚĆ:</b> teraz dostępne również na Windows!",
       "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
-      "hero.h1":"Automatyczne napisy w Premiere Pro —<br>wreszcie <b>w Twoim języku</b>.",
-      "hero.sub":"Adobe obsługuje <span class='strike'>16 języków</span>. CaptionLab — <b>99</b>: polski, turecki, ukraiński, arabski, indonezyjski i dziesiątki innych, którymi Adobe się nie zajęło. <b>Instaluje się jako panel bezpośrednio w Premiere — to nie aplikacja webowa, nie subskrypcja, bez kluczy API.</b>",
+      "hero.h1":"Automatyczne napisy w Premiere&nbsp;Pro —<br>wreszcie <b>w Twoim języku</b>",
+      "hero.sub":"Natywna wtyczka, która działa bezpośrednio wewnątrz Premiere Pro. Działa w <b>100% offline</b> na Twoim własnym <b>Mac</b> lub <b>Win</b>: Twój materiał nigdy nie opuszcza komputera, bez chmury, <b>bez kluczy API</b>, bez internetu, <b>bez subskrypcji</b>. Do tego mówi w <b>99 językach</b> — łącznie z tymi, o których Adobe zapomniało.",
       "hero.cta1":"Pobierz CaptionLab →","hero.cta2":"Zobacz, jak działa",
       "hero.watch1":"Obejrzyj demo","hero.watch2":"Prawdziwe demo + mini-samouczek",
-      "hero.m1":"<span class='ck'>✓</span> Jednorazowy zakup","hero.m2":"<span class='ck'>✓</span> Działa offline na zawsze","hero.m3":"<span class='ck'>✓</span> Materiał nie opuszcza Maca",
+      "hero.m1":"<span class='ck'>✓</span> Jednorazowy zakup","hero.m2":"<span class='ck'>✓</span> Działa offline na zawsze","hero.m3":"<span class='ck'>✓</span> Materiał nie opuszcza Twojego komputera",
       "hero.scroll":"Przewiń · czeka 99 języków",
       "big.label":"Języków","big.sub":"Każdy język obsługiwany przez OpenAI Whisper. Nie 16. Nie 27. Dziewięćdziesiąt dziewięć.",
       "langs.h2":"Języki, o których Adobe zapomniało. <span style='color:var(--cyan)'>My — nie.</span>","langs.sub":"Wybierz swój. Albo jeden z 90 innych. CaptionLab mówi wszystkimi.",
@@ -1711,26 +1765,26 @@ function toggleLegal(scroll) {
       "cmp.ctatext":"Dlatego CaptionLab kosztuje <b>$39 raz</b> — nie 15 $/miesiąc na zawsze.","cmp.ctalink":"Zobacz cennik →","cmp.guarantee":"<span>🛡</span> 14-dniowa gwarancja zwrotu",
       "fnd.eyebrow":"Słowo od twórcy","fnd.p1":"Jestem montażystą. Tak jak Ty.","fnd.p2":"Przez lata patrzyłem, jak Adobe wypuszcza Speech-to-Text po angielsku, potem hiszpańsku, potem francusku — i po prostu <span class='hl'>przestaje</span>. Moje ukraińskie projekty? Polskie? Tureckie? „Nieobsługiwane”. Więc wpisywałem każdy napis ręcznie. Godzinami, w każdym projekcie.",
       "fnd.p3":"Potem spróbowałem narzędzi chmurowych. Działały — ale chciały mój materiał na swoich serwerach, moją kartę w pliku i 15 $ co miesiąc na zawsze. Do pracy dla klienta pod NDA? <span class='hl'>Nie ma mowy.</span>",
-      "fnd.p4":"Więc zbudowałem CaptionLab. Wtyczkę, którą chciałem mieć. <span class='hl'>Lokalna. Szybka. 99 języków.</span> Jedna cena. <span class='hl-nosub'>Bez subskrypcji.</span> Twój materiał zostaje tam, gdzie powinien — na Twoim Macu.",
+      "fnd.p4":"Więc zbudowałem CaptionLab. Wtyczkę, którą chciałem mieć. <span class='hl'>Lokalna. Szybka. 99 języków.</span> Jedna cena. <span class='hl-nosub'>Bez subskrypcji.</span> Twój materiał zostaje tam, gdzie powinien — na Twoim komputerze.",
       "fnd.p5":"Jeśli brzmi to jak coś, czego i Ty potrzebujesz — wypróbuj. 14 dni na zwrot, jeśli nie pasuje. Bez urazy.","fnd.role":"Montażysta · Założyciel Edit Lab Tools",
-      "mf.q1":"// CZY TO NAPRAWDĘ OFFLINE?","mf.a1":"Tak. Po jednorazowej konfiguracji <b>internet nie jest potrzebny</b>. Twoje audio nie opuszcza Maca.","mf.q2":"// CZY ZADZIAŁA NA MOIM MACU?","mf.a2":"Działa na <b>każdym Macu z macOS 11+</b> — Apple Silicon (M1–M4) i Intel.","mf.q3":"// A JEŚLI MI SIĘ NIE SPODOBA?","mf.a3":"Napisz do nas w ciągu 14 dni — <b>pełny zwrot</b>. Bez pytań, bez tarcia.",
+      "mf.q1":"// CZY TO NAPRAWDĘ OFFLINE?","mf.a1":"Tak. Po jednorazowej konfiguracji <b>internet nie jest potrzebny</b>. Twoje audio nie opuszcza komputera.","mf.q2":"// CZY ZADZIAŁA NA MOIM KOMPUTERZE?","mf.a2":"Działa na <b>każdym Macu z macOS 11+</b> (Apple Silicon lub Intel) <b>oraz na Windows 10/11</b> — z opcjonalnym przyspieszeniem NVIDIA GPU na Windows.","mf.q3":"// A JEŚLI MI SIĘ NIE SPODOBA?","mf.a3":"Napisz do nas w ciągu 14 dni — <b>pełny zwrot</b>.",
       "pr.eyebrow":"Prosty cennik","pr.h2":"Jedna cena. <span class='hl'>Twoja na zawsze.</span>","pr.lead":"Bez poziomów. Bez dopłat. Bez haczyków.","pr.flag":"START","pr.once":"// jednorazowo · licencja bezterminowa",
-      "pr.l1":"<span class='ck'>✓</span> Wtyczka CaptionLab do Premiere Pro (Mac)","pr.l2":"<span class='ck'>✓</span> Wszystkie 99 języków Whisper","pr.l3":"<span class='ck'>✓</span> 100% offline — bez kluczy API, bez chmury","pr.l4":"<span class='ck'>✓</span> Nielimitowana transkrypcja — bez opłat za minutę i limitów","pr.l5":"<span class='ck'>✓</span> Tłumaczenie dowolnego języka → na angielski","pr.l6":"<span class='ck'>✓</span> Darmowe aktualizacje tej wersji","pr.l7":"<span class='ck'>✓</span> Wsparcie Apple Silicon + Intel",
-      "pr.trialbadge":"14 DNI TRIAL","pr.gh":"Wypróbuj bez ryzyka, bez pytań","pr.gt":"Nie działa u Ciebie? Pełny zwrot w ciągu 14 dni.","pr.cta":"Pobierz CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Bezpieczna płatność","pr.t2":"<span class='tk'>⚡</span> Natychmiastowe pobranie","pr.t3":"<span class='tk'>💳</span> Paddle · VAT w cenie","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows wkrótce",
-      "pc.eyebrow":"Zanim zapłacisz","pc.h3":"Oto co się dzieje dalej","pc.s1":"Podasz <b>email</b> na następnym ekranie — bezpieczna płatność przez Paddle, szyfrowana, niczego nie przechowujemy.","pc.s2":"Sprawdź skrzynkę — <b>link do pobrania</b> + <b>instrukcja instalacji</b> przyjdą od razu po płatności.","pc.s3":"Otwórz wtyczkę w Premiere i <b>aktywuj</b> ją swoim <b>e-mailem + kluczem licencyjnym</b> z tej wiadomości.","pc.trialbadge":"14 DNI TRIAL","pc.trial":"Jeszcze się wahasz? Śmiało spróbuj na prawdziwym projekcie. Nie pasuje? <b>Pełny zwrot</b>, bez pytań.","pc.cta":"Przejdź do płatności →","pc.cancel":"Nie teraz",
-      "faq.eyebrow":"Pytania","faq.h2":"Zanim zapytasz","faq.q0":"Jak to zainstalować?","faq.a0":"Dwa kroki. Najpierw instalujesz darmową aplikację ZXP Installer (pomiń, jeśli już ją masz), a potem przeciągasz na nią plik CaptionLab .zxp — instalacja przebiega automatycznie, bez terminala. Potem, przy pierwszym otwarciu w Premiere, klikasz „Install AI Engine” — wtyczka automatycznie pobiera silnik AI, na którym działa (Python, ffmpeg i model Whisper, łącznie ~3 GB, 15–20 minut w zależności od połączenia). Po tej jednorazowej konfiguracji wszystko działa offline, na zawsze.","faq.q1":"Czy potrzebuję połączenia z internetem?","faq.a1":"Tylko raz — do pierwszej konfiguracji (Python, ffmpeg i model AI Whisper, łącznie ~3 GB). Potem CaptionLab działa w 100% offline. Bez internetu, bez serwerów, bez niczego.","faq.q2":"Czy potrzebuję klucza API lub konta OpenAI?","faq.a2":"Nie. W przeciwieństwie do narzędzi chmurowych, CaptionLab uruchamia model Whisper lokalnie na Twoim Macu. Bez Deepgram, bez Groq, bez kredytów OpenAI. Nie trzeba się nigdzie rejestrować.","faq.q3":"Czy mój materiał jest gdzieś przesyłany?","faq.a3":"Nigdy. Każdy bajt audio jest przetwarzany na Twoim komputerze. Idealne do pracy dla klienta pod NDA.","faq.q4":"Które wersje Premiere Pro są obsługiwane?","faq.a4":"Premiere Pro 2023 do 2026 (wersje 23.x–26.x). Działa na Apple Silicon (M1–M4) i Macach Intel.","faq.q5":"Czy jest wersja na Windows?","faq.a5":"W aktywnym rozwoju. Na razie CaptionLab jest tylko na Maca. Dołącz do listy, a dowiesz się pierwszy, gdy pojawi się Windows.","faq.q6":"Jakie języki są obsługiwane?","faq.a6":"Wszystkie 99 języków obsługiwanych przez Whisper — w tym ukraiński, polski, turecki, indonezyjski, wietnamski, arabski, tajski, rumuński, czeski, słowacki, węgierski, grecki, hebrajski, perski, urdu i dziesiątki innych.",
+      "pr.l1":"<span class='ck'>✓</span> Wtyczka CaptionLab do Premiere Pro (Mac i Windows)","pr.l2":"<span class='ck'>✓</span> Wszystkie 99 języków Whisper","pr.l3":"<span class='ck'>✓</span> 100% offline — bez kluczy API, bez chmury","pr.l4":"<span class='ck'>✓</span> Nielimitowana transkrypcja — bez opłat za minutę i limitów","pr.l5":"<span class='ck'>✓</span> Tłumaczenie dowolnego języka → na angielski","pr.l6":"<span class='ck'>✓</span> Darmowe aktualizacje tej wersji","pr.l7":"<span class='ck'>✓</span> Wsparcie Apple Silicon + Intel + Windows (NVIDIA GPU)",
+      "pr.trialbadge":"14 DNI TRIAL","pr.gh":"Wypróbuj bez ryzyka","pr.gt":"Nie działa u Ciebie? Pełny zwrot w ciągu 14 dni.","pr.cta":"Pobierz CaptionLab →","pr.t1":"<span class='tk'>🔒</span> Bezpieczna płatność","pr.t2":"<span class='tk'>⚡</span> Natychmiastowe pobranie","pr.t3":"<span class='tk'>💳</span> Paddle · VAT w cenie","pr.foot":"Premiere Pro 2022–2026 · macOS i Windows",
+      "pc.eyebrow":"Zanim zapłacisz","pc.h3":"Oto co się dzieje dalej","pc.s1":"Podasz <b>email</b> na następnym ekranie — bezpieczna płatność przez Paddle, szyfrowana, niczego nie przechowujemy.","pc.s2":"Sprawdź skrzynkę — <b>link do pobrania</b> + <b>instrukcja instalacji</b> przyjdą od razu po płatności.","pc.s3":"Otwórz wtyczkę w Premiere i <b>aktywuj</b> ją swoim <b>e-mailem + kluczem licencyjnym</b> z tej wiadomości.","pc.trialbadge":"14 DNI TRIAL","pc.trial":"Jeszcze się wahasz? Śmiało spróbuj na prawdziwym projekcie. Nie pasuje? <b>Pełny zwrot</b>.","pc.cta":"Przejdź do płatności →","pc.cancel":"Nie teraz",
+      "faq.eyebrow":"Pytania","faq.h2":"Zanim zapytasz","faq.q0":"Jak to zainstalować?","faq.a0":"Dwa kroki. Najpierw instalujesz darmową aplikację ZXP Installer (pomiń, jeśli już ją masz), a potem przeciągasz na nią plik CaptionLab .zxp — instalacja przebiega automatycznie, bez terminala. Potem, przy pierwszym otwarciu w Premiere, klikasz „Install AI Engine” — wtyczka automatycznie pobiera silnik AI, na którym działa (Python, ffmpeg i model Whisper, łącznie ~3 GB, 15–20 minut w zależności od połączenia). Po tej jednorazowej konfiguracji wszystko działa offline, na zawsze.","faq.q1":"Czy potrzebuję połączenia z internetem?","faq.a1":"Tylko raz — do pierwszej konfiguracji (Python, ffmpeg i model AI Whisper, łącznie ~3 GB). Potem CaptionLab działa w 100% offline. Bez internetu, bez serwerów, bez niczego.","faq.q2":"Czy potrzebuję klucza API lub konta OpenAI?","faq.a2":"Nie. W przeciwieństwie do narzędzi chmurowych, CaptionLab uruchamia model Whisper lokalnie na Twoim komputerze. Bez Deepgram, bez Groq, bez kredytów OpenAI. Nie trzeba się nigdzie rejestrować.","faq.q3":"Czy mój materiał jest gdzieś przesyłany?","faq.a3":"Nigdy. Każdy bajt audio jest przetwarzany na Twoim komputerze. Idealne do pracy dla klienta pod NDA.","faq.q4":"Które wersje Premiere Pro są obsługiwane?","faq.a4":"Premiere Pro 2023 do 2026 (wersje 23.x–26.x). Działa na Apple Silicon (M1–M4) i Macach Intel, a także na Windows 10/11.","faq.q5":"Czy jest wersja na Windows?","faq.a5":"Tak! CaptionLab działa na Windows 10/11 tak samo jak na Macu — te same funkcje, ta sama jednorazowa cena. Na Windows automatycznie korzysta z karty NVIDIA, jeśli ją masz (zobacz porównanie szybkości poniżej), a jeśli nie — działa na CPU.","faq.q6":"Jakie języki są obsługiwane?","faq.a6":"Wszystkie 99 języków obsługiwanych przez Whisper — w tym ukraiński, polski, turecki, indonezyjski, wietnamski, arabski, tajski, rumuński, czeski, słowacki, węgierski, grecki, hebrajski, perski, urdu i dziesiątki innych.","faq.q8":"(Tylko Windows) Jak szybko to działa i czy potrzebuję konkretnej karty graficznej?","faq.a8":"Na Windows CaptionLab automatycznie korzysta z Twojej karty NVIDIA, jeśli ją masz — bez GPU też działa, tylko wolniej. Ta tabela dotyczy tylko Windows (na Macu CaptionLab korzysta z Neural Engine Apple Silicon, który jest osobno szybki). Przybliżona szybkość — ile minut audio jest przetwarzane w ciągu minuty:<br>• Bez GPU (tylko CPU): ~0.5–1x<br>• GTX 1660 Super: ~2–2.5x<br>• RTX 2060 / 3050: ~3.5–4x<br>• RTX 2070 Super <i>(zmierzone)</i>: ~4.7–4.9x<br>• RTX 3060: ~4–4.5x<br>• RTX 3060 Ti / 3070: ~6–7x<br>• RTX 3080: ~9–10x<br>• RTX 3090 / 4070: ~10–11x<br>• RTX 4080: ~13–14x<br>• RTX 4090: ~18–20x<br><span style=\"color:var(--mid);font-size:12.5px\">Przybliżone wartości, nietestowane na każdej karcie — laptopowe GPU zwykle osiągają ~70–80% wartości desktopowej powyżej.</span>",
       "fin.h2":"Przestań wpisywać napisy.<br><span style='color:var(--cyan)'>Realizuj projekty szybciej.</span>","fin.p":"Kup raz. Używaj na zawsze.","fin.cta":"Pobierz CaptionLab →","fin.t1":"🛡 14 dni na zwrot","fin.t2":"🔒 Bezpieczna płatność","fin.t3":"⚡ Natychmiastowe pobranie",
       "ft.tag":"Napędzane przez OpenAI Whisper · Stworzone dla Premiere Pro · Zrobione przez montażystów dla montażystów","ft.terms":"Regulamin","ft.privacy":"Polityka prywatności","ft.refund":"Polityka zwrotów","ft.contact":"Kontakt","lg.toggle":"Informacje prawne <i class='legal-toggle-icon'>↓</i>","stk.note":"jednorazowo · bez subskrypcji","stk.cta":"Pobierz wtyczkę →"
     },
     tr:{
       "nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.faq":"SSS","nav.cta":"Eklentiyi al",
-      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik",
+      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik","launch.win":"🪟 <b>YENİ:</b> Artık Windows'ta da mevcut!",
       "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
-      "hero.h1":"Premiere Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>.",
-      "hero.sub":"Adobe <span class='strike'>16 dil</span> destekliyor. CaptionLab <b>99</b> dil destekler: Lehçe, Türkçe, Ukraynaca, Arapça, Endonezce ve Adobe'nin hiç ilgilenmediği onlarca dil. <b>Doğrudan Premiere içine panel olarak kurulur — web uygulaması değil, abonelik değil, API anahtarı yok.</b>",
+      "hero.h1":"Premiere&nbsp;Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>",
+      "hero.sub":"Doğrudan Premiere Pro içinde yaşayan yerel bir eklenti. Kendi <b>Mac</b>'inde ya da <b>Win</b>'inde <b>%100 çevrimdışı</b> çalışır: görüntülerin asla bilgisayarından çıkmaz, bulut yok, <b>API anahtarı yok</b>, internet yok, <b>abonelik yok</b>. Üstelik Adobe'nin unuttuğu diller dahil <b>99 dil</b> konuşur.",
       "hero.cta1":"CaptionLab'i al →","hero.cta2":"Nasıl çalıştığını gör",
       "hero.watch1":"Demoyu izle","hero.watch2":"Gerçek demo + mini eğitim",
-      "hero.m1":"<span class='ck'>✓</span> Tek seferlik ödeme","hero.m2":"<span class='ck'>✓</span> Sonsuza dek çevrimdışı","hero.m3":"<span class='ck'>✓</span> Görüntüleriniz Mac'ten çıkmaz",
+      "hero.m1":"<span class='ck'>✓</span> Tek seferlik ödeme","hero.m2":"<span class='ck'>✓</span> Sonsuza dek çevrimdışı","hero.m3":"<span class='ck'>✓</span> Görüntüleriniz bilgisayarınızdan çıkmaz",
       "hero.scroll":"Kaydır · 99 dil seni bekliyor",
       "big.label":"Dil","big.sub":"OpenAI Whisper'ın desteklediği her dil. 16 değil. 27 değil. Doksan dokuz.",
       "langs.h2":"Adobe'nin unuttuğu diller. <span style='color:var(--cyan)'>Biz unutmadık.</span>","langs.sub":"Kendi dilini seç. Ya da 90 dilden birini. CaptionLab hepsini konuşur.",
@@ -1751,26 +1805,26 @@ function toggleLegal(scroll) {
       "cmp.ctatext":"İşte bu yüzden CaptionLab <b>$39 tek sefer</b> — ayda 15 $ sonsuza dek değil.","cmp.ctalink":"Fiyatı gör →","cmp.guarantee":"<span>🛡</span> 14 gün para iade garantisi",
       "fnd.eyebrow":"Yapımcıdan bir not","fnd.p1":"Ben bir kurgucuyum. Tıpkı senin gibi.","fnd.p2":"Yıllarca Adobe'nin Speech-to-Text'i önce İngilizce, sonra İspanyolca, sonra Fransızca çıkarıp <span class='hl'>durmasını</span> izledim. Ukraynaca projelerim? Lehçe? Türkçe? «Desteklenmiyor.» Ben de her altyazıyı elle yazdım. Her projede, saatlerce.",
       "fnd.p3":"Sonra bulut araçlarını denedim. Çalıştılar — ama görüntülerimi kendi sunucularında, kartımı kayıtlı ve ayda 15 $'ı sonsuza dek istediler. NDA'lı müşteri işi için mi? <span class='hl'>Asla.</span>",
-      "fnd.p4":"Ben de CaptionLab'i yaptım. Var olmasını istediğim eklenti. <span class='hl'>Yerel. Hızlı. 99 dil.</span> Tek fiyat. <span class='hl-nosub'>Abonelik yok.</span> Görüntülerin ait olduğu yerde kalır — senin Mac'inde.",
+      "fnd.p4":"Ben de CaptionLab'i yaptım. Var olmasını istediğim eklenti. <span class='hl'>Yerel. Hızlı. 99 dil.</span> Tek fiyat. <span class='hl-nosub'>Abonelik yok.</span> Görüntülerin ait olduğu yerde kalır — kendi bilgisayarında.",
       "fnd.p5":"Bu sana da gerekli geliyorsa — dene. Uymazsa 14 gün içinde iade. Alınganlık yok.","fnd.role":"Kurgucu · Kurucu, Edit Lab Tools",
-      "mf.q1":"// GERÇEKTEN ÇEVRİMDIŞI MI?","mf.a1":"Evet. Tek seferlik kurulumdan sonra <b>internete gerek yok</b>. Sesin Mac'inden asla çıkmaz.","mf.q2":"// MAC'İMDE ÇALIŞIR MI?","mf.a2":"<b>macOS 11+ olan her Mac'te</b> çalışır — Apple Silicon (M1–M4) ve Intel.","mf.q3":"// YA SEVMEZSEM?","mf.a3":"14 gün içinde bize yaz — <b>tam iade</b>. Soru yok, sürtüşme yok.",
+      "mf.q1":"// GERÇEKTEN ÇEVRİMDIŞI MI?","mf.a1":"Evet. Tek seferlik kurulumdan sonra <b>internete gerek yok</b>. Sesin bilgisayarından asla çıkmaz.","mf.q2":"// BİLGİSAYARIMDA ÇALIŞIR MI?","mf.a2":"<b>macOS 11+ olan her Mac'te</b> (Apple Silicon veya Intel) <b>ya da Windows 10/11'de</b> çalışır — Windows'ta isteğe bağlı NVIDIA GPU hızlandırmasıyla.","mf.q3":"// YA SEVMEZSEM?","mf.a3":"14 gün içinde bize yaz — <b>tam iade</b>.",
       "pr.eyebrow":"Basit fiyat","pr.h2":"Tek fiyat. <span class='hl'>Sonsuza dek senin.</span>","pr.lead":"Katman yok. Ek satış yok. Bit yeniği yok.","pr.flag":"LANSMAN","pr.once":"// tek sefer · kalıcı lisans",
-      "pr.l1":"<span class='ck'>✓</span> Premiere Pro için CaptionLab eklentisi (Mac)","pr.l2":"<span class='ck'>✓</span> 99 Whisper dilinin tümü","pr.l3":"<span class='ck'>✓</span> %100 çevrimdışı — API anahtarı yok, bulut yok","pr.l4":"<span class='ck'>✓</span> Sınırsız transkripsiyon — dakika ücreti ve limit yok","pr.l5":"<span class='ck'>✓</span> Her dili → İngilizceye çevir","pr.l6":"<span class='ck'>✓</span> Bu sürüm için ücretsiz güncellemeler","pr.l7":"<span class='ck'>✓</span> Apple Silicon + Intel desteği",
-      "pr.trialbadge":"14 GÜN TRIAL","pr.gh":"Risksiz dene, soru sorulmaz","pr.gt":"Sana uymadı mı? 14 gün içinde tam iade.","pr.cta":"CaptionLab'i al →","pr.t1":"<span class='tk'>🔒</span> Güvenli ödeme","pr.t2":"<span class='tk'>⚡</span> Anında indirme","pr.t3":"<span class='tk'>💳</span> Paddle · KDV dahil","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows yakında",
-      "pc.eyebrow":"Ödemeden önce","pc.h3":"İşte sırada olanlar","pc.s1":"Bir sonraki ekranda <b>e-postanı</b> gireceksin — Paddle üzerinden güvenli, şifreli ödeme, bizde hiçbir şey saklanmaz.","pc.s2":"Gelen kutunu kontrol et — <b>indirme bağlantın</b> + <b>kurulum talimatları</b> ödemeden hemen sonra gelir.","pc.s3":"Premiere'de eklentiyi aç ve aynı <b>e-posta + lisans anahtarıyla</b> <b>etkinleştir</b>.","pc.trialbadge":"14 GÜN TRIAL","pc.trial":"Hâlâ emin değil misin? Gerçek bir projede dene. Uymadı mı? <b>Tam iade</b>, soru sorulmaz.","pc.cta":"Güvenli ödemeye geç →","pc.cancel":"Şimdi değil",
-      "faq.eyebrow":"Sorular","faq.h2":"Sormadan önce","faq.q0":"Nasıl kurulur?","faq.a0":"İki adım. Önce ücretsiz ZXP Installer uygulamasını kurarsın (zaten varsa atla), ardından CaptionLab .zxp dosyasını üzerine sürüklersin — kurulum otomatik olarak tamamlanır, terminal gerekmez. Sonra, Premiere'de ilk açtığında «Install AI Engine»e tıklarsın — eklenti, üzerinde çalıştığı AI motorunu (Python, ffmpeg ve Whisper modeli, toplam ~3 GB, bağlantına göre 15–20 dakika) otomatik olarak indirir. Bu tek seferlik kurulumdan sonra her şey sonsuza dek çevrimdışı çalışır.","faq.q1":"İnternet bağlantısı gerekir mi?","faq.a1":"Sadece bir kez — ilk kurulum için (Python, ffmpeg ve Whisper AI modeli, toplam ~3 GB). Sonrasında CaptionLab %100 çevrimdışı çalışır. İnternet yok, sunucu yok, hiçbir şey yok.","faq.q2":"API anahtarı veya OpenAI hesabı gerekir mi?","faq.a2":"Hayır. Bulut araçlarının aksine, CaptionLab Whisper modelini Mac'inde yerel olarak çalıştırır. Deepgram yok, Groq yok, OpenAI kredisi yok. Kaydolacak hiçbir şey yok.","faq.q3":"Görüntülerim bir yere yükleniyor mu?","faq.a3":"Asla. Sesin her baytı kendi makinende işlenir. NDA'lı müşteri işi için mükemmel.","faq.q4":"Hangi Premiere Pro sürümleri destekleniyor?","faq.a4":"Premiere Pro 2023–2026 (23.x–26.x sürümleri). Apple Silicon (M1–M4) ve Intel Mac'lerde çalışır.","faq.q5":"Windows sürümü var mı?","faq.a5":"Aktif geliştirmede. Şu an CaptionLab yalnızca Mac için. Listeye katıl, Windows çıkınca ilk sen haberdar ol.","faq.q6":"Hangi diller destekleniyor?","faq.a6":"Whisper'ın desteklediği 99 dilin tümü — Ukraynaca, Lehçe, Türkçe, Endonezce, Vietnamca, Arapça, Tayca, Rumence, Çekçe, Slovakça, Macarca, Yunanca, İbranice, Farsça, Urduca ve düzinelerce dil dahil.",
+      "pr.l1":"<span class='ck'>✓</span> Premiere Pro için CaptionLab eklentisi (Mac ve Windows)","pr.l2":"<span class='ck'>✓</span> 99 Whisper dilinin tümü","pr.l3":"<span class='ck'>✓</span> %100 çevrimdışı — API anahtarı yok, bulut yok","pr.l4":"<span class='ck'>✓</span> Sınırsız transkripsiyon — dakika ücreti ve limit yok","pr.l5":"<span class='ck'>✓</span> Her dili → İngilizceye çevir","pr.l6":"<span class='ck'>✓</span> Bu sürüm için ücretsiz güncellemeler","pr.l7":"<span class='ck'>✓</span> Apple Silicon + Intel + Windows (NVIDIA GPU) desteği",
+      "pr.trialbadge":"14 GÜN TRIAL","pr.gh":"Risksiz dene","pr.gt":"Sana uymadı mı? 14 gün içinde tam iade.","pr.cta":"CaptionLab'i al →","pr.t1":"<span class='tk'>🔒</span> Güvenli ödeme","pr.t2":"<span class='tk'>⚡</span> Anında indirme","pr.t3":"<span class='tk'>💳</span> Paddle · KDV dahil","pr.foot":"Premiere Pro 2022–2026 · macOS ve Windows",
+      "pc.eyebrow":"Ödemeden önce","pc.h3":"İşte sırada olanlar","pc.s1":"Bir sonraki ekranda <b>e-postanı</b> gireceksin — Paddle üzerinden güvenli, şifreli ödeme, bizde hiçbir şey saklanmaz.","pc.s2":"Gelen kutunu kontrol et — <b>indirme bağlantın</b> + <b>kurulum talimatları</b> ödemeden hemen sonra gelir.","pc.s3":"Premiere'de eklentiyi aç ve aynı <b>e-posta + lisans anahtarıyla</b> <b>etkinleştir</b>.","pc.trialbadge":"14 GÜN TRIAL","pc.trial":"Hâlâ emin değil misin? Gerçek bir projede dene. Uymadı mı? <b>Tam iade</b>.","pc.cta":"Güvenli ödemeye geç →","pc.cancel":"Şimdi değil",
+      "faq.eyebrow":"Sorular","faq.h2":"Sormadan önce","faq.q0":"Nasıl kurulur?","faq.a0":"İki adım. Önce ücretsiz ZXP Installer uygulamasını kurarsın (zaten varsa atla), ardından CaptionLab .zxp dosyasını üzerine sürüklersin — kurulum otomatik olarak tamamlanır, terminal gerekmez. Sonra, Premiere'de ilk açtığında «Install AI Engine»e tıklarsın — eklenti, üzerinde çalıştığı AI motorunu (Python, ffmpeg ve Whisper modeli, toplam ~3 GB, bağlantına göre 15–20 dakika) otomatik olarak indirir. Bu tek seferlik kurulumdan sonra her şey sonsuza dek çevrimdışı çalışır.","faq.q1":"İnternet bağlantısı gerekir mi?","faq.a1":"Sadece bir kez — ilk kurulum için (Python, ffmpeg ve Whisper AI modeli, toplam ~3 GB). Sonrasında CaptionLab %100 çevrimdışı çalışır. İnternet yok, sunucu yok, hiçbir şey yok.","faq.q2":"API anahtarı veya OpenAI hesabı gerekir mi?","faq.a2":"Hayır. Bulut araçlarının aksine, CaptionLab Whisper modelini bilgisayarında yerel olarak çalıştırır. Deepgram yok, Groq yok, OpenAI kredisi yok. Kaydolacak hiçbir şey yok.","faq.q3":"Görüntülerim bir yere yükleniyor mu?","faq.a3":"Asla. Sesin her baytı kendi makinende işlenir. NDA'lı müşteri işi için mükemmel.","faq.q4":"Hangi Premiere Pro sürümleri destekleniyor?","faq.a4":"Premiere Pro 2023–2026 (23.x–26.x sürümleri). Apple Silicon (M1–M4) ve Intel Mac'lerde, ayrıca Windows 10/11'de çalışır.","faq.q5":"Windows sürümü var mı?","faq.a5":"Evet! CaptionLab, Mac'te olduğu gibi Windows 10/11'de de çalışır — aynı özellikler, aynı tek seferlik fiyat. Windows'ta varsa NVIDIA GPU'nu otomatik kullanır (aşağıdaki hız karşılaştırmasına bak), yoksa CPU'da çalışır.","faq.q6":"Hangi diller destekleniyor?","faq.a6":"Whisper'ın desteklediği 99 dilin tümü — Ukraynaca, Lehçe, Türkçe, Endonezce, Vietnamca, Arapça, Tayca, Rumence, Çekçe, Slovakça, Macarca, Yunanca, İbranice, Farsça, Urduca ve düzinelerce dil dahil.","faq.q8":"(Yalnızca Windows) Ne kadar hızlı, belirli bir GPU gerekiyor mu?","faq.a8":"Windows'ta CaptionLab, varsa NVIDIA GPU'nu otomatik olarak kullanır — GPU olmadan da çalışır, sadece daha yavaş. Bu tablo yalnızca Windows içindir (Mac'te CaptionLab, ayrı olarak hızlı olan Apple Silicon Neural Engine'ini kullanır). Yaklaşık hız — dakikada işlenen ses dakikası:<br>• GPU yok (yalnızca CPU): ~0.5–1x<br>• GTX 1660 Super: ~2–2.5x<br>• RTX 2060 / 3050: ~3.5–4x<br>• RTX 2070 Super <i>(ölçülen)</i>: ~4.7–4.9x<br>• RTX 3060: ~4–4.5x<br>• RTX 3060 Ti / 3070: ~6–7x<br>• RTX 3080: ~9–10x<br>• RTX 3090 / 4070: ~10–11x<br>• RTX 4080: ~13–14x<br>• RTX 4090: ~18–20x<br><span style=\"color:var(--mid);font-size:12.5px\">Tahmini değerler, her kart üzerinde test edilmemiştir — dizüstü GPU'lar genellikle yukarıdaki masaüstü değerinin ~%70–80'i kadar performans gösterir.</span>",
       "fin.h2":"Altyazı yazmayı bırak.<br><span style='color:var(--cyan)'>Projeleri daha hızlı teslim et.</span>","fin.p":"Bir kez al. Sonsuza dek kullan.","fin.cta":"CaptionLab'i al →","fin.t1":"🛡 14 gün iade","fin.t2":"🔒 Güvenli ödeme","fin.t3":"⚡ Anında indirme",
       "ft.tag":"OpenAI Whisper ile · Premiere Pro için · Kurgucular tarafından, kurgucular için","ft.terms":"Kullanım Şartları","ft.privacy":"Gizlilik Politikası","ft.refund":"İade Politikası","ft.contact":"İletişim","lg.toggle":"Yasal &amp; Politikalar <i class='legal-toggle-icon'>↓</i>","stk.note":"tek sefer · aboneliksiz","stk.cta":"Eklentiyi al →"
     },
     ar:{
       "nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
-      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة",
+      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة","launch.win":"🪟 <b>جديد:</b> متاح الآن على Windows أيضًا!",
       "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
-      "hero.h1":"ترجمة تلقائية في Premiere Pro —<br>أخيرًا <b>بلغتك</b>.",
-      "hero.sub":"يدعم Adobe <span class='strike'>16 لغة</span>. أما CaptionLab فيدعم <b>99</b> لغة: البولندية والتركية والأوكرانية والعربية والإندونيسية وعشرات غيرها لم تهتم بها Adobe. <b>يُثبَّت كلوحة داخل Premiere مباشرة — ليس تطبيق ويب، ولا اشتراك، ولا مفاتيح API.</b>",
+      "hero.h1":"ترجمة تلقائية في Premiere&nbsp;Pro —<br>أخيرًا <b>بلغتك</b>",
+      "hero.sub":"إضافة أصلية تعيش مباشرة داخل Premiere Pro. تعمل <b>دون إنترنت بنسبة 100%</b> على جهاز <b>Mac</b> أو <b>Win</b> الخاص بك: لقطاتك لا تغادر جهازك أبدًا، بلا سحابة، <b>بلا مفاتيح API</b>، بلا إنترنت، <b>بلا اشتراك</b>. كما أنها تتحدث <b>99 لغة</b>، بما فيها تلك التي نسيتها Adobe.",
       "hero.cta1":"احصل على CaptionLab ←","hero.cta2":"شاهد كيف يعمل",
       "hero.watch1":"شاهد العرض","hero.watch2":"عرض حقيقي + شرح مصغّر",
-      "hero.m1":"<span class='ck'>✓</span> دفعة واحدة","hero.m2":"<span class='ck'>✓</span> يعمل دون إنترنت للأبد","hero.m3":"<span class='ck'>✓</span> لقطاتك لا تغادر جهاز Mac",
+      "hero.m1":"<span class='ck'>✓</span> دفعة واحدة","hero.m2":"<span class='ck'>✓</span> يعمل دون إنترنت للأبد","hero.m3":"<span class='ck'>✓</span> لقطاتك لا تغادر جهازك",
       "hero.scroll":"مرّر · 99 لغة بانتظارك",
       "big.label":"لغة","big.sub":"كل لغة يدعمها OpenAI Whisper. ليس 16. ولا 27. تسعٌ وتسعون.",
       "langs.h2":"اللغات التي نسيتها Adobe. <span style='color:var(--cyan)'>نحن لم ننسَها.</span>","langs.sub":"اختر لغتك. أو واحدة من 90 لغة أخرى. CaptionLab يتحدثها جميعًا.",
@@ -1791,14 +1845,14 @@ function toggleLegal(scroll) {
       "cmp.ctatext":"لهذا السبب CaptionLab <b>$39 مرة واحدة</b> — وليس 15$ شهريًا للأبد.","cmp.ctalink":"شاهد السعر ←","cmp.guarantee":"<span>🛡</span> ضمان استرداد المال خلال 14 يومًا",
       "fnd.eyebrow":"كلمة من صانع الأداة","fnd.p1":"أنا محرّر فيديو. مثلك تمامًا.","fnd.p2":"لسنوات شاهدت Adobe تطلق تحويل الكلام إلى نص بالإنجليزية، ثم الإسبانية، ثم الفرنسية — ثم <span class='hl'>تتوقف</span> ببساطة. مشاريعي الأوكرانية؟ البولندية؟ التركية؟ «غير مدعومة». فكتبت كل ترجمة يدويًا. ساعات وساعات، في كل مشروع.",
       "fnd.p3":"ثم جرّبت الأدوات السحابية. عملت — لكنها أرادت لقطاتي على خوادمها، وبطاقتي محفوظة، و15$ كل شهر للأبد. لعمل عميل تحت اتفاقية سرية؟ <span class='hl'>مستحيل.</span>",
-      "fnd.p4":"فصنعت CaptionLab. الإضافة التي تمنيت وجودها. <span class='hl'>محلية. سريعة. 99 لغة.</span> سعر واحد. <span class='hl-nosub'>بلا اشتراك.</span> لقطاتك تبقى حيث يجب — على جهاز Mac الخاص بك.",
+      "fnd.p4":"فصنعت CaptionLab. الإضافة التي تمنيت وجودها. <span class='hl'>محلية. سريعة. 99 لغة.</span> سعر واحد. <span class='hl-nosub'>بلا اشتراك.</span> لقطاتك تبقى حيث يجب — على جهازك الخاص.",
       "fnd.p5":"إن بدا هذا شيئًا تحتاجه أنت أيضًا — جرّبه. استرداد خلال 14 يومًا إن لم يناسبك. بلا زعل.","fnd.role":"محرّر · مؤسس Edit Lab Tools",
-      "mf.q1":"// هل هو فعلًا دون إنترنت؟","mf.a1":"نعم. بعد الإعداد لمرة واحدة، <b>لا حاجة للإنترنت</b>. صوتك لا يغادر جهاز Mac أبدًا.","mf.q2":"// هل سيعمل على جهازي Mac؟","mf.a2":"يعمل على <b>أي Mac بنظام macOS 11+</b> — Apple Silicon (M1–M4) و Intel.","mf.q3":"// وماذا لو لم يعجبني؟","mf.a3":"راسلنا خلال 14 يومًا لـ<b>استرداد كامل</b>. بلا أسئلة، بلا تعقيد.",
+      "mf.q1":"// هل هو فعلًا دون إنترنت؟","mf.a1":"نعم. بعد الإعداد لمرة واحدة، <b>لا حاجة للإنترنت</b>. صوتك لا يغادر جهازك أبدًا.","mf.q2":"// هل سيعمل على جهازي؟","mf.a2":"يعمل على <b>أي Mac بنظام macOS 11+</b> (Apple Silicon أو Intel) <b>أو على Windows 10/11</b> — مع تسريع اختياري عبر بطاقة NVIDIA على Windows.","mf.q3":"// وماذا لو لم يعجبني؟","mf.a3":"راسلنا خلال 14 يومًا لـ<b>استرداد كامل</b>.",
       "pr.eyebrow":"تسعير بسيط","pr.h2":"سعر واحد. <span class='hl'>لك للأبد.</span>","pr.lead":"بلا فئات. بلا عروض إضافية. بلا مفاجآت.","pr.flag":"الإطلاق","pr.once":"// مرة واحدة · ترخيص دائم",
-      "pr.l1":"<span class='ck'>✓</span> إضافة CaptionLab لـ Premiere Pro (Mac)","pr.l2":"<span class='ck'>✓</span> كل لغات Whisper الـ99","pr.l3":"<span class='ck'>✓</span> 100% دون إنترنت — بلا مفاتيح API، بلا سحابة","pr.l4":"<span class='ck'>✓</span> تفريغ غير محدود — بلا رسوم بالدقيقة وبلا حدود","pr.l5":"<span class='ck'>✓</span> ترجمة أي لغة → إلى الإنجليزية","pr.l6":"<span class='ck'>✓</span> تحديثات مجانية لهذه النسخة","pr.l7":"<span class='ck'>✓</span> دعم Apple Silicon + Intel",
-      "pr.trialbadge":"تجربة 14 يومًا","pr.gh":"جرّبه بلا مخاطرة، بلا أسئلة","pr.gt":"لم يناسبك؟ استرداد كامل خلال 14 يومًا.","pr.cta":"احصل على CaptionLab ←","pr.t1":"<span class='tk'>🔒</span> دفع آمن","pr.t2":"<span class='tk'>⚡</span> تنزيل فوري","pr.t3":"<span class='tk'>💳</span> Paddle · شامل الضريبة","pr.foot":"Premiere Pro 2022–2026 · macOS · Windows قريبًا",
-      "pc.eyebrow":"قبل الدفع","pc.h3":"إليك ما سيحدث بعد ذلك","pc.s1":"ستُدخل <b>بريدك الإلكتروني</b> في الشاشة التالية — دفع آمن عبر Paddle، مشفّر، ولا نحتفظ بشيء.","pc.s2":"تحقق من بريدك — <b>رابط التنزيل</b> و<b>تعليمات التثبيت</b> ستصلان فور الدفع.","pc.s3":"افتح الإضافة في Premiere و<b>فعّلها</b> بنفس <b>البريد الإلكتروني ومفتاح الترخيص</b> من تلك الرسالة.","pc.trialbadge":"تجربة 14 يومًا","pc.trial":"لست متأكدًا بعد؟ جرّبه على مشروع حقيقي. لم يناسبك؟ <b>استرداد كامل</b>، بلا أسئلة.","pc.cta":"المتابعة إلى الدفع الآمن ←","pc.cancel":"ليس الآن",
-      "faq.eyebrow":"أسئلة","faq.h2":"قبل أن تسأل","faq.q0":"كيف أثبّته؟","faq.a0":"خطوتان فقط. أولًا، ثبّت تطبيق ZXP Installer المجاني (تخطَّ هذه الخطوة إذا كان لديك بالفعل)، ثم اسحب ملف CaptionLab بصيغة .zxp إليه — يتم التثبيت تلقائيًا دون الحاجة إلى الطرفية (Terminal). ثم، عند فتحها لأول مرة داخل Premiere، اضغط «Install AI Engine» — ستقوم الإضافة تلقائيًا بتنزيل محرك الذكاء الاصطناعي الذي تعمل عليه (Python وffmpeg ونموذج Whisper، نحو 3 غيغابايت إجمالًا، 15–20 دقيقة حسب سرعة اتصالك). بعد هذا الإعداد لمرة واحدة، يعمل كل شيء دون إنترنت، للأبد.","faq.q1":"هل أحتاج اتصالًا بالإنترنت؟","faq.a1":"مرة واحدة فقط — للإعداد الأول (Python وffmpeg ونموذج Whisper، نحو 3 غيغابايت إجمالًا). بعدها يعمل CaptionLab 100% دون إنترنت. لا إنترنت، لا خوادم، لا شيء.","faq.q2":"هل أحتاج مفتاح API أو حساب OpenAI؟","faq.a2":"لا. على عكس الأدوات السحابية، يشغّل CaptionLab نموذج Whisper محليًا على جهازك. لا Deepgram، لا Groq، لا رصيد OpenAI. لا شيء للتسجيل فيه.","faq.q3":"هل تُرفع لقطاتي إلى أي مكان؟","faq.a3":"أبدًا. تُعالَج كل بايت من الصوت على جهازك. مثالي لعمل العملاء تحت اتفاقية سرية.","faq.q4":"ما إصدارات Premiere Pro المدعومة؟","faq.a4":"Premiere Pro من 2023 إلى 2026 (الإصدارات 23.x–26.x). يعمل على Apple Silicon (M1–M4) وأجهزة Intel Mac.","faq.q5":"هل توجد نسخة Windows؟","faq.a5":"قيد التطوير النشط. حاليًا CaptionLab لـ Mac فقط. انضم إلى القائمة لتكون أول من يعلم عند إطلاق Windows.","faq.q6":"ما اللغات المدعومة؟","faq.a6":"كل اللغات الـ99 التي يدعمها Whisper — منها الأوكرانية والبولندية والتركية والإندونيسية والفيتنامية والعربية والتايلاندية والرومانية والتشيكية والسلوفاكية والمجرية واليونانية والعبرية والفارسية والأردية وعشرات غيرها.",
+      "pr.l1":"<span class='ck'>✓</span> إضافة CaptionLab لـ Premiere Pro (Mac و Windows)","pr.l2":"<span class='ck'>✓</span> كل لغات Whisper الـ99","pr.l3":"<span class='ck'>✓</span> 100% دون إنترنت — بلا مفاتيح API، بلا سحابة","pr.l4":"<span class='ck'>✓</span> تفريغ غير محدود — بلا رسوم بالدقيقة وبلا حدود","pr.l5":"<span class='ck'>✓</span> ترجمة أي لغة → إلى الإنجليزية","pr.l6":"<span class='ck'>✓</span> تحديثات مجانية لهذه النسخة","pr.l7":"<span class='ck'>✓</span> دعم Apple Silicon + Intel + Windows (بطاقة NVIDIA)",
+      "pr.trialbadge":"تجربة 14 يومًا","pr.gh":"جرّبه بلا مخاطرة","pr.gt":"لم يناسبك؟ استرداد كامل خلال 14 يومًا.","pr.cta":"احصل على CaptionLab ←","pr.t1":"<span class='tk'>🔒</span> دفع آمن","pr.t2":"<span class='tk'>⚡</span> تنزيل فوري","pr.t3":"<span class='tk'>💳</span> Paddle · شامل الضريبة","pr.foot":"Premiere Pro 2022–2026 · macOS و Windows",
+      "pc.eyebrow":"قبل الدفع","pc.h3":"إليك ما سيحدث بعد ذلك","pc.s1":"ستُدخل <b>بريدك الإلكتروني</b> في الشاشة التالية — دفع آمن عبر Paddle، مشفّر، ولا نحتفظ بشيء.","pc.s2":"تحقق من بريدك — <b>رابط التنزيل</b> و<b>تعليمات التثبيت</b> ستصلان فور الدفع.","pc.s3":"افتح الإضافة في Premiere و<b>فعّلها</b> بنفس <b>البريد الإلكتروني ومفتاح الترخيص</b> من تلك الرسالة.","pc.trialbadge":"تجربة 14 يومًا","pc.trial":"لست متأكدًا بعد؟ جرّبه على مشروع حقيقي. لم يناسبك؟ <b>استرداد كامل</b>.","pc.cta":"المتابعة إلى الدفع الآمن ←","pc.cancel":"ليس الآن",
+      "faq.eyebrow":"أسئلة","faq.h2":"قبل أن تسأل","faq.q0":"كيف أثبّته؟","faq.a0":"خطوتان فقط. أولًا، ثبّت تطبيق ZXP Installer المجاني (تخطَّ هذه الخطوة إذا كان لديك بالفعل)، ثم اسحب ملف CaptionLab بصيغة .zxp إليه — يتم التثبيت تلقائيًا دون الحاجة إلى الطرفية (Terminal). ثم، عند فتحها لأول مرة داخل Premiere، اضغط «Install AI Engine» — ستقوم الإضافة تلقائيًا بتنزيل محرك الذكاء الاصطناعي الذي تعمل عليه (Python وffmpeg ونموذج Whisper، نحو 3 غيغابايت إجمالًا، 15–20 دقيقة حسب سرعة اتصالك). بعد هذا الإعداد لمرة واحدة، يعمل كل شيء دون إنترنت، للأبد.","faq.q1":"هل أحتاج اتصالًا بالإنترنت؟","faq.a1":"مرة واحدة فقط — للإعداد الأول (Python وffmpeg ونموذج Whisper، نحو 3 غيغابايت إجمالًا). بعدها يعمل CaptionLab 100% دون إنترنت. لا إنترنت، لا خوادم، لا شيء.","faq.q2":"هل أحتاج مفتاح API أو حساب OpenAI؟","faq.a2":"لا. على عكس الأدوات السحابية، يشغّل CaptionLab نموذج Whisper محليًا على جهازك. لا Deepgram، لا Groq، لا رصيد OpenAI. لا شيء للتسجيل فيه.","faq.q3":"هل تُرفع لقطاتي إلى أي مكان؟","faq.a3":"أبدًا. تُعالَج كل بايت من الصوت على جهازك. مثالي لعمل العملاء تحت اتفاقية سرية.","faq.q4":"ما إصدارات Premiere Pro المدعومة؟","faq.a4":"Premiere Pro من 2023 إلى 2026 (الإصدارات 23.x–26.x). يعمل على Apple Silicon (M1–M4) وأجهزة Intel Mac، وكذلك على Windows 10/11.","faq.q5":"هل توجد نسخة Windows؟","faq.a5":"نعم! يعمل CaptionLab على Windows 10/11 تمامًا كما على Mac — نفس الميزات، نفس السعر لمرة واحدة. على Windows، يستخدم بطاقة NVIDIA تلقائيًا إن وجدت (انظر مقارنة السرعة أدناه)، وإلا فيعمل على المعالج.","faq.q6":"ما اللغات المدعومة؟","faq.a6":"كل اللغات الـ99 التي يدعمها Whisper — منها الأوكرانية والبولندية والتركية والإندونيسية والفيتنامية والعربية والتايلاندية والرومانية والتشيكية والسلوفاكية والمجرية واليونانية والعبرية والفارسية والأردية وعشرات غيرها.","faq.q8":"(لـ Windows فقط) ما مدى سرعته، وهل أحتاج بطاقة رسومية معينة؟","faq.a8":"على Windows، يستخدم CaptionLab بطاقة NVIDIA تلقائيًا إن وجدت — يعمل أيضًا بدون بطاقة رسومية، لكن أبطأ. هذا الجدول خاص بـ Windows فقط (على Mac، يستخدم CaptionLab محرك Neural Engine الخاص بشريحة Apple Silicon، وهو سريع بشكل منفصل). سرعة تقريبية — دقائق الصوت المُفرَّغة لكل دقيقة معالجة:<br>• بدون GPU (المعالج فقط): ~0.5–1x<br>• GTX 1660 Super: ~2–2.5x<br>• RTX 2060 / 3050: ~3.5–4x<br>• RTX 2070 Super <i>(تم قياسه)</i>: ~4.7–4.9x<br>• RTX 3060: ~4–4.5x<br>• RTX 3060 Ti / 3070: ~6–7x<br>• RTX 3080: ~9–10x<br>• RTX 3090 / 4070: ~10–11x<br>• RTX 4080: ~13–14x<br>• RTX 4090: ~18–20x<br><span style=\"color:var(--mid);font-size:12.5px\">أرقام تقديرية غير مُختبرة على كل بطاقة — عادةً ما تقدّم بطاقات اللابتوب حوالي 70–80% من رقم سطح المكتب أعلاه.</span>",
       "fin.h2":"توقّف عن كتابة الترجمة.<br><span style='color:var(--cyan)'>سلّم مشاريعك أسرع.</span>","fin.p":"اشترِ مرة واحدة. استخدمه للأبد.","fin.cta":"احصل على CaptionLab ←","fin.t1":"🛡 استرداد خلال 14 يومًا","fin.t2":"🔒 دفع آمن","fin.t3":"⚡ تنزيل فوري",
       "ft.tag":"مدعوم بـ OpenAI Whisper · مصمَّم لـ Premiere Pro · صُنع بأيدي محررين، للمحررين","ft.terms":"شروط الخدمة","ft.privacy":"سياسة الخصوصية","ft.refund":"سياسة الاسترداد","ft.contact":"تواصل","lg.toggle":"الشؤون القانونية والسياسات <i class='legal-toggle-icon'>↓</i>","stk.note":"مرة واحدة · بلا اشتراك","stk.cta":"احصل على الإضافة ←"
     }
