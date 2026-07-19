@@ -143,6 +143,42 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .price-cta-icons .icon-windows{transform:translateY(2.5px)}
 @media(max-width:820px){.nav-menu{display:none}}
 
+/* ── MOBILE NAV (hamburger) ── */
+.nav-burger{
+  display:none;width:36px;height:36px;border-radius:8px;background:var(--card);border:1px solid var(--border);
+  align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;gap:4px;flex-direction:column;
+}
+.nav-burger span{display:block;width:16px;height:2px;background:var(--white);border-radius:2px;transition:.2s}
+.nav-burger.open span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+@media(max-width:820px){.nav-burger{display:flex}}
+
+.mobile-menu{
+  position:fixed;top:64px;left:0;right:0;z-index:101;background:var(--bg);border-bottom:1px solid var(--border);
+  max-height:0;overflow:hidden;transition:max-height .25s ease;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+.mobile-menu.open{max-height:480px}
+.mobile-menu-inner{padding:8px 24px 20px;display:flex;flex-direction:column}
+.mobile-menu-inner a{color:var(--mid);text-decoration:none;font-size:15px;font-weight:600;padding:13px 0;border-bottom:1px solid var(--border)}
+.mobile-menu-inner a:last-child{border-bottom:none}
+.mobile-menu-inner a:hover{color:var(--white)}
+
+/* keep the top bar from overflowing on narrow phones - demo button moves into
+   the mobile menu instead of living in the cramped top bar. Overrides for
+   .nav-yt/.nav-right live further down (after their base rules in the
+   LANGUAGE SWITCHER section) since equal-specificity rules declared later in
+   the source win regardless of the earlier one being inside a media query. */
+@media(max-width:820px){
+  .nav-cta{padding:9px 12px}
+  .nav-cta-icons svg{width:16px;height:16px}
+  .nav-cta span:not(.nav-cta-icons){display:none}
+}
+@media(max-width:340px){
+  .lang-btn span:not(.lang-caret){display:none}
+}
+
 /* ── HERO ── */
 .hero{position:relative;padding:160px 0 90px;overflow:hidden}
 .hero-glow{position:absolute;top:-10%;right:-5%;width:600px;height:600px;
@@ -228,6 +264,18 @@ h2 .hl{color:var(--cyan)}
 .pain-card h3{font-size:19px;margin-bottom:10px;font-weight:600}
 .pain-card p{color:var(--mid);font-size:15px}
 .pain-card .old{color:var(--red);font-size:13px;font-weight:600;margin-top:14px;font-family:'JetBrains Mono',monospace}
+/* Mobile overrides must come AFTER the plain rules above - equal-specificity
+   rules declared later in the source win regardless of one being inside a
+   media query, so a plain rule appearing after a media-query rule of the
+   same specificity would otherwise silently overrule it. */
+@media(max-width:640px){
+  .pain-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .pain-card{padding:12px}
+  .pain-icon{font-size:20px;margin-bottom:6px}
+  .pain-card h3{font-size:12.5px;margin-bottom:4px;line-height:1.2}
+  .pain-card p{font-size:11px;line-height:1.3}
+  .pain-card .old{font-size:10px;margin-top:6px}
+}
 
 /* ── SOLUTION / STEPS ── */
 .steps{display:flex;flex-direction:column;gap:70px;margin-top:36px}
@@ -297,6 +345,13 @@ h2 .hl{color:var(--cyan)}
 .price-cta-icons svg{width:26px;height:26px;display:block}
 .price-cta-icons .icon-sep{width:1px;height:16px;background:currentColor;opacity:0.35;transform:translateY(1px)}
 .price-cta:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,224,255,0.6),0 0 0 10px rgba(0,224,255,0.12);animation:none}
+/* On narrow phones "Get CaptionLab now →" + both platform icons in one row
+   wrap unevenly (icons end up floating mid-line). Stack text above icons
+   instead so it's always centered and tidy. */
+@media(max-width:420px){
+  .price-cta{flex-direction:column;gap:10px;padding:18px 16px;font-size:17px}
+  .price-cta-icons svg{width:22px;height:22px}
+}
 @keyframes ctaPulseBig{
   0%,100%{box-shadow:0 12px 40px rgba(0,224,255,0.4),0 0 0 0 rgba(0,224,255,0.55)}
   50%{box-shadow:0 12px 40px rgba(0,224,255,0.4),0 0 0 16px rgba(0,224,255,0)}
@@ -561,6 +616,16 @@ footer .mono{color:var(--mid)}
 .langs-more b{color:var(--cyan)}
 .langs-hidden{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease;opacity:0}
 .langs-hidden.open{max-height:2000px;opacity:1}
+/* On mobile the always-visible 36-chip grid alone is a very long scroll before
+   you even reach "Show all" - collapse it to ~3 rows with a fade-out, and
+   expand together with langsHidden when the same toggle button is pressed. */
+@media(max-width:640px){
+  .langs-primary{position:relative;max-height:270px;overflow:hidden;transition:max-height .5s ease}
+  .langs-primary::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;
+    background:linear-gradient(transparent,var(--bg));pointer-events:none}
+  .langs-primary.open{max-height:3000px}
+  .langs-primary.open::after{display:none}
+}
 #toggleLangs{padding:11px 22px;border-radius:9px;font-size:14px;font-weight:600;color:var(--mid);transition:.2s}
 #toggleLangs:hover{color:var(--cyan);border-color:var(--cyan)}
 
@@ -579,6 +644,11 @@ footer .mono{color:var(--mid)}
 .seo-sec-head{text-align:center;margin-bottom:36px}
 .seo-sec-head h3{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.01em;margin-bottom:8px}
 .seo-sec-head p{color:var(--mid);font-size:14px;max-width:520px;margin:0 auto}
+/* Pure SEO content (translated headline per language, for search indexing) -
+   not useful to scroll through on a phone. Hidden visually only; content
+   stays in the DOM and gets crawled/indexed normally (this is Google's own
+   documented pattern for responsive "hide on mobile" content). */
+@media(max-width:760px){.seo-sec{display:none}}
 
 /* ── INLINE CTA between sections ── */
 .inline-cta{text-align:center;padding:46px 0 6px;position:relative}
@@ -604,6 +674,11 @@ footer .mono{color:var(--mid)}
 }
 .scroll-hint::after{content:"";display:block;width:1px;height:24px;background:var(--cyan);margin:8px auto 0;opacity:.6}
 @keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,4px)}}
+/* Absolutely-positioned at the bottom of .hero - on mobile the stacked
+   hero-grid can be shorter than the mockup panel, so this floats right on
+   top of the typed-subtitle line (worse with RTL scripts). Mobile users
+   scroll naturally anyway, so just drop the hint there. */
+@media(max-width:760px){.scroll-hint{display:none}}
 
 /* ── WATCH DEMO trigger + lightbox ── */
 .watch-demo{
@@ -708,6 +783,7 @@ footer .mono{color:var(--mid)}
   display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .2s,box-shadow .2s;
 }
 .nav-yt:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,0,0,0.4)}
+@media(max-width:820px){.nav-yt{display:none}.nav-right{gap:10px}}
 .lang-switch{position:relative}
 .lang-btn{background:var(--card);border:1px solid var(--border);color:var(--white);font-family:inherit;font-size:13px;padding:7px 11px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1}
 .lang-btn:hover{border-color:var(--cyan)}
@@ -773,9 +849,24 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
           <svg class="icon-windows" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5 10.5 2.4v8.1H3V3.5zM11.5 2.25 21 1v9.5H11.5V2.25zM3 11.5h7.5v8.1L3 18.5v-7zM11.5 11.5H21V21l-9.5-1.25V11.5z"/></svg>
         </span>
       </a>
+      <button class="nav-burger" id="navBurger" aria-label="Menu" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <a href="#hero" onclick="toggleMobileMenu(false);openVideoLightbox();return false" data-i18n="nav.watchdemo">▶ Watch demo</a>
+    <a href="#reviews" data-i18n="nav.reviews" onclick="toggleMobileMenu(false)">Reviews</a>
+    <a href="#languages" data-i18n="nav.languages" onclick="toggleMobileMenu(false)">Languages</a>
+    <a href="#how" data-i18n="nav.how" onclick="toggleMobileMenu(false)">How it works</a>
+    <a href="#pricing" data-i18n="nav.pricing" onclick="toggleMobileMenu(false)">Pricing</a>
+    <a href="#faq" data-i18n="nav.faq" onclick="toggleMobileMenu(false)">FAQ</a>
+    <a href="#changelog" data-i18n="nav.whatsnew" onclick="toggleMobileMenu(false)">What's new</a>
+  </div>
+</div>
 
 <!-- SIDE DOT NAV (desktop) -->
 <div class="side-nav" id="sideNav">
@@ -937,7 +1028,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   .cl-rv2-feat-role{font-size:12.5px;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-top:5px}
   .cl-rv2-cols{column-count:3;column-gap:24px}
   @media(max-width:860px){.cl-rv2-cols{column-count:2}}
-  @media(max-width:560px){.cl-rv2-cols{column-count:1}}
   .cl-rv2-card{break-inside:avoid;background:var(--card);border:1px solid var(--border);border-radius:14px;
     padding:22px 24px;margin-bottom:24px;display:inline-block;width:100%}
   .cl-rv2-tag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:0.06em;
@@ -952,6 +1042,26 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   .cl-rv2-who{display:flex;align-items:center;gap:10px}
   .cl-rv2-who .cl-rv2-av{width:32px;height:32px;font-size:13px}
   .cl-rv2-who-name{font-weight:700;font-size:13px;color:var(--white)}
+  /* Mobile overrides LAST - equal-specificity rules declared later in the
+     source win regardless of one being inside a media query, so these must
+     come after every plain .cl-rv2-* rule above or they'd get overruled. */
+  @media(max-width:560px){
+    .cl-rv2-cols{column-count:2;column-gap:8px}
+    .cl-rv2-card{padding:10px 10px;margin-bottom:8px;border-radius:10px}
+    .cl-rv2-tag{font-size:8px;padding:2px 6px;margin-bottom:6px}
+    .cl-rv2-stars{font-size:9px;margin-bottom:4px}
+    .cl-rv2-txt{font-size:10px;line-height:1.35;margin-bottom:8px}
+    .cl-rv2-who{gap:6px}
+    .cl-rv2-who .cl-rv2-av{width:18px;height:18px;font-size:9px}
+    .cl-rv2-who-name{font-size:9.5px}
+    .cl-rv2-feat{padding:20px 16px}
+    .cl-rv2-feat-text{font-size:14px;margin-bottom:14px}
+    .cl-rv2-feat-mark{font-size:90px;top:-4px;right:14px}
+    .cl-rv2-av{width:32px;height:32px;font-size:13px}
+    .cl-rv2-feat-name{font-size:13px}
+    .cl-rv2-feat-role{font-size:10.5px}
+    .cl-rv2-agg{font-size:11px;margin-bottom:32px}
+  }
 </style>
 <section class="cl-rv2-sec" id="reviews">
   <div class="cl-rv2-wrap">
@@ -1030,7 +1140,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </section>
 
 <!-- 99 -->
-<section class="bignum-sec">
+<section class="bignum-sec" id="bignum-sec">
   <div class="wrap">
     <div class="bignum reveal">99</div>
     <div class="bignum-label reveal" data-i18n="big.label">Languages</div>
@@ -1051,6 +1161,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <h2 data-i18n="langs.h2">The languages Adobe forgot. <span style="color:var(--cyan)">We didn't.</span></h2>
       <p data-i18n="langs.sub">Pick yours. Or one of 90 more. CaptionLab speaks them all.</p>
     </div>
+    <div class="langs-primary" id="langsPrimary">
     <div class="langs-grid reveal">
       <div class="lang-chip"><span class="flag">🇺🇦</span><span class="name">Українська</span><span class="en">Ukrainian</span></div>
       <div class="lang-chip"><span class="flag">🇵🇱</span><span class="name">Polski</span><span class="en">Polish</span></div>
@@ -1088,6 +1199,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <div class="lang-chip"><span class="flag">🇮🇹</span><span class="name">Italiano</span><span class="en">Italian</span></div>
       <div class="lang-chip"><span class="flag">🇵🇹</span><span class="name">Português</span><span class="en">Portuguese</span></div>
       <div class="lang-chip"><span class="flag">🇺🇿</span><span class="name">Oʻzbekcha</span><span class="en">Uzbek</span></div>
+    </div>
     </div>
     <div class="langs-hidden" id="langsHidden">
       <div class="langs-grid" style="margin-top:8px">
@@ -1179,7 +1291,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </section>
 
 <!-- PAIN -->
-<section class="section">
+<section class="section" id="pain-sec">
   <div class="wrap">
     <div class="eyebrow reveal" data-i18n="pain.eyebrow">Sound familiar?</div>
     <h2 class="reveal" data-i18n="pain.h2">You know the pain.<br><span class="hl">We built the cure.</span></h2>
@@ -1734,13 +1846,18 @@ function toggleLegal(scroll) {
 (function(){
   const btn=document.getElementById('toggleLangs');
   const hidden=document.getElementById('langsHidden');
+  const primary=document.getElementById('langsPrimary');
   if(!btn||!hidden)return;
   function label(){
     const open=hidden.classList.contains('open');
     const t=window.__t||function(k,f){return f;};
     btn.textContent=open?t('langs.showless','Show fewer ↑'):t('langs.showall','Show all 99 languages ↓');
   }
-  btn.addEventListener('click',()=>{ hidden.classList.toggle('open'); label(); });
+  btn.addEventListener('click',()=>{
+    hidden.classList.toggle('open');
+    if(primary) primary.classList.toggle('open');
+    label();
+  });
   document.addEventListener('langapplied',label);
   label();
 })();
@@ -1915,7 +2032,7 @@ function toggleLegal(scroll) {
 (function(){
   var DICT = {
     uk:{
-      "nav.reviews":"Відгуки","nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.whatsnew":"Що нового","nav.faq":"Питання","nav.cta":"Отримати плагін",
+      "nav.watchdemo":"▶ Дивитись демо","nav.reviews":"Відгуки","nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.whatsnew":"Що нового","nav.faq":"Питання","nav.cta":"Отримати плагін",
       "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово","launch.win":"🪟 <b>НОВИНКА:</b> тепер доступно і для Windows!",
       "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
       "hero.h1":"Автоматичні субтитри в Premiere&nbsp;Pro.<br>Нарешті <b>твоєю мовою</b>",
@@ -1957,7 +2074,7 @@ function toggleLegal(scroll) {
       "cl.eyebrow":"Оновлення","cl.h2":"Що нового","cl.badge.new":"З'явився Windows","cl.badge.initial":"Перший реліз","cl.footer":"Питання про конкретний реліз?"
     },
     pl:{
-      "nav.reviews":"Opinie","nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.whatsnew":"Co nowego","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
+      "nav.watchdemo":"▶ Zobacz demo","nav.reviews":"Opinie","nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.whatsnew":"Co nowego","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
       "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo","launch.win":"🪟 <b>NOWOŚĆ:</b> teraz dostępne również na Windows!",
       "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
       "hero.h1":"Automatyczne napisy w Premiere&nbsp;Pro —<br>wreszcie <b>w Twoim języku</b>",
@@ -1999,7 +2116,7 @@ function toggleLegal(scroll) {
       "cl.eyebrow":"Zmiany","cl.h2":"Co nowego","cl.badge.new":"Windows już dostępny","cl.badge.initial":"Pierwsze wydanie","cl.footer":"Pytania o konkretne wydanie?"
     },
     tr:{
-      "nav.reviews":"Yorumlar","nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.whatsnew":"Yenilikler","nav.faq":"SSS","nav.cta":"Eklentiyi al",
+      "nav.watchdemo":"▶ Demoyu izle","nav.reviews":"Yorumlar","nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.whatsnew":"Yenilikler","nav.faq":"SSS","nav.cta":"Eklentiyi al",
       "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik","launch.win":"🪟 <b>YENİ:</b> Artık Windows'ta da mevcut!",
       "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
       "hero.h1":"Premiere&nbsp;Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>",
@@ -2041,7 +2158,7 @@ function toggleLegal(scroll) {
       "cl.eyebrow":"Değişiklik günlüğü","cl.h2":"Yenilikler","cl.badge.new":"Windows burada","cl.badge.initial":"İlk sürüm","cl.footer":"Belirli bir sürüm hakkında sorunuz mu var?"
     },
     ar:{
-      "nav.reviews":"التقييمات","nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.whatsnew":"الجديد","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
+      "nav.watchdemo":"▶ شاهد العرض","nav.reviews":"التقييمات","nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.whatsnew":"الجديد","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
       "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة","launch.win":"🪟 <b>جديد:</b> متاح الآن على Windows أيضًا!",
       "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
       "hero.h1":"ترجمة تلقائية في Premiere&nbsp;Pro —<br>أخيرًا <b>بلغتك</b>",
@@ -2131,6 +2248,51 @@ function toggleLegal(scroll) {
 })();
 </script>
 <script>
+// ── Mobile section reorder: on phones, put "99 languages" + the language
+// grid right after Reviews, then "You know the pain" right after that -
+// instead of Pain/Languages sitting way down past 99-languages/SEO-headlines.
+// Pure DOM relocation (not duplication) so there's no SEO/content-duplication
+// concern, and it fully reverts if the viewport widens back past the phone
+// breakpoint — desktop DOM order is untouched at that width. ───────────────
+(function(){
+  var reviewsSec = document.getElementById('reviews');
+  var bignumSec = document.getElementById('bignum-sec');
+  var langsSec = document.getElementById('languages');
+  var painSec = document.getElementById('pain-sec');
+  if(!reviewsSec || !bignumSec || !langsSec || !painSec) return;
+
+  var bignumPlaceholder = document.createComment('bignum-sec-original-position');
+  bignumSec.parentNode.insertBefore(bignumPlaceholder, bignumSec);
+  var langsPlaceholder = document.createComment('languages-original-position');
+  langsSec.parentNode.insertBefore(langsPlaceholder, langsSec);
+  var painPlaceholder = document.createComment('pain-sec-original-position');
+  painSec.parentNode.insertBefore(painPlaceholder, painSec);
+
+  var mq = window.matchMedia('(max-width:760px)');
+  function apply(e){
+    if(e.matches){
+      reviewsSec.parentNode.insertBefore(bignumSec, reviewsSec.nextSibling);
+      bignumSec.parentNode.insertBefore(langsSec, bignumSec.nextSibling);
+      langsSec.parentNode.insertBefore(painSec, langsSec.nextSibling);
+    } else {
+      bignumPlaceholder.parentNode.insertBefore(bignumSec, bignumPlaceholder);
+      langsPlaceholder.parentNode.insertBefore(langsSec, langsPlaceholder);
+      painPlaceholder.parentNode.insertBefore(painSec, painPlaceholder);
+    }
+  }
+  mq.addEventListener('change', apply);
+  apply(mq);
+})();
+
+// ── Mobile nav (hamburger) ───────────────────────────────────────────────────
+function toggleMobileMenu(force){
+  var burger = document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  var open = typeof force === 'boolean' ? force : !menu.classList.contains('open');
+  menu.classList.toggle('open', open);
+  burger.classList.toggle('open', open);
+}
+
 // ── Video lightbox (hero "Watch it in 60 sec") ──────────────────────────────
 var VIDEO_ID = 'v8j_Ik5C1IA';
 function openVideoLightbox(){
