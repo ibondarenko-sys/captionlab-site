@@ -270,11 +270,11 @@ h2 .hl{color:var(--cyan)}
    same specificity would otherwise silently overrule it. */
 @media(max-width:640px){
   .pain-grid{grid-template-columns:1fr 1fr;gap:8px}
-  .pain-card{padding:12px}
-  .pain-icon{font-size:20px;margin-bottom:6px}
-  .pain-card h3{font-size:12.5px;margin-bottom:4px;line-height:1.2}
-  .pain-card p{font-size:11px;line-height:1.3}
-  .pain-card .old{font-size:10px;margin-top:6px}
+  .pain-card{padding:14px}
+  .pain-icon{font-size:22px;margin-bottom:8px}
+  .pain-card h3{font-size:14.5px;margin-bottom:6px;line-height:1.25}
+  .pain-card p{font-size:13px;line-height:1.4}
+  .pain-card .old{font-size:11.5px;margin-top:8px}
 }
 
 /* ── SOLUTION / STEPS ── */
@@ -426,8 +426,39 @@ footer .mono{color:var(--mid)}
 @media(max-width:600px){
   .hero{padding:120px 0 60px}
   .micro{font-size:12px;gap:12px}
-  .compare{overflow-x:auto}
-  .compare table{min-width:560px}
+}
+/* Comparison table on mobile: a 4-column table just gets cut off / needs an
+   unobvious horizontal swipe. Turn each row into a stacked mini-card instead
+   - each value gets a small label (via data-label, synced from the real <th>
+   text by JS so it stays translated) above it. Standard responsive-table
+   pattern, no data lost, no scrolling needed. */
+@media(max-width:680px){
+  .compare table,.compare tbody,.compare tr,.compare td{display:block;width:100%}
+  .compare thead,.compare tr:first-child{display:none}
+  .compare tr{border-bottom:1px solid var(--border);padding:10px 0}
+  .compare tr:last-child{border-bottom:none}
+  .compare td{border:none;padding:5px 16px 5px 44%;position:relative;font-size:13.5px;min-height:18px}
+  .compare td:first-child{font-weight:700;color:var(--white);padding:8px 16px;font-size:13.5px}
+  .compare td:not(:first-child)::before{
+    content:attr(data-label);position:absolute;left:16px;top:5px;width:40%;
+    color:var(--mid);font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .compare td.us-col{background:rgba(0,224,255,0.06)}
+  .compare .price-us{font-size:15px}
+}
+/* Founder note: full quote at desktop size is a long vertical scroll on
+   mobile - shrink text and tighten spacing, same treatment as the pain/review
+   cards above. */
+@media(max-width:640px){
+  .founder-card{padding:0 6px}
+  .founder-eyebrow{font-size:10.5px;margin-bottom:16px}
+  .founder-quote{font-size:14.5px;line-height:1.5}
+  .founder-quote p{margin-bottom:12px}
+  .founder-sign{gap:12px;margin-top:20px;padding-top:16px}
+  .founder-avatar{width:42px;height:42px}
+  .founder-name{font-size:14px}
+  .founder-role{font-size:12px}
 }
 
 /* ── LAUNCH RIBBON (above hero) ── */
@@ -1046,21 +1077,21 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
      source win regardless of one being inside a media query, so these must
      come after every plain .cl-rv2-* rule above or they'd get overruled. */
   @media(max-width:560px){
-    .cl-rv2-cols{column-count:2;column-gap:8px}
-    .cl-rv2-card{padding:10px 10px;margin-bottom:8px;border-radius:10px}
-    .cl-rv2-tag{font-size:8px;padding:2px 6px;margin-bottom:6px}
-    .cl-rv2-stars{font-size:9px;margin-bottom:4px}
-    .cl-rv2-txt{font-size:10px;line-height:1.35;margin-bottom:8px}
-    .cl-rv2-who{gap:6px}
-    .cl-rv2-who .cl-rv2-av{width:18px;height:18px;font-size:9px}
-    .cl-rv2-who-name{font-size:9.5px}
-    .cl-rv2-feat{padding:20px 16px}
-    .cl-rv2-feat-text{font-size:14px;margin-bottom:14px}
-    .cl-rv2-feat-mark{font-size:90px;top:-4px;right:14px}
-    .cl-rv2-av{width:32px;height:32px;font-size:13px}
-    .cl-rv2-feat-name{font-size:13px}
-    .cl-rv2-feat-role{font-size:10.5px}
-    .cl-rv2-agg{font-size:11px;margin-bottom:32px}
+    .cl-rv2-cols{column-count:2;column-gap:10px}
+    .cl-rv2-card{padding:13px 12px;margin-bottom:10px;border-radius:12px}
+    .cl-rv2-tag{font-size:9.5px;padding:3px 7px;margin-bottom:8px}
+    .cl-rv2-stars{font-size:11px;margin-bottom:6px}
+    .cl-rv2-txt{font-size:12.5px;line-height:1.5;margin-bottom:10px}
+    .cl-rv2-who{gap:7px}
+    .cl-rv2-who .cl-rv2-av{width:22px;height:22px;font-size:10.5px}
+    .cl-rv2-who-name{font-size:11.5px}
+    .cl-rv2-feat{padding:22px 18px}
+    .cl-rv2-feat-text{font-size:15.5px;margin-bottom:16px}
+    .cl-rv2-feat-mark{font-size:100px;top:-4px;right:14px}
+    .cl-rv2-av{width:34px;height:34px;font-size:14px}
+    .cl-rv2-feat-name{font-size:14px}
+    .cl-rv2-feat-role{font-size:11.5px}
+    .cl-rv2-agg{font-size:12.5px;margin-bottom:32px}
   }
 </style>
 <section class="cl-rv2-sec" id="reviews">
@@ -2248,6 +2279,27 @@ function toggleLegal(scroll) {
 })();
 </script>
 <script>
+// Comparison table (mobile card view): mirror each column's <th> text into
+// data-label on that column's <td>s, so the CSS ::before labels stay in sync
+// with the current language instead of being hardcoded.
+(function(){
+  var table = document.querySelector('.compare table');
+  if(!table) return;
+  var headerRow = table.querySelector('tr:first-child');
+  if(!headerRow) return;
+  function applyLabels(){
+    var headers = Array.prototype.map.call(headerRow.children, function(th){ return th.textContent.trim(); });
+    Array.prototype.forEach.call(table.querySelectorAll('tr'), function(tr, ri){
+      if(ri === 0) return;
+      Array.prototype.forEach.call(tr.children, function(td, i){
+        if(i > 0 && headers[i]) td.setAttribute('data-label', headers[i]);
+      });
+    });
+  }
+  applyLabels();
+  document.addEventListener('langapplied', applyLabels);
+})();
+
 // ── Mobile section reorder: on phones, put "99 languages" + the language
 // grid right after Reviews, then "You know the pain" right after that -
 // instead of Pain/Languages sitting way down past 99-languages/SEO-headlines.
