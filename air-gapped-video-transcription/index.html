@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Transcription Without Internet Access — CaptionLab</title>
+<meta name="description" content="CaptionLab can transcribe video with no internet connection present, once the one-time AI engine setup is complete — useful for isolated or highly restricted editing environments.">
+<link rel="canonical" href="https://captionlab.pro/air-gapped-video-transcription/">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="https://captionlab.pro" class="logo"><span class="logo-mark">C</span> CaptionLab</a>
+    <a href="https://captionlab.pro/#pricing" class="nav-cta">Get the plugin →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">No-network editing</div>
+    <h1>Video transcription with <span class="hl">no internet connection</span></h1>
+    <p class="lede">After its one-time setup, CaptionLab's transcription step makes no network requests at all — it runs entirely against a local AI model already installed on the machine.</p>
+    <div class="cta-row">
+      <a href="https://captionlab.pro/#pricing" class="btn-primary">Get CaptionLab — $39 once →</a>
+      <a href="https://captionlab.pro/#how" class="btn-ghost">See how it works</a>
+    </div>
+    <div class="trust-line">🛡 14-day refund · 🔒 100% offline · ⚡ One-time payment, no subscription</div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <h2>What this does and doesn't cover</h2>
+    <p class="section-lead">This page describes CaptionLab's technical network behavior honestly, not a formal certification. CaptionLab is not independently certified or tested for classified/air-gapped government environments — if you work in one, verify against your own environment's specific security requirements before relying on it.</p>
+    <div class="grid3">
+      <div class="card"><div class="ic">📡</div><h3>No network calls during transcription</h3><p>Once installed, generating subtitles doesn't attempt any outbound connection.</p></div>
+      <div class="card"><div class="ic">💽</div><h3>Self-contained AI engine</h3><p>The Whisper model, Python runtime, and ffmpeg all run from local files installed during setup.</p></div>
+      <div class="card"><div class="ic">🔁</div><h3>Periodic license check only</h3><p>The one thing that does reach out to the internet is an occasional license validity check — separate from transcription itself, and can go a couple weeks offline before it's required.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Setup still requires a network connection once</h2>
+    <p class="section-lead">Installing CaptionLab's AI engine downloads roughly 3GB (Python runtime, ffmpeg, the Whisper model) from the internet the first time. That step needs connectivity. Everything after that — every transcription run — does not.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Can I install CaptionLab on one machine and use the AI files on another with no internet at all?</summary><div class="faq-a">CaptionLab's installer downloads its AI engine directly per-machine; it isn't currently packaged as a portable offline installer bundle for manual transfer. Contact editlabtools@gmail.com if this is a hard requirement for your setup.</div></details>
+    <details class="faq-item"><summary>Is CaptionLab certified for government or classified use?</summary><div class="faq-a">No certification is claimed. It's a commercial Premiere Pro plugin; if you need a specific compliance certification, this likely isn't the right tool as-is.</div></details>
+    <details class="faq-item"><summary>Does the periodic license check block transcription if offline?</summary><div class="faq-a">No — CaptionLab keeps working offline for a grace period between checks before requiring a reconnect, so a temporary loss of connectivity doesn't interrupt work.</div></details>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>See exactly what CaptionLab does and doesn't send over the network</h2>
+      <p>One-time $39. Works offline. 14-day money-back guarantee.</p>
+      <a href="https://captionlab.pro/#pricing" class="btn-primary">Get CaptionLab →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>CaptionLab · by Edit Lab Tools</p>
+    <div>
+      <a href="https://captionlab.pro">Home</a>
+      <a href="https://captionlab.pro/#faq">FAQ</a>
+      <a href="mailto:editlabtools@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

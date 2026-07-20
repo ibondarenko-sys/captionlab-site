@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Use OpenAI Whisper in Premiere Pro</title>
+<meta name="description" content="A guide to using OpenAI's Whisper speech-recognition model inside Adobe Premiere Pro, including the manual route and the plugin route with CaptionLab.">
+<link rel="canonical" href="https://captionlab.pro/how-to-use-whisper-in-premiere-pro/">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="https://captionlab.pro" class="logo"><span class="logo-mark">C</span> CaptionLab</a>
+    <a href="https://captionlab.pro/#pricing" class="nav-cta">Get the plugin →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Guide</div>
+    <h1>How to use <span class="hl">Whisper</span> in Premiere Pro</h1>
+    <p class="lede">Whisper isn't built into Premiere Pro — here's what it takes to actually use it in a real editing workflow, manually or via a plugin.</p>
+    <div class="cta-row">
+      <a href="https://captionlab.pro/#pricing" class="btn-primary">Get CaptionLab — $39 once →</a>
+      <a href="https://captionlab.pro/#how" class="btn-ghost">See how it works</a>
+    </div>
+    <div class="trust-line">🛡 14-day refund · 🔒 100% offline · ⚡ One-time payment, no subscription</div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <h2>The manual route</h2>
+    <p class="section-lead">You can technically use Whisper with Premiere Pro today, without any plugin, in a roundabout way.</p>
+    <div class="grid3">
+      <div class="card"><div class="ic">1️⃣</div><h3>Export audio from your sequence</h3><p>File → Export → Media, audio only, from the clip or sequence you want transcribed.</p></div>
+      <div class="card"><div class="ic">2️⃣</div><h3>Run Whisper on the exported file</h3><p>Via the command line (pip install openai-whisper), or a standalone Whisper app.</p></div>
+      <div class="card"><div class="ic">3️⃣</div><h3>Import the SRT back into Premiere</h3><p>File → Import, then drag the resulting SRT onto your timeline as a caption track.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>The plugin route</h2>
+    <p class="section-lead">CaptionLab automates the steps above into one action: select a clip in Premiere, click Generate Subtitles, and the SRT lands on your timeline — audio export, Whisper transcription, and import all happen automatically, without leaving Premiere Pro.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is the manual route free?</summary><div class="faq-a">Yes, Whisper itself is open-source and free to run — the cost is your own time setting it up and doing the export/import steps for every clip.</div></details>
+    <details class="faq-item"><summary>Which Whisper model size should I use manually?</summary><div class="faq-a">large-v2 or large-v3 for the best accuracy if your hardware can handle it; smaller models (base, small) are faster but noticeably less accurate, especially for non-English audio.</div></details>
+    <details class="faq-item"><summary>Does the plugin route lose any control compared to the manual route?</summary><div class="faq-a">CaptionLab fixes the model at large-v2 for the best accuracy/speed balance across supported hardware — if you specifically need a different model size or custom parameters, the manual route offers more control.</div></details>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Skip the export/import loop entirely</h2>
+      <p>One-time $39. Works offline. 14-day money-back guarantee.</p>
+      <a href="https://captionlab.pro/#pricing" class="btn-primary">Get CaptionLab →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>CaptionLab · by Edit Lab Tools</p>
+    <div>
+      <a href="https://captionlab.pro">Home</a>
+      <a href="https://captionlab.pro/#faq">FAQ</a>
+      <a href="mailto:editlabtools@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
