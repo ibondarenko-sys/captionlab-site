@@ -487,7 +487,10 @@ footer .mono{color:var(--mid)}
   border:2px solid #fff;
   text-transform:uppercase;
   animation:winpulse 1.4s ease-in-out infinite, winshine 3s linear infinite;
+  text-decoration:none;cursor:pointer;display:inline-block;
+  transition:transform .15s ease;
 }
+.launch-win-badge:hover{transform:scale(1.045)}
 .launch-win-badge b{color:#070A0E}
 @keyframes winpulse{0%,100%{box-shadow:0 0 0 0 rgba(0,224,255,0.65),0 0 18px 2px rgba(0,224,255,0.5)}50%{box-shadow:0 0 0 9px rgba(0,224,255,0),0 0 30px 6px rgba(0,224,255,0.8)}}
 @keyframes winshine{0%{background-position:0% center}100%{background-position:200% center}}
@@ -596,6 +599,16 @@ footer .mono{color:var(--mid)}
 .mock-progress-bar{height:100%;width:78%;background:linear-gradient(90deg,#4d9ef7,#b06ef7);border-radius:3px}
 .mock-status{font-size:10px;color:#4caf7d;margin-top:4px}
 .mock-select.on,.mock-select{border-color:#4d9ef7;color:#69aeff;font-weight:700}
+.mock-model-badge{background:linear-gradient(90deg,rgba(77,158,247,0.16),rgba(176,110,247,0.16));
+  border:1px solid rgba(77,158,247,0.4);border-radius:4px;padding:4px 7px;font-size:10px;flex:1;
+  margin-left:8px;color:#8ec3ff;font-weight:700;text-align:center;transition:opacity .25s ease}
+.mock-slider-wrap{display:flex;align-items:center;gap:8px;flex:1;margin-left:8px}
+.mock-slider-track{flex:1;height:4px;border-radius:2px;background:#3a3a3a;position:relative}
+.mock-slider-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;
+  background:linear-gradient(90deg,#4d9ef7,#b06ef7);transition:width .5s ease}
+.mock-slider-thumb{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;background:#4d9ef7;
+  box-shadow:0 0 0 3px rgba(77,158,247,0.25);transform:translate(-50%,-50%);transition:left .5s ease}
+.mock-slider-val{font-size:10px;color:#69aeff;font-weight:700;white-space:nowrap;min-width:38px;text-align:right}
 .mock-out{margin-top:12px;background:#101214;border:1px solid #2a2a2a;border-radius:6px;padding:9px 11px}
 .mock-out-label{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:#5E6672;font-weight:700;margin-bottom:6px}
 .mock-out-sub{font-size:12px;color:#fff;font-weight:600;min-height:17px;line-height:1.3}
@@ -740,6 +753,15 @@ footer .mono{color:var(--mid)}
   font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
 .video-lightbox-close:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.img-lightbox{
+  display:none;position:fixed;inset:0;z-index:9998;background:rgba(3,5,8,.92);
+  align-items:center;justify-content:center;padding:24px;cursor:zoom-out;
+}
+.img-lightbox.open{display:flex}
+.img-lightbox-inner{position:relative;max-width:min(94vw,1200px)}
+.img-lightbox img{width:100%;max-height:88vh;object-fit:contain;border-radius:10px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);display:block;cursor:default}
 
 /* ── PRE-CHECKOUT MODAL ── */
 .precheck-modal{
@@ -916,7 +938,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="launch-bar-inner">
       <span class="launch-flame">🔥</span>
       <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="launch-now">$39</span> one-time</span>
-      <span class="launch-win-badge" data-i18n="launch.win">🪟 <b>NEW:</b> Now available on Windows too!</span>
+      <a href="#changelog" class="launch-win-badge" data-i18n="launch.win">✨ <b>v1.0.3 is here:</b> pick your AI model + word-by-word captions</a>
     </div>
   </div>
 </div>
@@ -971,10 +993,31 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             <div class="mock-select" id="mockLang">Ukrainian</div>
           </div>
           <div class="mock-row">
+            <span class="mock-row-label">Model</span>
+            <div class="mock-model-badge" id="mockModel">Large-v3 ⭐</div>
+          </div>
+          <div class="mock-row">
             <span class="mock-row-label">Output</span>
             <div class="mock-radio-group">
               <div class="mock-radio active">Transcribe</div>
               <div class="mock-radio">→ English</div>
+            </div>
+          </div>
+          <div class="mock-row">
+            <span class="mock-row-label">Caption length</span>
+            <div class="mock-radio-group">
+              <div class="mock-radio">Default</div>
+              <div class="mock-radio active">Fixed words</div>
+            </div>
+          </div>
+          <div class="mock-row">
+            <span class="mock-row-label">Words</span>
+            <div class="mock-slider-wrap">
+              <div class="mock-slider-track">
+                <div class="mock-slider-fill" id="mockSliderFill"></div>
+                <div class="mock-slider-thumb" id="mockSliderThumb"></div>
+              </div>
+              <span class="mock-slider-val" id="mockSliderVal">1 word</span>
             </div>
           </div>
         </div>
@@ -999,6 +1042,14 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="video-lightbox-inner">
     <button class="video-lightbox-close" onclick="closeVideoLightbox()" aria-label="Close">✕</button>
     <div id="videoLightboxFrame"></div>
+  </div>
+</div>
+
+<!-- Image lightbox: for changelog screenshots -->
+<div class="img-lightbox" id="imgLightbox" onclick="closeImgLightbox()">
+  <div class="img-lightbox-inner">
+    <button class="video-lightbox-close" onclick="closeImgLightbox()" aria-label="Close">✕</button>
+    <img id="imgLightboxImg" src="" alt="">
   </div>
 </div>
 
@@ -1586,12 +1637,85 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   .cl-cl-list b{color:var(--white)}
   .cl-cl-footer{text-align:center;margin-top:48px;font-size:13px;color:var(--dim)}
   .cl-cl-footer a{color:var(--cyan);text-decoration:none}
+  .cl-cl-shots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  @media(max-width:640px){.cl-cl-shots{grid-template-columns:1fr}}
+  .cl-cl-shot-btn{display:block;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
+  .cl-cl-shot{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block;box-shadow:0 16px 40px rgba(0,0,0,.4);transition:transform .18s ease,box-shadow .18s ease}
+  .cl-cl-shot-btn:hover .cl-cl-shot{transform:scale(1.015);box-shadow:0 20px 50px rgba(0,224,255,.18)}
+  .cl-cl-shot-hint{position:absolute;bottom:10px;right:10px;background:rgba(3,5,8,.72);color:#fff;font-size:11px;
+    font-weight:600;padding:4px 10px;border-radius:20px;opacity:0;transition:opacity .18s ease;pointer-events:none;
+    display:flex;align-items:center;gap:5px}
+  .cl-cl-shot-btn:hover .cl-cl-shot-hint{opacity:1}
+  .cl-cl-lang-highlight{background:rgba(0,224,255,0.08);border:1px solid rgba(0,224,255,0.25);border-radius:10px;padding:14px 16px;margin-top:14px;font-size:14px;line-height:1.6;color:var(--mid)}
+  .cl-cl-lang-highlight b{color:var(--white)}
+  .cl-cl-chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .cl-cl-chip{display:inline-block;background:rgba(0,224,255,0.14);color:var(--cyan);font-weight:700;font-size:12.5px;padding:3px 10px;border-radius:10px}
 </style>
 <section class="cl-cl-sec" id="changelog">
   <div class="cl-cl-wrap">
     <div class="cl-cl-head reveal">
       <div class="cl-cl-eyebrow" data-i18n="cl.eyebrow">Changelog</div>
       <h2 class="cl-cl-h2" data-i18n="cl.h2">What's new</h2>
+    </div>
+
+    <div class="cl-cl-entry reveal">
+      <div class="cl-cl-top">
+        <span class="cl-cl-ver">v1.0.3</span>
+        <span class="cl-cl-date">July 2026</span>
+        <span class="cl-cl-badge" data-i18n="cl.badge.v103">Just released</span>
+      </div>
+      <div class="cl-cl-card">
+        <div class="cl-cl-shots">
+          <button type="button" class="cl-cl-shot-btn" onclick="openImgLightbox('changelog-v103-models.png','CaptionLab Models tab')" aria-label="Enlarge screenshot">
+            <img class="cl-cl-shot" src="changelog-v103-models.png" alt="CaptionLab Models tab — choose, download, or delete Whisper AI models" loading="lazy" width="536" height="592">
+            <span class="cl-cl-shot-hint">🔍 Click to enlarge</span>
+          </button>
+          <button type="button" class="cl-cl-shot-btn" onclick="openImgLightbox('changelog-v103-words.png','CaptionLab fixed-words caption length')" aria-label="Enlarge screenshot">
+            <img class="cl-cl-shot" src="changelog-v103-words.png" alt="CaptionLab fixed-words caption length mode with a 1-8 word slider" loading="lazy" width="536" height="526">
+            <span class="cl-cl-shot-hint">🔍 Click to enlarge</span>
+          </button>
+        </div>
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v103.models.label">🧠 Choose your AI model</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v103.models.li1">New <b>Models</b> tab — switch between <b>Large-v2</b>, <b>Large-v3</b>, <b>Large-v3-turbo</b> (~6x faster), or <b>Small</b> right from the panel. Download, switch, or delete anytime, with live progress and disk usage shown.</li>
+          </ul>
+          <div class="cl-cl-lang-highlight" data-i18n="cl.v103.models.highlight">⭐ <b>Large-v3 is noticeably more accurate</b> on these languages, straight out of the box:
+            <div class="cl-cl-chip-row"><span class="cl-cl-chip">Ukrainian</span><span class="cl-cl-chip">Arabic</span><span class="cl-cl-chip">Turkish</span><span class="cl-cl-chip">Polish</span><span class="cl-cl-chip">Hebrew</span><span class="cl-cl-chip">Czech</span><span class="cl-cl-chip">Hungarian</span><span class="cl-cl-chip">Indonesian</span><span class="cl-cl-chip">Romanian</span><span class="cl-cl-chip">Thai</span></div>
+          </div>
+        </div>
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v103.words.label">✂️ Word-by-word captions</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v103.words.li1">New <b>Caption length</b> control — set exactly how many words appear per caption (1 to 8). Perfect for the pop-on-screen style used in Shorts, Reels, and TikTok-style edits.</li>
+          </ul>
+        </div>
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v103.fixes.label">🔧 Reliability</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v103.fixes.li1">Fixed a Windows issue that could get the one-time AI engine setup stuck on download, including on networks with antivirus/HTTPS-scanning software.</li>
+            <li data-i18n="cl.v103.fixes.li2">Fixed subtitle generation on multicam sequences and Merged/Synchronized clips.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-cl-entry reveal">
+      <div class="cl-cl-top">
+        <span class="cl-cl-ver">v1.0.2</span>
+        <span class="cl-cl-date">July 2026</span>
+        <span class="cl-cl-badge" style="background:var(--border);color:var(--mid)" data-i18n="cl.badge.v102">Multicam fix</span>
+      </div>
+      <div class="cl-cl-card">
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v102.label">🎬 Multicam &amp; Merged Clips</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v102.li1">Fixed "No media found" / "No clip selected" on multi-camera sequences and clips with externally synced audio.</li>
+            <li data-i18n="cl.v102.li2">Audio is now rendered directly from the timeline instead of chasing each clip's source file, so it works for multicam sequences, Merged/Synchronized clips, nested sequences, and clips with audio effects or gain applied.</li>
+            <li data-i18n="cl.v102.li3">Status message now reflects what's actually being transcribed (clip, multiple clips, full sequence, or multicam) instead of just the model name.</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <div class="cl-cl-entry reveal">
@@ -1923,15 +2047,16 @@ function toggleLegal(scroll) {
   var status=document.getElementById('mockStatus');
   if(!lang && !document.getElementById('rotateLang')) return;
   var seq=[
-    {h:'Українська',p:'Ukrainian',  s:'Привіт! Це автоматичні субтитри.',   c:'UA',n:12},
-    {h:'Polski',     p:'Polish',     s:'Cześć! To są automatyczne napisy.',  c:'PL',n:11},
-    {h:'Türkçe',     p:'Turkish',    s:'Merhaba! Bunlar otomatik altyazı.',  c:'TR',n:13},
-    {h:'العربية',    p:'Arabic',     s:'مرحبا! هذه ترجمة تلقائية.',           c:'AR',n:9},
-    {h:'Tiếng Việt', p:'Vietnamese', s:'Xin chào! Đây là phụ đề tự động.',   c:'VI',n:10},
-    {h:'עברית',      p:'Hebrew',     s:'שלום! אלו כתוביות אוטומטיות.',        c:'HE',n:8},
-    {h:'हिन्दी',       p:'Hindi',      s:'नमस्ते! ये स्वचालित उपशीर्षक हैं।',        c:'HI',n:10},
-    {h:'Čeština',    p:'Czech',      s:'Ahoj! Toto jsou automatické titulky.',c:'CS',n:12}
+    {h:'Українська',p:'Ukrainian',  s:'Привіт! Це автоматичні субтитри.',   c:'UA',n:12,m:'Large-v3 ⭐'},
+    {h:'Polski',     p:'Polish',     s:'Cześć! To są automatyczne napisy.',  c:'PL',n:11,m:'Large-v3 ⭐'},
+    {h:'Türkçe',     p:'Turkish',    s:'Merhaba! Bunlar otomatik altyazı.',  c:'TR',n:13,m:'Large-v3 ⭐'},
+    {h:'العربية',    p:'Arabic',     s:'مرحبا! هذه ترجمة تلقائية.',           c:'AR',n:9, m:'Large-v3 ⭐'},
+    {h:'Tiếng Việt', p:'Vietnamese', s:'Xin chào! Đây là phụ đề tự động.',   c:'VI',n:10,m:'Large-v2'},
+    {h:'עברית',      p:'Hebrew',     s:'שלום! אלו כתוביות אוטומטיות.',        c:'HE',n:8, m:'Large-v3 ⭐'},
+    {h:'हिन्दी',       p:'Hindi',      s:'नमस्ते! ये स्वचालित उपशीर्षक हैं।',        c:'HI',n:10,m:'Large-v2'},
+    {h:'Čeština',    p:'Czech',      s:'Ahoj! Toto jsou automatické titulky.',c:'CS',n:12,m:'Large-v3 ⭐'}
   ];
+  var model=document.getElementById('mockModel');
   var i=0, typing=null;
   function typeOut(str){
     if(typing)clearInterval(typing);
@@ -1944,6 +2069,7 @@ function toggleLegal(scroll) {
     if(el){ el.style.animation='none'; void el.offsetWidth; el.style.animation='langFade .55s ease'; el.textContent=o.h; }
     if(lang)lang.textContent=o.p;
     if(status)status.textContent='✓ '+o.n+' segments · '+o.c;
+    if(model){ model.style.opacity='0'; setTimeout(function(){ model.textContent=o.m; model.style.opacity='1'; },180); }
     typeOut(o.s);
   }
   // Lock the rotating word's box to the widest entry's rendered width so the
@@ -1966,6 +2092,30 @@ function toggleLegal(scroll) {
 
   apply(seq[0]);
   setInterval(function(){ i=(i+1)%seq.length; apply(seq[i]); }, 3200);
+})();
+
+// Words-per-caption slider — ping-pongs 1↔8 at a normal, readable pace to
+// show off the new Fixed-words caption-length control without needing a
+// real click.
+(function(){
+  var fill=document.getElementById('mockSliderFill');
+  var thumb=document.getElementById('mockSliderThumb');
+  var val=document.getElementById('mockSliderVal');
+  if(!fill||!thumb||!val) return;
+  var MIN=1, MAX=8, v=1, dir=1;
+  function render(){
+    var pct=(v-MIN)/(MAX-MIN)*100;
+    fill.style.width=pct+'%';
+    thumb.style.left=pct+'%';
+    val.textContent=v+(v===1?' word':' words');
+  }
+  render();
+  setInterval(function(){
+    v+=dir;
+    if(v>=MAX){ v=MAX; dir=-1; }
+    else if(v<=MIN){ v=MIN; dir=1; }
+    render();
+  }, 650);
 })();
 
 // Sticky bottom CTA — show after user scrolls past hero
@@ -2067,7 +2217,7 @@ function toggleLegal(scroll) {
   var DICT = {
     uk:{
       "nav.watchdemo":"▶ Дивитись демо","nav.reviews":"Відгуки","nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.whatsnew":"Що нового","nav.faq":"Питання","nav.cta":"Отримати плагін",
-      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово","launch.win":"🪟 <b>НОВИНКА:</b> тепер доступно і для Windows!",
+      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово","launch.win":"✨ <b>Вийшла v1.0.3:</b> обирай AI-модель + субтитри слово-в-слово",
       "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
       "hero.h1":"Автоматичні субтитри в Premiere&nbsp;Pro.<br>Нарешті <b>твоєю мовою</b>",
       "hero.sub":"Нативний плагін, який живе прямо всередині Premiere Pro. Працює <b>100% офлайн</b> на твоєму <b>Mac</b> чи <b>Win</b>: відео ніколи не покидає комп'ютер, без хмари, <b>без API-ключів</b>, без інтернету, <b>без підписки</b>. А ще розмовляє <b>99 мовами</b> — включно з тими, про які Adobe забула.",
@@ -2105,11 +2255,16 @@ function toggleLegal(scroll) {
       "fin.h2":"Годі друкувати субтитри.<br><span style='color:var(--cyan)'>Здавай проєкти швидше.</span>","fin.p":"Купи раз. Користуйся назавжди.","fin.cta":"Отримати CaptionLab →","fin.t1":"🛡 14 днів на повернення","fin.t2":"🔒 Безпечна оплата","fin.t3":"⚡ Миттєве завантаження",
       "ft.tag":"На базі OpenAI Whisper · Створено для Premiere Pro · Зроблено монтажерами для монтажерів","ft.terms":"Умови користування","ft.privacy":"Політика конфіденційності","ft.refund":"Політика повернення","ft.contact":"Контакт","lg.toggle":"Юридична інформація <i class='legal-toggle-icon'>↓</i>","stk.note":"разово · без підписки","stk.cta":"Отримати плагін →",
       "rv.eyebrow":"Відгуки","rv.h2":"Що кажуть монтажери","rv.agg":"середня оцінка на Product Hunt · люблять на Adobe Community","rv.role":"Продюсер · відгук на Product Hunt","rv.tag.ph":"Product Hunt","rv.tag.adobe":"Adobe Community","rv.tag.aes":"Перевірений покупець",
-      "cl.eyebrow":"Оновлення","cl.h2":"Що нового","cl.badge.new":"З'явився Windows","cl.badge.initial":"Перший реліз","cl.footer":"Питання про конкретний реліз?"
+      "cl.eyebrow":"Оновлення","cl.h2":"Що нового","cl.badge.v103":"Щойно вийшло","cl.badge.new":"З'явився Windows","cl.badge.initial":"Перший реліз","cl.footer":"Питання про конкретний реліз?",
+      "cl.v103.models.label":"🧠 Обери свою AI-модель","cl.v103.models.li1":"Нова вкладка <b>Models</b> — перемикайся між <b>Large-v2</b>, <b>Large-v3</b>, <b>Large-v3-turbo</b> (~в 6 разів швидше) або <b>Small</b> прямо в панелі. Завантажуй, перемикай чи видаляй будь-коли, з живим прогресом і показом місця на диску.",
+      "cl.v103.models.highlight":"⭐ <b>Large-v3 помітно точніша</b> на цих мовах, одразу з коробки:<div class='cl-cl-chip-row'><span class='cl-cl-chip'>українська</span><span class='cl-cl-chip'>арабська</span><span class='cl-cl-chip'>турецька</span><span class='cl-cl-chip'>польська</span><span class='cl-cl-chip'>іврит</span><span class='cl-cl-chip'>чеська</span><span class='cl-cl-chip'>угорська</span><span class='cl-cl-chip'>індонезійська</span><span class='cl-cl-chip'>румунська</span><span class='cl-cl-chip'>тайська</span></div>",
+      "cl.v103.words.label":"✂️ Субтитри слово-в-слово","cl.v103.words.li1":"Новий контроль <b>Caption length</b> — вибирай точну кількість слів на субтитр (від 1 до 8). Ідеально для стилю, який зʼявляється на екрані в Shorts, Reels і TikTok-монтажі.",
+      "cl.badge.v102":"Фікс мультикам","cl.v102.label":"🎬 Мультикам і Merged Clips","cl.v102.li1":"Виправлено «No media found» / «No clip selected» на мультикам-секвенціях і кліпах із зовнішньо синхронізованим звуком.","cl.v102.li2":"Аудіо тепер рендериться напряму з таймлайну замість пошуку вихідного файлу кожного кліпу — працює для мультикам-секвенцій, Merged/Synchronized кліпів, вкладених секвенцій і кліпів з аудіоефектами чи підсиленням гучності.","cl.v102.li3":"Статус тепер відображає, що саме транскрибується (кліп, кілька кліпів, повна секвенція чи мультикам), а не просто назву моделі.",
+      "cl.v103.fixes.label":"🔧 Надійність","cl.v103.fixes.li1":"Виправлено проблему на Windows, через яку одноразове встановлення AI-рушія могло зависати на завантаженні, зокрема в мережах з антивірусним HTTPS-скануванням.","cl.v103.fixes.li2":"Виправлено генерацію субтитрів для мультикам-секвенцій і Merged/Synchronized кліпів."
     },
     pl:{
       "nav.watchdemo":"▶ Zobacz demo","nav.reviews":"Opinie","nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.whatsnew":"Co nowego","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
-      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo","launch.win":"🪟 <b>NOWOŚĆ:</b> teraz dostępne również na Windows!",
+      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo","launch.win":"✨ <b>Wydano v1.0.3:</b> wybierz model AI + napisy słowo po słowie",
       "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
       "hero.h1":"Automatyczne napisy w Premiere&nbsp;Pro —<br>wreszcie <b>w Twoim języku</b>",
       "hero.sub":"Natywna wtyczka, która działa bezpośrednio wewnątrz Premiere Pro. Działa w <b>100% offline</b> na Twoim własnym <b>Mac</b> lub <b>Win</b>: Twój materiał nigdy nie opuszcza komputera, bez chmury, <b>bez kluczy API</b>, bez internetu, <b>bez subskrypcji</b>. Do tego mówi w <b>99 językach</b> — łącznie z tymi, o których Adobe zapomniało.",
@@ -2147,11 +2302,16 @@ function toggleLegal(scroll) {
       "fin.h2":"Przestań wpisywać napisy.<br><span style='color:var(--cyan)'>Realizuj projekty szybciej.</span>","fin.p":"Kup raz. Używaj na zawsze.","fin.cta":"Pobierz CaptionLab →","fin.t1":"🛡 14 dni na zwrot","fin.t2":"🔒 Bezpieczna płatność","fin.t3":"⚡ Natychmiastowe pobranie",
       "ft.tag":"Napędzane przez OpenAI Whisper · Stworzone dla Premiere Pro · Zrobione przez montażystów dla montażystów","ft.terms":"Regulamin","ft.privacy":"Polityka prywatności","ft.refund":"Polityka zwrotów","ft.contact":"Kontakt","lg.toggle":"Informacje prawne <i class='legal-toggle-icon'>↓</i>","stk.note":"jednorazowo · bez subskrypcji","stk.cta":"Pobierz wtyczkę →",
       "rv.eyebrow":"Opinie","rv.h2":"Co mówią montażyści","rv.agg":"średnia ocena na Product Hunt · uwielbiane na Adobe Community","rv.role":"Producentka · opinia z Product Hunt","rv.tag.ph":"Product Hunt","rv.tag.adobe":"Adobe Community","rv.tag.aes":"Zweryfikowany klient",
-      "cl.eyebrow":"Zmiany","cl.h2":"Co nowego","cl.badge.new":"Windows już dostępny","cl.badge.initial":"Pierwsze wydanie","cl.footer":"Pytania o konkretne wydanie?"
+      "cl.eyebrow":"Zmiany","cl.h2":"Co nowego","cl.badge.v103":"Właśnie wydane","cl.badge.new":"Windows już dostępny","cl.badge.initial":"Pierwsze wydanie","cl.footer":"Pytania o konkretne wydanie?",
+      "cl.v103.models.label":"🧠 Wybierz swój model AI","cl.v103.models.li1":"Nowa zakładka <b>Models</b> — przełączaj się między <b>Large-v2</b>, <b>Large-v3</b>, <b>Large-v3-turbo</b> (~6x szybciej) lub <b>Small</b> prosto z panelu. Pobieraj, przełączaj lub usuwaj w dowolnym momencie, z podglądem postępu i zużycia dysku na żywo.",
+      "cl.v103.models.highlight":"⭐ <b>Large-v3 jest zauważalnie dokładniejszy</b> w tych językach, od razu bez konfiguracji:<div class='cl-cl-chip-row'><span class='cl-cl-chip'>ukraiński</span><span class='cl-cl-chip'>arabski</span><span class='cl-cl-chip'>turecki</span><span class='cl-cl-chip'>polski</span><span class='cl-cl-chip'>hebrajski</span><span class='cl-cl-chip'>czeski</span><span class='cl-cl-chip'>węgierski</span><span class='cl-cl-chip'>indonezyjski</span><span class='cl-cl-chip'>rumuński</span><span class='cl-cl-chip'>tajski</span></div>",
+      "cl.badge.v102":"Poprawka multicam","cl.v102.label":"🎬 Multicam i Merged Clips","cl.v102.li1":"Naprawiono „No media found” / „No clip selected” na sekwencjach multicam i klipach z zewnętrznie zsynchronizowanym dźwiękiem.","cl.v102.li2":"Dźwięk jest teraz renderowany bezpośrednio z osi czasu zamiast szukania pliku źródłowego każdego klipu — działa dla sekwencji multicam, klipów Merged/Synchronized, sekwencji zagnieżdżonych oraz klipów z efektami audio lub wzmocnieniem głośności.","cl.v102.li3":"Komunikat statusu odzwierciedla teraz to, co faktycznie jest transkrybowane (klip, kilka klipów, cała sekwencja lub multicam), a nie tylko nazwę modelu.",
+      "cl.v103.words.label":"✂️ Napisy słowo po słowie","cl.v103.words.li1":"Nowa kontrola <b>Caption length</b> — ustaw dokładną liczbę słów na napis (od 1 do 8). Idealne do stylu pojawiającego się na ekranie, znanego z Shorts, Reels i montaży w stylu TikTok.",
+      "cl.v103.fixes.label":"🔧 Niezawodność","cl.v103.fixes.li1":"Naprawiono problem na Windows, przez który jednorazowa instalacja silnika AI mogła się zawieszać przy pobieraniu, także w sieciach ze skanowaniem HTTPS przez antywirus.","cl.v103.fixes.li2":"Naprawiono generowanie napisów dla sekwencji multicam i klipów Merged/Synchronized."
     },
     tr:{
       "nav.watchdemo":"▶ Demoyu izle","nav.reviews":"Yorumlar","nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.whatsnew":"Yenilikler","nav.faq":"SSS","nav.cta":"Eklentiyi al",
-      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik","launch.win":"🪟 <b>YENİ:</b> Artık Windows'ta da mevcut!",
+      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik","launch.win":"✨ <b>v1.0.3 yayında:</b> AI modelini seç + kelime kelime altyazı",
       "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
       "hero.h1":"Premiere&nbsp;Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>",
       "hero.sub":"Doğrudan Premiere Pro içinde yaşayan yerel bir eklenti. Kendi <b>Mac</b>'inde ya da <b>Win</b>'inde <b>%100 çevrimdışı</b> çalışır: görüntülerin asla bilgisayarından çıkmaz, bulut yok, <b>API anahtarı yok</b>, internet yok, <b>abonelik yok</b>. Üstelik Adobe'nin unuttuğu diller dahil <b>99 dil</b> konuşur.",
@@ -2189,11 +2349,16 @@ function toggleLegal(scroll) {
       "fin.h2":"Altyazı yazmayı bırak.<br><span style='color:var(--cyan)'>Projeleri daha hızlı teslim et.</span>","fin.p":"Bir kez al. Sonsuza dek kullan.","fin.cta":"CaptionLab'i al →","fin.t1":"🛡 14 gün iade","fin.t2":"🔒 Güvenli ödeme","fin.t3":"⚡ Anında indirme",
       "ft.tag":"OpenAI Whisper ile · Premiere Pro için · Kurgucular tarafından, kurgucular için","ft.terms":"Kullanım Şartları","ft.privacy":"Gizlilik Politikası","ft.refund":"İade Politikası","ft.contact":"İletişim","lg.toggle":"Yasal &amp; Politikalar <i class='legal-toggle-icon'>↓</i>","stk.note":"tek sefer · aboneliksiz","stk.cta":"Eklentiyi al →",
       "rv.eyebrow":"Yorumlar","rv.h2":"Kurgucular ne diyor","rv.agg":"Product Hunt'ta ortalama puan · Adobe Community'de beğenildi","rv.role":"Yapımcı · Product Hunt yorumu","rv.tag.ph":"Product Hunt","rv.tag.adobe":"Adobe Community","rv.tag.aes":"Doğrulanmış müşteri",
-      "cl.eyebrow":"Değişiklik günlüğü","cl.h2":"Yenilikler","cl.badge.new":"Windows burada","cl.badge.initial":"İlk sürüm","cl.footer":"Belirli bir sürüm hakkında sorunuz mu var?"
+      "cl.eyebrow":"Değişiklik günlüğü","cl.h2":"Yenilikler","cl.badge.v103":"Yeni yayınlandı","cl.badge.new":"Windows burada","cl.badge.initial":"İlk sürüm","cl.footer":"Belirli bir sürüm hakkında sorunuz mu var?",
+      "cl.v103.models.label":"🧠 AI modelini seç","cl.v103.models.li1":"Yeni <b>Models</b> sekmesi — panelden doğrudan <b>Large-v2</b>, <b>Large-v3</b>, <b>Large-v3-turbo</b> (~6x daha hızlı) veya <b>Small</b> arasında geçiş yap. İstediğin zaman indir, değiştir veya sil; canlı ilerleme ve disk kullanımı gösterilir.",
+      "cl.v103.models.highlight":"⭐ <b>Large-v3 kutudan çıktığı gibi belirgin şekilde daha isabetli</b>, bu dillerde:<div class='cl-cl-chip-row'><span class='cl-cl-chip'>Ukraynaca</span><span class='cl-cl-chip'>Arapça</span><span class='cl-cl-chip'>Türkçe</span><span class='cl-cl-chip'>Lehçe</span><span class='cl-cl-chip'>İbranice</span><span class='cl-cl-chip'>Çekçe</span><span class='cl-cl-chip'>Macarca</span><span class='cl-cl-chip'>Endonezce</span><span class='cl-cl-chip'>Rumence</span><span class='cl-cl-chip'>Tayca</span></div>",
+      "cl.badge.v102":"Multicam düzeltmesi","cl.v102.label":"🎬 Multicam ve Merged Clips","cl.v102.li1":"Çoklu kamera sekansları ve harici senkronize sesli klipler için \"No media found\" / \"No clip selected\" hatası düzeltildi.","cl.v102.li2":"Ses artık her klibin kaynak dosyasını aramak yerine doğrudan zaman çizelgesinden işleniyor — multicam sekansları, Merged/Synchronized klipler, iç içe sekanslar ve ses efekti veya kazanç uygulanmış klipler için çalışır.","cl.v102.li3":"Durum mesajı artık sadece model adı yerine gerçekte neyin yazıya döküldüğünü (klip, birden çok klip, tam sekans veya multicam) gösteriyor.",
+      "cl.v103.words.label":"✂️ Kelime kelime altyazı","cl.v103.words.li1":"Yeni <b>Caption length</b> kontrolü — altyazı başına kaç kelime görüneceğini tam olarak ayarla (1 ile 8 arası). Shorts, Reels ve TikTok tarzı kurgularda ekranda beliren stil için mükemmel.",
+      "cl.v103.fixes.label":"🔧 Güvenilirlik","cl.v103.fixes.li1":"Bazı ağlarda antivirüs/HTTPS taraması nedeniyle tek seferlik AI motoru kurulumunun indirmede takılı kalmasına yol açan Windows sorunu düzeltildi.","cl.v103.fixes.li2":"Multicam sekanslarında ve Merged/Synchronized kliplerde altyazı oluşturma sorunu düzeltildi."
     },
     ar:{
       "nav.watchdemo":"▶ شاهد العرض","nav.reviews":"التقييمات","nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.whatsnew":"الجديد","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
-      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة","launch.win":"🪟 <b>جديد:</b> متاح الآن على Windows أيضًا!",
+      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة","launch.win":"✨ <b>صدر الإصدار v1.0.3:</b> اختر نموذج الذكاء الاصطناعي + ترجمات كلمة بكلمة",
       "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
       "hero.h1":"ترجمة تلقائية في Premiere&nbsp;Pro —<br>أخيرًا <b>بلغتك</b>",
       "hero.sub":"إضافة أصلية تعيش مباشرة داخل Premiere Pro. تعمل <b>دون إنترنت بنسبة 100%</b> على جهاز <b>Mac</b> أو <b>Win</b> الخاص بك: لقطاتك لا تغادر جهازك أبدًا، بلا سحابة، <b>بلا مفاتيح API</b>، بلا إنترنت، <b>بلا اشتراك</b>. كما أنها تتحدث <b>99 لغة</b>، بما فيها تلك التي نسيتها Adobe.",
@@ -2231,7 +2396,12 @@ function toggleLegal(scroll) {
       "fin.h2":"توقّف عن كتابة الترجمة.<br><span style='color:var(--cyan)'>سلّم مشاريعك أسرع.</span>","fin.p":"اشترِ مرة واحدة. استخدمه للأبد.","fin.cta":"احصل على CaptionLab ←","fin.t1":"🛡 استرداد خلال 14 يومًا","fin.t2":"🔒 دفع آمن","fin.t3":"⚡ تنزيل فوري",
       "ft.tag":"مدعوم بـ OpenAI Whisper · مصمَّم لـ Premiere Pro · صُنع بأيدي محررين، للمحررين","ft.terms":"شروط الخدمة","ft.privacy":"سياسة الخصوصية","ft.refund":"سياسة الاسترداد","ft.contact":"تواصل","lg.toggle":"الشؤون القانونية والسياسات <i class='legal-toggle-icon'>↓</i>","stk.note":"مرة واحدة · بلا اشتراك","stk.cta":"احصل على الإضافة ←",
       "rv.eyebrow":"التقييمات","rv.h2":"ماذا يقول المحررون","rv.agg":"متوسط التقييم على Product Hunt · محبوب في Adobe Community","rv.role":"منتجة · تقييم من Product Hunt","rv.tag.ph":"Product Hunt","rv.tag.adobe":"Adobe Community","rv.tag.aes":"عميل موثّق",
-      "cl.eyebrow":"سجل التغييرات","cl.h2":"الجديد","cl.badge.new":"ويندوز متاح الآن","cl.badge.initial":"الإصدار الأول","cl.footer":"أسئلة حول إصدار معيّن؟"
+      "cl.eyebrow":"سجل التغييرات","cl.h2":"الجديد","cl.badge.v103":"صدر للتو","cl.badge.new":"ويندوز متاح الآن","cl.badge.initial":"الإصدار الأول","cl.footer":"أسئلة حول إصدار معيّن؟",
+      "cl.v103.models.label":"🧠 اختر نموذج الذكاء الاصطناعي","cl.v103.models.li1":"علامة تبويب <b>Models</b> جديدة — بدّل بين <b>Large-v2</b> و<b>Large-v3</b> و<b>Large-v3-turbo</b> (أسرع بحوالي 6 أضعاف) أو <b>Small</b> مباشرة من اللوحة. نزّل أو بدّل أو احذف في أي وقت، مع عرض مباشر للتقدم ومساحة القرص.",
+      "cl.v103.models.highlight":"⭐ <b>Large-v3 أكثر دقة بشكل ملحوظ</b> في هذه اللغات، مباشرة دون أي إعداد إضافي:<div class='cl-cl-chip-row'><span class='cl-cl-chip'>الأوكرانية</span><span class='cl-cl-chip'>العربية</span><span class='cl-cl-chip'>التركية</span><span class='cl-cl-chip'>البولندية</span><span class='cl-cl-chip'>العبرية</span><span class='cl-cl-chip'>التشيكية</span><span class='cl-cl-chip'>الهنغارية</span><span class='cl-cl-chip'>الإندونيسية</span><span class='cl-cl-chip'>الرومانية</span><span class='cl-cl-chip'>التايلاندية</span></div>",
+      "cl.badge.v102":"إصلاح multicam","cl.v102.label":"🎬 Multicam وMerged Clips","cl.v102.li1":"تم إصلاح خطأ \"No media found\" / \"No clip selected\" في تسلسلات multicam والمقاطع ذات الصوت المُزامَن خارجيًا.","cl.v102.li2":"يتم الآن معالجة الصوت مباشرة من الجدول الزمني بدلاً من البحث عن ملف المصدر لكل مقطع — يعمل مع تسلسلات multicam ومقاطع Merged/Synchronized والتسلسلات المتداخلة والمقاطع ذات تأثيرات الصوت أو زيادة الصوت.","cl.v102.li3":"تعكس رسالة الحالة الآن ما يتم تفريغه فعليًا (مقطع، عدة مقاطع، تسلسل كامل، أو multicam) بدلاً من اسم النموذج فقط.",
+      "cl.v103.words.label":"✂️ ترجمات كلمة بكلمة","cl.v103.words.li1":"عنصر تحكم جديد <b>Caption length</b> — اضبط العدد الدقيق للكلمات في كل ترجمة (من 1 إلى 8). مثالي لأسلوب الظهور على الشاشة الشائع في مقاطع Shorts وReels ومونتاج بأسلوب TikTok.",
+      "cl.v103.fixes.label":"🔧 الموثوقية","cl.v103.fixes.li1":"تم إصلاح مشكلة في ويندوز كانت تتسبب أحيانًا بتوقف إعداد محرك الذكاء الاصطناعي أثناء التنزيل، بما في ذلك على الشبكات التي تحتوي على فحص HTTPS من برامج مكافحة الفيروسات.","cl.v103.fixes.li2":"تم إصلاح توليد الترجمات لتسلسلات multicam ومقاطع Merged/Synchronized."
     }
   };
   var RTL = { ar:1 };
@@ -2364,8 +2534,22 @@ function closeVideoLightbox(){
   document.getElementById('videoLightboxFrame').innerHTML = ''; // stop playback
   document.body.style.overflow = '';
 }
+function openImgLightbox(src, alt){
+  var box = document.getElementById('imgLightbox');
+  var img = document.getElementById('imgLightboxImg');
+  img.src = src;
+  img.alt = alt || '';
+  box.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeImgLightbox(){
+  var box = document.getElementById('imgLightbox');
+  box.classList.remove('open');
+  document.getElementById('imgLightboxImg').src = '';
+  document.body.style.overflow = '';
+}
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') { closeVideoLightbox(); closePreCheckout(); }
+  if (e.key === 'Escape') { closeVideoLightbox(); closePreCheckout(); closeImgLightbox(); }
 });
 </script>
 </body>
