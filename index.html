@@ -2260,12 +2260,25 @@ function toggleLegal(scroll) {
         if (ty) { ty.style.display = 'block'; }
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
+        var totals = data.data && data.data.totals;
+        var value = totals && totals.total != null ? Number(totals.total) / 100 : TT_PRODUCT.value;
+        var currency = (totals && totals.currency_code) || TT_PRODUCT.currency;
+        var txnId = (data.data && (data.data.id || data.data.transaction_id)) || '';
+
+        // GA4 purchase event - value is 0 on a 100%-off test/promo code, which
+        // is expected and fine: GA4/Google Ads still count it as a completed
+        // conversion, just with $0 revenue attached, not an error.
+        if (window.gtag) {
+          gtag('event', 'purchase', {
+            transaction_id: txnId,
+            value: value,
+            currency: currency,
+            items: [{ item_id: TT_PRODUCT.content_id, item_name: TT_PRODUCT.content_name, price: value, quantity: 1 }]
+          });
+        }
+
         if (window.ttq) {
           var email = data.data && data.data.customer && data.data.customer.email;
-          var totals = data.data && data.data.totals;
-          var value = totals && totals.total ? Number(totals.total) / 100 : TT_PRODUCT.value;
-          var currency = (totals && totals.currency_code) || TT_PRODUCT.currency;
-
           Promise.resolve(email ? ttSha256(email) : null).then(function(hashedEmail) {
             if (hashedEmail) ttq.identify({ email: hashedEmail });
             ttq.track('Purchase', {
@@ -2293,6 +2306,18 @@ function toggleLegal(scroll) {
   function proceedToCheckout(e) {
     if (e) e.preventDefault();
     closePreCheckout();
+    // Fires the moment the checkout button is clicked - before Paddle opens,
+    // so before any promo code the buyer applies is known. Uses the list
+    // price as an estimate; the "purchase" event above (fired on
+    // checkout.completed, with Paddle's real totals) is the one that must be
+    // accurate, this is just funnel visibility for GA4/Google Ads.
+    if (window.gtag) {
+      gtag('event', 'begin_checkout', {
+        value: TT_PRODUCT.value,
+        currency: TT_PRODUCT.currency,
+        items: [{ item_id: TT_PRODUCT.content_id, item_name: TT_PRODUCT.content_name, price: TT_PRODUCT.value, quantity: 1 }]
+      });
+    }
     if (window.ttq) {
       ttq.track('InitiateCheckout', {
         contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type, content_name: TT_PRODUCT.content_name }],
