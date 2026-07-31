@@ -8,6 +8,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-QLTMNJFCT5');
+  gtag('config', 'AW-18303193760');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2274,6 +2275,16 @@ function toggleLegal(scroll) {
             value: value,
             currency: currency,
             items: [{ item_id: TT_PRODUCT.content_id, item_name: TT_PRODUCT.content_name, price: value, quantity: 1 }]
+          });
+
+          // Google Ads native conversion action "Purchase" (AW-18303193760).
+          // Separate from the GA4 event above - GA4 alone does NOT feed this
+          // conversion action, it needs its own send_to with the conversion label.
+          gtag('event', 'conversion', {
+            send_to: 'AW-18303193760/aBJZCLq3jdkcEKCl0pdE',
+            transaction_id: txnId,
+            value: value,
+            currency: currency
           });
         }
 
