@@ -939,7 +939,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="launch-bar-inner">
       <span class="launch-flame">🔥</span>
       <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="launch-now">$39</span> one-time</span>
-      <a href="#changelog" class="launch-win-badge" data-i18n="launch.win">✨ <b>v1.0.3 is here:</b> pick your AI model + word-by-word captions</a>
+      <a href="#changelog" class="launch-win-badge" data-i18n="launch.win">✨ <b>v1.0.4 is here:</b> sharper caption timing + smarter line breaks</a>
     </div>
   </div>
 </div>
@@ -1008,7 +1008,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             <span class="mock-row-label">Caption length</span>
             <div class="mock-radio-group">
               <div class="mock-radio">Default</div>
-              <div class="mock-radio active">Fixed words</div>
+              <div class="mock-radio active">Max words</div>
             </div>
           </div>
           <div class="mock-row">
@@ -1626,6 +1626,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   .cl-cl-date{color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:0.03em}
   .cl-cl-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
     color:#070A0E;background:var(--gold);padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+  .cl-cl-badge-prev{color:var(--dim);background:transparent;border:1px solid var(--border)}
   .cl-cl-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px}
   .cl-cl-group{margin-bottom:16px}
   .cl-cl-group:last-child{margin-bottom:0}
@@ -1661,9 +1662,39 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
     <div class="cl-cl-entry reveal">
       <div class="cl-cl-top">
+        <span class="cl-cl-ver">v1.0.4</span>
+        <span class="cl-cl-date">August 2026</span>
+        <span class="cl-cl-badge" data-i18n="cl.badge.v104">Just released</span>
+      </div>
+      <div class="cl-cl-card">
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v104.timing.label">⏱ Captions land on the word</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v104.timing.li1">Caption timing is now measured against the <b>audio itself</b> instead of trusting the AI's own timestamps — so a caption no longer appears while the speaker is still silent. On a real news package this cut total misalignment by about <b>60%</b>.</li>
+            <li data-i18n="cl.v104.timing.li2">Fixed the cases where captions showed up seconds early: after long pauses, over B-roll with room tone, and after music. Captions also hold a moment longer instead of vanishing the instant the speaker stops.</li>
+          </ul>
+        </div>
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v104.words.label">✂️ "Fixed words" is now "Max words"</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v104.words.li1">It's a <b>ceiling, not a quota</b>. Set 4 and a caption will be 3, 2 or even 1 word when that's where the line logically ends. A caption is never split across a sentence, breaks at commas, and short words like "not" or "the" are never left stranded alone on screen.</li>
+            <li data-i18n="cl.v104.words.li2">Default captions follow sentence structure too — proper line length, reading speed, and no more hyphenated words split across two screens.</li>
+          </ul>
+        </div>
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v104.quiet.label">🔊 Quiet speech no longer skipped</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v104.quiet.li1">Audio recorded well below the level of the rest of your video — a location interview cut against a loud studio voice, for example — used to be dropped silently. Levels are now balanced before transcription, so those parts get captioned too.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-cl-entry reveal">
+      <div class="cl-cl-top">
         <span class="cl-cl-ver">v1.0.3</span>
         <span class="cl-cl-date">July 2026</span>
-        <span class="cl-cl-badge" data-i18n="cl.badge.v103">Just released</span>
+        <span class="cl-cl-badge cl-cl-badge-prev" data-i18n="cl.badge.v103">Previous release</span>
       </div>
       <div class="cl-cl-card">
         <div class="cl-cl-shots">
@@ -1671,8 +1702,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             <img class="cl-cl-shot" src="changelog-v103-models.png" alt="CaptionLab Models tab — choose, download, or delete Whisper AI models" loading="lazy" width="536" height="592">
             <span class="cl-cl-shot-hint">🔍 Click to enlarge</span>
           </button>
-          <button type="button" class="cl-cl-shot-btn" onclick="openImgLightbox('changelog-v103-words.png','CaptionLab fixed-words caption length')" aria-label="Enlarge screenshot">
-            <img class="cl-cl-shot" src="changelog-v103-words.png" alt="CaptionLab fixed-words caption length mode with a 1-8 word slider" loading="lazy" width="536" height="526">
+          <button type="button" class="cl-cl-shot-btn" onclick="openImgLightbox('changelog-v103-words.png','CaptionLab Max words caption length')" aria-label="Enlarge screenshot">
+            <img class="cl-cl-shot" src="changelog-v103-words.png" alt="CaptionLab Max words caption length mode with a 1-8 word slider" loading="lazy" width="536" height="526">
             <span class="cl-cl-shot-hint">🔍 Click to enlarge</span>
           </button>
         </div>
@@ -2191,7 +2222,7 @@ function toggleLegal(scroll) {
 })();
 
 // Words-per-caption slider — ping-pongs 1↔8 at a normal, readable pace to
-// show off the new Fixed-words caption-length control without needing a
+// show off the Max-words caption-length control without needing a
 // real click.
 (function(){
   var fill=document.getElementById('mockSliderFill');
@@ -2346,9 +2377,9 @@ function toggleLegal(scroll) {
 <script>
 (function(){
   var DICT = {
-    uk:{
+    uk:{"cl.badge.v104":"Щойно вийшло","cl.badge.v103":"Попередній випуск","cl.v104.timing.label":"⏱ Титри влучають у слово","cl.v104.timing.li1":"Таймінг тепер вимірюється по <b>самому аудіо</b>, а не береться з таймкодів ШІ — тож титр більше не зʼявляється, поки людина ще мовчить. На реальному новинному сюжеті сумарна розсинхронізація впала приблизно на <b>60%</b>.","cl.v104.timing.li2":"Виправлено випадки, коли титри вискакували на секунди раніше: після довгих пауз, на футажі з фоновим шумом і після музики. Титр також тримається трохи довше, а не зникає в ту ж мить, коли людина замовкла.","cl.v104.words.label":"✂️ «Fixed words» тепер «Max words»","cl.v104.words.li1":"Це <b>стеля, а не норма</b>. Постав 4 — і титр буде з 3, 2 чи навіть 1 слова, якщо саме там закінчується думка. Титр ніколи не розривається посеред речення, ріже по комах, а короткі слова на кшталт «не» чи «це» більше не висять на екрані самі.","cl.v104.words.li2":"Звичайні титри теж стежать за структурою речення — коректна довжина рядка, швидкість читання, і слова через дефіс більше не розриваються на два екрани.","cl.v104.quiet.label":"🔊 Тиха мова більше не пропускається","cl.v104.quiet.li1":"Звук, записаний значно тихіше за решту відео — наприклад, інтервʼю з локації поруч із гучним студійним голосом — раніше просто зникав. Тепер рівні вирівнюються перед розшифровкою, і ці фрагменти теж отримують субтитри.",
       "nav.watchdemo":"▶ Дивитись демо","nav.reviews":"Відгуки","nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.whatsnew":"Що нового","nav.faq":"Питання","nav.cta":"Отримати плагін",
-      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово","launch.win":"✨ <b>Вийшла v1.0.3:</b> обирай AI-модель + субтитри слово-в-слово",
+      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово","launch.win":"✨ <b>Вийшла v1.0.4:</b> точніший таймінг + розумніші розриви рядків",
       "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
       "hero.h1":"Автоматичні субтитри в Premiere&nbsp;Pro.<br>Нарешті <b>твоєю мовою</b>",
       "hero.sub":"Нативний плагін, який живе прямо всередині Premiere Pro. Працює <b>100% офлайн</b> на твоєму <b>Mac</b> чи <b>Win</b>: відео ніколи не покидає комп'ютер, без хмари, <b>без API-ключів</b>, без інтернету, <b>без підписки</b>. А ще розмовляє <b>99 мовами</b> — включно з тими, про які Adobe забула.",
@@ -2393,9 +2424,9 @@ function toggleLegal(scroll) {
       "cl.badge.v102":"Фікс мультикам","cl.v102.label":"🎬 Мультикам і Merged Clips","cl.v102.li1":"Виправлено «No media found» / «No clip selected» на мультикам-секвенціях і кліпах із зовнішньо синхронізованим звуком.","cl.v102.li2":"Аудіо тепер рендериться напряму з таймлайну замість пошуку вихідного файлу кожного кліпу — працює для мультикам-секвенцій, Merged/Synchronized кліпів, вкладених секвенцій і кліпів з аудіоефектами чи підсиленням гучності.","cl.v102.li3":"Статус тепер відображає, що саме транскрибується (кліп, кілька кліпів, повна секвенція чи мультикам), а не просто назву моделі.",
       "cl.v103.fixes.label":"🔧 Надійність","cl.v103.fixes.li1":"Виправлено проблему на Windows, через яку одноразове встановлення AI-рушія могло зависати на завантаженні, зокрема в мережах з антивірусним HTTPS-скануванням.","cl.v103.fixes.li2":"Виправлено генерацію субтитрів для мультикам-секвенцій і Merged/Synchronized кліпів."
     },
-    pl:{
+    pl:{"cl.badge.v104":"Właśnie wydane","cl.badge.v103":"Poprzednie wydanie","cl.v104.timing.label":"⏱ Napisy trafiają w słowo","cl.v104.timing.li1":"Czas napisów jest teraz mierzony na podstawie <b>samego dźwięku</b>, a nie znaczników AI — napis nie pojawia się już, gdy mówca wciąż milczy. Na prawdziwym materiale informacyjnym łączne rozjechanie spadło o około <b>60%</b>.","cl.v104.timing.li2":"Naprawione przypadki, gdy napisy pojawiały się kilka sekund za wcześnie: po długich pauzach, na materiale z tłem dźwiękowym i po muzyce. Napis utrzymuje się też chwilę dłużej, zamiast znikać w momencie, gdy mówca kończy.","cl.v104.words.label":"✂️ „Fixed words” to teraz „Max words”","cl.v104.words.li1":"To <b>górna granica, nie norma</b>. Ustaw 4, a napis będzie miał 3, 2 albo nawet 1 słowo, jeśli właśnie tam kończy się myśl. Napis nigdy nie dzieli zdania, łamie się na przecinkach, a krótkie słowa jak „nie” czy „to” nie zostają same na ekranie.","cl.v104.words.li2":"Domyślne napisy też podążają za budową zdania — właściwa długość linii, tempo czytania, a słowa z myślnikiem nie są już dzielone na dwa ekrany.","cl.v104.quiet.label":"🔊 Ciche wypowiedzi nie są już pomijane","cl.v104.quiet.li1":"Dźwięk nagrany znacznie ciszej niż reszta filmu — na przykład wywiad w terenie zestawiony z głośnym głosem studyjnym — wcześniej po prostu znikał. Teraz poziomy są wyrównywane przed transkrypcją, więc te fragmenty również dostają napisy.",
       "nav.watchdemo":"▶ Zobacz demo","nav.reviews":"Opinie","nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.whatsnew":"Co nowego","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
-      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo","launch.win":"✨ <b>Wydano v1.0.3:</b> wybierz model AI + napisy słowo po słowie",
+      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo","launch.win":"✨ <b>Wydano v1.0.4:</b> dokładniejsze czasy + mądrzejsze łamanie linii",
       "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
       "hero.h1":"Automatyczne napisy w Premiere&nbsp;Pro —<br>wreszcie <b>w Twoim języku</b>",
       "hero.sub":"Natywna wtyczka, która działa bezpośrednio wewnątrz Premiere Pro. Działa w <b>100% offline</b> na Twoim własnym <b>Mac</b> lub <b>Win</b>: Twój materiał nigdy nie opuszcza komputera, bez chmury, <b>bez kluczy API</b>, bez internetu, <b>bez subskrypcji</b>. Do tego mówi w <b>99 językach</b> — łącznie z tymi, o których Adobe zapomniało.",
@@ -2440,9 +2471,9 @@ function toggleLegal(scroll) {
       "cl.v103.words.label":"✂️ Napisy słowo po słowie","cl.v103.words.li1":"Nowa kontrola <b>Caption length</b> — ustaw dokładną liczbę słów na napis (od 1 do 8). Idealne do stylu pojawiającego się na ekranie, znanego z Shorts, Reels i montaży w stylu TikTok.",
       "cl.v103.fixes.label":"🔧 Niezawodność","cl.v103.fixes.li1":"Naprawiono problem na Windows, przez który jednorazowa instalacja silnika AI mogła się zawieszać przy pobieraniu, także w sieciach ze skanowaniem HTTPS przez antywirus.","cl.v103.fixes.li2":"Naprawiono generowanie napisów dla sekwencji multicam i klipów Merged/Synchronized."
     },
-    tr:{
+    tr:{"cl.badge.v104":"Yeni çıktı","cl.badge.v103":"Önceki sürüm","cl.v104.timing.label":"⏱ Altyazılar kelimeye oturuyor","cl.v104.timing.li1":"Altyazı zamanlaması artık yapay zekânın kendi zaman damgaları yerine <b>sesin kendisine</b> göre ölçülüyor — konuşmacı hâlâ sessizken altyazı çıkmıyor. Gerçek bir haber paketinde toplam kayma yaklaşık <b>%60</b> azaldı.","cl.v104.timing.li2":"Altyazıların saniyelerce erken çıktığı durumlar düzeltildi: uzun duraklamalardan sonra, ortam sesli B-roll üzerinde ve müzikten sonra. Altyazı ayrıca konuşmacı susar susmaz kaybolmak yerine biraz daha uzun kalıyor.","cl.v104.words.label":"✂️ „Fixed words” artık „Max words”","cl.v104.words.li1":"Bu bir <b>üst sınır, kota değil</b>. 4 seçin; cümle orada bitiyorsa altyazı 3, 2 hatta 1 kelime olur. Altyazı asla cümlenin ortasından bölünmez, virgüllerde kesilir ve „ve” ya „bu” gibi kısa kelimeler ekranda tek başına kalmaz.","cl.v104.words.li2":"Varsayılan altyazılar da cümle yapısını izler — doğru satır uzunluğu, okuma hızı ve tireli kelimeler artık iki ekrana bölünmez.","cl.v104.quiet.label":"🔊 Sessiz konuşmalar artık atlanmıyor","cl.v104.quiet.li1":"Videonun geri kalanından çok daha düşük seviyede kaydedilmiş ses — örneğin gürültülü bir stüdyo sesinin yanına kurgulanmış saha röportajı — eskiden sessizce atlanıyordu. Artık seviyeler deşifre öncesi dengeleniyor, bu bölümler de altyazı alıyor.",
       "nav.watchdemo":"▶ Demoyu izle","nav.reviews":"Yorumlar","nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.whatsnew":"Yenilikler","nav.faq":"SSS","nav.cta":"Eklentiyi al",
-      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik","launch.win":"✨ <b>v1.0.3 yayında:</b> AI modelini seç + kelime kelime altyazı",
+      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik","launch.win":"✨ <b>v1.0.4 yayında:</b> daha isabetli zamanlama + akıllı satır bölme",
       "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
       "hero.h1":"Premiere&nbsp;Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>",
       "hero.sub":"Doğrudan Premiere Pro içinde yaşayan yerel bir eklenti. Kendi <b>Mac</b>'inde ya da <b>Win</b>'inde <b>%100 çevrimdışı</b> çalışır: görüntülerin asla bilgisayarından çıkmaz, bulut yok, <b>API anahtarı yok</b>, internet yok, <b>abonelik yok</b>. Üstelik Adobe'nin unuttuğu diller dahil <b>99 dil</b> konuşur.",
@@ -2487,9 +2518,9 @@ function toggleLegal(scroll) {
       "cl.v103.words.label":"✂️ Kelime kelime altyazı","cl.v103.words.li1":"Yeni <b>Caption length</b> kontrolü — altyazı başına kaç kelime görüneceğini tam olarak ayarla (1 ile 8 arası). Shorts, Reels ve TikTok tarzı kurgularda ekranda beliren stil için mükemmel.",
       "cl.v103.fixes.label":"🔧 Güvenilirlik","cl.v103.fixes.li1":"Bazı ağlarda antivirüs/HTTPS taraması nedeniyle tek seferlik AI motoru kurulumunun indirmede takılı kalmasına yol açan Windows sorunu düzeltildi.","cl.v103.fixes.li2":"Multicam sekanslarında ve Merged/Synchronized kliplerde altyazı oluşturma sorunu düzeltildi."
     },
-    ar:{
+    ar:{"cl.badge.v104":"صدر للتو","cl.badge.v103":"الإصدار السابق","cl.v104.timing.label":"⏱ الترجمات تتزامن مع الكلمة","cl.v104.timing.li1":"يُقاس توقيت الترجمة الآن من <b>الصوت نفسه</b> بدل الاعتماد على طوابع الذكاء الاصطناعي — فلم تعد الترجمة تظهر والمتحدث ما زال صامتًا. في تقرير إخباري حقيقي انخفض إجمالي الانحراف بنحو <b>60%</b>.","cl.v104.timing.li2":"عولجت الحالات التي كانت تظهر فيها الترجمة قبل ثوانٍ: بعد الوقفات الطويلة، وفوق اللقطات ذات الصوت المحيط، وبعد الموسيقى. كما تبقى الترجمة لحظة أطول بدل أن تختفي فور توقف المتحدث.","cl.v104.words.label":"✂️ ‏«Fixed words» صارت «Max words»","cl.v104.words.li1":"إنه <b>حدّ أقصى وليس حصة</b>. اختر 4، وستكون الترجمة 3 أو 2 أو حتى كلمة واحدة إذا انتهت الجملة هناك. لا تُقسَّم الترجمة أبدًا عبر جملة، وتُقطع عند الفواصل، ولا تبقى الكلمات القصيرة وحدها على الشاشة.","cl.v104.words.li2":"الترجمات الافتراضية تتبع بنية الجملة أيضًا — طول سطر مناسب، وسرعة قراءة، ولم تعد الكلمات الموصولة بشرطة تُقسَّم على شاشتين.","cl.v104.quiet.label":"🔊 لم يعد الكلام المنخفض يُتجاهل","cl.v104.quiet.li1":"الصوت المسجَّل بمستوى أقل بكثير من بقية الفيديو — كمقابلة ميدانية بجانب صوت استوديو عالٍ — كان يُسقَط بصمت. تُوازَن المستويات الآن قبل التفريغ، فتحصل هذه المقاطع على ترجمة أيضًا.",
       "nav.watchdemo":"▶ شاهد العرض","nav.reviews":"التقييمات","nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.whatsnew":"الجديد","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
-      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة","launch.win":"✨ <b>صدر الإصدار v1.0.3:</b> اختر نموذج الذكاء الاصطناعي + ترجمات كلمة بكلمة",
+      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة","launch.win":"✨ <b>صدر الإصدار v1.0.4:</b> توقيت أدقّ + تقسيم أسطر أذكى",
       "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
       "hero.h1":"ترجمة تلقائية في Premiere&nbsp;Pro —<br>أخيرًا <b>بلغتك</b>",
       "hero.sub":"إضافة أصلية تعيش مباشرة داخل Premiere Pro. تعمل <b>دون إنترنت بنسبة 100%</b> على جهاز <b>Mac</b> أو <b>Win</b> الخاص بك: لقطاتك لا تغادر جهازك أبدًا، بلا سحابة، <b>بلا مفاتيح API</b>، بلا إنترنت، <b>بلا اشتراك</b>. كما أنها تتحدث <b>99 لغة</b>، بما فيها تلك التي نسيتها Adobe.",
