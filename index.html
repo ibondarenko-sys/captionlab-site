@@ -1103,6 +1103,30 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   </div>
 </div>
 
+<!-- Post-download modal.
+     The download itself starts on click; this appears over it. Mac and Windows
+     get different content because the two installs genuinely differ: the .bat
+     on Windows is self-contained, while a .zxp on macOS does nothing at all
+     when double-clicked — it needs a separate installer app that cannot be
+     shipped inside our zip. Without saying so somewhere, a Mac visitor is left
+     holding a file their computer refuses to open. -->
+<div class="precheck-modal" id="dlModal" onclick="if(event.target===this)closeDownloadHelp()">
+  <div class="precheck-inner">
+    <button class="video-lightbox-close" onclick="closeDownloadHelp()" aria-label="Close">✕</button>
+    <div class="precheck-eyebrow" data-i18n="dl.eyebrow">Your download has started</div>
+    <h3 id="dl-title">Installing on Mac</h3>
+
+    <div class="precheck-steps" id="dl-steps"></div>
+
+    <div class="precheck-trial">
+      <span class="precheck-trial-badge"><span class="precheck-trial-icon">⏳</span> <span data-i18n="dl.badge">TAKE YOUR TIME</span></span>
+      <span class="precheck-trial-text" data-i18n="dl.note">Your 3 days only start at your first transcription — not now, and not when you install. Setting up costs you nothing.</span>
+    </div>
+
+    <button class="precheck-cancel" onclick="closeDownloadHelp()" data-i18n="dl.close">Got it</button>
+  </div>
+</div>
+
 <!-- Pre-checkout modal: explains what happens after payment before Paddle opens -->
 <div class="precheck-modal" id="precheckModal" onclick="if(event.target===this)closePreCheckout()">
   <div class="precheck-inner">
@@ -1596,8 +1620,9 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <div class="try-price" data-i18n="try.price">3 days free</div>
         <p class="try-p" data-i18n="try.p">
           The complete plugin — every model, every language, real subtitles in your timeline.
-          No card, no account. <b>Your 3 days start at your first transcription</b>, not at
-          download, so installing and pulling the AI model costs you nothing.
+          No card, no account. You get your key first, then install at your own pace:
+          <b>your 3 days only start at your first transcription</b>, so downloading the
+          plugin and its AI model costs you nothing.
         </p>
         <div class="try-btns">
           <a href="https://captionlab-license.editlabtools.workers.dev/download/mac"
@@ -2513,6 +2538,7 @@ function toggleLegal(scroll) {
 (function(){
   var DICT = {
     uk:{
+      "dl.eyebrow":"Завантаження почалося","dl.h.mac":"Встановлення на Mac","dl.h.win":"Встановлення на Windows","dl.badge":"НЕ ПОСПІШАЙ","dl.close":"Зрозуміло","dl.note":"Три дні почнуться з першої транскрипції — не зараз і не після встановлення. Налаштування не коштує тобі нічого.","dl.mac.1":"Розпакуй архів і закрий Premiere Pro, якщо він відкритий.","dl.mac.2":"Файл <b>.zxp</b> macOS сам відкрити не вміє — спершу постав безкоштовний <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a>. Якщо він уже є, пропусти цей крок.","dl.mac.3":"Перетягни <b>.zxp</b> на інсталятор — він сам покладе плагін куди треба.","dl.mac.4":"Відкрий Premiere → <b>Window → Extensions → CaptionLab</b> і введи пошту, щоб отримати ключ тріалу.","dl.win.1":"Розпакуй архів і закрий Premiere Pro, якщо він відкритий.","dl.win.2":"Двічі клікни <b>Install CaptionLab.bat</b>.","dl.win.3":"Windows може попередити, що захистив твій ПК — це лише тому, що файл ще не має цифрового підпису. Тисни <b>Докладніше</b> → <b>Виконати в будь-якому разі</b>.","dl.win.4":"Відкрий Premiere → <b>Window → Extensions → CaptionLab</b> і введи пошту, щоб отримати ключ тріалу.",
       "ty.mac":"Завантажити для Mac","ty.win":"Завантажити для Windows",
       "hero.buyline":"Без картки й без акаунта. <a href='#try'>Або купи одразу — $39 разово</a>",
       "try.h":"Спробуй спершу — або купуй одразу","try.lede":"Точність сильно різниться від мови до мови. Якщо твоя — з тих, що Adobe не підтримує, три дні на власному матеріалі скажуть більше, ніж будь-яке демо.","try.badge":"БЕЗКОШТОВНИЙ ТРІАЛ","try.price":"3 дні безкоштовно","try.p":"Повноцінний плагін — усі моделі, усі мови, справжні субтитри на твоєму таймлайні. Без картки й без акаунта. <b>Три дні починаються з першої транскрипції</b>, а не із завантаження, тож встановлення й скачування моделі не коштують тобі нічого.","try.mac":"Завантажити для Mac","try.win":"Завантажити для Windows","try.buybadge":"ПОВНА ЛІЦЕНЗІЯ","try.buyprice":"$39 разово","try.buyp":"Уже знаєш, що це те, що треба? Пропусти тріал. Один платіж — і назавжди: без підписки, без оплати за хвилини, працює офлайн на <b>двох комп'ютерах</b>.","try.buycta":"Отримати CaptionLab →","cl.v105.trial.label":"🎬 Спробуй, перш ніж купувати","cl.v105.trial.li1":"Тепер є <b>безкоштовний 3-денний тріал</b> повноцінного плагіна — усі моделі, усі мови, справжні субтитри на таймлайні. Без картки й без акаунта.","cl.v105.trial.li2":"Три дні починаються з <b>першої транскрипції</b>, а не із завантаження. Встановлення движка й скачування багатогігабайтної моделі може забрати вечір — і жодна хвилина з цього не йде з твого тріалу.","cl.v105.myanmar.label":"🇲🇲 Модель для бірманської","cl.v105.myanmar.li1":"Бірманська — з тих мов, що стандартні моделі опрацьовують погано: на реальному відео вони видавали зовсім не те письмо або хвилинами повторювали один склад. Тепер у вкладці Models є <b>окрема модель для бірманської</b>, і на тих самих кліпах вона дає справжній, читабельний текст.","cl.v105.myanmar.li2":"Ця модель з'явилася завдяки клієнту, який попросив повернення, бо його мова не працювала. Якщо твоя теж не працює — <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>напиши мені</a>. Саме так це й було зроблено.","cl.v105.install.label":"🔧 Встановлення, що лагодить себе саме","cl.v105.install.li1":"Недокачаний файл раніше вважався справним назавжди: кожна повторна спроба бачила, що файл на місці, і пропускала його — тож те саме зламане встановлення поверталося, скільки б разів ти не тиснув. Тепер інсталятор перевіряє, що кожен компонент справді <b>запускається</b>, і перекачує його, якщо ні. Зависле завантаження обривається за таймаутом і повторюється.","cl.badge.v105":"Щойно вийшло","cl.badge.v103":"Попередній випуск","cl.v104.timing.label":"⏱ Титри влучають у слово","cl.v104.timing.li1":"Таймінг тепер вимірюється по <b>самому аудіо</b>, а не береться з таймкодів ШІ — тож титр більше не зʼявляється, поки людина ще мовчить. На реальному новинному сюжеті сумарна розсинхронізація впала приблизно на <b>60%</b>.","cl.v104.timing.li2":"Виправлено випадки, коли титри вискакували на секунди раніше: після довгих пауз, на футажі з фоновим шумом і після музики. Титр також тримається трохи довше, а не зникає в ту ж мить, коли людина замовкла.","cl.v104.words.label":"✂️ «Fixed words» тепер «Max words»","cl.v104.words.li1":"Це <b>стеля, а не норма</b>. Постав 4 — і титр буде з 3, 2 чи навіть 1 слова, якщо саме там закінчується думка. Титр ніколи не розривається посеред речення, ріже по комах, а короткі слова на кшталт «не» чи «це» більше не висять на екрані самі.","cl.v104.words.li2":"Звичайні титри теж стежать за структурою речення — коректна довжина рядка, швидкість читання, і слова через дефіс більше не розриваються на два екрани.","cl.v104.quiet.label":"🔊 Тиха мова більше не пропускається","cl.v104.quiet.li1":"Звук, записаний значно тихіше за решту відео — наприклад, інтервʼю з локації поруч із гучним студійним голосом — раніше просто зникав. Тепер рівні вирівнюються перед розшифровкою, і ці фрагменти теж отримують субтитри.",
@@ -2563,6 +2589,7 @@ function toggleLegal(scroll) {
       "cl.v103.fixes.label":"🔧 Надійність","cl.v103.fixes.li1":"Виправлено проблему на Windows, через яку одноразове встановлення AI-рушія могло зависати на завантаженні, зокрема в мережах з антивірусним HTTPS-скануванням.","cl.v103.fixes.li2":"Виправлено генерацію субтитрів для мультикам-секвенцій і Merged/Synchronized кліпів."
     },
     pl:{
+      "dl.eyebrow":"Pobieranie się rozpoczęło","dl.h.mac":"Instalacja na Macu","dl.h.win":"Instalacja na Windows","dl.badge":"BEZ POŚPIECHU","dl.close":"Jasne","dl.note":"Trzy dni startują przy pierwszej transkrypcji — nie teraz i nie po instalacji. Konfiguracja nic Cię nie kosztuje.","dl.mac.1":"Rozpakuj archiwum i zamknij Premiere Pro, jeśli jest otwarty.","dl.mac.2":"Pliku <b>.zxp</b> macOS sam nie otworzy — zainstaluj najpierw darmowy <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a>. Pomiń, jeśli już go masz.","dl.mac.3":"Przeciągnij <b>.zxp</b> na instalator — sam umieści wtyczkę we właściwym miejscu.","dl.mac.4":"Otwórz Premiere → <b>Window → Extensions → CaptionLab</b> i podaj e-mail, aby dostać klucz triala.","dl.win.1":"Rozpakuj archiwum i zamknij Premiere Pro, jeśli jest otwarty.","dl.win.2":"Kliknij dwukrotnie <b>Install CaptionLab.bat</b>.","dl.win.3":"Windows może ostrzec, że ochronił Twój komputer — to tylko dlatego, że plik nie jest jeszcze podpisany cyfrowo. Kliknij <b>Więcej informacji</b> → <b>Uruchom mimo to</b>.","dl.win.4":"Otwórz Premiere → <b>Window → Extensions → CaptionLab</b> i podaj e-mail, aby dostać klucz triala.",
       "ty.mac":"Pobierz na Maca","ty.win":"Pobierz na Windows",
       "hero.buyline":"Bez karty, bez konta. <a href='#try'>Albo kup od razu — $39 jednorazowo</a>",
       "try.h":"Najpierw wypróbuj albo kup od razu","try.lede":"Dokładność mocno różni się między językami. Jeśli Twój jest jednym z tych, których Adobe nie obsługuje, trzy dni na własnym materiale powiedzą Ci więcej niż jakiekolwiek demo.","try.badge":"DARMOWY TRIAL","try.price":"3 dni za darmo","try.p":"Pełna wtyczka — wszystkie modele, wszystkie języki, prawdziwe napisy na Twojej osi czasu. Bez karty, bez konta. <b>Trzy dni startują przy pierwszej transkrypcji</b>, nie przy pobraniu, więc instalacja i ściąganie modelu AI nic Cię nie kosztują.","try.mac":"Pobierz na Maca","try.win":"Pobierz na Windows","try.buybadge":"PEŁNA LICENCJA","try.buyprice":"$39 jednorazowo","try.buyp":"Już wiesz, że tego potrzebujesz? Pomiń trial. Jedna płatność i masz na zawsze — bez subskrypcji, bez opłat za minutę, działa offline na <b>dwóch komputerach</b>.","try.buycta":"Pobierz CaptionLab →","cl.v105.trial.label":"🎬 Wypróbuj, zanim kupisz","cl.v105.trial.li1":"Jest już <b>darmowy 3-dniowy trial</b> pełnej wtyczki — wszystkie modele, wszystkie języki, prawdziwe napisy na osi czasu. Bez karty, bez konta.","cl.v105.trial.li2":"Trzy dni startują przy <b>pierwszej transkrypcji</b>, nie przy pobraniu. Instalacja silnika i ściągnięcie wielogigabajtowego modelu potrafi zająć wieczór — i nic z tego nie schodzi z Twojego triala.","cl.v105.myanmar.label":"🇲🇲 Model stworzony do birmańskiego","cl.v105.myanmar.li1":"Birmański to jeden z języków, z którymi standardowe modele radzą sobie źle — na prawdziwym materiale zwracały zupełnie inne pismo albo minutami powtarzały tę samą sylabę. W zakładce Models jest teraz <b>osobny model do birmańskiego</b>, który na tych samych klipach daje prawdziwy, czytelny tekst.","cl.v105.myanmar.li2":"Ten model powstał dzięki klientowi, który poprosił o zwrot, bo jego język nie działał. Jeśli Twój też nie działa — <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>napisz do mnie</a>. Właśnie tak to powstało.","cl.v105.install.label":"🔧 Instalacja, która sama się naprawia","cl.v105.install.li1":"Niedokończone pobieranie było kiedyś uznawane za dobre na zawsze: każda kolejna próba widziała, że plik istnieje, i go pomijała — więc ta sama zepsuta instalacja wracała bez względu na to, ile razy kliknąłeś. Teraz instalator sprawdza, czy każdy element faktycznie <b>się uruchamia</b>, i pobiera go ponownie, jeśli nie. Zawieszone pobierania kończą się timeoutem i są ponawiane.","cl.badge.v105":"Właśnie wydane","cl.badge.v103":"Poprzednie wydanie","cl.v104.timing.label":"⏱ Napisy trafiają w słowo","cl.v104.timing.li1":"Czas napisów jest teraz mierzony na podstawie <b>samego dźwięku</b>, a nie znaczników AI — napis nie pojawia się już, gdy mówca wciąż milczy. Na prawdziwym materiale informacyjnym łączne rozjechanie spadło o około <b>60%</b>.","cl.v104.timing.li2":"Naprawione przypadki, gdy napisy pojawiały się kilka sekund za wcześnie: po długich pauzach, na materiale z tłem dźwiękowym i po muzyce. Napis utrzymuje się też chwilę dłużej, zamiast znikać w momencie, gdy mówca kończy.","cl.v104.words.label":"✂️ „Fixed words” to teraz „Max words”","cl.v104.words.li1":"To <b>górna granica, nie norma</b>. Ustaw 4, a napis będzie miał 3, 2 albo nawet 1 słowo, jeśli właśnie tam kończy się myśl. Napis nigdy nie dzieli zdania, łamie się na przecinkach, a krótkie słowa jak „nie” czy „to” nie zostają same na ekranie.","cl.v104.words.li2":"Domyślne napisy też podążają za budową zdania — właściwa długość linii, tempo czytania, a słowa z myślnikiem nie są już dzielone na dwa ekrany.","cl.v104.quiet.label":"🔊 Ciche wypowiedzi nie są już pomijane","cl.v104.quiet.li1":"Dźwięk nagrany znacznie ciszej niż reszta filmu — na przykład wywiad w terenie zestawiony z głośnym głosem studyjnym — wcześniej po prostu znikał. Teraz poziomy są wyrównywane przed transkrypcją, więc te fragmenty również dostają napisy.",
@@ -2613,6 +2640,7 @@ function toggleLegal(scroll) {
       "cl.v103.fixes.label":"🔧 Niezawodność","cl.v103.fixes.li1":"Naprawiono problem na Windows, przez który jednorazowa instalacja silnika AI mogła się zawieszać przy pobieraniu, także w sieciach ze skanowaniem HTTPS przez antywirus.","cl.v103.fixes.li2":"Naprawiono generowanie napisów dla sekwencji multicam i klipów Merged/Synchronized."
     },
     tr:{
+      "dl.eyebrow":"İndirme başladı","dl.h.mac":"Mac'e kurulum","dl.h.win":"Windows'a kurulum","dl.badge":"ACELE ETME","dl.close":"Anlaşıldı","dl.note":"Üç gün ilk transkripsiyonda başlar — şimdi değil, kurulumdan sonra da değil. Kurulum sana hiçbir şeye mal olmaz.","dl.mac.1":"Arşivi aç ve Premiere Pro açıksa kapat.","dl.mac.2":"<b>.zxp</b> dosyasını macOS kendi başına açamaz — önce ücretsiz <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a> kur. Zaten varsa bu adımı atla.","dl.mac.3":"<b>.zxp</b> dosyasını kurulum programının üzerine sürükle — eklentiyi yerine kendisi koyar.","dl.mac.4":"Premiere → <b>Window → Extensions → CaptionLab</b> aç ve deneme anahtarı için e-postanı gir.","dl.win.1":"Arşivi aç ve Premiere Pro açıksa kapat.","dl.win.2":"<b>Install CaptionLab.bat</b> dosyasına çift tıkla.","dl.win.3":"Windows bilgisayarını koruduğunu söyleyebilir — bunun tek nedeni dosyanın henüz imzalı olmaması. <b>Daha fazla bilgi</b> → <b>Yine de çalıştır</b>.","dl.win.4":"Premiere → <b>Window → Extensions → CaptionLab</b> aç ve deneme anahtarı için e-postanı gir.",
       "ty.mac":"Mac için indir","ty.win":"Windows için indir",
       "hero.buyline":"Kart yok, hesap yok. <a href='#try'>Ya da hemen al — tek seferlik $39</a>",
       "try.h":"Önce dene, ya da hemen al","try.lede":"Doğruluk dilden dile çok değişir. Seninki Adobe'nin desteklemediği dillerden biriyse, kendi görüntülerinde geçireceğin üç gün sana her demodan fazlasını anlatır.","try.badge":"ÜCRETSİZ DENEME","try.price":"3 gün ücretsiz","try.p":"Eksiksiz eklenti — bütün modeller, bütün diller, zaman çizelgende gerçek altyazılar. Kart yok, hesap yok. <b>Üç günün ilk transkripsiyonunda başlar</b>, indirmede değil; yani kurulum ve yapay zekâ modelini indirmek sana hiçbir şeye mal olmaz.","try.mac":"Mac için indir","try.win":"Windows için indir","try.buybadge":"TAM LİSANS","try.buyprice":"Tek seferlik $39","try.buyp":"İhtiyacın olduğunu zaten biliyor musun? Denemeyi atla. Tek ödeme, sonsuza dek senin — abonelik yok, dakika ücreti yok, <b>iki bilgisayarda</b> çevrimdışı çalışmaya devam eder.","try.buycta":"CaptionLab'i al →","cl.v105.trial.label":"🎬 Satın almadan önce dene","cl.v105.trial.li1":"Artık eksiksiz eklentinin <b>ücretsiz 3 günlük denemesi</b> var — bütün modeller, bütün diller, zaman çizelgende gerçek altyazılar. Kart yok, hesap yok.","cl.v105.trial.li2":"Üç gün <b>ilk transkripsiyonunda</b> başlar, indirmede değil. Motoru kurmak ve gigabaytlarca modeli indirmek bir akşamını alabilir; bunun hiçbiri denemenden düşmez.","cl.v105.myanmar.label":"🇲🇲 Birmanca için özel model","cl.v105.myanmar.li1":"Birmanca, standart modellerin kötü başa çıktığı dillerden biri — gerçek görüntülerde tamamen başka bir yazı üretiyor ya da aynı heceyi dakikalarca tekrarlıyorlardı. Models sekmesinde artık <b>Birmancaya özel bir model</b> var ve aynı kliplerde gerçek, okunabilir Birmanca üretiyor.","cl.v105.myanmar.li2":"Bu model, dili çalışmadığı için iade isteyen bir müşteri sayesinde çıktı. Seninki de çalışmıyorsa <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>bana yaz</a> — bu böyle ortaya çıktı.","cl.v105.install.label":"🔧 Kendini onaran kurulum","cl.v105.install.li1":"Yarım kalmış bir indirme eskiden sonsuza dek doğru sayılırdı: her yeniden deneme dosyanın orada olduğunu görüp atlıyordu, yani kaç kez tıklarsan tıkla aynı bozuk kurulum geri geliyordu. Kurulum artık her parçanın gerçekten <b>çalıştığını</b> kontrol ediyor, çalışmıyorsa yeniden indiriyor. Takılan indirmeler zaman aşımına uğrayıp yeniden deneniyor.","cl.badge.v105":"Yeni çıktı","cl.badge.v103":"Önceki sürüm","cl.v104.timing.label":"⏱ Altyazılar kelimeye oturuyor","cl.v104.timing.li1":"Altyazı zamanlaması artık yapay zekânın kendi zaman damgaları yerine <b>sesin kendisine</b> göre ölçülüyor — konuşmacı hâlâ sessizken altyazı çıkmıyor. Gerçek bir haber paketinde toplam kayma yaklaşık <b>%60</b> azaldı.","cl.v104.timing.li2":"Altyazıların saniyelerce erken çıktığı durumlar düzeltildi: uzun duraklamalardan sonra, ortam sesli B-roll üzerinde ve müzikten sonra. Altyazı ayrıca konuşmacı susar susmaz kaybolmak yerine biraz daha uzun kalıyor.","cl.v104.words.label":"✂️ „Fixed words” artık „Max words”","cl.v104.words.li1":"Bu bir <b>üst sınır, kota değil</b>. 4 seçin; cümle orada bitiyorsa altyazı 3, 2 hatta 1 kelime olur. Altyazı asla cümlenin ortasından bölünmez, virgüllerde kesilir ve „ve” ya „bu” gibi kısa kelimeler ekranda tek başına kalmaz.","cl.v104.words.li2":"Varsayılan altyazılar da cümle yapısını izler — doğru satır uzunluğu, okuma hızı ve tireli kelimeler artık iki ekrana bölünmez.","cl.v104.quiet.label":"🔊 Sessiz konuşmalar artık atlanmıyor","cl.v104.quiet.li1":"Videonun geri kalanından çok daha düşük seviyede kaydedilmiş ses — örneğin gürültülü bir stüdyo sesinin yanına kurgulanmış saha röportajı — eskiden sessizce atlanıyordu. Artık seviyeler deşifre öncesi dengeleniyor, bu bölümler de altyazı alıyor.",
@@ -2663,6 +2691,7 @@ function toggleLegal(scroll) {
       "cl.v103.fixes.label":"🔧 Güvenilirlik","cl.v103.fixes.li1":"Bazı ağlarda antivirüs/HTTPS taraması nedeniyle tek seferlik AI motoru kurulumunun indirmede takılı kalmasına yol açan Windows sorunu düzeltildi.","cl.v103.fixes.li2":"Multicam sekanslarında ve Merged/Synchronized kliplerde altyazı oluşturma sorunu düzeltildi."
     },
     ar:{
+      "dl.eyebrow":"بدأ التنزيل","dl.h.mac":"التثبيت على Mac","dl.h.win":"التثبيت على Windows","dl.badge":"خذ وقتك","dl.close":"فهمت","dl.note":"الأيام الثلاثة تبدأ مع أول تفريغ — لا الآن ولا بعد التثبيت. الإعداد لا يكلّفك شيئًا.","dl.mac.1":"فك ضغط الملف، وأغلق Premiere Pro إن كان مفتوحًا.","dl.mac.2":"ملف <b>.zxp</b> لا يستطيع macOS فتحه بنفسه — ثبّت أولًا <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a> المجاني. تجاوز هذه الخطوة إن كان لديك واحد.","dl.mac.3":"اسحب ملف <b>.zxp</b> فوق المثبّت — سيضع الإضافة في مكانها بنفسه.","dl.mac.4":"افتح Premiere ← <b>Window ← Extensions ← CaptionLab</b> وأدخل بريدك للحصول على مفتاح التجربة.","dl.win.1":"فك ضغط الملف، وأغلق Premiere Pro إن كان مفتوحًا.","dl.win.2":"انقر نقرًا مزدوجًا على <b>Install CaptionLab.bat</b>.","dl.win.3":"قد ينبّهك Windows بأنه حمى جهازك — والسبب فقط أن الملف ليس موقّعًا رقميًا بعد. اضغط <b>مزيد من المعلومات</b> ← <b>تشغيل على أي حال</b>.","dl.win.4":"افتح Premiere ← <b>Window ← Extensions ← CaptionLab</b> وأدخل بريدك للحصول على مفتاح التجربة.",
       "ty.mac":"تنزيل لـ Mac","ty.win":"تنزيل لـ Windows",
       "hero.buyline":"بلا بطاقة وبلا حساب. <a href='#try'>أو اشترِه الآن — $39 مرة واحدة</a>",
       "try.h":"جرّبه أولًا، أو اشترِه الآن","try.lede":"تختلف الدقة كثيرًا من لغة إلى أخرى. إن كانت لغتك من التي لا يدعمها Adobe، فثلاثة أيام على موادك الخاصة ستخبرك أكثر من أي عرض توضيحي.","try.badge":"تجربة مجانية","try.price":"٣ أيام مجانًا","try.p":"الإضافة كاملة — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب. <b>تبدأ الأيام الثلاثة مع أول تفريغ</b>، لا مع التنزيل، فالتثبيت وتنزيل نموذج الذكاء الاصطناعي لا يكلّفانك شيئًا.","try.mac":"تنزيل لـ Mac","try.win":"تنزيل لـ Windows","try.buybadge":"ترخيص كامل","try.buyprice":"$39 مرة واحدة","try.buyp":"تعرف أصلًا أنه ما تحتاجه؟ تجاوز التجربة. دفعة واحدة، ويبقى لك للأبد — بلا اشتراك وبلا رسوم بالدقيقة، ويعمل دون إنترنت على <b>جهازين</b>.","try.buycta":"احصل على CaptionLab ←","cl.v105.trial.label":"🎬 جرّبه قبل أن تشتريه","cl.v105.trial.li1":"صارت هناك <b>تجربة مجانية لثلاثة أيام</b> للإضافة كاملة — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب.","cl.v105.trial.li2":"تبدأ الأيام الثلاثة مع <b>أول تفريغ</b>، لا مع التنزيل. تثبيت المحرك وتنزيل نموذج بحجم غيغابايتات قد يستغرق أمسية كاملة، ولا شيء من ذلك يُخصم من تجربتك.","cl.v105.myanmar.label":"🇲🇲 نموذج مخصص للبورمية","cl.v105.myanmar.li1":"البورمية من اللغات التي تتعامل معها النماذج القياسية بشكل سيئ — على مواد حقيقية كانت تنتج كتابة مختلفة تمامًا، أو تكرّر المقطع نفسه لدقائق. صار في تبويب Models <b>نموذج مخصص للبورمية</b>، وهو ينتج نصًا بورميًا حقيقيًا ومقروءًا على المقاطع نفسها.","cl.v105.myanmar.li2":"جاء هذا النموذج بفضل عميل طلب استرداد ماله لأن لغته لم تعمل. إن كانت لغتك لا تعمل أيضًا، <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>راسلني</a> — هكذا وُلد هذا بالضبط.","cl.v105.install.label":"🔧 تثبيت يصلح نفسه","cl.v105.install.li1":"كان التنزيل الناقص يُعتبر سليمًا إلى الأبد: كل محاولة جديدة ترى أن الملف موجود فتتخطاه، فيعود التثبيت المعطوب نفسه مهما ضغطت. صار المثبّت يتحقق من أن كل جزء <b>يعمل</b> فعلًا، ويعيد تنزيله إن لم يكن كذلك. التنزيلات المتوقفة تنتهي مهلتها وتُعاد المحاولة.","cl.badge.v105":"صدر للتو","cl.badge.v103":"الإصدار السابق","cl.v104.timing.label":"⏱ الترجمات تتزامن مع الكلمة","cl.v104.timing.li1":"يُقاس توقيت الترجمة الآن من <b>الصوت نفسه</b> بدل الاعتماد على طوابع الذكاء الاصطناعي — فلم تعد الترجمة تظهر والمتحدث ما زال صامتًا. في تقرير إخباري حقيقي انخفض إجمالي الانحراف بنحو <b>60%</b>.","cl.v104.timing.li2":"عولجت الحالات التي كانت تظهر فيها الترجمة قبل ثوانٍ: بعد الوقفات الطويلة، وفوق اللقطات ذات الصوت المحيط، وبعد الموسيقى. كما تبقى الترجمة لحظة أطول بدل أن تختفي فور توقف المتحدث.","cl.v104.words.label":"✂️ ‏«Fixed words» صارت «Max words»","cl.v104.words.li1":"إنه <b>حدّ أقصى وليس حصة</b>. اختر 4، وستكون الترجمة 3 أو 2 أو حتى كلمة واحدة إذا انتهت الجملة هناك. لا تُقسَّم الترجمة أبدًا عبر جملة، وتُقطع عند الفواصل، ولا تبقى الكلمات القصيرة وحدها على الشاشة.","cl.v104.words.li2":"الترجمات الافتراضية تتبع بنية الجملة أيضًا — طول سطر مناسب، وسرعة قراءة، ولم تعد الكلمات الموصولة بشرطة تُقسَّم على شاشتين.","cl.v104.quiet.label":"🔊 لم يعد الكلام المنخفض يُتجاهل","cl.v104.quiet.li1":"الصوت المسجَّل بمستوى أقل بكثير من بقية الفيديو — كمقابلة ميدانية بجانب صوت استوديو عالٍ — كان يُسقَط بصمت. تُوازَن المستويات الآن قبل التفريغ، فتحصل هذه المقاطع على ترجمة أيضًا.",
@@ -2722,6 +2751,8 @@ function toggleLegal(scroll) {
     nodes = Array.prototype.slice.call(document.querySelectorAll('[data-i18n]'));
     nodes.forEach(function(el){ el._orig = el.innerHTML; });
   }
+  window.DICT = DICT;   // the download modal builds its steps in JS and reads this
+
   function apply(lang){
     current = lang;
     var d = DICT[lang] || null;
@@ -2857,8 +2888,74 @@ function closeImgLightbox(){
   document.getElementById('imgLightboxImg').src = '';
   document.body.style.overflow = '';
 }
+
+/* Post-download help. Wired to every download button on the page; the link's
+   own href still fires, so the file starts arriving while this is read. */
+// English is the fallback; every string also lives in the dictionary so the
+// modal follows the page language like everything else.
+var DL_STEPS = {
+  mac: [
+    ["dl.mac.1", "Unzip the download, and quit Premiere Pro if it's open."],
+    ["dl.mac.2", "A <b>.zxp</b> file is not something macOS can open on its own — install a free <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a> first. Skip this if you already have one."],
+    ["dl.mac.3", "Drag the <b>.zxp</b> onto the installer. It puts the plugin in place for you."],
+    ["dl.mac.4", "Open Premiere &rarr; <b>Window &rarr; Extensions &rarr; CaptionLab</b>, and enter your email to get a trial key."]
+  ],
+  win: [
+    ["dl.win.1", "Unzip the download, and quit Premiere Pro if it's open."],
+    ["dl.win.2", "Double-click <b>Install CaptionLab.bat</b>."],
+    ["dl.win.3", "Windows may warn that it protected your PC — that's only because the file isn't code-signed yet. Click <b>More info</b> &rarr; <b>Run anyway</b>."],
+    ["dl.win.4", "Open Premiere &rarr; <b>Window &rarr; Extensions &rarr; CaptionLab</b>, and enter your email to get a trial key."]
+  ]
+};
+
+function openDownloadHelp(os) {
+  var m = document.getElementById('dlModal');
+  if (!m) return;
+  var title = document.getElementById('dl-title');
+  if (title) {
+    title.textContent = (os === 'win')
+      ? t18('dl.h.win', 'Installing on Windows')
+      : t18('dl.h.mac', 'Installing on Mac');
+  }
+  var box = document.getElementById('dl-steps');
+  if (box) {
+    box.innerHTML = '';
+    (DL_STEPS[os] || DL_STEPS.mac).forEach(function (pair, i) {
+      var row = document.createElement('div');
+      row.className = 'precheck-step';
+      row.innerHTML = '<span class="precheck-num">' + (i + 1) + '</span><span>' +
+                      t18(pair[0], pair[1]) + '</span>';
+      box.appendChild(row);
+    });
+  }
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDownloadHelp() {
+  var m = document.getElementById('dlModal');
+  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+}
+
+function t18(key, fallback) {
+  try {
+    var lang = document.documentElement.getAttribute('lang') || 'en';
+    var d = window.DICT && window.DICT[lang];
+    if (d && d[key]) return d[key];
+  } catch (e) {}
+  return fallback;
+}
+
+['try-mac', 'try-win', 'ty-mac', 'ty-win'].forEach(function (id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('click', function () {
+    openDownloadHelp(id.indexOf('win') > -1 ? 'win' : 'mac');
+  });
+});
+
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') { closeVideoLightbox(); closePreCheckout(); closeImgLightbox(); }
+  if (e.key === 'Escape') { closeVideoLightbox(); closePreCheckout(); closeImgLightbox(); closeDownloadHelp(); }
 });
 
 /* Put the visitor's own platform first in the trial section. Both downloads
