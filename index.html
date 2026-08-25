@@ -238,6 +238,185 @@ html:not([lang="en"]) .cta-row{gap:10px}
 .hero-buyline a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,224,255,.3)}
 .hero-buyline a:hover{border-bottom-color:var(--cyan)}
 
+
+
+/* The buy button has to be on the first screen. Before this the hero ran to
+   1011px on a 900px viewport, so the one thing we want clicked was the one
+   thing nobody saw without scrolling. */
+.hero-sub{font-size:16.5px;line-height:1.5;margin-bottom:0;max-width:560px}
+.hero-price{margin:12px 0 14px;padding:12px 18px}
+.hp-amount{font-size:38px}
+@media(min-width:861px){
+  .hero{padding-top:40px}
+  .hero h1{font-size:clamp(38px,4.4vw,60px);line-height:1.06}
+}
+
+/* ── Language checker ── */
+.lc-sec{padding:64px 0 56px}
+.lc-head{text-align:center;margin-bottom:26px}
+.lc-eyebrow{font-size:11.5px;letter-spacing:.16em;font-weight:800;color:var(--cyan);margin-bottom:12px}
+.lc-h2{font-size:34px;color:var(--white);margin:0 0 10px;border:none;padding:0;display:block;letter-spacing:-.02em}
+.lc-sub{color:var(--mid);font-size:15.5px;margin:0}
+.lc-box{max-width:620px;margin:0 auto}
+.lc-input{
+  width:100%;box-sizing:border-box;background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:19px 22px;font-size:17px;color:var(--white);outline:none;
+  transition:border-color .15s, box-shadow .15s;font-family:inherit;
+}
+.lc-input::placeholder{color:var(--dim)}
+.lc-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,224,255,.12)}
+.lc-result{margin-top:14px;min-height:10px}
+.lc-card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:22px 24px;border-left:3px solid var(--green);
+  animation:lcIn .22s ease-out;
+}
+.lc-card.is-adobe{border-left-color:var(--cyan)}
+@keyframes lcIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.lc-verdict{font-size:19px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.35}
+.lc-verdict .hl{color:var(--green)}
+.lc-card.is-adobe .lc-verdict .hl{color:var(--cyan)}
+.lc-why{color:var(--mid);font-size:14.5px;line-height:1.6;margin-bottom:16px}
+.lc-why b{color:var(--white)}
+.lc-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.lc-cta .btn-primary{animation:none;font-size:15px;padding:14px 24px}
+.lc-alt{font-size:13px;color:var(--dim)}
+.lc-alt a{color:var(--cyan);text-decoration:none}
+.lc-miss{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;color:var(--mid);font-size:14.5px;line-height:1.6}
+.lc-miss a{color:var(--cyan);text-decoration:none}
+@media(max-width:640px){
+  .lc-h2{font-size:26px}
+  .lc-input{font-size:16px;padding:16px 18px}
+}
+
+
+/* The headline price needs the old number legible without stealing the eye
+   from the new one — hence smaller, offset, and in the warning colour. */
+.price-amount .price-was{font-size:.42em;vertical-align:super;margin-right:12px}
+.price-from{text-align:center;margin:-4px 0 10px}
+
+/* ── Hero demo ── */
+.hero-demo{position:relative;z-index:2;max-width:400px;margin:0 auto}
+.hero-demo-screen{
+  position:relative;border-radius:14px;overflow:hidden;cursor:pointer;
+  border:1px solid var(--border);background:#05080c;
+  box-shadow:0 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(0,224,255,.08);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.hero-demo-screen:hover{transform:translateY(-3px);box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(0,224,255,.22)}
+.hero-demo-img{display:block;width:100%;height:auto;background:#05080c}
+.hero-demo-overlay{
+  position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:10px;
+  padding:14px 16px;background:linear-gradient(to top,rgba(4,7,11,.92),rgba(4,7,11,0));
+}
+.hero-demo-play{
+  width:30px;height:30px;flex:none;border-radius:50%;background:var(--cyan);color:#05080c;
+  display:flex;align-items:center;justify-content:center;font-size:12px;padding-left:2px;
+}
+.hero-demo-cap{color:var(--white);font-size:13.5px;font-weight:600}
+.hero-demo-note{text-align:center;color:var(--dim);font-size:12px;margin-top:10px}
+@media(max-width:860px){.hero-demo{max-width:100%;margin-top:26px}}
+/* ── Launch deadline ──
+   The strike-through is labelled "from 1 September" everywhere it appears.
+   A bare crossed-out $59 would read as a price that used to be charged and
+   never was — which is both untrue and, in the EU and UK, unlawful. Labelled
+   as the price that is coming, it says the same thing and is simply true.
+
+   Everything here is driven by CL_DEADLINE. When that moment passes the promo
+   removes itself rather than going on claiming a deadline that has gone. */
+.was{
+  color:#FF6B4A;font-weight:800;text-decoration:line-through;
+  text-decoration-thickness:2px;text-decoration-color:#FF6B4A;
+  margin-right:10px;opacity:.95;
+}
+.was-tag{
+  display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;
+  color:#FF6B4A;border:1px solid rgba(255,107,74,.4);background:rgba(255,107,74,.1);
+  border-radius:999px;padding:3px 8px;vertical-align:middle;margin-left:2px;
+  text-decoration:none;
+}
+.hp-amount .was{font-size:.62em}
+
+/* Countdown */
+.cd{
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  background:linear-gradient(90deg,rgba(255,107,74,.14),rgba(255,107,74,.04));
+  border:1px solid rgba(255,107,74,.38);border-radius:12px;
+  padding:8px 13px;margin:0 0 10px;max-width:520px;
+}
+.cd-label{font-size:12.5px;font-weight:700;color:#FF9270;letter-spacing:.01em}
+.cd-units{display:flex;gap:7px}
+.cd-u{
+  background:rgba(255,107,74,.14);border:1px solid rgba(255,107,74,.3);
+  border-radius:8px;padding:5px 9px;min-width:44px;text-align:center;
+}
+.cd-n{display:block;font-size:17px;font-weight:800;color:#fff;line-height:1.1;font-variant-numeric:tabular-nums}
+.cd-s{display:block;font-size:9.5px;color:#FF9270;letter-spacing:.06em;font-weight:700;margin-top:1px}
+.cd-sticky{
+  display:inline-flex;align-items:center;gap:6px;margin-right:14px;
+  font-size:12.5px;font-weight:700;color:#FF9270;white-space:nowrap;
+}
+.cd-sticky b{color:#fff;font-variant-numeric:tabular-nums}
+@media(max-width:640px){
+  .cd{padding:10px 12px;gap:7px}
+  .cd-u{min-width:38px;padding:4px 7px}
+  .cd-n{font-size:15px}
+  .cd-sticky{display:none}
+}
+/* ── Price in the hero ──
+   Reading order is deliberate: the number, then what kind of number it is,
+   then the comparison. A visitor who reads only the first line still learns
+   the one fact that decides most of these purchases. */
+.hero-price{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin:26px 0 22px;padding:18px 22px;max-width:520px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  position:relative;overflow:hidden;
+}
+.hero-price::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);
+}
+.hp-amount{font-size:44px;font-weight:800;color:var(--white);letter-spacing:-.03em;line-height:1}
+.hp-meta{font-size:13px;color:var(--mid);line-height:1.45}
+.hp-meta b{color:var(--green);font-weight:700}
+.hp-vs{flex-basis:100%;font-size:12.5px;color:var(--dim);line-height:1.5;padding-top:4px}
+@media(max-width:640px){
+  .hero-price{padding:16px 18px;gap:12px}
+  .hp-amount{font-size:36px}
+}
+
+/* ── Proof strip ──
+   Real names, real quotes, directly under the hero. Someone deciding whether
+   to keep reading wants evidence other editors already trusted this, before
+   any further claims from us. */
+.proof-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--card)}
+.proof-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:1120px;margin:0 auto}
+.proof-item{padding:26px 28px;border-right:1px solid var(--border)}
+.proof-item:last-child{border-right:none}
+.proof-q{color:var(--mid);font-size:14px;line-height:1.6;margin:0 0 12px}
+.proof-q b{color:var(--white);font-weight:600}
+.proof-who{font-size:12.5px;color:var(--dim);display:flex;align-items:center;gap:7px}
+.proof-who .st{color:#f5b301;letter-spacing:1px;font-size:11px}
+@media(max-width:860px){
+  .proof-inner{grid-template-columns:1fr}
+  .proof-item{border-right:none;border-bottom:1px solid var(--border)}
+  .proof-item:last-child{border-bottom:none}
+}
+
+/* ── Subscription maths ──
+   The comparison people never run for themselves. Kept factual: it is simply
+   what a monthly plan costs over time, next to one payment. */
+.anchor-box{max-width:760px;margin:0 auto 34px;background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.anchor-row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:15px 24px;border-bottom:1px solid var(--border);align-items:center}
+.anchor-row:last-child{border-bottom:none}
+.anchor-row.is-ours{background:rgba(31,224,160,.05)}
+.anchor-what{font-size:14.5px;color:var(--mid)}
+.anchor-what b{color:var(--white)}
+.anchor-cost{font-size:15px;font-weight:700;color:var(--mid);white-space:nowrap}
+.anchor-row.is-ours .anchor-cost{color:var(--green)}
+.anchor-note{padding:14px 24px;font-size:12.5px;color:var(--dim);line-height:1.55;border-top:1px solid var(--border)}
+@media(max-width:640px){.anchor-row{padding:13px 16px}.anchor-what{font-size:13.5px}}
+
 /* ── Trial / buy fork ──
    Every "Get the plugin" CTA lands here rather than straight on the price, so
    the choice between trying and buying is made explicitly instead of buying
@@ -942,7 +1121,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
           <div class="lang-opt" data-lang="ar">العربية</div>
         </div>
       </div>
-      <a href="#try" class="nav-cta">
+      <a href="#pricing" class="nav-cta">
         <span data-i18n="nav.cta">Get the plugin</span>
         <span class="nav-cta-icons">
           <svg class="icon-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.014-.1-.04-.32-.04-.55 0-1.14.572-2.27 1.206-2.98.804-.94 2.14-1.64 3.248-1.68.03.13.05.34.05.59zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1 3.86-1 .62 0 2.833.06 4.29 2.15-.11.07-2.55 1.5-2.55 4.55 0 3.5 3.06 4.79 3.24 4.9z"/></svg>
@@ -984,7 +1163,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="wrap">
     <div class="launch-bar-inner">
       <span class="launch-flame">🔥</span>
-      <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="launch-now">$39</span> one-time</span>
+      <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="was">$59</span><span class="launch-now">$39</span> one-time <span class="was-tag" data-i18n="pr.from">FROM 1 SEP</span></span>
       <a href="#changelog" class="launch-win-badge" data-i18n="launch.win">✨ <b>v1.0.5 is here:</b> free 3-day trial + a model for Burmese</a>
     </div>
   </div>
@@ -1000,9 +1179,28 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="hero-text">
     <div class="badge hero-anim" data-i18n="hero.badge"><span class="pr-ic">Pr</span> A native Adobe Premiere Pro plugin · Powered by OpenAI Whisper</div>
     <h1 class="hero-anim d1" data-i18n="hero.h1">Auto&nbsp;subtitles<br>in&nbsp;Premiere&nbsp;Pro.<br>Finally, in <span class="lang-rotate"><span class="lang-rotate-inner" id="rotateLang">your language</span></span></h1>
-    <p class="hero-sub hero-anim d2" data-i18n="hero.sub">A native plugin that lives right inside Premiere Pro. It runs <b>100% offline</b> on your own <b>Mac</b> or <b>Win</b>: your footage never leaves your machine, no cloud, <b>no API keys</b>, no internet, <b>no subscription</b>. It also happens to speak <b>99 languages</b>, including the ones Adobe forgot.</p>
+    <p class="hero-sub hero-anim d2" data-i18n="hero.sub2">Lives inside Premiere Pro and speaks <b>99 languages</b> — including the ones Adobe forgot. Runs <b>100% offline</b> on your own Mac or Windows.</p>
+    <!-- The price sits in the first screen on purpose. "One payment, not a
+         subscription" is the strongest thing this product has against every
+         competitor, and it was previously three scrolls down where most
+         visitors never reached it. -->
+    <div class="cd hero-anim d3" id="cd-hero" style="display:none">
+      <span class="cd-label" data-i18n="cd.label">Launch price ends in</span>
+      <span class="cd-units">
+        <span class="cd-u"><b class="cd-n" data-cd="d">–</b><span class="cd-s" data-i18n="cd.d">DAYS</span></span>
+        <span class="cd-u"><b class="cd-n" data-cd="h">–</b><span class="cd-s" data-i18n="cd.h">HRS</span></span>
+        <span class="cd-u"><b class="cd-n" data-cd="m">–</b><span class="cd-s" data-i18n="cd.m">MIN</span></span>
+        <span class="cd-u"><b class="cd-n" data-cd="s">–</b><span class="cd-s" data-i18n="cd.s">SEC</span></span>
+      </span>
+    </div>
+    <div class="hero-price hero-anim d3">
+      <span class="hp-amount"><span class="was">$59</span>$39</span>
+      <span class="hp-meta"><b data-i18n="hp.once">one payment</b><br><span data-i18n="hp.never">never again</span></span>
+      <span class="hp-vs" data-i18n="hp.vs">Everything else in this category bills you monthly, forever.</span>
+    </div>
+
     <div class="cta-row hero-anim d3">
-      <a href="#try" class="btn-primary" data-i18n="hero.cta1">Try free for 3 days →</a>
+      <a href="#" class="btn-primary" onclick="openPreCheckout(event)" data-i18n="hero.cta1">Get CaptionLab — $39</a>
       <a href="javascript:void(0)" class="watch-demo" onclick="openVideoLightbox()">
         <span class="play-ic">▶</span>
         <span class="wd-text">
@@ -1011,8 +1209,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         </span>
       </a>
     </div>
-    <div class="hero-buyline hero-anim d3" data-i18n="hero.buyline">
-      No card, no account. <a href="#try">Or buy it now — $39 once</a>
+    <div class="hero-buyline hero-anim d3" data-i18n="hero.buyline2">
+      Not sure it handles your language? <a href="#try">Try it free for 3 days first</a> — no card, no account.
     </div>
     <div class="micro hero-anim d4">
       <span data-i18n="hero.m1"><span class="ck">✓</span> One-time purchase</span>
@@ -1023,63 +1221,31 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
     <div class="hero-mockup-col">
     <!-- PLUGIN MOCKUP -->
-    <div class="mockup-wrap hero-anim d4">
-      <div class="mockup">
-        <div class="mock-header">
-          <div class="mock-logo"><svg width="16" height="16" viewBox="0 0 512 512" style="display:block"><rect x="26" y="26" width="460" height="460" rx="106" fill="#00E0FF"/><path d="M 333 164 A 120 120 0 1 0 333 348" fill="none" stroke="#070A0E" stroke-width="64" stroke-linecap="round"/></svg> CaptionLab</div>
-          <span class="mock-badge">Ready</span>
-        </div>
-        <div class="mock-section">
-          <div class="mock-label">Settings</div>
-          <div class="mock-row">
-            <span class="mock-row-label">Source</span>
-            <div class="mock-radio-group">
-              <div class="mock-radio active">Selected Clip</div>
-              <div class="mock-radio">Full Sequence</div>
-            </div>
-          </div>
-          <div class="mock-row">
-            <span class="mock-row-label">Language</span>
-            <div class="mock-select" id="mockLang">Ukrainian</div>
-          </div>
-          <div class="mock-row">
-            <span class="mock-row-label">Model</span>
-            <div class="mock-model-badge" id="mockModel">Large-v3 ⭐</div>
-          </div>
-          <div class="mock-row">
-            <span class="mock-row-label">Output</span>
-            <div class="mock-radio-group">
-              <div class="mock-radio active">Transcribe</div>
-              <div class="mock-radio">→ English</div>
-            </div>
-          </div>
-          <div class="mock-row">
-            <span class="mock-row-label">Caption length</span>
-            <div class="mock-radio-group">
-              <div class="mock-radio">Default</div>
-              <div class="mock-radio active">Max words</div>
-            </div>
-          </div>
-          <div class="mock-row">
-            <span class="mock-row-label">Words</span>
-            <div class="mock-slider-wrap">
-              <div class="mock-slider-track">
-                <div class="mock-slider-fill" id="mockSliderFill"></div>
-                <div class="mock-slider-thumb" id="mockSliderThumb"></div>
-              </div>
-              <span class="mock-slider-val" id="mockSliderVal">1 word</span>
-            </div>
-          </div>
-        </div>
-        <div class="mock-btn">▶ Generate Subtitles</div>
-        <div class="mock-progress"><div class="mock-progress-bar"></div></div>
-        <div class="mock-status" id="mockStatus">✓ 12 segments · UA</div>
-        <div class="mock-out">
-          <div class="mock-out-label">→ your timeline</div>
-          <div class="mock-out-sub"><span id="mockType"></span><span class="mock-cursor"></span></div>
-          <div class="mock-out-time">00:00:01,200 → 00:00:04,800 · SRT</div>
+    <div class="hero-demo hero-anim d4">
+      <!-- The payoff shot, moving, before any argument.
+           A still mockup asks the visitor to imagine the product working; this
+           shows it. Muted, looping, no controls — it reads as a screenshot that
+           happens to be alive, not as a video demanding to be watched.
+           playsinline + autoplay + muted is the combination iOS needs, and the
+           GIF is 96 KB so it costs nothing to load. -->
+      <div class="hero-demo-screen" onclick="openVideoLightbox()" role="button" tabindex="0"
+           onkeydown="if(event.key==='Enter')openVideoLightbox()">
+        <video class="hero-demo-img" autoplay muted loop playsinline preload="metadata"
+               poster="media/hero-demo.jpg"
+               aria-label="The CaptionLab panel transcribing a clip, then its language list">
+          <!-- WebM first: browsers take the first source they can play, and it is
+               a third smaller. Encoded from the original 5 MB capture — 154 KB
+               against 5 MB matters more here than anywhere else on the page,
+               because this loads before anything else the visitor sees. -->
+          <source src="media/hero-demo.webm" type="video/webm">
+          <source src="media/hero-demo.mp4" type="video/mp4">
+        </video>
+        <div class="hero-demo-overlay">
+          <span class="hero-demo-play">▶</span>
+          <span class="hero-demo-cap" data-i18n="hd.watch">Watch the full 60-second demo</span>
         </div>
       </div>
+      <div class="hero-demo-note" data-i18n="hd.note">Real capture — no mockups, no speed-up.</div>
     </div>
     </div>
    </div>
@@ -1100,6 +1266,33 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="img-lightbox-inner">
     <button class="video-lightbox-close" onclick="closeImgLightbox()" aria-label="Close">✕</button>
     <img id="imgLightboxImg" src="" alt="">
+  </div>
+</div>
+
+
+<!-- Exit intent.
+     Fires once, when the pointer leaves toward the browser chrome. What it
+     offers is the trial — something that genuinely exists and costs the visitor
+     nothing — rather than a discount that isn't real or a countdown that
+     resets. Someone leaving undecided is exactly the person the trial was
+     built for; they just never scrolled far enough to find it. -->
+<div class="precheck-modal" id="exitModal" onclick="if(event.target===this)closeExit()">
+  <div class="precheck-inner">
+    <button class="video-lightbox-close" onclick="closeExit()" aria-label="Close">✕</button>
+    <div class="precheck-eyebrow" data-i18n="ex.eyebrow">BEFORE YOU GO</div>
+    <h3 data-i18n="ex.h3">You don't have to decide today</h3>
+    <p style="color:var(--mid);font-size:15px;line-height:1.65;margin:0 0 22px" data-i18n="ex.p">
+      Take the plugin for three days first — every model, every language, real subtitles in your
+      own timeline. No card, no account. Your 3 days don't start until your first transcription.
+      <b style="color:var(--white)">The $39 launch price runs until 1 September</b> — after that it's $59.
+    </p>
+    <div class="try-btns" style="justify-content:center">
+      <a href="https://captionlab-license.editlabtools.workers.dev/download/mac"
+         class="btn-primary try-dl" id="ex-mac" data-i18n="try.mac">Download for Mac</a>
+      <a href="https://captionlab-license.editlabtools.workers.dev/download/win"
+         class="btn-ghost try-dl" id="ex-win" data-i18n="try.win">Download for Windows</a>
+    </div>
+    <button class="precheck-cancel" onclick="closeExit()" data-i18n="ex.no">No thanks</button>
   </div>
 </div>
 
@@ -1219,6 +1412,56 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     .cl-rv2-agg{font-size:12.5px;margin-bottom:32px}
   }
 </style>
+
+<!-- Proof strip.
+     Three real reviews from the section further down, cut to one thought each
+     and moved above the fold. Nothing here is invented: same names, same
+     words. A visitor who has just read a claim wants to see that other editors
+     already believed it, before we ask for anything. -->
+<section class="proof-strip">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <p class="proof-q" data-i18n="ps.q1">Adobe not having a Ukrainian option was such a pain — up until now we literally had someone transcribing by hand. <b>It already feels like a lifesaver.</b></p>
+      <div class="proof-who"><span class="st">★★★★★</span> Olga Mykhalets · <span data-i18n="ps.r1">producer, Ukrainian production company</span></div>
+    </div>
+    <div class="proof-item">
+      <p class="proof-q" data-i18n="ps.q2">It has <b>many languages that Premiere doesn't natively offer</b>, and it can work offline if you have sensitive footage.</p>
+      <div class="proof-who"><span class="st">★★★★★</span> Vladyslav Kalenskyy · <span data-i18n="ps.r2">video editor</span></div>
+    </div>
+    <div class="proof-item">
+      <p class="proof-q" data-i18n="ps.q3">Worth every single cent — <b>it's honestly 100/10.</b> I'll definitely recommend it to my friends.</p>
+      <div class="proof-who"><span class="st">★★★★★</span> Julia K · <span data-i18n="ps.r3">aescripts customer</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Language checker.
+     The whole product exists because Premiere's built-in speech-to-text covers
+     a short list and most of the world isn't on it. That argument is abstract
+     until someone sees their own language answered by name, so this asks the
+     one question that decides the purchase and answers it personally.
+
+     The Adobe list below is deliberately generous — every language Premiere is
+     known to support is in it. Being wrong in that direction costs us a sale;
+     being wrong the other way would be telling someone a falsehood about a
+     competitor. -->
+<section class="section lc-sec" id="check">
+  <div class="wrap">
+    <div class="lc-head reveal">
+      <div class="lc-eyebrow" data-i18n="lc.eyebrow">THE ONLY QUESTION THAT MATTERS</div>
+      <h2 class="lc-h2" data-i18n="lc.h2">Does it speak your language?</h2>
+      <p class="lc-sub" data-i18n="lc.sub">Type it in. You'll know in one second.</p>
+    </div>
+
+    <div class="lc-box reveal">
+      <input id="lc-input" class="lc-input" type="text" autocomplete="off" spellcheck="false"
+             placeholder="Ukrainian, Türkçe, العربية, Tagalog…" aria-label="Your language">
+      <div id="lc-result" class="lc-result" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
 <section class="cl-rv2-sec" id="reviews">
   <div class="cl-rv2-wrap">
     <div class="cl-rv2-head reveal">
@@ -1534,7 +1777,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <tr><td data-i18n="cmp.r2">Runs offline</td><td class="no" data-i18n="cmp.vcloud">✗ cloud</td><td class="no" data-i18n="cmp.vcloud">✗ cloud</td><td class="us-col yes" data-i18n="cmp.local">✓ local</td></tr>
         <tr><td data-i18n="cmp.r3">API key required</td><td class="no">✗</td><td class="no" data-i18n="cmp.yes">✗ yes</td><td class="us-col yes" data-i18n="cmp.none">✓ none</td></tr>
         <tr><td data-i18n="cmp.r4">Footage stays private</td><td class="no">✗</td><td class="no">✗</td><td class="us-col yes" data-i18n="cmp.always">✓ always</td></tr>
-        <tr><td data-i18n="cmp.r5">Pricing</td><td data-i18n="cmp.price1">$55/mo CC</td><td data-i18n="cmp.price2">$15/mo+</td><td class="us-col price-us" data-i18n="cmp.once">$39 once</td></tr>
+        <tr><td data-i18n="cmp.r5">Pricing</td><td data-i18n="cmp.price1">$55/mo CC</td><td data-i18n="cmp.price2">$15/mo+</td><td class="us-col price-us"><span class="was">$59</span><span data-i18n="cmp.once">$39 once</span></td></tr>
         <tr><td data-i18n="cmp.r6">Subscription</td><td class="no" data-i18n="cmp.required">✗ required</td><td class="no" data-i18n="cmp.required">✗ required</td><td class="us-col yes" data-i18n="cmp.never">✓ never</td></tr>
         <tr><td data-i18n="cmp.r7">Per-minute fees / caps</td><td data-i18n="cmp.freen">none</td><td class="no" data-i18n="cmp.metered">✗ metered</td><td class="us-col yes" data-i18n="cmp.unlimited">✓ unlimited</td></tr>
       </table>
@@ -1605,59 +1848,42 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
      asking for their money back.
      Downloads route through the licence Worker (/download/*) so they can be
      counted — Google Drive reports nothing at all. -->
-<section class="section" id="try" style="padding-top:30px">
-  <div class="wrap">
-    <h2 class="try-title reveal" data-i18n="try.h">Try it first, or buy it now</h2>
-    <p class="try-lede reveal" data-i18n="try.lede">
-      Accuracy differs a lot from one language to the next. If yours is one Adobe doesn't support,
-      three days on your own footage will tell you more than any demo can.
-    </p>
 
-    <div class="try-split reveal">
-
-      <div class="try-box try-box--trial">
-        <span class="try-badge" data-i18n="try.badge">FREE TRIAL</span>
-        <div class="try-price" data-i18n="try.price">3 days free</div>
-        <p class="try-p" data-i18n="try.p">
-          The complete plugin — every model, every language, real subtitles in your timeline.
-          No card, no account. You get your key first, then install at your own pace:
-          <b>your 3 days only start at your first transcription</b>, so downloading the
-          plugin and its AI model costs you nothing.
-        </p>
-        <div class="try-btns">
-          <a href="https://captionlab-license.editlabtools.workers.dev/download/mac"
-             class="btn-primary try-dl" id="try-mac" data-i18n="try.mac">Download for Mac</a>
-          <a href="https://captionlab-license.editlabtools.workers.dev/download/win"
-             class="btn-ghost try-dl" id="try-win" data-i18n="try.win">Download for Windows</a>
-        </div>
-      </div>
-
-      <div class="try-box try-box--buy">
-        <span class="try-badge try-badge--buy" data-i18n="try.buybadge">FULL LICENSE</span>
-        <div class="try-price" data-i18n="try.buyprice">$39 once</div>
-        <p class="try-p" data-i18n="try.buyp">
-          Already know it's what you need? Skip the trial. One payment, yours forever —
-          no subscription, no per-minute fees, and it keeps working offline on
-          <b>two computers</b>.
-        </p>
-        <div class="try-btns">
-          <a href="#" class="btn-primary try-dl" onclick="openPreCheckout(event)"
-             data-i18n="try.buycta">Get CaptionLab →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <section class="section" id="pricing" style="padding-top:30px">
   <div class="wrap">
     <div class="eyebrow reveal" style="text-align:center" data-i18n="pr.eyebrow">Simple pricing</div>
     <h2 class="reveal" style="text-align:center" data-i18n="pr.h2">One price. <span class="hl">Yours forever.</span></h2>
     <p class="section-lead reveal" style="text-align:center;margin-left:auto;margin-right:auto" data-i18n="pr.lead">No tiers. No upsells. No catch.</p>
+    
+    <!-- What the alternatives actually cost over time.
+         Not a trick: every figure here is simply a published monthly price
+         multiplied out. Most people never run this sum for themselves, and it
+         is the single strongest argument this product has — so it belongs
+         directly above the buy button, not buried in a comparison table. -->
+    <div class="anchor-box reveal">
+      <div class="anchor-row">
+        <div class="anchor-what" data-i18n="an.r1">A typical subtitle subscription, <b>after one year</b></div>
+        <div class="anchor-cost">$120 – $290</div>
+      </div>
+      <div class="anchor-row">
+        <div class="anchor-what" data-i18n="an.r2">The same subscription, <b>after three years</b></div>
+        <div class="anchor-cost">$360 – $870</div>
+      </div>
+      <div class="anchor-row is-ours">
+        <div class="anchor-what" data-i18n="an.r3"><b>CaptionLab</b>, after one year, three years, or ten</div>
+        <div class="anchor-cost"><span class="was">$59</span>$39</div>
+      </div>
+      <div class="anchor-note" data-i18n="an.note">
+        Per-minute transcription services are worse again: a single 40-minute interview can cost
+        more than this plugin does, and you pay it every time you open a new project.
+      </div>
+    </div>
+
     <div class="price-box reveal">
       <div class="price-flag" data-i18n="pr.flag">LAUNCH</div>
-      <div class="price-amount"><span class="cur">$</span>39</div>
+      <div class="price-amount"><span class="was price-was">$59</span><span class="cur">$</span>39</div>
+      <div class="price-from"><span class="was-tag" data-i18n="pr.from">FROM 1 SEP</span></div>
       <div class="price-once" data-i18n="pr.once">// one-time · permanent license</div>
       <ul class="price-list">
         <li data-i18n="pr.l1"><span class="ck">✓</span> CaptionLab plugin for Premiere Pro (Mac &amp; Windows)</li>
@@ -1693,6 +1919,50 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     </div>
   </div>
 </section>
+<section class="section" id="try" style="padding-top:30px">
+  <div class="wrap">
+    <h2 class="try-title reveal" data-i18n="try.h">Try it first, or buy it now</h2>
+    <p class="try-lede reveal" data-i18n="try.lede">
+      Accuracy differs a lot from one language to the next. If yours is one Adobe doesn't support,
+      three days on your own footage will tell you more than any demo can.
+    </p>
+
+    <div class="try-split reveal">
+
+      <div class="try-box try-box--trial">
+        <span class="try-badge" data-i18n="try.badge">FREE TRIAL</span>
+        <div class="try-price" data-i18n="try.price">3 days free</div>
+        <p class="try-p" data-i18n="try.p">
+          The complete plugin — every model, every language, real subtitles in your timeline.
+          No card, no account. You get your key first, then install at your own pace:
+          <b>your 3 days only start at your first transcription</b>, so downloading the
+          plugin and its AI model costs you nothing.
+        </p>
+        <div class="try-btns">
+          <a href="https://captionlab-license.editlabtools.workers.dev/download/mac"
+             class="btn-primary try-dl" id="try-mac" data-i18n="try.mac">Download for Mac</a>
+          <a href="https://captionlab-license.editlabtools.workers.dev/download/win"
+             class="btn-ghost try-dl" id="try-win" data-i18n="try.win">Download for Windows</a>
+        </div>
+      </div>
+
+      <div class="try-box try-box--buy">
+        <span class="try-badge try-badge--buy" data-i18n="try.buybadge">FULL LICENSE</span>
+        <div class="try-price"><span class="was">$59</span><span data-i18n="try.buyprice">$39 once</span></div>
+        <p class="try-p" data-i18n="try.buyp">
+          Already know it's what you need? Skip the trial. One payment, yours forever —
+          no subscription, no per-minute fees, and it keeps working offline on
+          <b>two computers</b>.
+        </p>
+        <div class="try-btns">
+          <a href="#" class="btn-primary try-dl" onclick="openPreCheckout(event)"
+             data-i18n="try.buycta">Get CaptionLab →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- FAQ -->
 <section class="section" id="faq">
@@ -1717,11 +1987,11 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="final-glow"></div>
   <div class="wrap">
     <div class="final-price-tag reveal">
-      <span class="final-now">$39</span>
+      <span class="was">$59</span><span class="final-now">$39</span>
     </div>
     <h2 class="reveal" data-i18n="fin.h2">Stop typing subtitles.<br><span style="color:var(--cyan)">Deliver projects faster.</span></h2>
     <p class="reveal" data-i18n="fin.p">Buy once. Use forever.</p>
-    <a href="#try" class="btn-primary reveal" style="font-size:20px;padding:22px 48px" data-i18n="fin.cta">Get CaptionLab →</a>
+    <a href="#pricing" class="btn-primary reveal" style="font-size:20px;padding:22px 48px" data-i18n="fin.cta">Get CaptionLab →</a>
     <div class="final-trust reveal">
       <span data-i18n="fin.t1">🎬 Free 3-day trial</span>
       <span>·</span>
@@ -1975,6 +2245,29 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   .site-links-row{display:flex;flex-wrap:wrap;gap:6px 14px}
   .site-links-row a{font-size:12px;color:var(--dim);text-decoration:none;white-space:nowrap}
   .site-links-row a:hover{color:var(--cyan);text-decoration:underline}
+
+/* ── First-screen budget ──
+   These sit at the end deliberately. The rules they tighten are defined
+   earlier in this stylesheet, and at equal specificity the last one wins — an
+   earlier block would simply be ignored, which is what happened the first time.
+
+   The goal is one number: the buy button must finish above the fold on a
+   laptop. Space comes out of padding, never out of type size. */
+@media (min-width: 861px) {
+  header.hero{padding-top:34px}
+  .hero .hero-price{margin:12px 0 14px;padding:12px 18px}
+  .hero #cd-hero{margin:0 0 10px}
+  .hero .badge{margin-bottom:20px}
+  .hero h1{margin-bottom:18px}
+}
+
+/* Vertical cut: 9:16, and narrow enough that the close button stays reachable. */
+/* Height drives width here, not the other way round: a 9:16 clip in a
+   width-first box gets its height clamped and then letterboxes itself inside
+   the frame — black bars on a vertical video, which is the whole thing this
+   was meant to avoid. */
+.video-lightbox.is-vertical .video-lightbox-inner{max-width:100%;display:flex;justify-content:center}
+.video-lightbox.is-vertical iframe{aspect-ratio:9/16;height:78vh;width:auto;max-width:92vw}
 </style>
 <div class="wrap site-links">
   <div class="site-links-col">
@@ -2234,8 +2527,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       <span class="sticky-price" style="color:var(--white)">CaptionLab</span>
       <span style="color:var(--mid);font-size:13px" data-i18n="stk.note">one-time · no subscription</span>
     </div>
-    <a href="#try" class="sticky-cta-btn">
-      <span data-i18n="stk.cta">Get the plugin →</span>
+    <span class="cd-sticky" id="cd-sticky" style="display:none"><span data-i18n="cd.short">$39 until 1 Sep ·</span> <b data-cd2="t">–</b></span><a href="#pricing" class="sticky-cta-btn">
+      <span data-i18n="stk.cta2">Get CaptionLab — $39</span>
       <span class="sticky-cta-icons">
         <svg class="icon-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.014-.1-.04-.32-.04-.55 0-1.14.572-2.27 1.206-2.98.804-.94 2.14-1.64 3.248-1.68.03.13.05.34.05.59zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1 3.86-1 .62 0 2.833.06 4.29 2.15-.11.07-2.55 1.5-2.55 4.55 0 3.5 3.06 4.79 3.24 4.9z"/></svg>
         <svg class="icon-windows" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5 10.5 2.4v8.1H3V3.5zM11.5 2.25 21 1v9.5H11.5V2.25zM3 11.5h7.5v8.1L3 18.5v-7zM11.5 11.5H21V21l-9.5-1.25V11.5z"/></svg>
@@ -2538,6 +2831,31 @@ function toggleLegal(scroll) {
 (function(){
   var DICT = {
     uk:{
+      "hd.watch":"Дивитись повне демо — 60 секунд","hd.note":"Справжній запис — без макетів і без прискорення.",
+      "pr.from":"З 1 ВЕРЕСНЯ",
+      "cd.short":"$39 до 1 вересня ·",
+      "cd.s":"СЕК",
+      "cd.m":"ХВ",
+      "cd.h":"ГОД",
+      "cd.d":"ДНІВ",
+      "cd.label":"Стартова ціна діє ще",
+      "lc.eyebrow":"ЄДИНЕ ПИТАННЯ, ЩО МАЄ ЗНАЧЕННЯ","lc.h2":"Чи говорить він твоєю мовою?","lc.sub":"Впиши її. Дізнаєшся за секунду.","lc.yes":"Так — CaptionLab розшифровує","lc.notadobe":"немає у вбудованому списку Premiere. CaptionLab це вміє.","lc.why":"Власна розшифровка Premiere охоплює приблизно шістнадцять мов. Ця — з решти вісімдесяти трьох. Саме тому CaptionLab і існує.","lc.adobe":"Premiere теж це вміє — тож тут різниця не в мові, а в усьому навколо: матеріал не залишає твій комп'ютер, працює взагалі без інтернету, і це <b>один платіж замість підписки</b>.","lc.buy":"Отримати CaptionLab — $39","lc.or":"або","lc.try":"спробувати 3 дні безкоштовно","lc.miss":"Не впевнений, що це одна з 99 — напиши мені, яка мова, і я перевірю сам: ","ex.eyebrow":"ПЕРШ НІЖ ПІТИ","ex.h3":"Вирішувати сьогодні не обов'язково","ex.p":"Візьми плагін на три дні — усі моделі, усі мови, справжні субтитри на власному таймлайні. Без картки й без акаунта. Три дні почнуться з першої транскрипції, не раніше. <b style='color:var(--white)'>Стартова ціна $39 діє до 1 вересня</b> — далі $59.","ex.no":"Ні, дякую",
+      "hero.sub2":"Живе всередині Premiere Pro і володіє <b>99 мовами</b> — включно з тими, які Adobe забула. Працює <b>повністю офлайн</b> на твоєму Mac чи Windows.",
+      "an.note":"Погодинна оплата ще гірша: одне інтерв'ю на 40 хвилин може коштувати дорожче за весь плагін — і платити доведеться щоразу з новим проєктом.",
+      "an.r3":"<b>CaptionLab</b> — через рік, через три чи через десять",
+      "an.r2":"Та сама підписка, <b>через три роки</b>",
+      "an.r1":"Типова підписка на субтитри, <b>через рік</b>",
+      "ps.r3":"клієнтка aescripts",
+      "ps.q3":"Вартий кожної копійки — <b>чесно, 100 з 10.</b> Точно раджу друзям.",
+      "ps.r2":"відеомонтажер",
+      "ps.q2":"Тут <b>багато мов, яких Premiere не має від початку</b>, і він працює офлайн, якщо матеріал чутливий.",
+      "ps.r1":"продюсерка, українська продакшн-компанія",
+      "ps.q1":"Те, що в Adobe немає української, було справжнім болем — доти ми буквально садили людину розшифровувати вручну. <b>Це вже схоже на порятунок.</b>",
+      "stk.cta2":"Отримати CaptionLab — $39",
+      "hero.buyline2":"Не впевнений, що впорається з твоєю мовою? <a href='#try'>Спробуй 3 дні безкоштовно</a> — без картки й без акаунта.",
+      "hp.vs":"Усе інше в цій категорії списує з тебе щомісяця. Назавжди.",
+      "hp.never":"і більше ніколи",
+      "hp.once":"один платіж",
       "dl.mac.1":"Розпакуй архів і закрий Premiere Pro, якщо він відкритий.","dl.mac.2":"Файл <b>.zxp</b> macOS сам відкрити не вміє — спершу постав безкоштовний <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a>. Якщо він уже є, пропусти цей крок.","dl.mac.3":"<b>Відкрий додаток Creative Cloud і не закривай його.</b> Adobe проводить установку розширень саме через нього, тож інсталятор не завершить роботу, поки він закритий — а фонові служби створюють враження, ніби він уже працює.","dl.mac.4":"Перетягни <b>.zxp</b> на інсталятор — він сам покладе плагін куди треба.","dl.mac.5":"Якщо напише, що <b>сумісних додатків не знайдено</b> — усе одно тисни <b>Install</b>. Такі інсталятори тримають власний список версій Adobe, і він відстає. CaptionLab працює з Premiere 2022 і новіших.","dl.mac.6":"Відкрий Premiere → <b>Window → Extensions → CaptionLab</b> і введи пошту, щоб отримати ключ тріалу.",
       
       "dl.eyebrow":"Завантаження почалося","dl.h.mac":"Встановлення на Mac","dl.h.win":"Встановлення на Windows","dl.badge":"НЕ ПОСПІШАЙ","dl.close":"Зрозуміло","dl.note":"Три дні почнуться з першої транскрипції — не зараз і не після встановлення. Налаштування не коштує тобі нічого.","dl.win.1":"Розпакуй архів і закрий Premiere Pro, якщо він відкритий.","dl.win.2":"Двічі клікни <b>Install CaptionLab.bat</b>.","dl.win.3":"Windows може попередити, що захистив твій ПК — це лише тому, що файл ще не має цифрового підпису. Тисни <b>Докладніше</b> → <b>Виконати в будь-якому разі</b>.","dl.win.4":"Відкрий Premiere → <b>Window → Extensions → CaptionLab</b> і введи пошту, щоб отримати ключ тріалу.",
@@ -2549,7 +2867,7 @@ function toggleLegal(scroll) {
       "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
       "hero.h1":"Автоматичні субтитри в Premiere&nbsp;Pro.<br>Нарешті <b>твоєю мовою</b>",
       "hero.sub":"Нативний плагін, який живе прямо всередині Premiere Pro. Працює <b>100% офлайн</b> на твоєму <b>Mac</b> чи <b>Win</b>: відео ніколи не покидає комп'ютер, без хмари, <b>без API-ключів</b>, без інтернету, <b>без підписки</b>. А ще розмовляє <b>99 мовами</b> — включно з тими, про які Adobe забула.",
-      "hero.cta1":"Спробувати 3 дні безкоштовно →","hero.cta2":"Подивитись, як працює",
+      "hero.cta1":"Отримати CaptionLab — $39","hero.cta2":"Подивитись, як працює",
       "hero.watch1":"Дивитись демо","hero.watch2":"Реальне демо + міні-туторіал",
       "hero.m1":"<span class='ck'>✓</span> Одноразова покупка","hero.m2":"<span class='ck'>✓</span> Працює офлайн назавжди","hero.m3":"<span class='ck'>✓</span> Відео не залишає твій комп'ютер",
       "hero.scroll":"Прокрути · на тебе чекає 99 мов",
@@ -2591,6 +2909,31 @@ function toggleLegal(scroll) {
       "cl.v103.fixes.label":"🔧 Надійність","cl.v103.fixes.li1":"Виправлено проблему на Windows, через яку одноразове встановлення AI-рушія могло зависати на завантаженні, зокрема в мережах з антивірусним HTTPS-скануванням.","cl.v103.fixes.li2":"Виправлено генерацію субтитрів для мультикам-секвенцій і Merged/Synchronized кліпів."
     },
     pl:{
+      "hd.watch":"Zobacz pełne demo — 60 sekund","hd.note":"Prawdziwe nagranie — bez makiet i bez przyspieszania.",
+      "pr.from":"OD 1 WRZEŚNIA",
+      "cd.short":"$39 do 1 września ·",
+      "cd.s":"SEK",
+      "cd.m":"MIN",
+      "cd.h":"GODZ",
+      "cd.d":"DNI",
+      "cd.label":"Cena startowa kończy się za",
+      "lc.eyebrow":"JEDYNE PYTANIE, KTÓRE SIĘ LICZY","lc.h2":"Czy mówi w Twoim języku?","lc.sub":"Wpisz go. Dowiesz się w sekundę.","lc.yes":"Tak — CaptionLab transkrybuje","lc.notadobe":"nie ma go we wbudowanej liście Premiere. CaptionLab to potrafi.","lc.why":"Własna transkrypcja Premiere obejmuje około szesnastu języków. Ten należy do pozostałych osiemdziesięciu trzech — i właśnie dlatego CaptionLab istnieje.","lc.adobe":"Premiere też to potrafi — więc różnica nie leży w języku, tylko we wszystkim wokół: materiał nie opuszcza Twojego komputera, działa bez internetu, i to <b>jedna płatność zamiast subskrypcji</b>.","lc.buy":"Kup CaptionLab — $39","lc.or":"albo","lc.try":"wypróbuj 3 dni za darmo","lc.miss":"Nie jestem pewien, czy to jeden z 99 — napisz mi jaki to język, a sprawdzę: ","ex.eyebrow":"ZANIM ODEJDZIESZ","ex.h3":"Nie musisz decydować dzisiaj","ex.p":"Weź wtyczkę na trzy dni — wszystkie modele, wszystkie języki, prawdziwe napisy na własnej osi czasu. Bez karty, bez konta. Trzy dni startują przy pierwszej transkrypcji, nie wcześniej. <b style='color:var(--white)'>Cena startowa $39 obowiązuje do 1 września</b> — potem $59.","ex.no":"Nie, dziękuję",
+      "hero.sub2":"Mieszka w Premiere Pro i mówi w <b>99 językach</b> — w tym tych, o których Adobe zapomniało. Działa <b>w pełni offline</b> na Twoim Macu lub Windowsie.",
+      "an.note":"Rozliczenie za minutę wypada jeszcze gorzej: jeden 40-minutowy wywiad potrafi kosztować więcej niż cała wtyczka — i płacisz przy każdym nowym projekcie.",
+      "an.r3":"<b>CaptionLab</b> — po roku, po trzech albo po dziesięciu",
+      "an.r2":"Ta sama subskrypcja, <b>po trzech latach</b>",
+      "an.r1":"Typowa subskrypcja na napisy, <b>po roku</b>",
+      "ps.r3":"klientka aescripts",
+      "ps.q3":"Wart każdej złotówki — <b>szczerze, 100/10.</b> Na pewno polecę znajomym.",
+      "ps.r2":"montażysta",
+      "ps.q2":"Ma <b>wiele języków, których Premiere nie oferuje</b>, i działa offline, gdy materiał jest wrażliwy.",
+      "ps.r1":"producentka, ukraiński dom produkcyjny",
+      "ps.q1":"Brak polskiego… u nas brak ukraińskiego w Adobe był udręką — do tej pory ktoś przepisywał ręcznie. <b>To już ratunek.</b>",
+      "stk.cta2":"Kup CaptionLab — $39",
+      "hero.buyline2":"Nie masz pewności co do swojego języka? <a href='#try'>Wypróbuj 3 dni za darmo</a> — bez karty, bez konta.",
+      "hp.vs":"Wszystko inne w tej kategorii pobiera opłatę co miesiąc. Bez końca.",
+      "hp.never":"i nigdy więcej",
+      "hp.once":"jedna płatność",
       "dl.mac.1":"Rozpakuj archiwum i zamknij Premiere Pro, jeśli jest otwarty.","dl.mac.2":"Pliku <b>.zxp</b> macOS sam nie otworzy — zainstaluj najpierw darmowy <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a>. Pomiń, jeśli już go masz.","dl.mac.3":"<b>Otwórz aplikację Creative Cloud i zostaw ją włączoną.</b> Adobe przeprowadza instalację rozszerzeń właśnie przez nią, więc instalator nie dokończy pracy, gdy jest zamknięta — a procesy w tle sprawiają wrażenie, że działa.","dl.mac.4":"Przeciągnij <b>.zxp</b> na instalator — sam umieści wtyczkę we właściwym miejscu.","dl.mac.5":"Jeśli napisze, że <b>nie znaleziono zgodnej aplikacji</b> — kliknij <b>Install</b> mimo to. Takie instalatory mają własną listę wersji Adobe i bywa nieaktualna. CaptionLab działa z Premiere 2022 i nowszymi.","dl.mac.6":"Otwórz Premiere → <b>Window → Extensions → CaptionLab</b> i podaj e-mail, aby dostać klucz triala.",
       
       "dl.eyebrow":"Pobieranie się rozpoczęło","dl.h.mac":"Instalacja na Macu","dl.h.win":"Instalacja na Windows","dl.badge":"BEZ POŚPIECHU","dl.close":"Jasne","dl.note":"Trzy dni startują przy pierwszej transkrypcji — nie teraz i nie po instalacji. Konfiguracja nic Cię nie kosztuje.","dl.win.1":"Rozpakuj archiwum i zamknij Premiere Pro, jeśli jest otwarty.","dl.win.2":"Kliknij dwukrotnie <b>Install CaptionLab.bat</b>.","dl.win.3":"Windows może ostrzec, że ochronił Twój komputer — to tylko dlatego, że plik nie jest jeszcze podpisany cyfrowo. Kliknij <b>Więcej informacji</b> → <b>Uruchom mimo to</b>.","dl.win.4":"Otwórz Premiere → <b>Window → Extensions → CaptionLab</b> i podaj e-mail, aby dostać klucz triala.",
@@ -2602,7 +2945,7 @@ function toggleLegal(scroll) {
       "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
       "hero.h1":"Automatyczne napisy w Premiere&nbsp;Pro —<br>wreszcie <b>w Twoim języku</b>",
       "hero.sub":"Natywna wtyczka, która działa bezpośrednio wewnątrz Premiere Pro. Działa w <b>100% offline</b> na Twoim własnym <b>Mac</b> lub <b>Win</b>: Twój materiał nigdy nie opuszcza komputera, bez chmury, <b>bez kluczy API</b>, bez internetu, <b>bez subskrypcji</b>. Do tego mówi w <b>99 językach</b> — łącznie z tymi, o których Adobe zapomniało.",
-      "hero.cta1":"Wypróbuj 3 dni za darmo →","hero.cta2":"Zobacz, jak działa",
+      "hero.cta1":"Kup CaptionLab — $39","hero.cta2":"Zobacz, jak działa",
       "hero.watch1":"Obejrzyj demo","hero.watch2":"Prawdziwe demo + mini-samouczek",
       "hero.m1":"<span class='ck'>✓</span> Jednorazowy zakup","hero.m2":"<span class='ck'>✓</span> Działa offline na zawsze","hero.m3":"<span class='ck'>✓</span> Materiał nie opuszcza Twojego komputera",
       "hero.scroll":"Przewiń · czeka 99 języków",
@@ -2644,6 +2987,31 @@ function toggleLegal(scroll) {
       "cl.v103.fixes.label":"🔧 Niezawodność","cl.v103.fixes.li1":"Naprawiono problem na Windows, przez który jednorazowa instalacja silnika AI mogła się zawieszać przy pobieraniu, także w sieciach ze skanowaniem HTTPS przez antywirus.","cl.v103.fixes.li2":"Naprawiono generowanie napisów dla sekwencji multicam i klipów Merged/Synchronized."
     },
     tr:{
+      "hd.watch":"Tam demoyu izle — 60 saniye","hd.note":"Gerçek kayıt — maket yok, hızlandırma yok.",
+      "pr.from":"1 EYLÜL'DEN İTİBAREN",
+      "cd.short":"1 Eylül'e kadar $39 ·",
+      "cd.s":"SN",
+      "cd.m":"DK",
+      "cd.h":"SA",
+      "cd.d":"GÜN",
+      "cd.label":"Lansman fiyatının bitmesine",
+      "lc.eyebrow":"ÖNEMLİ OLAN TEK SORU","lc.h2":"Senin dilini konuşuyor mu?","lc.sub":"Yaz gitsin. Bir saniyede öğrenirsin.","lc.yes":"Evet — CaptionLab şu dili yazıya döküyor:","lc.notadobe":"Premiere'in yerleşik listesinde yok. CaptionLab bunu yapıyor.","lc.why":"Premiere'in kendi konuşma çözümü yaklaşık on altı dili kapsıyor. Bu, geri kalan seksen üçten biri — CaptionLab tam olarak bunun için var.","lc.adobe":"Premiere bunu da yapıyor — yani fark dilde değil, etrafındaki her şeyde: görüntülerin bilgisayarından çıkmıyor, internetsiz çalışıyor ve <b>abonelik yerine tek ödeme</b>.","lc.buy":"CaptionLab'i al — $39","lc.or":"ya da","lc.try":"3 gün ücretsiz dene","lc.miss":"Bunun 99'dan biri olduğuna emin değilim — hangi dil olduğunu yaz, kendim bakayım: ","ex.eyebrow":"GİTMEDEN ÖNCE","ex.h3":"Bugün karar vermek zorunda değilsin","ex.p":"Eklentiyi üç günlüğüne al — bütün modeller, bütün diller, kendi zaman çizelgende gerçek altyazılar. Kart yok, hesap yok. Üç gün ilk transkripsiyonda başlar, önce değil. <b style='color:var(--white)'>$39 lansman fiyatı 1 Eylül'e kadar</b> — sonrasında $59.","ex.no":"Hayır, teşekkürler",
+      "hero.sub2":"Premiere Pro'nun içinde yaşar ve <b>99 dil</b> konuşur — Adobe'nin unuttukları dahil. Kendi Mac ya da Windows'unda <b>tamamen çevrimdışı</b> çalışır.",
+      "an.note":"Dakika başı ücretlendirme daha da kötü: 40 dakikalık tek bir röportaj eklentinin tamamından pahalıya gelebilir — ve her yeni projede yeniden ödersin.",
+      "an.r3":"<b>CaptionLab</b> — bir yıl, üç yıl ya da on yıl sonra",
+      "an.r2":"Aynı abonelik, <b>üç yıl sonra</b>",
+      "an.r1":"Tipik bir altyazı aboneliği, <b>bir yıl sonra</b>",
+      "ps.r3":"aescripts müşterisi",
+      "ps.q3":"Her kuruşuna değer — <b>gerçekten 100/10.</b> Arkadaşlarıma kesinlikle öneririm.",
+      "ps.r2":"kurgucu",
+      "ps.q2":"<b>Premiere'in sunmadığı pek çok dil</b> var ve hassas görüntülerde çevrimdışı çalışıyor.",
+      "ps.r1":"yapımcı, Ukraynalı yapım şirketi",
+      "ps.q1":"Adobe'de Ukraynaca olmaması gerçek bir dertti — o güne dek birileri elle deşifre ediyordu. <b>Şimdiden hayat kurtarıcı.</b>",
+      "stk.cta2":"CaptionLab'i al — $39",
+      "hero.buyline2":"Kendi dilinde çalışacağından emin değil misin? <a href='#try'>3 gün ücretsiz dene</a> — kart yok, hesap yok.",
+      "hp.vs":"Bu kategorideki her şey senden her ay para çeker. Sonsuza dek.",
+      "hp.never":"bir daha asla",
+      "hp.once":"tek ödeme",
       "dl.mac.1":"Arşivi aç ve Premiere Pro açıksa kapat.","dl.mac.2":"<b>.zxp</b> dosyasını macOS kendi başına açamaz — önce ücretsiz <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a> kur. Zaten varsa bu adımı atla.","dl.mac.3":"<b>Creative Cloud masaüstü uygulamasını aç ve açık bırak.</b> Adobe her eklenti kurulumunu onun üzerinden yapar; kapalıyken kurulum tamamlanamaz — arka plan servisleri ise açıkmış gibi gösterir.","dl.mac.4":"<b>.zxp</b> dosyasını kurulum programının üzerine sürükle — eklentiyi yerine kendisi koyar.","dl.mac.5":"<b>Uyumlu uygulama bulunamadı</b> derse yine de <b>Install</b>'a bas. Bu tür kurucular kendi Adobe sürüm listesini tutar ve o liste geriden gelir. CaptionLab, Premiere 2022 ve sonrasıyla çalışır.","dl.mac.6":"Premiere → <b>Window → Extensions → CaptionLab</b> aç ve deneme anahtarı için e-postanı gir.",
       
       "dl.eyebrow":"İndirme başladı","dl.h.mac":"Mac'e kurulum","dl.h.win":"Windows'a kurulum","dl.badge":"ACELE ETME","dl.close":"Anlaşıldı","dl.note":"Üç gün ilk transkripsiyonda başlar — şimdi değil, kurulumdan sonra da değil. Kurulum sana hiçbir şeye mal olmaz.","dl.win.1":"Arşivi aç ve Premiere Pro açıksa kapat.","dl.win.2":"<b>Install CaptionLab.bat</b> dosyasına çift tıkla.","dl.win.3":"Windows bilgisayarını koruduğunu söyleyebilir — bunun tek nedeni dosyanın henüz imzalı olmaması. <b>Daha fazla bilgi</b> → <b>Yine de çalıştır</b>.","dl.win.4":"Premiere → <b>Window → Extensions → CaptionLab</b> aç ve deneme anahtarı için e-postanı gir.",
@@ -2655,7 +3023,7 @@ function toggleLegal(scroll) {
       "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
       "hero.h1":"Premiere&nbsp;Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>",
       "hero.sub":"Doğrudan Premiere Pro içinde yaşayan yerel bir eklenti. Kendi <b>Mac</b>'inde ya da <b>Win</b>'inde <b>%100 çevrimdışı</b> çalışır: görüntülerin asla bilgisayarından çıkmaz, bulut yok, <b>API anahtarı yok</b>, internet yok, <b>abonelik yok</b>. Üstelik Adobe'nin unuttuğu diller dahil <b>99 dil</b> konuşur.",
-      "hero.cta1":"3 gün ücretsiz dene →","hero.cta2":"Nasıl çalıştığını gör",
+      "hero.cta1":"CaptionLab'i al — $39","hero.cta2":"Nasıl çalıştığını gör",
       "hero.watch1":"Demoyu izle","hero.watch2":"Gerçek demo + mini eğitim",
       "hero.m1":"<span class='ck'>✓</span> Tek seferlik ödeme","hero.m2":"<span class='ck'>✓</span> Sonsuza dek çevrimdışı","hero.m3":"<span class='ck'>✓</span> Görüntüleriniz bilgisayarınızdan çıkmaz",
       "hero.scroll":"Kaydır · 99 dil seni bekliyor",
@@ -2697,6 +3065,31 @@ function toggleLegal(scroll) {
       "cl.v103.fixes.label":"🔧 Güvenilirlik","cl.v103.fixes.li1":"Bazı ağlarda antivirüs/HTTPS taraması nedeniyle tek seferlik AI motoru kurulumunun indirmede takılı kalmasına yol açan Windows sorunu düzeltildi.","cl.v103.fixes.li2":"Multicam sekanslarında ve Merged/Synchronized kliplerde altyazı oluşturma sorunu düzeltildi."
     },
     ar:{
+      "hd.watch":"شاهد العرض الكامل — ٦٠ ثانية","hd.note":"تسجيل حقيقي — بلا نماذج وبلا تسريع.",
+      "pr.from":"من ١ سبتمبر",
+      "cd.short":"$39 حتى ١ سبتمبر ·",
+      "cd.s":"ثانية",
+      "cd.m":"دقيقة",
+      "cd.h":"ساعة",
+      "cd.d":"يوم",
+      "cd.label":"ينتهي سعر الإطلاق خلال",
+      "lc.eyebrow":"السؤال الوحيد المهم","lc.h2":"هل يتحدث لغتك؟","lc.sub":"اكتبها. ستعرف خلال ثانية.","lc.yes":"نعم — CaptionLab يفرّغ","lc.notadobe":"غير موجودة في قائمة Premiere المدمجة. CaptionLab يقوم بها.","lc.why":"تفريغ Premiere الخاص يغطي نحو ست عشرة لغة. هذه من الثلاث والثمانين الأخرى — ولهذا وُجد CaptionLab أصلًا.","lc.adobe":"Premiere يقوم بها أيضًا — فالفارق هنا ليس في اللغة بل في كل ما حولها: موادك لا تغادر جهازك، ويعمل بلا إنترنت إطلاقًا، وهو <b>دفعة واحدة بدل اشتراك</b>.","lc.buy":"احصل على CaptionLab — $39","lc.or":"أو","lc.try":"جرّبه مجانًا ٣ أيام","lc.miss":"لست واثقًا أنها ضمن الـ٩٩ — اكتب لي اسم اللغة وسأتحقق بنفسي: ","ex.eyebrow":"قبل أن تغادر","ex.h3":"لست مضطرًا للقرار اليوم","ex.p":"خذ الإضافة ثلاثة أيام — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب. الأيام الثلاثة تبدأ مع أول تفريغ، لا قبله. <b style='color:var(--white)'>سعر الإطلاق $39 حتى ١ سبتمبر</b> — بعدها $59.","ex.no":"لا، شكرًا",
+      "hero.sub2":"يعيش داخل Premiere Pro ويتحدث <b>٩٩ لغة</b> — بينها ما نسيته Adobe. يعمل <b>دون إنترنت تمامًا</b> على جهاز Mac أو Windows الخاص بك.",
+      "an.note":"الدفع بالدقيقة أسوأ: مقابلة واحدة مدتها ٤٠ دقيقة قد تكلّف أكثر من الإضافة كلها — وتدفع من جديد مع كل مشروع.",
+      "an.r3":"<b>CaptionLab</b> — بعد سنة أو ثلاث أو عشر",
+      "an.r2":"الاشتراك نفسه، <b>بعد ثلاث سنوات</b>",
+      "an.r1":"اشتراك ترجمة معتاد، <b>بعد سنة</b>",
+      "ps.r3":"عميلة aescripts",
+      "ps.q3":"يستحق كل قرش — <b>بصراحة ١٠٠ من ١٠.</b> سأرشّحه لأصدقائي بالتأكيد.",
+      "ps.r2":"محرِّر فيديو",
+      "ps.q2":"فيه <b>لغات كثيرة لا يوفّرها Premiere أصلًا</b>، ويعمل دون إنترنت إن كانت موادك حسّاسة.",
+      "ps.r1":"منتِجة، شركة إنتاج أوكرانية",
+      "ps.q1":"غياب الأوكرانية عن Adobe كان مرهقًا — قبل هذا كان أحدهم يفرّغ النص يدويًا. <b>صار الأمر أشبه بالإنقاذ.</b>",
+      "stk.cta2":"احصل على CaptionLab — $39",
+      "hero.buyline2":"لست واثقًا أنه يتعامل مع لغتك؟ <a href='#try'>جرّبه مجانًا ٣ أيام أولًا</a> — بلا بطاقة وبلا حساب.",
+      "hp.vs":"كل ما عداه في هذا المجال يخصم منك شهريًا. إلى الأبد.",
+      "hp.never":"ولا شيء بعدها",
+      "hp.once":"دفعة واحدة",
       "dl.mac.1":"فك ضغط الملف، وأغلق Premiere Pro إن كان مفتوحًا.","dl.mac.2":"ملف <b>.zxp</b> لا يستطيع macOS فتحه بنفسه — ثبّت أولًا <a href='https://aescripts.com/learn/zxp-installer/' target='_blank' rel='noopener' style='color:var(--cyan)'>ZXP Installer</a> المجاني. تجاوز هذه الخطوة إن كان لديك واحد.","dl.mac.3":"<b>افتح تطبيق Creative Cloud واتركه يعمل.</b> تمرّر Adobe كل عمليات تثبيت الإضافات عبره، فلا يستطيع المثبّت إكمال عمله وهو مغلق — والخدمات الخلفية تجعله يبدو مفتوحًا وهو ليس كذلك.","dl.mac.4":"اسحب ملف <b>.zxp</b> فوق المثبّت — سيضع الإضافة في مكانها بنفسه.","dl.mac.5":"إن قال إنه <b>لم يجد تطبيقًا متوافقًا</b>، اضغط <b>Install</b> على أي حال. هذه المثبّتات تحتفظ بقائمة إصدارات Adobe الخاصة بها وهي متأخرة دائمًا. CaptionLab يعمل مع Premiere 2022 وما بعده.","dl.mac.6":"افتح Premiere ← <b>Window ← Extensions ← CaptionLab</b> وأدخل بريدك للحصول على مفتاح التجربة.",
       
       "dl.eyebrow":"بدأ التنزيل","dl.h.mac":"التثبيت على Mac","dl.h.win":"التثبيت على Windows","dl.badge":"خذ وقتك","dl.close":"فهمت","dl.note":"الأيام الثلاثة تبدأ مع أول تفريغ — لا الآن ولا بعد التثبيت. الإعداد لا يكلّفك شيئًا.","dl.win.1":"فك ضغط الملف، وأغلق Premiere Pro إن كان مفتوحًا.","dl.win.2":"انقر نقرًا مزدوجًا على <b>Install CaptionLab.bat</b>.","dl.win.3":"قد ينبّهك Windows بأنه حمى جهازك — والسبب فقط أن الملف ليس موقّعًا رقميًا بعد. اضغط <b>مزيد من المعلومات</b> ← <b>تشغيل على أي حال</b>.","dl.win.4":"افتح Premiere ← <b>Window ← Extensions ← CaptionLab</b> وأدخل بريدك للحصول على مفتاح التجربة.",
@@ -2708,7 +3101,7 @@ function toggleLegal(scroll) {
       "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
       "hero.h1":"ترجمة تلقائية في Premiere&nbsp;Pro —<br>أخيرًا <b>بلغتك</b>",
       "hero.sub":"إضافة أصلية تعيش مباشرة داخل Premiere Pro. تعمل <b>دون إنترنت بنسبة 100%</b> على جهاز <b>Mac</b> أو <b>Win</b> الخاص بك: لقطاتك لا تغادر جهازك أبدًا، بلا سحابة، <b>بلا مفاتيح API</b>، بلا إنترنت، <b>بلا اشتراك</b>. كما أنها تتحدث <b>99 لغة</b>، بما فيها تلك التي نسيتها Adobe.",
-      "hero.cta1":"جرّب مجانًا ٣ أيام ←","hero.cta2":"شاهد كيف يعمل",
+      "hero.cta1":"احصل على CaptionLab — $39","hero.cta2":"شاهد كيف يعمل",
       "hero.watch1":"شاهد العرض","hero.watch2":"عرض حقيقي + شرح مصغّر",
       "hero.m1":"<span class='ck'>✓</span> دفعة واحدة","hero.m2":"<span class='ck'>✓</span> يعمل دون إنترنت للأبد","hero.m3":"<span class='ck'>✓</span> لقطاتك لا تغادر جهازك",
       "hero.scroll":"مرّر · 99 لغة بانتظارك",
@@ -2868,11 +3261,22 @@ function toggleMobileMenu(force){
 
 // ── Video lightbox (hero "Watch it in 60 sec") ──────────────────────────────
 var VIDEO_ID = 'v8j_Ik5C1IA';
+/* Two cuts of the same demo, and the screen decides which one plays.
+   The landscape edit letterboxes into thin strips on a phone — most of the
+   screen goes to black bars, and the panel text becomes unreadable exactly
+   where most visitors are. The vertical Short fills that screen instead. */
+var VIDEO_ID_VERTICAL = 'gJTR3RThlt8';
+
 function openVideoLightbox(){
   var box = document.getElementById('videoLightbox');
   var frame = document.getElementById('videoLightboxFrame');
-  frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + VIDEO_ID +
-    '?autoplay=1&rel=0" title="CaptionLab demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  var vertical = window.matchMedia('(max-width: 820px)').matches;
+  var id = vertical ? VIDEO_ID_VERTICAL : VIDEO_ID;
+
+  box.classList.toggle('is-vertical', vertical);
+  frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+    '?autoplay=1&rel=0&playsinline=1" title="CaptionLab demo" ' +
+    'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
   box.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -2964,8 +3368,204 @@ function t18(key, fallback) {
   });
 });
 
+
+/* ── Language checker ────────────────────────────────────────────────────────
+   Matches on English name, native name and ISO code, so someone typing
+   "Türkçe", "Turkish" or "tr" all land in the same place.
+
+   ADOBE lists what Premiere's own speech-to-text covers. It is kept generous
+   on purpose: if we wrongly include a language we lose an argument, whereas
+   wrongly excluding one would be stating something untrue about Adobe. */
+var LC_ADOBE = {
+  en:1, es:1, fr:1, de:1, it:1, pt:1, ru:1, ja:1, ko:1, zh:1,
+  nl:1, da:1, no:1, sv:1, tr:1, hi:1
+};
+
+var LC_LANGS = [
+  ["uk","Ukrainian","Українська"],["pl","Polish","Polski"],["tr","Turkish","Türkçe"],
+  ["ar","Arabic","العربية"],["id","Indonesian","Bahasa Indonesia"],["vi","Vietnamese","Tiếng Việt"],
+  ["th","Thai","ไทย"],["ro","Romanian","Română"],["cs","Czech","Čeština"],["hu","Hungarian","Magyar"],
+  ["el","Greek","Ελληνικά"],["he","Hebrew","עברית"],["fa","Persian","فارسی"],["tl","Filipino","Tagalog"],
+  ["kk","Kazakh","Қазақша"],["sr","Serbian","Српски"],["hr","Croatian","Hrvatski"],["bg","Bulgarian","Български"],
+  ["sk","Slovak","Slovenčina"],["sl","Slovenian","Slovenščina"],["lt","Lithuanian","Lietuvių"],
+  ["lv","Latvian","Latviešu"],["et","Estonian","Eesti"],["fi","Finnish","Suomi"],["is","Icelandic","Íslenska"],
+  ["ms","Malay","Bahasa Melayu"],["bn","Bengali","বাংলা"],["ta","Tamil","தமிழ்"],["te","Telugu","తెలుగు"],
+  ["ml","Malayalam","മലയാളം"],["kn","Kannada","ಕನ್ನಡ"],["mr","Marathi","मराठी"],["gu","Gujarati","ગુજરાતી"],
+  ["pa","Punjabi","ਪੰਜਾਬੀ"],["ur","Urdu","اردو"],["ne","Nepali","नेपाली"],["si","Sinhala","සිංහල"],
+  ["my","Burmese","မြန်မာ"],["km","Khmer","ខ្មែរ"],["lo","Lao","ລາວ"],["ka","Georgian","ქართული"],
+  ["hy","Armenian","Հայերեն"],["az","Azerbaijani","Azərbaycan"],["uz","Uzbek","Oʻzbek"],
+  ["mn","Mongolian","Монгол"],["be","Belarusian","Беларуская"],["mk","Macedonian","Македонски"],
+  ["sq","Albanian","Shqip"],["bs","Bosnian","Bosanski"],["mt","Maltese","Malti"],["cy","Welsh","Cymraeg"],
+  ["ga","Irish","Gaeilge"],["gl","Galician","Galego"],["ca","Catalan","Català"],["eu","Basque","Euskara"],
+  ["af","Afrikaans","Afrikaans"],["sw","Swahili","Kiswahili"],["yo","Yoruba","Yorùbá"],["ha","Hausa","Hausa"],
+  ["so","Somali","Soomaali"],["am","Amharic","አማርኛ"],["sn","Shona","chiShona"],["mg","Malagasy","Malagasy"],
+  ["ht","Haitian Creole","Kreyòl"],["jw","Javanese","Basa Jawa"],["su","Sundanese","Basa Sunda"],
+  ["yue","Cantonese","粵語"],["tg","Tajik","Тоҷикӣ"],["tt","Tatar","Татарча"],["ba","Bashkir","Башҡортса"],
+  ["tk","Turkmen","Türkmen"],["ps","Pashto","پښتو"],["sd","Sindhi","سنڌي"],["bo","Tibetan","བོད་སྐད"],
+  ["yi","Yiddish","ייִדיש"],["la","Latin","Latina"],["mi","Maori","Māori"],["haw","Hawaiian","ʻŌlelo"],
+  ["br","Breton","Brezhoneg"],["fo","Faroese","Føroyskt"],["lb","Luxembourgish","Lëtzebuergesch"],
+  ["oc","Occitan","Occitan"],["sa","Sanskrit","संस्कृतम्"],["nn","Nynorsk","Nynorsk"],
+  ["en","English","English"],["es","Spanish","Español"],["fr","French","Français"],
+  ["de","German","Deutsch"],["it","Italian","Italiano"],["pt","Portuguese","Português"],
+  ["ru","Russian","Русский"],["ja","Japanese","日本語"],["ko","Korean","한국어"],
+  ["zh","Chinese","中文"],["nl","Dutch","Nederlands"],["da","Danish","Dansk"],
+  ["no","Norwegian","Norsk"],["sv","Swedish","Svenska"],["hi","Hindi","हिन्दी"]
+];
+
+function lcNorm(x){
+  return (x||"").toLowerCase().replace(/[\s\-_'’.]/g,"")
+    .normalize("NFD").replace(/[̀-ͯ]/g,"");
+}
+
+function lcFind(q){
+  var n = lcNorm(q);
+  if (n.length < 2) return null;
+  var exact = null, partial = null;
+  for (var i=0;i<LC_LANGS.length;i++){
+    var L = LC_LANGS[i];
+    var cands = [L[0], lcNorm(L[1]), lcNorm(L[2])];
+    if (cands.indexOf(n) > -1) { exact = L; break; }
+    if (!partial && (cands[1].indexOf(n)===0 || cands[2].indexOf(n)===0)) partial = L;
+  }
+  return exact || partial;
+}
+
+function lcRender(){
+  var box = document.getElementById('lc-result');
+  var q   = document.getElementById('lc-input').value;
+  if (!box) return;
+  if (lcNorm(q).length < 2) { box.innerHTML = ''; return; }
+
+  var L = lcFind(q);
+  if (!L) {
+    box.innerHTML = '<div class="lc-miss">' + t18('lc.miss',
+      "Not sure that's one of the 99 — tell me which language and I'll check it myself: ") +
+      '<a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a></div>';
+    return;
+  }
+
+  var name = L[1], native = L[2], inAdobe = !!LC_ADOBE[L[0]];
+  var html;
+
+  if (inAdobe) {
+    html = '<div class="lc-card is-adobe">' +
+      '<div class="lc-verdict">' + t18('lc.yes','Yes — CaptionLab transcribes') + ' <span class="hl">' + name + '</span>' +
+      (native !== name ? ' <span style="opacity:.55">(' + native + ')</span>' : '') + '.</div>' +
+      '<div class="lc-why">' + t18('lc.adobe',
+        "Premiere handles this one too — so here the difference isn't the language, it's everything around it: your footage never leaves the machine, it works with no internet at all, and it's <b>one payment instead of a subscription</b>.") +
+      '</div>';
+  } else {
+    html = '<div class="lc-card">' +
+      '<div class="lc-verdict"><span class="hl">' + name + '</span>' +
+      (native !== name ? ' <span style="opacity:.55">(' + native + ')</span>' : '') + ' — ' +
+      t18('lc.notadobe','not in Premiere\'s built-in list. CaptionLab does it.') + '</div>' +
+      '<div class="lc-why">' + t18('lc.why',
+        "Premiere's own speech-to-text covers around sixteen languages. This is one of the other eighty-three — which is the entire reason CaptionLab exists.") +
+      '</div>';
+  }
+
+  html += '<div class="lc-cta">' +
+    '<a href="#" class="btn-primary" onclick="openPreCheckout(event)">' + t18('lc.buy','Get CaptionLab — $39') + '</a>' +
+    '<span class="lc-alt">' + t18('lc.or','or') + ' <a href="#try">' + t18('lc.try','try it free for 3 days') + '</a></span>' +
+    '</div></div>';
+  box.innerHTML = html;
+}
+
+(function(){
+  var inp = document.getElementById('lc-input');
+  if (!inp) return;
+  var tmr;
+  inp.addEventListener('input', function(){ clearTimeout(tmr); tmr = setTimeout(lcRender, 120); });
+  // Prefill from the browser's own language: for most visitors the answer is
+  // already on screen before they type anything.
+  try {
+    var code = (navigator.language || '').slice(0,2).toLowerCase();
+    for (var i=0;i<LC_LANGS.length;i++){
+      if (LC_LANGS[i][0] === code && code !== 'en') { inp.value = LC_LANGS[i][1]; lcRender(); break; }
+    }
+  } catch(e){}
+})();
+
+
+/* Exit intent — once per visitor, and only on a real pointer device. Phones
+   have no "moving toward the tab bar", and firing on a scroll there would just
+   be an ad that ambushes people. */
+(function () {
+  var KEY = 'cl_exit_seen', shown = false;
+  try { if (localStorage.getItem(KEY)) shown = true; } catch (e) {}
+  if (shown) return;
+  if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+
+  function fire(e) {
+    if (shown || e.clientY > 8) return;
+    // Not over someone already at the checkout, or reading another dialog.
+    if (document.querySelector('.precheck-modal.open, .video-lightbox.open')) return;
+    if (document.querySelector('iframe[src*="paddle"]')) return;
+    shown = true;
+    try { localStorage.setItem(KEY, '1'); } catch (er) {}
+    var m = document.getElementById('exitModal');
+    if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    document.removeEventListener('mouseout', fire);
+  }
+  setTimeout(function () { document.addEventListener('mouseout', fire); }, 8000);
+})();
+
+function closeExit() {
+  var m = document.getElementById('exitModal');
+  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+}
+
+
+/* ── Launch deadline ─────────────────────────────────────────────────────────
+   One constant drives every price on the page. Change it in one place when the
+   next deadline is set; nothing else needs touching.
+
+   Written so it cannot outlive its own claim: once the moment passes, the
+   countdown, the struck-through $59 and the "FROM 1 SEP" tags all remove
+   themselves, and the page simply shows $39 again. A deadline that quietly
+   keeps counting after it expired is the thing that teaches people none of it
+   was true. */
+var CL_DEADLINE = Date.UTC(2026, 8, 1, 0, 0, 0);   // 1 September 2026, 00:00 UTC
+
+function clPromoExpired() { return Date.now() >= CL_DEADLINE; }
+
+function clTick() {
+  var left = CL_DEADLINE - Date.now();
+
+  if (left <= 0) {
+    // Take the promo down rather than let it lie.
+    document.querySelectorAll('.was, .was-tag').forEach(function (el) { el.remove(); });
+    var h = document.getElementById('cd-hero'), st = document.getElementById('cd-sticky');
+    if (h) h.style.display = 'none';
+    if (st) st.style.display = 'none';
+    if (window._clTimer) clearInterval(window._clTimer);
+    return;
+  }
+
+  var s = Math.floor(left / 1000);
+  var d = Math.floor(s / 86400), hh = Math.floor(s % 86400 / 3600),
+      mm = Math.floor(s % 3600 / 60), ss = s % 60;
+  var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+
+  var map = { d: d, h: pad(hh), m: pad(mm), s: pad(ss) };
+  document.querySelectorAll('[data-cd]').forEach(function (el) {
+    el.textContent = map[el.getAttribute('data-cd')];
+  });
+  document.querySelectorAll('[data-cd2]').forEach(function (el) {
+    el.textContent = d > 0 ? (d + 'd ' + pad(hh) + 'h') : (pad(hh) + ':' + pad(mm) + ':' + pad(ss));
+  });
+
+  var hero = document.getElementById('cd-hero');
+  if (hero && hero.style.display === 'none') hero.style.display = 'flex';
+  var stick = document.getElementById('cd-sticky');
+  if (stick && stick.style.display === 'none') stick.style.display = 'inline-flex';
+}
+
+clTick();
+window._clTimer = setInterval(clTick, 1000);
+
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') { closeVideoLightbox(); closePreCheckout(); closeImgLightbox(); closeDownloadHelp(); }
+  if (e.key === 'Escape') { closeVideoLightbox(); closePreCheckout(); closeImgLightbox(); closeDownloadHelp(); closeExit(); }
 });
 
 /* Put the visitor's own platform first in the trial section. Both downloads
