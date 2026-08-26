@@ -641,6 +641,10 @@ footer .mono{color:var(--mid)}
 .legal-body h3{color:var(--text3,#4a5a6a);font-size:11px;font-weight:700;margin:16px 0 5px;text-transform:uppercase;letter-spacing:0.08em}
 .legal-body p{margin-bottom:10px}
 .legal-body strong{color:var(--mid)}
+/* The refund policy is the only legal section that uses lists — without these
+   the bullets inherit the page reset and render flush against the margin. */
+.legal-body ul{margin:0 0 10px;padding-left:18px}
+.legal-body li{margin-bottom:5px;list-style:disc}
 .legal-body a{color:var(--dim);text-decoration:underline;text-decoration-color:var(--border)}
 .legal-body a:hover{color:var(--mid)}
 
@@ -1080,19 +1084,6 @@ html[dir="rtl"] .lang-menu{right:auto;left:0}
 html[dir="rtl"] .btn-primary,html[dir="rtl"] .btn-ghost{direction:rtl}
 html[dir="rtl"] .micro{direction:rtl}
 </style>
-<!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-
-  ttq.load('D99T7JJC77UDPAPRLMC0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
 </head>
 <body>
 
@@ -2383,13 +2374,18 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="wrap">
       <h2 class="legal-title">Terms of Service</h2>
       <div class="legal-body">
-        <p class="legal-date">Last updated: June 2026 · Edit Lab Tools</p>
+        <p class="legal-date">Last updated: August 2026 · Edit Lab Tools</p>
 
         <h3>1. Acceptance</h3>
         <p>By purchasing or installing CaptionLab ("the Software"), you agree to these Terms. If you do not agree, do not install or use the Software.</p>
 
         <h3>2. License</h3>
-        <p>Edit Lab Tools grants you a non-exclusive, non-transferable, personal license to install and use CaptionLab on Mac or Windows computers you personally own or control. This is a single-user license. You may not share, resell, or redistribute the Software or installation files.</p>
+        <p>Edit Lab Tools grants you a non-exclusive, non-transferable, personal license to install and use CaptionLab on <strong>up to two (2) computers</strong> — Mac or Windows — that you personally own or control. This is a single-user license: the license is tied to you, not to a team, studio or organisation. Each additional user requires their own license.</p>
+        <p>You may not share, resell, redistribute, sublicense or publish the Software, your license key, or the installation files. Activating on a computer you do not own or control, or sharing your key with another person, terminates this license.</p>
+
+        <h3>2a. Free trial</h3>
+        <p>CaptionLab is offered with a free 3-day trial. The trial period begins at your first successful transcription, not at download or activation. The trial is limited to <strong>one per person and one per computer</strong>, and is provided for the sole purpose of evaluating the Software before purchase.</p>
+        <p>The trial is provided as-is, with no warranty of any kind. We may modify, suspend or discontinue the trial at any time, and may decline or revoke a trial where we detect abuse, including attempts to obtain repeated trials on the same computer or by the same person. Trial keys may not be shared, sold or published.</p>
 
         <h3>3. Restrictions</h3>
         <p>You may not: (a) reverse engineer or decompile the Software; (b) redistribute or resell it; (c) remove copyright notices; (d) use it to build a competing product.</p>
@@ -2428,33 +2424,49 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="wrap">
       <h2 class="legal-title">Privacy Policy</h2>
       <div class="legal-body">
-        <p class="legal-date">Last updated: June 2026 · Edit Lab Tools</p>
+        <p class="legal-date">Last updated: August 2026 · Edit Lab Tools</p>
 
         <h3>1. Overview</h3>
         <p>CaptionLab is designed for privacy. All audio processing happens locally on your own computer (Mac or Windows). Your footage, audio, and transcripts are never uploaded to Edit Lab Tools or any third party.</p>
 
-        <h3>2. Data we do NOT collect</h3>
-        <p>We do not collect, store, or transmit: your audio or video files; transcripts or subtitles generated by the plugin; your Premiere Pro project data; or any usage analytics from within the plugin.</p>
+        <h3>2. What the plugin never sends</h3>
+        <p>We do not collect, store, or transmit: your audio or video files; transcripts or subtitles generated by the plugin; your Premiere Pro project data; the names or contents of your projects; or any record of what you transcribe.</p>
 
-        <h3>3. Data collected at purchase</h3>
-        <p>When you purchase CaptionLab, payment is processed by <strong>Paddle.com Market Limited</strong> ("Paddle"), who acts as the Merchant of Record. Paddle collects your name, email address, and payment information. Edit Lab Tools receives your email address and order details from Paddle for the purpose of delivering the product and providing support. For Paddle's privacy practices, see <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">paddle.com/legal/privacy</a>.</p>
+        <h3>3. What the plugin does send</h3>
+        <p>To operate licensing and the free trial, the plugin contacts our licensing server and sends only:</p>
+        <ul>
+          <li>your <strong>email address</strong> and <strong>order number</strong> (licence activation and periodic re-checks);</li>
+          <li>a <strong>machine identifier</strong> — a random value generated on your computer, used to count activations against your device limit and to enforce one trial per computer. It contains no hardware serial numbers and cannot be traced back to you outside our system;</li>
+          <li>for trials, your <strong>email address</strong> and the timestamps of key issue, activation and first transcription.</li>
+        </ul>
+        <p>These requests carry no information about your media. Licence re-checks occur periodically; between them, the plugin runs fully offline.</p>
 
-        <h3>4. Network requests during setup</h3>
-        <p>On first launch, CaptionLab downloads Python, ffmpeg, and the Whisper AI model (~3 GB) from their official public sources (GitHub, HuggingFace). These are one-time downloads. After setup, the plugin runs entirely offline.</p>
+        <h3>4. Free trial data</h3>
+        <p>If you request a free trial, we store your email address, the trial key, your machine identifier and the dates the trial was issued, activated and started. We use this to issue and validate your key, prevent duplicate trials, and send you the key itself plus one email when the trial ends. Trial records are retained for up to 400 days. You may request deletion at any time.</p>
 
-        <h3>5. Email communications</h3>
-        <p>We use your email solely to deliver your purchase, send the download link, and provide support if you contact us. We do not send marketing emails unless you explicitly opt in. We do not sell or share your email with third parties.</p>
+        <h3>5. Data collected at purchase</h3>
+        <p>Payment is processed by Paddle.com Market Limited ("Paddle"), who acts as the Merchant of Record. Paddle collects your name, email address, billing country and payment information — we never receive or store your card details. Edit Lab Tools receives your email address and order details from Paddle in order to deliver the product, validate your licence and provide support. See <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">paddle.com/legal/privacy</a>.</p>
 
-        <h3>6. Data retention</h3>
-        <p>We retain your email and order information as long as necessary to provide support and re-download access. You may request deletion at any time by emailing <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a>.</p>
+        <h3>6. Download statistics</h3>
+        <p>Downloads are served through our own server, which records the date, the platform (Mac or Windows), the country reported by our CDN, the referring page and the browser user-agent string. Your IP address is <strong>not stored</strong>: it is combined with a secret salt, hashed, and the hash is kept for 24 hours purely to tell repeat downloads apart from new ones. These records are aggregate statistics and are retained for up to 400 days.</p>
 
-        <h3>7. Your rights (GDPR / EU users)</h3>
-        <p>If you are located in the European Union, you have the right to access, correct, or delete your personal data. Contact us at <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> to exercise these rights.</p>
+        <h3>7. Website analytics and cookies</h3>
+        <p>This website uses Google Analytics to measure traffic and understand which pages people find useful. It sets cookies and may collect your IP address, device and browser information, and the pages you visit. We use no advertising or social-media tracking pixels on this site. This applies to the website only — the plugin itself contains no analytics of any kind.</p>
+        <p>You can block this through your browser settings or an ad blocker; the website works normally without it. For details, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
 
-        <h3>8. Children</h3>
+        <h3>8. Email communications</h3>
+        <p>We use your email address to deliver your purchase or trial key, provide support, and send service messages directly related to your purchase or trial — including a single notice when a trial ends. We may occasionally contact people who started a checkout or a trial about substantial product changes. Every such email includes a one-click way to stop them, and we honour it permanently. We never sell or share your email address with third parties.</p>
+
+        <h3>9. Data retention</h3>
+        <p>We retain your email and order information for as long as necessary to provide support, licence validation and re-download access. Trial and download records are retained for up to 400 days. You may request deletion at any time by emailing <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a>.</p>
+
+        <h3>10. Your rights (GDPR / EU and UK users)</h3>
+        <p>You have the right to access, correct, export, or delete your personal data, to object to processing, and to lodge a complaint with your local data protection authority. Contact us at <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> to exercise these rights; we respond within 30 days.</p>
+
+        <h3>11. Children</h3>
         <p>CaptionLab is not directed at children under 16. We do not knowingly collect data from minors.</p>
 
-        <h3>9. Contact</h3>
+        <h3>12. Contact</h3>
         <p>Privacy questions: <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a></p>
       </div>
     </div>
@@ -2464,19 +2476,44 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="wrap">
       <h2 class="legal-title">Refund Policy</h2>
       <div class="legal-body">
-        <p class="legal-date">Last updated: June 2026 · Edit Lab Tools</p>
+        <p class="legal-date">Last updated: August 2026 · Edit Lab Tools</p>
 
-        <h3>14-day money-back guarantee</h3>
-        <p>If CaptionLab doesn't work for you for any reason, we will issue a full refund within <strong>14 days</strong> of your purchase date.</p>
+        <h3>Evaluate before you buy — that's what the trial is for</h3>
+        <p>CaptionLab includes a <strong>free 3-day trial</strong>: every model, every language, unlimited subtitles on your own footage. No card, no account, no feature limits. The trial exists so you can verify that CaptionLab handles <em>your</em> language, <em>your</em> audio and <em>your</em> workflow before any money changes hands. It is the intended and only evaluation period. A refund is not a substitute for it.</p>
+
+        <h3>Digital content: your withdrawal right ends at download</h3>
+        <p>CaptionLab is digital content delivered immediately upon purchase. When you complete checkout you expressly consent to immediate delivery and acknowledge that, once the download begins, the statutory 14-day right of withdrawal no longer applies. This is set out in the Paddle Buyer Terms you accept at checkout and in section 2.2.4 of the <a href="https://www.paddle.com/legal/refund-policy" target="_blank" rel="noopener">Paddle Refund Policy</a>.</p>
+        <p><strong>In plain terms:</strong> once you have downloaded, installed or used CaptionLab, you are no longer entitled to a refund as of right. Any refund from that point is granted at our discretion, on the limited grounds below.</p>
+
+        <h3>When we do refund</h3>
+        <p>We issue a full refund, within 14 days of purchase, in these specific cases:</p>
+        <ul>
+          <li><strong>It will not run.</strong> CaptionLab fails to install, activate, or launch on a computer that meets our <a href="#faq">published system requirements</a>, and our support team cannot resolve it.</li>
+          <li><strong>You were charged twice</strong> for the same licence, or charged for a licence you never received and we are unable to deliver it.</li>
+          <li><strong>You have not downloaded it.</strong> If you purchased and have not yet downloaded or activated CaptionLab, you may cancel for a full refund within 14 days, no reason required.</li>
+        </ul>
+        <p>Requests must reach us within 14 days of the purchase date. After 14 days, refunds are limited to a demonstrable product defect as described below.</p>
+
+        <h3>When we do not refund</h3>
+        <p>The following are not grounds for a refund, at any point:</p>
+        <ul>
+          <li><strong>Transcription accuracy in any given language.</strong> CaptionLab uses AI speech recognition. Accuracy varies by language, accent, recording quality and background noise — this is an inherent characteristic of the technology, true of every speech-to-text tool including Adobe's own, and it is not a defect. The free trial exists precisely so you can measure this on your own material first.</li>
+          <li><strong>Results after a completed trial.</strong> If you ran the trial and purchased afterwards, that purchase is treated as your confirmation that the output met your needs.</li>
+          <li><strong>Change of mind</strong> after downloading, installing or using the software.</li>
+          <li><strong>Buying the wrong product</strong>, or discovering a feature you assumed was included and is not documented on this site.</li>
+          <li><strong>Speed of transcription</strong> on your hardware, where your machine meets but does not exceed the published minimum requirements.</li>
+          <li><strong>Refusal to complete basic troubleshooting</strong> with our support team.</li>
+        </ul>
+
+        <h3>Product defects after 14 days</h3>
+        <p>Beyond 14 days, a refund requires a genuine, reproducible product defect: CaptionLab fails to install, activate, or run on a supported system, we are able to reproduce the fault, and we cannot fix it within a reasonable period. Dissatisfaction with transcription output is not a defect.</p>
 
         <h3>How to request a refund</h3>
-        <p>Email <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> with your order number (found in your purchase confirmation email). We will process the refund within 3–5 business days. Refunds are returned to the original payment method via Paddle.</p>
+        <p>Email <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a> with your order number (in your purchase confirmation email), your operating system and Premiere Pro version, and a description of the problem. We reply to every request. Where a refund is due, we process it within 3–5 business days to your original payment method via Paddle.</p>
+        <p>Please contact us before disputing a charge with your bank. A chargeback suspends your licence immediately and is slower for you than emailing us.</p>
 
-        <h3>After 14 days</h3>
-        <p>We do not offer refunds for purchases older than 14 days, except in cases of technical issues that we are unable to resolve.</p>
-
-        <h3>Technical issues</h3>
-        <p>If CaptionLab fails to install or function correctly on your computer and our support team cannot resolve the issue, you are entitled to a full refund regardless of the time elapsed since purchase.</p>
+        <h3>Your statutory rights</h3>
+        <p>Nothing in this policy removes rights you hold under mandatory consumer law in your country. Where such law grants you more than this policy does, that law prevails. Paddle.com is the Merchant of Record for all orders and reviews refund requests under its own <a href="https://www.paddle.com/legal/refund-policy" target="_blank" rel="noopener">Refund Policy</a>.</p>
 
         <h3>Contact</h3>
         <p>Refund requests: <a href="mailto:editlabtools@gmail.com">editlabtools@gmail.com</a><br>
@@ -2720,21 +2757,9 @@ function toggleLegal(scroll) {
 </script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <script>
-  // TikTok pixel: SHA-256 hash for Advanced Matching (identify) — must never send raw PII
-  async function ttSha256(str) {
-    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(String(str).trim().toLowerCase()));
-    return Array.prototype.map.call(new Uint8Array(buf), function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-  }
-
+  // Product identity for analytics events. Named TT_PRODUCT when a TikTok pixel
+  // also read it; that pixel has been removed, and only GA4 uses this now.
   var TT_PRODUCT = { content_id: 'captionlab', content_type: 'product', content_name: 'CaptionLab', currency: 'USD', value: 39 };
-
-  if (window.ttq) {
-    ttq.track('ViewContent', {
-      contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type, content_name: TT_PRODUCT.content_name }],
-      value: TT_PRODUCT.value,
-      currency: TT_PRODUCT.currency
-    });
-  }
 
   Paddle.Initialize({
     token: 'live_545a45354dfaa4698263d489644',
@@ -2771,18 +2796,6 @@ function toggleLegal(scroll) {
             currency: currency
           });
         }
-
-        if (window.ttq) {
-          var email = data.data && data.data.customer && data.data.customer.email;
-          Promise.resolve(email ? ttSha256(email) : null).then(function(hashedEmail) {
-            if (hashedEmail) ttq.identify({ email: hashedEmail });
-            ttq.track('Purchase', {
-              contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type, content_name: TT_PRODUCT.content_name }],
-              value: value,
-              currency: currency
-            });
-          });
-        }
       }
     }
   });
@@ -2811,13 +2824,6 @@ function toggleLegal(scroll) {
         value: TT_PRODUCT.value,
         currency: TT_PRODUCT.currency,
         items: [{ item_id: TT_PRODUCT.content_id, item_name: TT_PRODUCT.content_name, price: TT_PRODUCT.value, quantity: 1 }]
-      });
-    }
-    if (window.ttq) {
-      ttq.track('InitiateCheckout', {
-        contents: [{ content_id: TT_PRODUCT.content_id, content_type: TT_PRODUCT.content_type, content_name: TT_PRODUCT.content_name }],
-        value: TT_PRODUCT.value,
-        currency: TT_PRODUCT.currency
       });
     }
     Paddle.Checkout.open({
