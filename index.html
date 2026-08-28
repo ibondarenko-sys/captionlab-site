@@ -2830,6 +2830,50 @@ function toggleLegal(scroll) {
       items: [{ priceId: 'pri_01ktd16mrvbmac1r09es8dn19y', quantity: 1 }]
     });
   }
+
+  /* Download clicks.
+   *
+   * GA4's built-in file_download only fires for recognised extensions on the
+   * same origin; these links point at the licence Worker, which 302s to R2,
+   * so it never fires here. A custom event is the only way to see this step.
+   *
+   * It measures the CLICK, not the install. The Worker counts the redirect
+   * separately, and the two answer different questions: this one is "how many
+   * people on the page decided to try it", which is the number that moves when
+   * the page changes.
+   *
+   * Delegated from the document so the three pairs of buttons — and any added
+   * later — are covered without wiring each one.
+   */
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a.try-dl');
+    if (!a || !window.gtag) return;
+
+    // try-dl is a styling class, and the "Get CaptionLab" buy button carries it
+    // too. That one already reports begin_checkout; counting it as a download
+    // would inflate the trial funnel with people who went to checkout instead.
+    var href = a.getAttribute('href') || '';
+    var os = /\/download\/win/.test(href) ? 'windows'
+           : /\/download\/mac/.test(href) ? 'mac' : null;
+    if (!os) return;
+
+    // Where on the page it was clicked. "ty-" sits after checkout, so those
+    // are buyers collecting their purchase rather than people starting a
+    // trial — counting them together would overstate the trial funnel.
+    var id = a.id || '';
+    var placement = id.indexOf('ty-') === 0 ? 'post_purchase'
+                  : id.indexOf('ex-') === 0 ? 'exit_intent'
+                  : id.indexOf('try-') === 0 ? 'trial_section' : 'other';
+
+    gtag('event', 'download_click', {
+      os: os,
+      placement: placement,
+      is_trial: placement !== 'post_purchase',
+      // Mirrors GA4's own file_download shape, so the two read alike in reports.
+      link_url: href,
+      link_id: id
+    });
+  }, true);
 </script>
 
 <!-- ── i18n: site language switcher ── -->
