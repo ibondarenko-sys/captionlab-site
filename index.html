@@ -132,6 +132,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .nav-menu a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--cyan);
   transform:scaleX(0);transform-origin:center;transition:.25s}
 .nav-menu a:hover::after{transform:scaleX(1)}
+a.nav-earn{color:var(--gold)!important;font-weight:700!important}
+.nav-menu a.nav-earn::after{background:var(--gold)}
 .nav-cta{background:var(--cyan);color:var(--bg);padding:11px 22px;border-radius:9px;
   font-weight:700;font-size:14.5px;text-decoration:none;transition:.2s;white-space:nowrap;
   box-shadow:0 4px 16px rgba(0,224,255,0.25);
@@ -317,7 +319,7 @@ html:not([lang="en"]) .cta-row{gap:10px}
 .hero-demo-note{text-align:center;color:var(--dim);font-size:12px;margin-top:10px}
 @media(max-width:860px){.hero-demo{max-width:100%;margin-top:26px}}
 /* ── Launch deadline ──
-   The strike-through is labelled "from 1 September" everywhere it appears.
+   The strike-through is labelled "from 1 October" everywhere it appears.
    A bare crossed-out $59 would read as a price that used to be charged and
    never was — which is both untrue and, in the EU and UK, unlawful. Labelled
    as the price that is coming, it says the same thing and is simply true.
@@ -416,6 +418,45 @@ html:not([lang="en"]) .cta-row{gap:10px}
 .anchor-row.is-ours .anchor-cost{color:var(--green)}
 .anchor-note{padding:14px 24px;font-size:12.5px;color:var(--dim);line-height:1.55;border-top:1px solid var(--border)}
 @media(max-width:640px){.anchor-row{padding:13px 16px}.anchor-what{font-size:13.5px}}
+
+/* ── Earn a discount (UGC) ───────────────────────────────────────────────────
+   Deliberately loud, not buried as fine print - 2026-09-03 call: Google Ads
+   isn't pulling its weight, word-of-mouth is what's missing. Sits after
+   reviews/languages/pain (nav + banners already point here from the top, so
+   it doesn't need to open the page). Manual/email-based on purpose (see mail
+   body below): no tracking links, no code, just Igor reading a link and
+   mailing back a code - the right amount of infrastructure for the current
+   volume, and a section this visible is a single find-and-delete if abused. */
+.earn-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:820px;margin:0 auto 28px}
+.earn-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 26px;text-align:center;transition:transform .2s,border-color .2s}
+.earn-card:hover{transform:translateY(-4px);border-color:var(--cyan-dim)}
+.earn-pct{font-family:'Archivo Black',sans-serif;font-size:46px;color:var(--cyan);line-height:1;margin-bottom:6px}
+.earn-card-big{border-color:rgba(255,201,77,.35)}
+.earn-card-big:hover{border-color:var(--gold)}
+.earn-card-big .earn-pct{color:var(--gold)}
+.earn-card h3{font-size:18px;margin-bottom:8px}
+.earn-card p{color:var(--mid);font-size:14.5px;line-height:1.55}
+.earn-how{max-width:640px;margin:0 auto;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 24px;font-size:14.5px;color:var(--mid);line-height:1.6}
+.earn-how b{color:var(--white)}
+.earn-how a{color:var(--cyan);font-weight:600;text-decoration:none}
+.earn-how a:hover{text-decoration:underline}
+@media(max-width:640px){.earn-cards{grid-template-columns:1fr}.earn-pct{font-size:38px}}
+
+/* Dwell nudge - fires once per visitor after time-on-page, independent of the
+   mouse-leave exit intent above (see JS: won't double up if that already
+   fired this session). Bottom-corner, dismissible, never returns once closed
+   or clicked - see .cd-sticky above for why bottom is clear of other fixed UI. */
+.earn-toast{position:fixed;bottom:96px;left:22px;z-index:95;max-width:300px;
+  background:var(--card2);border:1px solid rgba(255,201,77,.4);border-radius:14px;
+  padding:14px 34px 14px 16px;box-shadow:0 12px 40px rgba(0,0,0,.45);
+  transform:translateY(140%);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .4s;}
+.earn-toast.show{transform:translateY(0);opacity:1}
+.earn-toast a{color:var(--white);text-decoration:none;font-size:13.5px;line-height:1.5;display:block}
+.earn-toast a b{color:var(--gold)}
+.earn-toast-close{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--dim);
+  font-size:14px;cursor:pointer;line-height:1;padding:4px}
+.earn-toast-close:hover{color:var(--white)}
+@media(max-width:640px){.earn-toast{left:14px;right:14px;bottom:114px;max-width:none}}
 
 /* ── Trial / buy fork ──
    Every "Get the plugin" CTA lands here rather than straight on the price, so
@@ -1091,6 +1132,7 @@ html[dir="rtl"] .micro{direction:rtl}
   <div class="wrap">
     <a href="#hero" class="logo" aria-label="Back to top"><span class="logo-mark">C</span> CaptionLab</a>
     <div class="nav-menu">
+      <a href="#earn" class="nav-earn" data-i18n="nav.earn">💸 Save 50%</a>
       <a href="#reviews" data-i18n="nav.reviews">Reviews</a>
       <a href="#languages" data-i18n="nav.languages">Languages</a>
       <a href="#how" data-i18n="nav.how">How it works</a>
@@ -1129,6 +1171,7 @@ html[dir="rtl"] .micro{direction:rtl}
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-inner">
     <a href="#hero" onclick="toggleMobileMenu(false);openVideoLightbox();return false" data-i18n="nav.watchdemo">▶ Watch demo</a>
+    <a href="#earn" class="nav-earn" data-i18n="nav.earn" onclick="toggleMobileMenu(false)">💸 Save 50%</a>
     <a href="#reviews" data-i18n="nav.reviews" onclick="toggleMobileMenu(false)">Reviews</a>
     <a href="#languages" data-i18n="nav.languages" onclick="toggleMobileMenu(false)">Languages</a>
     <a href="#how" data-i18n="nav.how" onclick="toggleMobileMenu(false)">How it works</a>
@@ -1154,7 +1197,7 @@ html[dir="rtl"] .micro{direction:rtl}
   <div class="wrap">
     <div class="launch-bar-inner">
       <span class="launch-flame">🔥</span>
-      <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="was">$59</span><span class="launch-now">$39</span> one-time <span class="was-tag" data-i18n="pr.from">FROM 1 SEP</span></span>
+      <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="was">$59</span><span class="launch-now">$39</span> one-time <span class="was-tag" data-i18n="pr.from">FROM 1 OCT</span></span>
       <a href="#changelog" class="launch-win-badge" data-i18n="launch.win">✨ <b>v1.0.5 is here:</b> free 3-day trial + a model for Burmese</a>
     </div>
   </div>
@@ -1275,7 +1318,7 @@ html[dir="rtl"] .micro{direction:rtl}
     <p style="color:var(--mid);font-size:15px;line-height:1.65;margin:0 0 22px" data-i18n="ex.p">
       Take the plugin for three days first — every model, every language, real subtitles in your
       own timeline. No card, no account. Your 3 days don't start until your first transcription.
-      <b style="color:var(--white)">The $39 launch price runs until 1 September</b> — after that it's $59.
+      <b style="color:var(--white)">The $39 launch price runs until 1 October</b> — after that it's $59.
     </p>
     <div class="try-btns" style="justify-content:center">
       <a href="https://captionlab-license.editlabtools.workers.dev/download/mac"
@@ -1283,8 +1326,15 @@ html[dir="rtl"] .micro{direction:rtl}
       <a href="https://captionlab-license.editlabtools.workers.dev/download/win"
          class="btn-ghost try-dl" id="ex-win" data-i18n="try.win">Download for Windows</a>
     </div>
+    <a href="#earn" onclick="closeExit()" style="display:block;text-align:center;margin-top:18px;color:var(--gold);font-weight:700;font-size:14px;text-decoration:none" data-i18n="ex.earn">💸 Or get it 25–50% cheaper by sharing it →</a>
     <button class="precheck-cancel" onclick="closeExit()" data-i18n="ex.no">No thanks</button>
   </div>
+</div>
+
+<!-- Dwell nudge toward the earn-a-discount section - see JS near exit intent -->
+<div class="earn-toast" id="earnToast">
+  <button class="earn-toast-close" onclick="closeEarnToast()" aria-label="Close">✕</button>
+  <a href="#earn" onclick="closeEarnToast()" data-i18n="toast.earn">💸 <b>Get 25–50% off</b> — mention or show off CaptionLab somewhere public →</a>
 </div>
 
 <!-- Post-download modal.
@@ -1719,6 +1769,28 @@ html[dir="rtl"] .micro{direction:rtl}
   </div>
 </section>
 
+<!-- EARN A DISCOUNT (UGC) -->
+<section class="section earn-sec" id="earn">
+  <div class="wrap">
+    <div class="eyebrow reveal" data-i18n="earn.eyebrow">Spread the word, spend less</div>
+    <h2 class="reveal" data-i18n="earn.h2">Get CaptionLab <span class="hl">even cheaper</span> — for talking about it</h2>
+    <p class="section-lead reveal" data-i18n="earn.lead" style="margin-left:auto;margin-right:auto;text-align:center">No tracking links, no forms. Post something real, email me proof, get a code back.</p>
+    <div class="earn-cards">
+      <div class="earn-card reveal">
+        <div class="earn-pct">25%</div>
+        <h3 data-i18n="earn.c1h">Mention CaptionLab</h3>
+        <p data-i18n="earn.c1p">Post about it on Reddit, Adobe Community, AlternativeTo, or ProductHunt — any one of them.</p>
+      </div>
+      <div class="earn-card earn-card-big reveal">
+        <div class="earn-pct">50%</div>
+        <h3 data-i18n="earn.c2h">Show it in a video</h3>
+        <p data-i18n="earn.c2p">A public video where you actually use it — YouTube, TikTok, Instagram, anywhere.</p>
+      </div>
+    </div>
+    <div class="earn-how reveal" data-i18n="earn.how"><b>How it works:</b> email the link (and a screenshot if it's a post) to <a href="mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it">editlabtools@gmail.com</a> — I'll check it myself and send your code back, usually the same day.</div>
+  </div>
+</section>
+
 <!-- HOW -->
 <section class="section" id="how">
   <div class="wrap">
@@ -1874,7 +1946,7 @@ html[dir="rtl"] .micro{direction:rtl}
     <div class="price-box reveal">
       <div class="price-flag" data-i18n="pr.flag">LAUNCH</div>
       <div class="price-amount"><span class="was price-was">$59</span><span class="cur">$</span>39</div>
-      <div class="price-from"><span class="was-tag" data-i18n="pr.from">FROM 1 SEP</span></div>
+      <div class="price-from"><span class="was-tag" data-i18n="pr.from">FROM 1 OCT</span></div>
       <div class="price-once" data-i18n="pr.once">// one-time · permanent license</div>
       <ul class="price-list">
         <li data-i18n="pr.l1"><span class="ck">✓</span> CaptionLab plugin for Premiere Pro (Mac &amp; Windows)</li>
@@ -2564,7 +2636,7 @@ html[dir="rtl"] .micro{direction:rtl}
       <span class="sticky-price" style="color:var(--white)">CaptionLab</span>
       <span style="color:var(--mid);font-size:13px" data-i18n="stk.note">one-time · no subscription</span>
     </div>
-    <span class="cd-sticky" id="cd-sticky" style="display:none"><span data-i18n="cd.short">$39 until 1 Sep ·</span> <b data-cd2="t">–</b></span><a href="#pricing" class="sticky-cta-btn">
+    <span class="cd-sticky" id="cd-sticky" style="display:none"><span data-i18n="cd.short">$39 until 1 Oct ·</span> <b data-cd2="t">–</b></span><a href="#pricing" class="sticky-cta-btn">
       <span data-i18n="stk.cta2">Get CaptionLab — $39</span>
       <span class="sticky-cta-icons">
         <svg class="icon-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.014-.1-.04-.32-.04-.55 0-1.14.572-2.27 1.206-2.98.804-.94 2.14-1.64 3.248-1.68.03.13.05.34.05.59zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1 3.86-1 .62 0 2.833.06 4.29 2.15-.11.07-2.55 1.5-2.55 4.55 0 3.5 3.06 4.79 3.24 4.9z"/></svg>
@@ -2882,14 +2954,14 @@ function toggleLegal(scroll) {
   var DICT = {
     uk:{
       "hd.watch":"Дивитись повне демо — 60 секунд","hd.note":"Справжній запис — без макетів і без прискорення.",
-      "pr.from":"З 1 ВЕРЕСНЯ",
-      "cd.short":"$39 до 1 вересня ·",
+      "pr.from":"З 1 ЖОВТНЯ",
+      "cd.short":"$39 до 1 жовтня ·",
       "cd.s":"СЕК",
       "cd.m":"ХВ",
       "cd.h":"ГОД",
       "cd.d":"ДНІВ",
       "cd.label":"Стартова ціна діє ще",
-      "lc.eyebrow":"ЄДИНЕ ПИТАННЯ, ЩО МАЄ ЗНАЧЕННЯ","lc.h2":"Чи говорить він твоєю мовою?","lc.sub":"Впиши її. Дізнаєшся за секунду.","lc.yes":"Так — CaptionLab розшифровує","lc.notadobe":"немає у вбудованому списку Premiere. CaptionLab це вміє.","lc.why":"Власна розшифровка Premiere охоплює приблизно шістнадцять мов. Ця — з решти вісімдесяти трьох. Саме тому CaptionLab і існує.","lc.adobe":"Premiere теж це вміє — тож тут різниця не в мові, а в усьому навколо: матеріал не залишає твій комп'ютер, працює взагалі без інтернету, і це <b>один платіж замість підписки</b>.","lc.buy":"Отримати CaptionLab — $39","lc.or":"або","lc.try":"спробувати 3 дні безкоштовно","lc.miss":"Не впевнений, що це одна з 99 — напиши мені, яка мова, і я перевірю сам: ","ex.eyebrow":"ПЕРШ НІЖ ПІТИ","ex.h3":"Вирішувати сьогодні не обов'язково","ex.p":"Візьми плагін на три дні — усі моделі, усі мови, справжні субтитри на власному таймлайні. Без картки й без акаунта. Три дні почнуться з першої транскрипції, не раніше. <b style='color:var(--white)'>Стартова ціна $39 діє до 1 вересня</b> — далі $59.","ex.no":"Ні, дякую",
+      "lc.eyebrow":"ЄДИНЕ ПИТАННЯ, ЩО МАЄ ЗНАЧЕННЯ","lc.h2":"Чи говорить він твоєю мовою?","lc.sub":"Впиши її. Дізнаєшся за секунду.","lc.yes":"Так — CaptionLab розшифровує","lc.notadobe":"немає у вбудованому списку Premiere. CaptionLab це вміє.","lc.why":"Власна розшифровка Premiere охоплює приблизно шістнадцять мов. Ця — з решти вісімдесяти трьох. Саме тому CaptionLab і існує.","lc.adobe":"Premiere теж це вміє — тож тут різниця не в мові, а в усьому навколо: матеріал не залишає твій комп'ютер, працює взагалі без інтернету, і це <b>один платіж замість підписки</b>.","lc.buy":"Отримати CaptionLab — $39","lc.or":"або","lc.try":"спробувати 3 дні безкоштовно","lc.miss":"Не впевнений, що це одна з 99 — напиши мені, яка мова, і я перевірю сам: ","ex.eyebrow":"ПЕРШ НІЖ ПІТИ","ex.h3":"Вирішувати сьогодні не обов'язково","ex.p":"Візьми плагін на три дні — усі моделі, усі мови, справжні субтитри на власному таймлайні. Без картки й без акаунта. Три дні почнуться з першої транскрипції, не раніше. <b style='color:var(--white)'>Стартова ціна $39 діє до 1 жовтня</b> — далі $59.","ex.no":"Ні, дякую",
       "hero.sub2":"Живе всередині Premiere Pro і володіє <b>99 мовами</b> — включно з тими, які Adobe забула. Працює <b>повністю офлайн</b> на твоєму Mac чи Windows.",
       "an.note":"Погодинна оплата ще гірша: одне інтерв'ю на 40 хвилин може коштувати дорожче за весь плагін — і платити доведеться щоразу з новим проєктом.",
       "an.r3":"<b>CaptionLab</b> — через рік, через три чи через десять",
@@ -2912,8 +2984,8 @@ function toggleLegal(scroll) {
       "ty.mac":"Завантажити для Mac","ty.win":"Завантажити для Windows",
       "hero.buyline":"Без картки й без акаунта. <a href='#try'>Або купи одразу — $39 разово</a>",
       "try.h":"Спробуй спершу — або купуй одразу","try.lede":"Точність сильно різниться від мови до мови. Якщо твоя — з тих, що Adobe не підтримує, три дні на власному матеріалі скажуть більше, ніж будь-яке демо.","try.badge":"БЕЗКОШТОВНИЙ ТРІАЛ","try.price":"3 дні безкоштовно","try.p":"Повноцінний плагін — усі моделі, усі мови, справжні субтитри на твоєму таймлайні. Без картки й без акаунта. <b>Три дні починаються з першої транскрипції</b>, а не із завантаження, тож встановлення й скачування моделі не коштують тобі нічого.","try.mac":"Завантажити для Mac","try.win":"Завантажити для Windows","try.buybadge":"ПОВНА ЛІЦЕНЗІЯ","try.buyprice":"$39 разово","try.buyp":"Уже знаєш, що це те, що треба? Пропусти тріал. Один платіж — і назавжди: без підписки, без оплати за хвилини, працює офлайн на <b>двох комп'ютерах</b>.","try.buycta":"Отримати CaptionLab →","cl.v105.trial.label":"🎬 Спробуй, перш ніж купувати","cl.v105.trial.li1":"Тепер є <b>безкоштовний 3-денний тріал</b> повноцінного плагіна — усі моделі, усі мови, справжні субтитри на таймлайні. Без картки й без акаунта.","cl.v105.trial.li2":"Три дні починаються з <b>першої транскрипції</b>, а не із завантаження. Встановлення движка й скачування багатогігабайтної моделі може забрати вечір — і жодна хвилина з цього не йде з твого тріалу.","cl.v105.myanmar.label":"🇲🇲 Модель для бірманської","cl.v105.myanmar.li1":"Бірманська — з тих мов, що стандартні моделі опрацьовують погано: на реальному відео вони видавали зовсім не те письмо або хвилинами повторювали один склад. Тепер у вкладці Models є <b>окрема модель для бірманської</b>, і на тих самих кліпах вона дає справжній, читабельний текст.","cl.v105.myanmar.li2":"Ця модель з'явилася завдяки клієнту, який попросив повернення, бо його мова не працювала. Якщо твоя теж не працює — <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>напиши мені</a>. Саме так це й було зроблено.","cl.v105.install.label":"🔧 Встановлення, що лагодить себе саме","cl.v105.install.li1":"Недокачаний файл раніше вважався справним назавжди: кожна повторна спроба бачила, що файл на місці, і пропускала його — тож те саме зламане встановлення поверталося, скільки б разів ти не тиснув. Тепер інсталятор перевіряє, що кожен компонент справді <b>запускається</b>, і перекачує його, якщо ні. Зависле завантаження обривається за таймаутом і повторюється.","cl.badge.v105":"Щойно вийшло","cl.badge.v103":"Попередній випуск","cl.v104.timing.label":"⏱ Титри влучають у слово","cl.v104.timing.li1":"Таймінг тепер вимірюється по <b>самому аудіо</b>, а не береться з таймкодів ШІ — тож титр більше не зʼявляється, поки людина ще мовчить. На реальному новинному сюжеті сумарна розсинхронізація впала приблизно на <b>60%</b>.","cl.v104.timing.li2":"Виправлено випадки, коли титри вискакували на секунди раніше: після довгих пауз, на футажі з фоновим шумом і після музики. Титр також тримається трохи довше, а не зникає в ту ж мить, коли людина замовкла.","cl.v104.words.label":"✂️ «Fixed words» тепер «Max words»","cl.v104.words.li1":"Це <b>стеля, а не норма</b>. Постав 4 — і титр буде з 3, 2 чи навіть 1 слова, якщо саме там закінчується думка. Титр ніколи не розривається посеред речення, ріже по комах, а короткі слова на кшталт «не» чи «це» більше не висять на екрані самі.","cl.v104.words.li2":"Звичайні титри теж стежать за структурою речення — коректна довжина рядка, швидкість читання, і слова через дефіс більше не розриваються на два екрани.","cl.v104.quiet.label":"🔊 Тиха мова більше не пропускається","cl.v104.quiet.li1":"Звук, записаний значно тихіше за решту відео — наприклад, інтервʼю з локації поруч із гучним студійним голосом — раніше просто зникав. Тепер рівні вирівнюються перед розшифровкою, і ці фрагменти теж отримують субтитри.",
-      "nav.watchdemo":"▶ Дивитись демо","nav.reviews":"Відгуки","nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.whatsnew":"Що нового","nav.faq":"Питання","nav.cta":"Отримати плагін",
-      "launch.text":"<b>Стартова ціна</b> · <span class='launch-now'>$39</span> разово","launch.win":"✨ <b>Вийшла v1.0.5:</b> безкоштовні 3 дні + модель для бірманської",
+      "nav.watchdemo":"▶ Дивитись демо","nav.reviews":"Відгуки","nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.whatsnew":"Що нового","nav.faq":"Питання","nav.cta":"Отримати плагін","nav.earn":"💸 Знижка 50%","earn.eyebrow":"Розкажи про нас — заощадь","earn.h2":"Отримай CaptionLab <span class='hl'>ще дешевше</span> — за згадку","earn.lead":"Без реферальних лінків і форм. Постав щось реальне, надішли підтвердження — отримаєш промокод.","earn.c1h":"Згадай CaptionLab","earn.c1p":"Напиши про нас на Reddit, Adobe Community, AlternativeTo або ProductHunt — будь-де одне з цього.","earn.c2h":"Покажи у відео","earn.c2p":"Публічне відео, де ти реально користуєшся плагіном — YouTube, TikTok, Instagram, будь-де.","earn.how":"<b>Як це працює:</b> надішли лінк (і скріншот, якщо це пост) на <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> — я сам перевірю і надішлю промокод у відповідь, зазвичай того ж дня.","ex.earn":"💸 Або отримай знижку 25–50%, розповівши про нас →","toast.earn":"💸 <b>Знижка 25–50%</b> — згадай або покажи CaptionLab десь публічно →",
+      "launch.text":"<b>Стартова ціна</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> разово","launch.win":"✨ <b>Вийшла v1.0.5:</b> безкоштовні 3 дні + модель для бірманської",
       "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
       "hero.h1":"Автоматичні субтитри в Premiere&nbsp;Pro.<br>Нарешті <b>твоєю мовою</b>",
       "hero.sub":"Нативний плагін, який живе прямо всередині Premiere Pro. Працює <b>100% офлайн</b> на твоєму <b>Mac</b> чи <b>Win</b>: відео ніколи не покидає комп'ютер, без хмари, <b>без API-ключів</b>, без інтернету, <b>без підписки</b>. А ще розмовляє <b>99 мовами</b> — включно з тими, про які Adobe забула.",
@@ -2960,14 +3032,14 @@ function toggleLegal(scroll) {
     },
     pl:{
       "hd.watch":"Zobacz pełne demo — 60 sekund","hd.note":"Prawdziwe nagranie — bez makiet i bez przyspieszania.",
-      "pr.from":"OD 1 WRZEŚNIA",
-      "cd.short":"$39 do 1 września ·",
+      "pr.from":"OD 1 PAŹDZIERNIKA",
+      "cd.short":"$39 do 1 października ·",
       "cd.s":"SEK",
       "cd.m":"MIN",
       "cd.h":"GODZ",
       "cd.d":"DNI",
       "cd.label":"Cena startowa kończy się za",
-      "lc.eyebrow":"JEDYNE PYTANIE, KTÓRE SIĘ LICZY","lc.h2":"Czy mówi w Twoim języku?","lc.sub":"Wpisz go. Dowiesz się w sekundę.","lc.yes":"Tak — CaptionLab transkrybuje","lc.notadobe":"nie ma go we wbudowanej liście Premiere. CaptionLab to potrafi.","lc.why":"Własna transkrypcja Premiere obejmuje około szesnastu języków. Ten należy do pozostałych osiemdziesięciu trzech — i właśnie dlatego CaptionLab istnieje.","lc.adobe":"Premiere też to potrafi — więc różnica nie leży w języku, tylko we wszystkim wokół: materiał nie opuszcza Twojego komputera, działa bez internetu, i to <b>jedna płatność zamiast subskrypcji</b>.","lc.buy":"Kup CaptionLab — $39","lc.or":"albo","lc.try":"wypróbuj 3 dni za darmo","lc.miss":"Nie jestem pewien, czy to jeden z 99 — napisz mi jaki to język, a sprawdzę: ","ex.eyebrow":"ZANIM ODEJDZIESZ","ex.h3":"Nie musisz decydować dzisiaj","ex.p":"Weź wtyczkę na trzy dni — wszystkie modele, wszystkie języki, prawdziwe napisy na własnej osi czasu. Bez karty, bez konta. Trzy dni startują przy pierwszej transkrypcji, nie wcześniej. <b style='color:var(--white)'>Cena startowa $39 obowiązuje do 1 września</b> — potem $59.","ex.no":"Nie, dziękuję",
+      "lc.eyebrow":"JEDYNE PYTANIE, KTÓRE SIĘ LICZY","lc.h2":"Czy mówi w Twoim języku?","lc.sub":"Wpisz go. Dowiesz się w sekundę.","lc.yes":"Tak — CaptionLab transkrybuje","lc.notadobe":"nie ma go we wbudowanej liście Premiere. CaptionLab to potrafi.","lc.why":"Własna transkrypcja Premiere obejmuje około szesnastu języków. Ten należy do pozostałych osiemdziesięciu trzech — i właśnie dlatego CaptionLab istnieje.","lc.adobe":"Premiere też to potrafi — więc różnica nie leży w języku, tylko we wszystkim wokół: materiał nie opuszcza Twojego komputera, działa bez internetu, i to <b>jedna płatność zamiast subskrypcji</b>.","lc.buy":"Kup CaptionLab — $39","lc.or":"albo","lc.try":"wypróbuj 3 dni za darmo","lc.miss":"Nie jestem pewien, czy to jeden z 99 — napisz mi jaki to język, a sprawdzę: ","ex.eyebrow":"ZANIM ODEJDZIESZ","ex.h3":"Nie musisz decydować dzisiaj","ex.p":"Weź wtyczkę na trzy dni — wszystkie modele, wszystkie języki, prawdziwe napisy na własnej osi czasu. Bez karty, bez konta. Trzy dni startują przy pierwszej transkrypcji, nie wcześniej. <b style='color:var(--white)'>Cena startowa $39 obowiązuje do 1 października</b> — potem $59.","ex.no":"Nie, dziękuję",
       "hero.sub2":"Mieszka w Premiere Pro i mówi w <b>99 językach</b> — w tym tych, o których Adobe zapomniało. Działa <b>w pełni offline</b> na Twoim Macu lub Windowsie.",
       "an.note":"Rozliczenie za minutę wypada jeszcze gorzej: jeden 40-minutowy wywiad potrafi kosztować więcej niż cała wtyczka — i płacisz przy każdym nowym projekcie.",
       "an.r3":"<b>CaptionLab</b> — po roku, po trzech albo po dziesięciu",
@@ -2990,8 +3062,8 @@ function toggleLegal(scroll) {
       "ty.mac":"Pobierz na Maca","ty.win":"Pobierz na Windows",
       "hero.buyline":"Bez karty, bez konta. <a href='#try'>Albo kup od razu — $39 jednorazowo</a>",
       "try.h":"Najpierw wypróbuj albo kup od razu","try.lede":"Dokładność mocno różni się między językami. Jeśli Twój jest jednym z tych, których Adobe nie obsługuje, trzy dni na własnym materiale powiedzą Ci więcej niż jakiekolwiek demo.","try.badge":"DARMOWY TRIAL","try.price":"3 dni za darmo","try.p":"Pełna wtyczka — wszystkie modele, wszystkie języki, prawdziwe napisy na Twojej osi czasu. Bez karty, bez konta. <b>Trzy dni startują przy pierwszej transkrypcji</b>, nie przy pobraniu, więc instalacja i ściąganie modelu AI nic Cię nie kosztują.","try.mac":"Pobierz na Maca","try.win":"Pobierz na Windows","try.buybadge":"PEŁNA LICENCJA","try.buyprice":"$39 jednorazowo","try.buyp":"Już wiesz, że tego potrzebujesz? Pomiń trial. Jedna płatność i masz na zawsze — bez subskrypcji, bez opłat za minutę, działa offline na <b>dwóch komputerach</b>.","try.buycta":"Pobierz CaptionLab →","cl.v105.trial.label":"🎬 Wypróbuj, zanim kupisz","cl.v105.trial.li1":"Jest już <b>darmowy 3-dniowy trial</b> pełnej wtyczki — wszystkie modele, wszystkie języki, prawdziwe napisy na osi czasu. Bez karty, bez konta.","cl.v105.trial.li2":"Trzy dni startują przy <b>pierwszej transkrypcji</b>, nie przy pobraniu. Instalacja silnika i ściągnięcie wielogigabajtowego modelu potrafi zająć wieczór — i nic z tego nie schodzi z Twojego triala.","cl.v105.myanmar.label":"🇲🇲 Model stworzony do birmańskiego","cl.v105.myanmar.li1":"Birmański to jeden z języków, z którymi standardowe modele radzą sobie źle — na prawdziwym materiale zwracały zupełnie inne pismo albo minutami powtarzały tę samą sylabę. W zakładce Models jest teraz <b>osobny model do birmańskiego</b>, który na tych samych klipach daje prawdziwy, czytelny tekst.","cl.v105.myanmar.li2":"Ten model powstał dzięki klientowi, który poprosił o zwrot, bo jego język nie działał. Jeśli Twój też nie działa — <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>napisz do mnie</a>. Właśnie tak to powstało.","cl.v105.install.label":"🔧 Instalacja, która sama się naprawia","cl.v105.install.li1":"Niedokończone pobieranie było kiedyś uznawane za dobre na zawsze: każda kolejna próba widziała, że plik istnieje, i go pomijała — więc ta sama zepsuta instalacja wracała bez względu na to, ile razy kliknąłeś. Teraz instalator sprawdza, czy każdy element faktycznie <b>się uruchamia</b>, i pobiera go ponownie, jeśli nie. Zawieszone pobierania kończą się timeoutem i są ponawiane.","cl.badge.v105":"Właśnie wydane","cl.badge.v103":"Poprzednie wydanie","cl.v104.timing.label":"⏱ Napisy trafiają w słowo","cl.v104.timing.li1":"Czas napisów jest teraz mierzony na podstawie <b>samego dźwięku</b>, a nie znaczników AI — napis nie pojawia się już, gdy mówca wciąż milczy. Na prawdziwym materiale informacyjnym łączne rozjechanie spadło o około <b>60%</b>.","cl.v104.timing.li2":"Naprawione przypadki, gdy napisy pojawiały się kilka sekund za wcześnie: po długich pauzach, na materiale z tłem dźwiękowym i po muzyce. Napis utrzymuje się też chwilę dłużej, zamiast znikać w momencie, gdy mówca kończy.","cl.v104.words.label":"✂️ „Fixed words” to teraz „Max words”","cl.v104.words.li1":"To <b>górna granica, nie norma</b>. Ustaw 4, a napis będzie miał 3, 2 albo nawet 1 słowo, jeśli właśnie tam kończy się myśl. Napis nigdy nie dzieli zdania, łamie się na przecinkach, a krótkie słowa jak „nie” czy „to” nie zostają same na ekranie.","cl.v104.words.li2":"Domyślne napisy też podążają za budową zdania — właściwa długość linii, tempo czytania, a słowa z myślnikiem nie są już dzielone na dwa ekrany.","cl.v104.quiet.label":"🔊 Ciche wypowiedzi nie są już pomijane","cl.v104.quiet.li1":"Dźwięk nagrany znacznie ciszej niż reszta filmu — na przykład wywiad w terenie zestawiony z głośnym głosem studyjnym — wcześniej po prostu znikał. Teraz poziomy są wyrównywane przed transkrypcją, więc te fragmenty również dostają napisy.",
-      "nav.watchdemo":"▶ Zobacz demo","nav.reviews":"Opinie","nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.whatsnew":"Co nowego","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę",
-      "launch.text":"<b>Cena startowa</b> · <span class='launch-now'>$39</span> jednorazowo","launch.win":"✨ <b>Wydano v1.0.5:</b> darmowe 3 dni + model do birmańskiego",
+      "nav.watchdemo":"▶ Zobacz demo","nav.reviews":"Opinie","nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.whatsnew":"Co nowego","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę","nav.earn":"💸 Zniżka 50%","earn.eyebrow":"Rozpowiedz dalej, zapłać mniej","earn.h2":"Zdobądź CaptionLab <span class='hl'>jeszcze taniej</span> — za wzmiankę","earn.lead":"Bez linków polecających, bez formularzy. Opublikuj coś prawdziwego, wyślij dowód, dostań kod.","earn.c1h":"Wspomnij o CaptionLab","earn.c1p":"Napisz o nim na Reddit, Adobe Community, AlternativeTo lub ProductHunt — dowolne jedno z nich.","earn.c2h":"Pokaż go w filmie","earn.c2p":"Publiczny film, w którym naprawdę go używasz — YouTube, TikTok, Instagram, gdziekolwiek.","earn.how":"<b>Jak to działa:</b> wyślij link (i zrzut ekranu, jeśli to post) na <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> — sam to sprawdzę i odeślę Twój kod, zwykle tego samego dnia.","ex.earn":"💸 Albo zdobądź 25–50% zniżki, dzieląc się nim →","toast.earn":"💸 <b>Zniżka 25–50%</b> — wspomnij lub pokaż CaptionLab publicznie →",
+      "launch.text":"<b>Cena startowa</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> jednorazowo","launch.win":"✨ <b>Wydano v1.0.5:</b> darmowe 3 dni + model do birmańskiego",
       "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
       "hero.h1":"Automatyczne napisy w Premiere&nbsp;Pro —<br>wreszcie <b>w Twoim języku</b>",
       "hero.sub":"Natywna wtyczka, która działa bezpośrednio wewnątrz Premiere Pro. Działa w <b>100% offline</b> na Twoim własnym <b>Mac</b> lub <b>Win</b>: Twój materiał nigdy nie opuszcza komputera, bez chmury, <b>bez kluczy API</b>, bez internetu, <b>bez subskrypcji</b>. Do tego mówi w <b>99 językach</b> — łącznie z tymi, o których Adobe zapomniało.",
@@ -3038,14 +3110,14 @@ function toggleLegal(scroll) {
     },
     tr:{
       "hd.watch":"Tam demoyu izle — 60 saniye","hd.note":"Gerçek kayıt — maket yok, hızlandırma yok.",
-      "pr.from":"1 EYLÜL'DEN İTİBAREN",
-      "cd.short":"1 Eylül'e kadar $39 ·",
+      "pr.from":"1 EKİM'DEN İTİBAREN",
+      "cd.short":"1 Ekim'e kadar $39 ·",
       "cd.s":"SN",
       "cd.m":"DK",
       "cd.h":"SA",
       "cd.d":"GÜN",
       "cd.label":"Lansman fiyatının bitmesine",
-      "lc.eyebrow":"ÖNEMLİ OLAN TEK SORU","lc.h2":"Senin dilini konuşuyor mu?","lc.sub":"Yaz gitsin. Bir saniyede öğrenirsin.","lc.yes":"Evet — CaptionLab şu dili yazıya döküyor:","lc.notadobe":"Premiere'in yerleşik listesinde yok. CaptionLab bunu yapıyor.","lc.why":"Premiere'in kendi konuşma çözümü yaklaşık on altı dili kapsıyor. Bu, geri kalan seksen üçten biri — CaptionLab tam olarak bunun için var.","lc.adobe":"Premiere bunu da yapıyor — yani fark dilde değil, etrafındaki her şeyde: görüntülerin bilgisayarından çıkmıyor, internetsiz çalışıyor ve <b>abonelik yerine tek ödeme</b>.","lc.buy":"CaptionLab'i al — $39","lc.or":"ya da","lc.try":"3 gün ücretsiz dene","lc.miss":"Bunun 99'dan biri olduğuna emin değilim — hangi dil olduğunu yaz, kendim bakayım: ","ex.eyebrow":"GİTMEDEN ÖNCE","ex.h3":"Bugün karar vermek zorunda değilsin","ex.p":"Eklentiyi üç günlüğüne al — bütün modeller, bütün diller, kendi zaman çizelgende gerçek altyazılar. Kart yok, hesap yok. Üç gün ilk transkripsiyonda başlar, önce değil. <b style='color:var(--white)'>$39 lansman fiyatı 1 Eylül'e kadar</b> — sonrasında $59.","ex.no":"Hayır, teşekkürler",
+      "lc.eyebrow":"ÖNEMLİ OLAN TEK SORU","lc.h2":"Senin dilini konuşuyor mu?","lc.sub":"Yaz gitsin. Bir saniyede öğrenirsin.","lc.yes":"Evet — CaptionLab şu dili yazıya döküyor:","lc.notadobe":"Premiere'in yerleşik listesinde yok. CaptionLab bunu yapıyor.","lc.why":"Premiere'in kendi konuşma çözümü yaklaşık on altı dili kapsıyor. Bu, geri kalan seksen üçten biri — CaptionLab tam olarak bunun için var.","lc.adobe":"Premiere bunu da yapıyor — yani fark dilde değil, etrafındaki her şeyde: görüntülerin bilgisayarından çıkmıyor, internetsiz çalışıyor ve <b>abonelik yerine tek ödeme</b>.","lc.buy":"CaptionLab'i al — $39","lc.or":"ya da","lc.try":"3 gün ücretsiz dene","lc.miss":"Bunun 99'dan biri olduğuna emin değilim — hangi dil olduğunu yaz, kendim bakayım: ","ex.eyebrow":"GİTMEDEN ÖNCE","ex.h3":"Bugün karar vermek zorunda değilsin","ex.p":"Eklentiyi üç günlüğüne al — bütün modeller, bütün diller, kendi zaman çizelgende gerçek altyazılar. Kart yok, hesap yok. Üç gün ilk transkripsiyonda başlar, önce değil. <b style='color:var(--white)'>$39 lansman fiyatı 1 Ekim'e kadar</b> — sonrasında $59.","ex.no":"Hayır, teşekkürler",
       "hero.sub2":"Premiere Pro'nun içinde yaşar ve <b>99 dil</b> konuşur — Adobe'nin unuttukları dahil. Kendi Mac ya da Windows'unda <b>tamamen çevrimdışı</b> çalışır.",
       "an.note":"Dakika başı ücretlendirme daha da kötü: 40 dakikalık tek bir röportaj eklentinin tamamından pahalıya gelebilir — ve her yeni projede yeniden ödersin.",
       "an.r3":"<b>CaptionLab</b> — bir yıl, üç yıl ya da on yıl sonra",
@@ -3068,8 +3140,8 @@ function toggleLegal(scroll) {
       "ty.mac":"Mac için indir","ty.win":"Windows için indir",
       "hero.buyline":"Kart yok, hesap yok. <a href='#try'>Ya da hemen al — tek seferlik $39</a>",
       "try.h":"Önce dene, ya da hemen al","try.lede":"Doğruluk dilden dile çok değişir. Seninki Adobe'nin desteklemediği dillerden biriyse, kendi görüntülerinde geçireceğin üç gün sana her demodan fazlasını anlatır.","try.badge":"ÜCRETSİZ DENEME","try.price":"3 gün ücretsiz","try.p":"Eksiksiz eklenti — bütün modeller, bütün diller, zaman çizelgende gerçek altyazılar. Kart yok, hesap yok. <b>Üç günün ilk transkripsiyonunda başlar</b>, indirmede değil; yani kurulum ve yapay zekâ modelini indirmek sana hiçbir şeye mal olmaz.","try.mac":"Mac için indir","try.win":"Windows için indir","try.buybadge":"TAM LİSANS","try.buyprice":"Tek seferlik $39","try.buyp":"İhtiyacın olduğunu zaten biliyor musun? Denemeyi atla. Tek ödeme, sonsuza dek senin — abonelik yok, dakika ücreti yok, <b>iki bilgisayarda</b> çevrimdışı çalışmaya devam eder.","try.buycta":"CaptionLab'i al →","cl.v105.trial.label":"🎬 Satın almadan önce dene","cl.v105.trial.li1":"Artık eksiksiz eklentinin <b>ücretsiz 3 günlük denemesi</b> var — bütün modeller, bütün diller, zaman çizelgende gerçek altyazılar. Kart yok, hesap yok.","cl.v105.trial.li2":"Üç gün <b>ilk transkripsiyonunda</b> başlar, indirmede değil. Motoru kurmak ve gigabaytlarca modeli indirmek bir akşamını alabilir; bunun hiçbiri denemenden düşmez.","cl.v105.myanmar.label":"🇲🇲 Birmanca için özel model","cl.v105.myanmar.li1":"Birmanca, standart modellerin kötü başa çıktığı dillerden biri — gerçek görüntülerde tamamen başka bir yazı üretiyor ya da aynı heceyi dakikalarca tekrarlıyorlardı. Models sekmesinde artık <b>Birmancaya özel bir model</b> var ve aynı kliplerde gerçek, okunabilir Birmanca üretiyor.","cl.v105.myanmar.li2":"Bu model, dili çalışmadığı için iade isteyen bir müşteri sayesinde çıktı. Seninki de çalışmıyorsa <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>bana yaz</a> — bu böyle ortaya çıktı.","cl.v105.install.label":"🔧 Kendini onaran kurulum","cl.v105.install.li1":"Yarım kalmış bir indirme eskiden sonsuza dek doğru sayılırdı: her yeniden deneme dosyanın orada olduğunu görüp atlıyordu, yani kaç kez tıklarsan tıkla aynı bozuk kurulum geri geliyordu. Kurulum artık her parçanın gerçekten <b>çalıştığını</b> kontrol ediyor, çalışmıyorsa yeniden indiriyor. Takılan indirmeler zaman aşımına uğrayıp yeniden deneniyor.","cl.badge.v105":"Yeni çıktı","cl.badge.v103":"Önceki sürüm","cl.v104.timing.label":"⏱ Altyazılar kelimeye oturuyor","cl.v104.timing.li1":"Altyazı zamanlaması artık yapay zekânın kendi zaman damgaları yerine <b>sesin kendisine</b> göre ölçülüyor — konuşmacı hâlâ sessizken altyazı çıkmıyor. Gerçek bir haber paketinde toplam kayma yaklaşık <b>%60</b> azaldı.","cl.v104.timing.li2":"Altyazıların saniyelerce erken çıktığı durumlar düzeltildi: uzun duraklamalardan sonra, ortam sesli B-roll üzerinde ve müzikten sonra. Altyazı ayrıca konuşmacı susar susmaz kaybolmak yerine biraz daha uzun kalıyor.","cl.v104.words.label":"✂️ „Fixed words” artık „Max words”","cl.v104.words.li1":"Bu bir <b>üst sınır, kota değil</b>. 4 seçin; cümle orada bitiyorsa altyazı 3, 2 hatta 1 kelime olur. Altyazı asla cümlenin ortasından bölünmez, virgüllerde kesilir ve „ve” ya „bu” gibi kısa kelimeler ekranda tek başına kalmaz.","cl.v104.words.li2":"Varsayılan altyazılar da cümle yapısını izler — doğru satır uzunluğu, okuma hızı ve tireli kelimeler artık iki ekrana bölünmez.","cl.v104.quiet.label":"🔊 Sessiz konuşmalar artık atlanmıyor","cl.v104.quiet.li1":"Videonun geri kalanından çok daha düşük seviyede kaydedilmiş ses — örneğin gürültülü bir stüdyo sesinin yanına kurgulanmış saha röportajı — eskiden sessizce atlanıyordu. Artık seviyeler deşifre öncesi dengeleniyor, bu bölümler de altyazı alıyor.",
-      "nav.watchdemo":"▶ Demoyu izle","nav.reviews":"Yorumlar","nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.whatsnew":"Yenilikler","nav.faq":"SSS","nav.cta":"Eklentiyi al",
-      "launch.text":"<b>Lansman fiyatı</b> · <span class='launch-now'>$39</span> tek seferlik","launch.win":"✨ <b>v1.0.5 yayında:</b> 3 gün ücretsiz + Birmanca için model",
+      "nav.watchdemo":"▶ Demoyu izle","nav.reviews":"Yorumlar","nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.whatsnew":"Yenilikler","nav.faq":"SSS","nav.cta":"Eklentiyi al","nav.earn":"💸 %50 indirim","earn.eyebrow":"Bahset, daha az öde","earn.h2":"CaptionLab'i <span class='hl'>daha ucuza al</span> — ondan bahsederek","earn.lead":"Takip linki yok, form yok. Gerçek bir şey paylaş, kanıtını gönder, kodunu al.","earn.c1h":"CaptionLab'ten bahset","earn.c1p":"Reddit, Adobe Community, AlternativeTo veya ProductHunt'ta paylaş — herhangi birinde.","earn.c2h":"Bir videoda göster","earn.c2p":"Gerçekten kullandığın herkese açık bir video — YouTube, TikTok, Instagram, neresi olursa.","earn.how":"<b>Nasıl çalışır:</b> linki (ve bir gönderiyse ekran görüntüsünü) <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> adresine gönder — kendim kontrol edip kodunu geri yollarım, genelde aynı gün.","ex.earn":"💸 Ya da paylaşarak %25–50 indirim kazan →","toast.earn":"💸 <b>%25–50 indirim</b> — CaptionLab'ten bahset ya da göster →",
+      "launch.text":"<b>Lansman fiyatı</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> tek seferlik","launch.win":"✨ <b>v1.0.5 yayında:</b> 3 gün ücretsiz + Birmanca için model",
       "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
       "hero.h1":"Premiere&nbsp;Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>",
       "hero.sub":"Doğrudan Premiere Pro içinde yaşayan yerel bir eklenti. Kendi <b>Mac</b>'inde ya da <b>Win</b>'inde <b>%100 çevrimdışı</b> çalışır: görüntülerin asla bilgisayarından çıkmaz, bulut yok, <b>API anahtarı yok</b>, internet yok, <b>abonelik yok</b>. Üstelik Adobe'nin unuttuğu diller dahil <b>99 dil</b> konuşur.",
@@ -3116,14 +3188,14 @@ function toggleLegal(scroll) {
     },
     ar:{
       "hd.watch":"شاهد العرض الكامل — ٦٠ ثانية","hd.note":"تسجيل حقيقي — بلا نماذج وبلا تسريع.",
-      "pr.from":"من ١ سبتمبر",
-      "cd.short":"$39 حتى ١ سبتمبر ·",
+      "pr.from":"من ١ أكتوبر",
+      "cd.short":"$39 حتى ١ أكتوبر ·",
       "cd.s":"ثانية",
       "cd.m":"دقيقة",
       "cd.h":"ساعة",
       "cd.d":"يوم",
       "cd.label":"ينتهي سعر الإطلاق خلال",
-      "lc.eyebrow":"السؤال الوحيد المهم","lc.h2":"هل يتحدث لغتك؟","lc.sub":"اكتبها. ستعرف خلال ثانية.","lc.yes":"نعم — CaptionLab يفرّغ","lc.notadobe":"غير موجودة في قائمة Premiere المدمجة. CaptionLab يقوم بها.","lc.why":"تفريغ Premiere الخاص يغطي نحو ست عشرة لغة. هذه من الثلاث والثمانين الأخرى — ولهذا وُجد CaptionLab أصلًا.","lc.adobe":"Premiere يقوم بها أيضًا — فالفارق هنا ليس في اللغة بل في كل ما حولها: موادك لا تغادر جهازك، ويعمل بلا إنترنت إطلاقًا، وهو <b>دفعة واحدة بدل اشتراك</b>.","lc.buy":"احصل على CaptionLab — $39","lc.or":"أو","lc.try":"جرّبه مجانًا ٣ أيام","lc.miss":"لست واثقًا أنها ضمن الـ٩٩ — اكتب لي اسم اللغة وسأتحقق بنفسي: ","ex.eyebrow":"قبل أن تغادر","ex.h3":"لست مضطرًا للقرار اليوم","ex.p":"خذ الإضافة ثلاثة أيام — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب. الأيام الثلاثة تبدأ مع أول تفريغ، لا قبله. <b style='color:var(--white)'>سعر الإطلاق $39 حتى ١ سبتمبر</b> — بعدها $59.","ex.no":"لا، شكرًا",
+      "lc.eyebrow":"السؤال الوحيد المهم","lc.h2":"هل يتحدث لغتك؟","lc.sub":"اكتبها. ستعرف خلال ثانية.","lc.yes":"نعم — CaptionLab يفرّغ","lc.notadobe":"غير موجودة في قائمة Premiere المدمجة. CaptionLab يقوم بها.","lc.why":"تفريغ Premiere الخاص يغطي نحو ست عشرة لغة. هذه من الثلاث والثمانين الأخرى — ولهذا وُجد CaptionLab أصلًا.","lc.adobe":"Premiere يقوم بها أيضًا — فالفارق هنا ليس في اللغة بل في كل ما حولها: موادك لا تغادر جهازك، ويعمل بلا إنترنت إطلاقًا، وهو <b>دفعة واحدة بدل اشتراك</b>.","lc.buy":"احصل على CaptionLab — $39","lc.or":"أو","lc.try":"جرّبه مجانًا ٣ أيام","lc.miss":"لست واثقًا أنها ضمن الـ٩٩ — اكتب لي اسم اللغة وسأتحقق بنفسي: ","ex.eyebrow":"قبل أن تغادر","ex.h3":"لست مضطرًا للقرار اليوم","ex.p":"خذ الإضافة ثلاثة أيام — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب. الأيام الثلاثة تبدأ مع أول تفريغ، لا قبله. <b style='color:var(--white)'>سعر الإطلاق $39 حتى ١ أكتوبر</b> — بعدها $59.","ex.no":"لا، شكرًا",
       "hero.sub2":"يعيش داخل Premiere Pro ويتحدث <b>٩٩ لغة</b> — بينها ما نسيته Adobe. يعمل <b>دون إنترنت تمامًا</b> على جهاز Mac أو Windows الخاص بك.",
       "an.note":"الدفع بالدقيقة أسوأ: مقابلة واحدة مدتها ٤٠ دقيقة قد تكلّف أكثر من الإضافة كلها — وتدفع من جديد مع كل مشروع.",
       "an.r3":"<b>CaptionLab</b> — بعد سنة أو ثلاث أو عشر",
@@ -3146,8 +3218,8 @@ function toggleLegal(scroll) {
       "ty.mac":"تنزيل لـ Mac","ty.win":"تنزيل لـ Windows",
       "hero.buyline":"بلا بطاقة وبلا حساب. <a href='#try'>أو اشترِه الآن — $39 مرة واحدة</a>",
       "try.h":"جرّبه أولًا، أو اشترِه الآن","try.lede":"تختلف الدقة كثيرًا من لغة إلى أخرى. إن كانت لغتك من التي لا يدعمها Adobe، فثلاثة أيام على موادك الخاصة ستخبرك أكثر من أي عرض توضيحي.","try.badge":"تجربة مجانية","try.price":"٣ أيام مجانًا","try.p":"الإضافة كاملة — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب. <b>تبدأ الأيام الثلاثة مع أول تفريغ</b>، لا مع التنزيل، فالتثبيت وتنزيل نموذج الذكاء الاصطناعي لا يكلّفانك شيئًا.","try.mac":"تنزيل لـ Mac","try.win":"تنزيل لـ Windows","try.buybadge":"ترخيص كامل","try.buyprice":"$39 مرة واحدة","try.buyp":"تعرف أصلًا أنه ما تحتاجه؟ تجاوز التجربة. دفعة واحدة، ويبقى لك للأبد — بلا اشتراك وبلا رسوم بالدقيقة، ويعمل دون إنترنت على <b>جهازين</b>.","try.buycta":"احصل على CaptionLab ←","cl.v105.trial.label":"🎬 جرّبه قبل أن تشتريه","cl.v105.trial.li1":"صارت هناك <b>تجربة مجانية لثلاثة أيام</b> للإضافة كاملة — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب.","cl.v105.trial.li2":"تبدأ الأيام الثلاثة مع <b>أول تفريغ</b>، لا مع التنزيل. تثبيت المحرك وتنزيل نموذج بحجم غيغابايتات قد يستغرق أمسية كاملة، ولا شيء من ذلك يُخصم من تجربتك.","cl.v105.myanmar.label":"🇲🇲 نموذج مخصص للبورمية","cl.v105.myanmar.li1":"البورمية من اللغات التي تتعامل معها النماذج القياسية بشكل سيئ — على مواد حقيقية كانت تنتج كتابة مختلفة تمامًا، أو تكرّر المقطع نفسه لدقائق. صار في تبويب Models <b>نموذج مخصص للبورمية</b>، وهو ينتج نصًا بورميًا حقيقيًا ومقروءًا على المقاطع نفسها.","cl.v105.myanmar.li2":"جاء هذا النموذج بفضل عميل طلب استرداد ماله لأن لغته لم تعمل. إن كانت لغتك لا تعمل أيضًا، <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>راسلني</a> — هكذا وُلد هذا بالضبط.","cl.v105.install.label":"🔧 تثبيت يصلح نفسه","cl.v105.install.li1":"كان التنزيل الناقص يُعتبر سليمًا إلى الأبد: كل محاولة جديدة ترى أن الملف موجود فتتخطاه، فيعود التثبيت المعطوب نفسه مهما ضغطت. صار المثبّت يتحقق من أن كل جزء <b>يعمل</b> فعلًا، ويعيد تنزيله إن لم يكن كذلك. التنزيلات المتوقفة تنتهي مهلتها وتُعاد المحاولة.","cl.badge.v105":"صدر للتو","cl.badge.v103":"الإصدار السابق","cl.v104.timing.label":"⏱ الترجمات تتزامن مع الكلمة","cl.v104.timing.li1":"يُقاس توقيت الترجمة الآن من <b>الصوت نفسه</b> بدل الاعتماد على طوابع الذكاء الاصطناعي — فلم تعد الترجمة تظهر والمتحدث ما زال صامتًا. في تقرير إخباري حقيقي انخفض إجمالي الانحراف بنحو <b>60%</b>.","cl.v104.timing.li2":"عولجت الحالات التي كانت تظهر فيها الترجمة قبل ثوانٍ: بعد الوقفات الطويلة، وفوق اللقطات ذات الصوت المحيط، وبعد الموسيقى. كما تبقى الترجمة لحظة أطول بدل أن تختفي فور توقف المتحدث.","cl.v104.words.label":"✂️ ‏«Fixed words» صارت «Max words»","cl.v104.words.li1":"إنه <b>حدّ أقصى وليس حصة</b>. اختر 4، وستكون الترجمة 3 أو 2 أو حتى كلمة واحدة إذا انتهت الجملة هناك. لا تُقسَّم الترجمة أبدًا عبر جملة، وتُقطع عند الفواصل، ولا تبقى الكلمات القصيرة وحدها على الشاشة.","cl.v104.words.li2":"الترجمات الافتراضية تتبع بنية الجملة أيضًا — طول سطر مناسب، وسرعة قراءة، ولم تعد الكلمات الموصولة بشرطة تُقسَّم على شاشتين.","cl.v104.quiet.label":"🔊 لم يعد الكلام المنخفض يُتجاهل","cl.v104.quiet.li1":"الصوت المسجَّل بمستوى أقل بكثير من بقية الفيديو — كمقابلة ميدانية بجانب صوت استوديو عالٍ — كان يُسقَط بصمت. تُوازَن المستويات الآن قبل التفريغ، فتحصل هذه المقاطع على ترجمة أيضًا.",
-      "nav.watchdemo":"▶ شاهد العرض","nav.reviews":"التقييمات","nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.whatsnew":"الجديد","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة",
-      "launch.text":"<b>سعر الإطلاق</b> · <span class='launch-now'>$39</span> دفعة واحدة","launch.win":"✨ <b>صدر الإصدار v1.0.5:</b> ٣ أيام مجانًا + نموذج للبورمية",
+      "nav.watchdemo":"▶ شاهد العرض","nav.reviews":"التقييمات","nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.whatsnew":"الجديد","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة","nav.earn":"💸 خصم ٥٠٪","earn.eyebrow":"انشر الكلمة، وفّر أكثر","earn.h2":"احصل على CaptionLab <span class='hl'>بسعر أقل</span> — مقابل ذكره","earn.lead":"بلا روابط إحالة ولا نماذج. انشر شيئًا حقيقيًا، أرسل الدليل، واحصل على كود.","earn.c1h":"اذكر CaptionLab","earn.c1p":"انشر عنه على Reddit أو Adobe Community أو AlternativeTo أو ProductHunt — أيًا منها.","earn.c2h":"أظهره في فيديو","earn.c2p":"فيديو عام تستخدمه فيه فعليًا — YouTube أو TikTok أو Instagram أو أي مكان.","earn.how":"<b>كيف يعمل:</b> أرسل الرابط (ولقطة شاشة إن كان منشورًا) إلى <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> — سأتحقق بنفسي وأرسل الكود، عادة في نفس اليوم.","ex.earn":"💸 أو احصل على خصم ٢٥–٥٠٪ بمشاركته →","toast.earn":"💸 <b>خصم ٢٥–٥٠٪</b> — اذكر أو أظهر CaptionLab علنًا →",
+      "launch.text":"<b>سعر الإطلاق</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> دفعة واحدة","launch.win":"✨ <b>صدر الإصدار v1.0.5:</b> ٣ أيام مجانًا + نموذج للبورمية",
       "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
       "hero.h1":"ترجمة تلقائية في Premiere&nbsp;Pro —<br>أخيرًا <b>بلغتك</b>",
       "hero.sub":"إضافة أصلية تعيش مباشرة داخل Premiere Pro. تعمل <b>دون إنترنت بنسبة 100%</b> على جهاز <b>Mac</b> أو <b>Win</b> الخاص بك: لقطاتك لا تغادر جهازك أبدًا، بلا سحابة، <b>بلا مفاتيح API</b>، بلا إنترنت، <b>بلا اشتراك</b>. كما أنها تتحدث <b>99 لغة</b>، بما فيها تلك التي نسيتها Adobe.",
@@ -3560,6 +3632,28 @@ function lcRender(){
   setTimeout(function () { document.addEventListener('mouseout', fire); }, 8000);
 })();
 
+/* Dwell nudge toward #earn — separate from exit intent above (fires on time,
+   not on leaving) and works on mobile too, since there's no pointer to read
+   there. Skipped if the exit modal already fired this session - one nudge per
+   visit is enough, two back-to-back reads as nagging. */
+(function () {
+  var KEY = 'cl_earn_toast_seen';
+  try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+  setTimeout(function () {
+    try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+    if (document.querySelector('.precheck-modal.open, .video-lightbox.open')) return;
+    if (document.getElementById('exitModal')?.classList.contains('open')) return;
+    var t = document.getElementById('earnToast');
+    if (t) t.classList.add('show');
+  }, 45000);
+})();
+
+function closeEarnToast() {
+  var t = document.getElementById('earnToast');
+  if (t) t.classList.remove('show');
+  try { localStorage.setItem('cl_earn_toast_seen', '1'); } catch (e) {}
+}
+
 function closeExit() {
   var m = document.getElementById('exitModal');
   if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
@@ -3571,11 +3665,16 @@ function closeExit() {
    next deadline is set; nothing else needs touching.
 
    Written so it cannot outlive its own claim: once the moment passes, the
-   countdown, the struck-through $59 and the "FROM 1 SEP" tags all remove
+   countdown, the struck-through $59 and the "FROM 1 OCT" tags all remove
    themselves, and the page simply shows $39 again. A deadline that quietly
    keeps counting after it expired is the thing that teaches people none of it
-   was true. */
-var CL_DEADLINE = Date.UTC(2026, 8, 1, 0, 0, 0);   // 1 September 2026, 00:00 UTC
+   was true.
+
+   CL_SHOW_TIMER: the visible digits (days/hours/mins ticking down). Set back
+   to true 2026-09-03 - the deadline itself (Oct 1) is real and dated the same
+   in every language now, so there's no reason to hide the countdown. */
+var CL_DEADLINE = Date.UTC(2026, 9, 1, 0, 0, 0);   // 1 October 2026, 00:00 UTC
+var CL_SHOW_TIMER = true;
 
 function clPromoExpired() { return Date.now() >= CL_DEADLINE; }
 
@@ -3605,10 +3704,12 @@ function clTick() {
     el.textContent = d > 0 ? (d + 'd ' + pad(hh) + 'h') : (pad(hh) + ':' + pad(mm) + ':' + pad(ss));
   });
 
-  var hero = document.getElementById('cd-hero');
-  if (hero && hero.style.display === 'none') hero.style.display = 'flex';
-  var stick = document.getElementById('cd-sticky');
-  if (stick && stick.style.display === 'none') stick.style.display = 'inline-flex';
+  if (CL_SHOW_TIMER) {
+    var hero = document.getElementById('cd-hero');
+    if (hero && hero.style.display === 'none') hero.style.display = 'flex';
+    var stick = document.getElementById('cd-sticky');
+    if (stick && stick.style.display === 'none') stick.style.display = 'inline-flex';
+  }
 }
 
 clTick();
