@@ -329,7 +329,8 @@ html:not([lang="en"]) .cta-row{gap:10px}
   display:flex;align-items:center;justify-content:center;font-size:12px;padding-left:2px;
 }
 .hero-demo-cap{color:var(--white);font-size:13.5px;font-weight:600}
-.hero-demo-note{text-align:center;color:var(--dim);font-size:12px;margin-top:10px}
+.hero-demo-txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.hero-demo-note{font-size:10.5px;font-weight:500;color:rgba(242,246,250,.5);line-height:1.35}
 @media(max-width:860px){.hero-demo{max-width:100%;margin-top:26px}}
 /* ── Launch deadline ──
    The strike-through is labelled "from 1 October" everywhere it appears.
@@ -353,29 +354,34 @@ html:not([lang="en"]) .cta-row{gap:10px}
 .hp-amount .was{font-size:.62em}
 
 /* Countdown */
-.cd{
-  display:flex;align-items:center;gap:9px;flex-wrap:wrap;
-  background:linear-gradient(90deg,rgba(255,107,74,.14),rgba(255,107,74,.04));
-  border:1px solid rgba(255,107,74,.38);border-radius:12px;
-  padding:8px 13px;margin:0 0 10px;max-width:520px;
+.hp-cd{
+  margin-left:auto;display:flex;flex-direction:column;gap:3px;
+  align-items:flex-end;text-align:right;
+  padding-left:18px;border-left:1px solid var(--border);
 }
-.cd-label{font-size:12.5px;font-weight:700;color:#FF9270;letter-spacing:.01em}
-.cd-units{display:flex;gap:7px}
-.cd-u{
-  background:rgba(255,107,74,.14);border:1px solid rgba(255,107,74,.3);
-  border-radius:8px;padding:5px 9px;min-width:44px;text-align:center;
+.hp-cd-label{
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:#FF9270;
 }
-.cd-n{display:block;font-size:17px;font-weight:800;color:#fff;line-height:1.1;font-variant-numeric:tabular-nums}
-.cd-s{display:block;font-size:9.5px;color:#FF9270;letter-spacing:.06em;font-weight:700;margin-top:1px}
+.hp-cd-v{font-size:16px;font-weight:800;color:var(--white);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hp-cd-v i{
+  font-style:normal;font-size:9.5px;font-weight:700;color:var(--dim);
+  letter-spacing:.05em;margin:0 7px 0 2px;
+}
+.hp-cd-v i:last-child{margin-right:0}
+@media(max-width:640px){
+  .hp-cd{
+    margin-left:0;flex-basis:100%;align-items:flex-start;text-align:left;
+    padding:10px 0 0;border-left:0;border-top:1px solid var(--border);
+  }
+}
 .cd-sticky{
   display:inline-flex;align-items:center;gap:6px;margin-right:14px;
   font-size:12.5px;font-weight:700;color:#FF9270;white-space:nowrap;
 }
 .cd-sticky b{color:#fff;font-variant-numeric:tabular-nums}
 @media(max-width:640px){
-  .cd{padding:10px 12px;gap:7px}
-  .cd-u{min-width:38px;padding:4px 7px}
-  .cd-n{font-size:15px}
   .cd-sticky{display:none}
 }
 /* ── Price in the hero ──
@@ -394,7 +400,6 @@ html:not([lang="en"]) .cta-row{gap:10px}
 .hp-amount{font-size:44px;font-weight:800;color:var(--white);letter-spacing:-.03em;line-height:1}
 .hp-meta{font-size:13px;color:var(--mid);line-height:1.45}
 .hp-meta b{color:var(--green);font-weight:700}
-.hp-vs{flex-basis:100%;font-size:12.5px;color:var(--dim);line-height:1.5;padding-top:4px}
 @media(max-width:640px){
   .hero-price{padding:16px 18px;gap:12px}
   .hp-amount{font-size:36px}
@@ -432,6 +437,29 @@ html:not([lang="en"]) .cta-row{gap:10px}
 .anchor-note{padding:14px 24px;font-size:12.5px;color:var(--dim);line-height:1.55;border-top:1px solid var(--border)}
 @media(max-width:640px){.anchor-row{padding:13px 16px}.anchor-what{font-size:13.5px}}
 
+/* ── Leave a review ────────────────────────────────────────────────────────
+   Collected on our own page so the testimonials and the star rating are ours
+   to show. Held for approval before anything appears - see the worker. */
+.rv-add{max-width:620px;margin:34px auto 0;background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:22px 24px}
+.rv-add-h{font-size:17px;font-weight:700;margin-bottom:5px}
+.rv-add-sub{font-size:13px;color:var(--mid);line-height:1.55;margin-bottom:16px}
+.rv-form{display:flex;flex-direction:column;gap:10px}
+.rv-stars{display:flex;gap:2px;margin-bottom:2px}
+.rv-stars button{background:none;border:none;font-size:26px;line-height:1;cursor:pointer;
+  color:var(--border);padding:0 2px;transition:color .12s}
+.rv-stars button:hover,.rv-stars button.on{color:var(--gold)}
+.rv-form textarea,.rv-form input{width:100%;background:var(--bg2);color:var(--white);
+  border:1px solid var(--border);border-radius:9px;padding:10px 12px;font:inherit;font-size:14px}
+.rv-form textarea{resize:vertical;min-height:88px;line-height:1.55}
+.rv-form textarea:focus,.rv-form input:focus{outline:none;border-color:var(--cyan)}
+.rv-row{display:flex;gap:10px}
+@media(max-width:560px){.rv-row{flex-direction:column}}
+.rv-send{align-self:flex-start;margin-top:2px;padding:13px 26px;font-size:15px}
+.rv-msg{font-size:13px;line-height:1.5;min-height:1px}
+.rv-msg.ok{color:var(--green)}
+.rv-msg.err{color:var(--red)}
+
 /* ── Earn a discount (UGC) ───────────────────────────────────────────────────
    Deliberately loud, not buried as fine print - 2026-09-03 call: Google Ads
    isn't pulling its weight, word-of-mouth is what's missing. Sits after
@@ -459,17 +487,6 @@ html:not([lang="en"]) .cta-row{gap:10px}
    mouse-leave exit intent above (see JS: won't double up if that already
    fired this session). Bottom-corner, dismissible, never returns once closed
    or clicked - see .cd-sticky above for why bottom is clear of other fixed UI. */
-.earn-toast{position:fixed;bottom:96px;left:22px;z-index:95;max-width:300px;
-  background:var(--card2);border:1px solid rgba(255,201,77,.4);border-radius:14px;
-  padding:14px 34px 14px 16px;box-shadow:0 12px 40px rgba(0,0,0,.45);
-  transform:translateY(140%);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .4s;}
-.earn-toast.show{transform:translateY(0);opacity:1}
-.earn-toast a{color:var(--white);text-decoration:none;font-size:13.5px;line-height:1.5;display:block}
-.earn-toast a b{color:var(--gold)}
-.earn-toast-close{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--dim);
-  font-size:14px;cursor:pointer;line-height:1;padding:4px}
-.earn-toast-close:hover{color:var(--white)}
-@media(max-width:640px){.earn-toast{left:14px;right:14px;bottom:114px;max-width:none}}
 
 /* ── Trial / buy fork ──
    Every "Get the plugin" CTA lands here rather than straight on the price, so
@@ -745,40 +762,73 @@ footer .mono{color:var(--mid)}
   .founder-role{font-size:12px}
 }
 
+/* ── Education strip + changelog mini-demos ── */
+.edu-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:linear-gradient(90deg,rgba(0,224,255,.05),transparent 70%);padding:26px 0}
+.edu-inner{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.edu-txt{flex:1;min-width:260px}
+.edu-h{font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px}
+.edu-p{font-size:13.5px;color:var(--mid);line-height:1.6;max-width:66ch}
+.edu-cta{flex:none;background:none;border:1px solid rgba(0,224,255,.4);color:var(--cyan);
+  font-size:13.5px;font-weight:700;padding:10px 18px;border-radius:10px;text-decoration:none;
+  transition:background .18s,border-color .18s}
+.edu-cta:hover{background:rgba(0,224,255,.1);border-color:var(--cyan)}
+
+/* Two illustrations inside the changelog, not two more attractions: each does
+   exactly one thing the sentence beside it describes. */
+.mi{margin:10px 0 2px;border:1px solid var(--border);border-radius:10px;
+  background:#0D1014;padding:11px 12px}
+.mi-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mi-sw{position:relative;width:32px;height:17px;flex:none;border:0;padding:0;border-radius:999px;
+  cursor:pointer;background:#171B22;box-shadow:inset 0 0 0 1px #2A3038;transition:background .16s}
+.mi-sw::after{content:"";position:absolute;top:3px;left:3px;width:11px;height:11px;border-radius:50%;
+  background:#646D7A;transition:transform .16s,background .16s}
+.mi-sw[aria-checked="true"]{background:#5B8CFF;box-shadow:inset 0 0 0 1px #5B8CFF}
+.mi-sw[aria-checked="true"]::after{transform:translateX(15px);background:#fff}
+.mi-lab{font-size:12px;color:#8A93A0}
+.mi-caps{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.mi-cap{font-size:12px;font-weight:600;color:var(--white);background:#171B22;
+  border:1px solid #2A3038;border-radius:6px;padding:4px 9px;font-variant-numeric:tabular-nums}
+.mi-bar{display:flex;align-items:center;gap:7px}
+.mi-mark{width:18px;height:18px;border-radius:5px;background:var(--cyan);color:#06090E;
+  display:grid;place-items:center;font-weight:800;font-size:11px}
+.mi-name{font-size:13px;font-weight:600;color:var(--white)}
+.mi-gear{margin-left:auto;width:27px;height:24px;border-radius:5px;background:#171B22;
+  border:1px solid #2A3038;color:#8A93A0;font-size:15px;cursor:pointer;line-height:1;padding:0}
+.mi-gear:hover,.mi-gear[aria-expanded="true"]{color:var(--white);border-color:var(--cyan)}
+.mi-list{list-style:none;margin:9px 0 0;padding:7px 0 0;border-top:1px solid #2A3038}
+.mi-list li{font-size:12.5px;color:#8A93A0;padding:4px 2px}
+.mi-list li.g{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:#646D7A;padding-top:7px}
+.mi-hint{font-size:10.5px;color:#646D7A;margin-top:7px}
+@media(max-width:560px){.mi-caps{margin-left:0;flex-basis:100%}}
+
 /* ── LAUNCH RIBBON (above hero) ── */
 .launch-bar{
-  background:linear-gradient(90deg,rgba(255,84,112,0.18),rgba(255,201,77,0.15),rgba(255,84,112,0.18));
-  border-bottom:1px solid rgba(255,84,112,0.25);
-  padding:10px 0;text-align:center;position:relative;z-index:99;
-  margin-top:64px;
+  padding:14px 0 0;text-align:center;position:relative;z-index:99;margin-top:64px;
 }
-@media(max-width:600px){
-  .launch-bar{padding:8px 0;margin-top:64px}
-  .launch-bar-inner{font-size:12px;gap:8px}
+@media(max-width:600px){.launch-bar{padding-top:10px}}
+.rel-pill{
+  display:inline-flex;align-items:center;gap:9px;max-width:100%;
+  background:linear-gradient(90deg,rgba(0,224,255,.10),rgba(0,224,255,.04));
+  border:1px solid rgba(0,224,255,.34);border-radius:999px;
+  padding:5px 14px 5px 5px;text-decoration:none;
+  transition:border-color .18s,background .18s,box-shadow .18s;
 }
-.launch-bar-inner{display:inline-flex;align-items:center;gap:14px;font-size:14px;flex-wrap:wrap;justify-content:center}
-.launch-flame{animation:flame 1.6s ease-in-out infinite}
-@keyframes flame{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.18) rotate(4deg)}}
-.launch-text{color:var(--white);font-weight:600}
-.launch-text b{color:var(--gold)}
-.launch-now{color:var(--cyan);font-weight:700}
-.launch-win-badge{
-  background:linear-gradient(90deg,#00E0FF,#3DFFC0,#00E0FF);
-  background-size:200% auto;
-  color:#070A0E;font-weight:800;
-  padding:6px 18px;border-radius:24px;font-size:15px;
-  letter-spacing:0.01em;
-  border:2px solid #fff;
-  text-transform:uppercase;
-  animation:winpulse 1.4s ease-in-out infinite, winshine 3s linear infinite;
-  text-decoration:none;cursor:pointer;display:inline-block;
-  transition:transform .15s ease;
+.rel-pill:hover{
+  border-color:var(--cyan);
+  background:linear-gradient(90deg,rgba(0,224,255,.18),rgba(0,224,255,.07));
+  box-shadow:0 0 22px rgba(0,224,255,.14);
 }
-.launch-win-badge:hover{transform:scale(1.045)}
-.launch-win-badge b{color:#070A0E}
-@keyframes winpulse{0%,100%{box-shadow:0 0 0 0 rgba(0,224,255,0.65),0 0 18px 2px rgba(0,224,255,0.5)}50%{box-shadow:0 0 0 9px rgba(0,224,255,0),0 0 30px 6px rgba(0,224,255,0.8)}}
-@keyframes winshine{0%{background-position:0% center}100%{background-position:200% center}}
-@media(max-width:600px){.launch-win-badge{font-size:11px;padding:2px 9px}}
+.rel-tag{
+  background:var(--cyan);color:#06171C;
+  font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;white-space:nowrap;
+}
+.rel-text{color:var(--white);font-size:13px;font-weight:600;transition:color .18s}
+.rel-v{color:var(--gold);font-weight:800}
+.rel-arrow{color:var(--cyan);font-size:13px;transition:transform .18s}
+.rel-pill:hover .rel-arrow{transform:translateX(3px)}
+@media(max-width:600px){.rel-text{font-size:12px}}
 .launch-bar+.hero{padding-top:60px}
 
 /* ── PRICING ENHANCEMENTS ── */
@@ -994,19 +1044,6 @@ footer .mono{color:var(--mid)}
 .inline-cta .small span{color:var(--green);font-weight:700}
 
 /* ── SCROLL HINT in hero ── */
-.scroll-hint{
-  position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
-  color:var(--mid);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
-  font-family:'JetBrains Mono',monospace;text-align:center;text-decoration:none;
-  animation:bounce 2s ease-in-out infinite;z-index:5;
-}
-.scroll-hint::after{content:"";display:block;width:1px;height:24px;background:var(--cyan);margin:8px auto 0;opacity:.6}
-@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,4px)}}
-/* Absolutely-positioned at the bottom of .hero - on mobile the stacked
-   hero-grid can be shorter than the mockup panel, so this floats right on
-   top of the typed-subtitle line (worse with RTL scripts). Mobile users
-   scroll naturally anyway, so just drop the hint there. */
-@media(max-width:760px){.scroll-hint{display:none}}
 
 /* ── WATCH DEMO trigger + lightbox ── */
 .watch-demo{
@@ -1115,12 +1152,7 @@ footer .mono{color:var(--mid)}
 
 /* ── LANGUAGE SWITCHER ── */
 .nav-right{display:flex;align-items:center;gap:14px}
-.nav-yt{
-  width:38px;height:26px;border-radius:8px;background:#ff0000;border:none;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .2s,box-shadow .2s;
-}
-.nav-yt:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,0,0,0.4)}
-@media(max-width:820px){.nav-yt{display:none}.nav-right{gap:10px}}
+@media(max-width:820px){.nav-right{gap:10px}}
 .lang-switch{position:relative}
 .lang-btn{background:var(--card);border:1px solid var(--border);color:var(--white);font-family:inherit;font-size:13px;padding:7px 11px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1}
 .lang-btn:hover{border-color:var(--cyan)}
@@ -1154,9 +1186,6 @@ html[dir="rtl"] .micro{direction:rtl}
       <a href="#changelog" data-i18n="nav.whatsnew">What's new</a>
     </div>
     <div class="nav-right">
-      <button class="nav-yt" onclick="openVideoLightbox()" aria-label="Watch demo video" title="Watch demo video">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 6l10 6-10 6V6Z" fill="#fff"/></svg>
-      </button>
       <div class="lang-switch">
         <button class="lang-btn" id="langBtn" aria-label="Language">🌐 <span id="langCurrent">EN</span> <span class="lang-caret">▾</span></button>
         <div class="lang-menu" id="langMenu">
@@ -1208,11 +1237,16 @@ html[dir="rtl"] .micro{direction:rtl}
 <!-- LAUNCH RIBBON -->
 <div class="launch-bar">
   <div class="wrap">
-    <div class="launch-bar-inner">
-      <span class="launch-flame">🔥</span>
-      <span class="launch-text" data-i18n="launch.text"><b>Launch price</b> · <span class="was">$59</span><span class="launch-now">$39</span> one-time <span class="was-tag" data-i18n="pr.from">FROM 1 OCT</span></span>
-      <a href="#changelog" class="launch-win-badge" data-i18n="launch.win">✨ <b>v1.0.5 is here:</b> free 3-day trial + a model for Burmese</a>
-    </div>
+    <!-- One line, one message. The price used to be repeated here as well,
+         which made it the third mention above the fold alongside the
+         countdown and the hero price block - and the badge beside it ran two
+         animations of its own. Release news only; the price sells itself
+         lower down. -->
+    <a href="#clp-demo" class="rel-pill">
+      <span class="rel-tag" data-i18n="rel.tag">New</span>
+      <span class="rel-text" data-i18n="rel.text"><b class="rel-v">v1.0.6</b> — punctuation on/off, try it</span>
+      <span class="rel-arrow" aria-hidden="true">→</span>
+    </a>
   </div>
 </div>
 
@@ -1224,28 +1258,32 @@ html[dir="rtl"] .micro{direction:rtl}
   <div class="wrap hero-content">
    <div class="hero-grid">
     <div class="hero-text">
-    <div class="badge hero-anim" data-i18n="hero.badge"><span class="pr-ic">Pr</span> A native Adobe Premiere Pro plugin · Powered by OpenAI Whisper</div>
+    <div class="badge hero-anim" data-i18n="hero.badge"><span class="pr-ic">Pr</span> Native Premiere Pro plugin · OpenAI Whisper</div>
     <h1 class="hero-anim d1" data-i18n="hero.h1">Auto&nbsp;subtitles<br>in&nbsp;Premiere&nbsp;Pro.<br>Finally, in <span class="lang-rotate"><span class="lang-rotate-inner" id="rotateLang">your language</span></span></h1>
     <p class="hero-sub hero-anim d2" data-i18n="hero.sub2">Lives inside Premiere Pro and speaks <b>99 languages</b> — including the ones Adobe forgot. Runs <b>100% offline</b> on your own Mac or Windows.</p>
     <!-- The price sits in the first screen on purpose. "One payment, not a
          subscription" is the strongest thing this product has against every
          competitor, and it was previously three scrolls down where most
          visitors never reached it. -->
-    <div class="cd hero-anim d3" id="cd-hero" style="display:none">
-      <span class="cd-label" data-i18n="cd.label">Launch price ends in</span>
-      <span class="cd-units">
-        <span class="cd-u"><b class="cd-n" data-cd="d">–</b><span class="cd-s" data-i18n="cd.d">DAYS</span></span>
-        <span class="cd-u"><b class="cd-n" data-cd="h">–</b><span class="cd-s" data-i18n="cd.h">HRS</span></span>
-        <span class="cd-u"><b class="cd-n" data-cd="m">–</b><span class="cd-s" data-i18n="cd.m">MIN</span></span>
-        <span class="cd-u"><b class="cd-n" data-cd="s">–</b><span class="cd-s" data-i18n="cd.s">SEC</span></span>
-      </span>
-    </div>
+    <!-- Price and deadline in ONE card. They were two stacked blocks, each
+         with its own border and glow, spending most of the first screen to
+         say a single thing: this price, until this date.
+         The seconds are gone with them - a digit repainting every second
+         beside a deadline measured in weeks is motion carrying no
+         information, and clTick() reads [data-cd] with querySelectorAll, so
+         dropping one unit needs no change there. -->
     <div class="hero-price hero-anim d3">
       <span class="hp-amount"><span class="was">$59</span>$39</span>
       <span class="hp-meta"><b data-i18n="hp.once">one payment</b><br><span data-i18n="hp.never">never again</span></span>
-      <span class="hp-vs" data-i18n="hp.vs">Everything else in this category bills you monthly, forever.</span>
+      <span class="hp-cd" id="cd-hero" style="display:none">
+        <span class="hp-cd-label" data-i18n="cd.label">Launch price ends in</span>
+        <span class="hp-cd-v">
+          <b data-cd="d">–</b><i data-i18n="cd.d">DAYS</i>
+          <b data-cd="h">–</b><i data-i18n="cd.h">HRS</i>
+          <b data-cd="m">–</b><i data-i18n="cd.m">MIN</i>
+        </span>
+      </span>
     </div>
-
     <div class="cta-row hero-anim d3">
       <a href="#" class="btn-primary" onclick="openPreCheckout(event)" data-i18n="hero.cta1">Get CaptionLab — $39</a>
       <a href="javascript:void(0)" class="watch-demo" onclick="openVideoLightbox()">
@@ -1262,7 +1300,6 @@ html[dir="rtl"] .micro{direction:rtl}
     <div class="micro hero-anim d4">
       <span data-i18n="hero.m1"><span class="ck">✓</span> One-time purchase</span>
       <span data-i18n="hero.m2"><span class="ck">✓</span> Works offline forever</span>
-      <span data-i18n="hero.m3"><span class="ck">✓</span> Your footage never leaves your computer</span>
     </div>
     </div>
 
@@ -1289,15 +1326,20 @@ html[dir="rtl"] .micro{direction:rtl}
         </video>
         <div class="hero-demo-overlay">
           <span class="hero-demo-play">▶</span>
-          <span class="hero-demo-cap" data-i18n="hd.watch">Watch the full 60-second demo</span>
+          <!-- Caption and trust line stacked in one column: they were two
+               separate blocks, one on the video and one under it, for two
+               facts that belong together. Moved, not rewritten, so every
+               translation keeps working. -->
+          <span class="hero-demo-txt">
+            <span class="hero-demo-cap" data-i18n="hd.watch">Watch the full 60-second demo</span>
+            <span class="hero-demo-note" data-i18n="hd.note">Real capture — no mockups, no speed-up.</span>
+          </span>
         </div>
       </div>
-      <div class="hero-demo-note" data-i18n="hd.note">Real capture — no mockups, no speed-up.</div>
     </div>
     </div>
    </div>
   </div>
-  <a href="#languages" class="scroll-hint" data-i18n="hero.scroll">Scroll · 99 languages await</a>
 </header>
 
 <!-- Video lightbox: iframe src is only injected on open, so no load-time cost -->
@@ -1345,10 +1387,6 @@ html[dir="rtl"] .micro{direction:rtl}
 </div>
 
 <!-- Dwell nudge toward the earn-a-discount section - see JS near exit intent -->
-<div class="earn-toast" id="earnToast">
-  <button class="earn-toast-close" onclick="closeEarnToast()" aria-label="Close">✕</button>
-  <a href="#earn" onclick="closeEarnToast()" data-i18n="toast.earn">💸 <b>Get 25–50% off</b> — mention or show off CaptionLab somewhere public →</a>
-</div>
 
 <!-- Post-download modal.
      The download itself starts on click; this appears over it. Mac and Windows
@@ -1490,6 +1528,711 @@ html[dir="rtl"] .micro{direction:rtl}
 </section>
 
 
+
+<!-- ══ Punctuation / Max words · live demo ═══════════════════════════════════
+     The one thing on this page a visitor can operate. It answers the two
+     questions that text cannot: what "remove punctuation" actually does to a
+     caption, and what a word limit looks like on screen. The controls are the
+     panel's real ones and the grouping below is the panel's real logic, so
+     nothing here promises behaviour the product does not have.
+
+     Every rule is scoped under #clp-demo, and four class names carry a clp-
+     prefix (eyebrow, lede, note, notes) because the page already uses those.
+     Colours come from the page's own tokens, remapped to --d-* locals so this
+     block can be lifted out whole. -->
+<style>
+#clp-demo{
+  --d-ink:#F2F6FA; --d-soft:#7E91A6; --d-faint:#4A5A6E;
+  --d-card:#0F1620; --d-rule:#1C2A3A; --d-accent:#00E0FF;
+  --d-accent-dim:rgba(0,224,255,.085); --d-mono:#8FA3B8;
+  /* The real CaptionLab panel's palette - it depicts the product, so these
+     stay literal rather than following the page. */
+  --p-bg:#0D1014; --p-field:#171B22; --p-line:#2A3038; --p-line2:#39414C;
+  --p-text:#E8ECF2; --p-mute:#8A93A0; --p-faint:#646D7A;
+  --p-blue:#5B8CFF; --p-blueln:#2F4C86; --p-cyan:#00E0FF; --p-green:#3ECF8E;
+}
+#clp-demo [hidden]{display:none!important}
+
+#clp-demo .clp-eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--d-accent);margin-bottom:14px
+}
+#clp-demo h2{
+  font-family:'Archivo Black',sans-serif;font-weight:400;
+  font-size:clamp(32px,6vw,62px);line-height:.98;letter-spacing:-.025em;
+  color:var(--d-ink);margin-bottom:16px;
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .26em
+}
+#clp-demo .dash{color:var(--d-faint)}
+/* "on/off" with a cyan marker that slides between the two words - the
+   headline repeats the gesture the visitor makes on the switch below, and
+   stays legible out of context, which a lone "off" did not. */
+#clp-demo .state{position:relative;display:inline-flex;align-items:baseline}
+#clp-demo .pill{
+  position:absolute;top:-.08em;bottom:-.12em;border-radius:8px;background:var(--d-accent);
+  transition:transform .26s cubic-bezier(.4,0,.2,1),width .26s cubic-bezier(.4,0,.2,1);z-index:0
+}
+#clp-demo .state .w{
+  position:relative;z-index:1;padding:0 .14em;cursor:pointer;transition:color .2s
+}
+#clp-demo .state .w[data-on="false"]{color:var(--d-faint)}
+#clp-demo .state .w[data-on="true"]{color:#07101F}
+#clp-demo .clp-lede{max-width:62ch;color:var(--d-soft);font-size:15px;line-height:1.65;margin-bottom:28px}
+#clp-demo .clp-lede b{color:var(--d-ink);font-weight:500}
+
+#clp-demo .stage{
+  display:grid;grid-template-columns:336px 212px minmax(0,1fr);
+  gap:22px;align-items:start
+}
+/* Tablet: panel and frame keep each other company, the file goes full width. */
+@media(max-width:980px){
+  #clp-demo .stage{grid-template-columns:minmax(0,1fr) 212px}
+  #clp-demo .srt{grid-column:1/-1}
+}
+/* Phone: the frame narrows rather than dropping below, so a tap on a control
+   and its result stay in the same glance. The panel loses only chrome - the
+   Generate button and the version footer say nothing the demo needs. */
+@media(max-width:620px){
+  #clp-demo .stage{grid-template-columns:minmax(0,1fr) 112px;gap:12px}
+  /* The panel is taller than the frame on a phone, so the lower controls
+     would still scroll past it. Sticky keeps the result on screen whichever
+     switch is being touched - the thing that made the demo pointless on a
+     phone was flipping something and seeing nothing. */
+  #clp-demo .preview{position:sticky;top:12px}
+  #clp-demo .panel{padding:10px}
+  #clp-demo .p-box{padding:9px}
+  #clp-demo .p-generate,#clp-demo .p-foot{display:none}
+  #clp-demo .p-row{flex-wrap:wrap;gap:6px}
+  #clp-demo .p-select{max-width:100%}
+  #clp-demo .p-hint{display:none}
+  #clp-demo .frame-sub{font-size:11.5px;bottom:26px;left:7px;right:7px;min-height:2.8em}
+  #clp-demo .frame-tc{font-size:8px;top:6px;right:6px;padding:1px 4px}
+  #clp-demo .frame-bar{bottom:9px;left:7px;right:7px}
+  #clp-demo .frame-cap{font-size:10px;flex-direction:column;gap:2px}
+  #clp-demo h2{font-size:clamp(26px,9vw,34px)}
+}
+
+#clp-demo .panel{
+  background:var(--p-bg);color:var(--p-text);border:1px solid var(--p-line);
+  border-radius:9px;padding:13px;font-size:13px;line-height:1.45;
+  box-shadow:0 14px 34px rgba(0,0,0,.32)
+}
+#clp-demo .p-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+#clp-demo .p-logo{display:flex;align-items:center;gap:7px}
+#clp-demo .p-mark{
+  width:20px;height:20px;border-radius:5px;background:var(--p-cyan);
+  display:grid;place-items:center;font-weight:700;font-size:12px;color:#06090E
+}
+#clp-demo .p-name{font-weight:600;font-size:14px;letter-spacing:-.01em}
+#clp-demo .p-ready{
+  display:inline-flex;align-items:center;gap:5px;border:1px solid #2C4A3C;
+  background:#14211B;color:var(--p-green);border-radius:999px;padding:3px 9px;font-size:11px
+}
+#clp-demo .p-ready i{width:6px;height:6px;border-radius:50%;background:var(--p-green);display:block}
+#clp-demo .p-box{border:1px solid var(--p-line);border-radius:7px;padding:11px}
+#clp-demo .p-label{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--p-faint);margin-bottom:10px}
+#clp-demo .p-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+#clp-demo .p-row:last-child{margin-bottom:0}
+#clp-demo .p-key{color:var(--p-mute);font-size:11.5px;flex-shrink:0}
+#clp-demo .p-select{
+  font-family:inherit;font-size:11.5px;background:var(--p-field);color:var(--p-text);
+  border:1px solid var(--p-line);border-radius:5px;padding:5px 8px;cursor:pointer;max-width:168px
+}
+#clp-demo .p-select:hover{border-color:var(--p-line2)}
+#clp-demo .seg{display:flex;gap:5px}
+#clp-demo .seg button{
+  font-family:inherit;font-size:11.5px;padding:5px 10px;border-radius:5px;cursor:pointer;
+  background:var(--p-field);color:var(--p-mute);border:1px solid var(--p-line);
+  transition:background .14s,color .14s,border-color .14s
+}
+#clp-demo .seg button:hover{color:var(--p-text);border-color:var(--p-line2)}
+#clp-demo .seg button[aria-pressed="true"]{background:#16233D;color:var(--p-blue);border-color:var(--p-blueln)}
+#clp-demo .p-slider{display:flex;align-items:center;gap:9px;flex:1;min-width:0}
+#clp-demo .p-slider input[type=range]{flex:1;min-width:0;accent-color:var(--p-blue);cursor:pointer}
+#clp-demo .p-count{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--p-text);
+  min-width:58px;text-align:right;font-variant-numeric:tabular-nums
+}
+#clp-demo .p-hint{font-size:10.5px;color:var(--p-faint);margin:-3px 0 9px;line-height:1.45}
+#clp-demo .sw{
+  position:relative;width:32px;height:17px;flex-shrink:0;border:0;padding:0;
+  border-radius:999px;cursor:pointer;background:var(--p-field);
+  box-shadow:inset 0 0 0 1px var(--p-line);transition:background .16s,box-shadow .16s
+}
+#clp-demo .sw::after{
+  content:"";position:absolute;top:3px;left:3px;width:11px;height:11px;border-radius:50%;
+  background:var(--p-faint);transition:transform .16s,background .16s
+}
+#clp-demo .sw[aria-checked="true"]{background:var(--p-blue);box-shadow:inset 0 0 0 1px var(--p-blue)}
+#clp-demo .sw[aria-checked="true"]::after{transform:translateX(15px);background:#fff}
+#clp-demo .p-generate{
+  width:100%;margin-top:13px;font-family:inherit;font-size:13px;font-weight:600;
+  padding:11px;border-radius:7px;cursor:pointer;background:var(--p-blue);color:#07101F;border:0
+}
+#clp-demo .p-generate:hover{filter:brightness(1.07)}
+#clp-demo .p-foot{
+  margin-top:11px;padding-top:10px;border-top:1px solid var(--p-line);
+  display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:var(--p-faint)
+}
+
+
+#clp-demo .frame{
+  position:relative;aspect-ratio:9/16;border-radius:10px;overflow:hidden;
+  background:radial-gradient(120% 80% at 50% 8%,#26303D 0%,#141A22 48%,#0B0E13 100%);
+  border:1px solid var(--d-rule)
+}
+#clp-demo .frame-tc{
+  position:absolute;top:9px;right:10px;font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:rgba(232,236,242,.72);background:rgba(8,11,15,.55);padding:2px 6px;border-radius:4px;
+  font-variant-numeric:tabular-nums
+}
+/* Per-glyph fallback carries Arabic, Hebrew, Devanagari and CJK: the page's
+   own faces have none of them, and the browser reaches past to a system font
+   that does. */
+#clp-demo .frame-sub{
+  position:absolute;left:12px;right:12px;bottom:44px;text-align:center;
+  font-family:'Space Grotesk','Segoe UI','Noto Sans',system-ui,sans-serif;
+  font-weight:700;font-size:19px;line-height:1.26;letter-spacing:-.01em;color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.9);
+  text-wrap:balance;min-height:2.5em
+}
+#clp-demo .frame-bar{
+  position:absolute;left:12px;right:12px;bottom:14px;height:3px;border-radius:999px;
+  background:rgba(232,236,242,.22);overflow:hidden
+}
+#clp-demo .frame-bar span{display:block;height:100%;width:0;background:var(--p-cyan)}
+#clp-demo .frame-cap{
+  margin-top:8px;font-size:11px;color:var(--d-faint);
+  display:flex;justify-content:space-between;gap:8px
+}
+#clp-demo .frame-cap button{
+  font-family:inherit;font-size:11px;background:none;border:0;padding:0;cursor:pointer;
+  color:var(--d-accent);text-decoration:underline;text-underline-offset:2px
+}
+#clp-demo .srt{background:var(--d-card);border:1px solid var(--d-rule);border-radius:10px;overflow:hidden}
+#clp-demo .srt-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  padding:10px 13px;border-bottom:1px solid var(--d-rule)
+}
+#clp-demo .srt-file{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--d-ink)}
+#clp-demo .srt-n{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--d-faint)}
+#clp-demo .srt-list{margin:0;padding:6px;list-style:none;max-height:352px;overflow-y:auto;overflow-x:auto}
+#clp-demo .srt-list li{
+  display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;padding:7px 8px;
+  border-radius:6px;transition:background .12s
+}
+#clp-demo .srt-list li[data-live="true"]{background:var(--d-accent-dim)}
+#clp-demo .srt-idx{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--d-faint);
+  font-variant-numeric:tabular-nums;padding-top:2px
+}
+#clp-demo .srt-time{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--d-mono);
+  white-space:nowrap;font-variant-numeric:tabular-nums
+}
+#clp-demo .srt-text{font-size:13.5px;color:var(--d-soft)}
+#clp-demo .srt-list li[data-live="true"] .srt-text{color:var(--d-accent)}
+#clp-demo [dir=rtl]{text-align:right}
+
+#clp-demo .clp-notes{
+  margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  border-top:1px solid var(--d-rule)
+}
+#clp-demo .clp-note{padding:16px 20px 0 0}
+#clp-demo .clp-note h3{
+  font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--d-ink);margin-bottom:6px
+}
+#clp-demo .clp-note p{font-size:13.5px;color:var(--d-soft);line-height:1.6}
+#clp-demo .clp-note code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--d-ink)}
+#clp-demo :where(button,input,select,a):focus-visible{outline:2px solid var(--d-accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){#clp-demo *{transition:none!important}}
+</style>
+
+<section class="section" id="clp-demo">
+  <div class="wrap">
+    <p class="clp-eyebrow" data-i18n="demo.eyebrow">New in 1.0.6</p>
+    <h2>
+      <span data-i18n="demo.h">Punctuation</span>
+      <span class="dash">—</span>
+      <span class="state" id="state"><span class="pill"></span><span class="w" data-w="on" data-on="false">on</span><span class="w" data-w="off" data-on="true">off</span></span>
+    </h2>
+    <p class="clp-lede" data-i18n="demo.lede">
+      Editors were deleting full stops by hand after every job. Now it is a
+      switch in the panel — flip <b>Remove punctuation</b> below and the
+      captions rebuild as you watch, without a single in or out point moving.
+      Move <b>Max words</b> too: these are the real controls, running the real
+      grouping rules.
+    </p>
+
+    <div class="stage">
+      <div class="panel">
+        <div class="p-head">
+          <div class="p-logo"><span class="p-mark">C</span><span class="p-name">CaptionLab</span></div>
+          <span class="p-ready"><i></i>Ready</span>
+        </div>
+        <div class="p-box">
+          <div class="p-label" data-i18n="demo.settings">Settings</div>
+          <div class="p-row">
+            <span class="p-key" data-i18n="demo.language">Language</span>
+            <select class="p-select" id="lang" aria-label="Spoken language">
+              <option value="en">English</option>
+              <option value="ro">Română</option>
+              <option value="el">Ελληνικά</option>
+              <option value="uk">Українська</option>
+              <option value="pl">Polski</option>
+              <option value="cs">Čeština</option>
+              <option value="hu">Magyar</option>
+              <option value="bg">Български</option>
+              <option value="sl">Slovenščina</option>
+              <option value="hr">Hrvatski</option>
+              <option value="lt">Lietuvių</option>
+              <option value="fi">Suomi</option>
+              <option value="tr">Türkçe</option>
+              <option value="ar">العربية</option>
+              <option value="he">עברית</option>
+              <option value="es">Español</option>
+              <option value="hi">हिन्दी</option>
+              <option value="zh">中文（简体）</option>
+              <option value="ja">日本語</option>
+              <option value="vi">Tiếng Việt</option>
+            </select>
+          </div>
+          <div class="p-row">
+            <span class="p-key" data-i18n="demo.caplen">Caption length</span>
+            <div class="seg" id="seg-mode">
+              <button type="button" data-mode="default" aria-pressed="false" data-i18n="demo.default">Default</button>
+              <button type="button" data-mode="words" aria-pressed="true" data-i18n="demo.maxwords">Max words</button>
+            </div>
+          </div>
+          <div class="p-row" id="row-words">
+            <span class="p-key" data-i18n="demo.words">Words</span>
+            <div class="p-slider">
+              <input type="range" id="words" min="1" max="8" step="1" value="3"
+                     aria-label="Maximum words per caption">
+              <span class="p-count" id="words-out">3 words</span>
+            </div>
+          </div>
+          <div class="p-hint" id="words-hint" data-i18n="demo.hint">
+            1–3 works well for vertical video captions that pop on screen in
+            sync with speech.
+          </div>
+          <div class="p-row">
+            <span class="p-key" data-i18n="demo.punct">Remove punctuation</span>
+            <button type="button" class="sw" id="punct" role="switch"
+                    aria-checked="true" aria-label="Remove punctuation"></button>
+          </div>
+        </div>
+        <button type="button" class="p-generate" id="regen" data-i18n="demo.generate">▶ Generate Subtitles</button>
+        <div class="p-foot">
+          <span>CaptionLab v1.0.6</span>
+          <span data-i18n="demo.foot">99 languages · offline</span>
+        </div>
+      </div>
+
+      <div class="preview">
+          <div class="frame">
+            <span class="frame-tc" id="tc">00:00:00,000</span>
+            <div class="frame-sub" id="burn"></div>
+            <div class="frame-bar"><span id="bar"></span></div>
+          </div>
+          <div class="frame-cap">
+            <span id="playstate">Playing</span>
+            <button type="button" id="toggle">Pause</button>
+          </div>
+      </div>
+      <div class="srt">
+          <div class="srt-head">
+            <span class="srt-file" id="filename">interview_ENG.srt</span>
+            <span class="srt-n" id="count">—</span>
+          </div>
+          <ul class="srt-list" id="list"></ul>
+      </div>
+    </div>
+
+    <div class="clp-notes">
+      <div class="clp-note">
+        <h3 data-i18n="demo.n1h">Max words is a ceiling</h3>
+        <p data-i18n="demo.n1p">Set 3 and a caption will be 3, 2 or even 1 word when that is where the line logically ends. It is never 4.</p>
+      </div>
+      <div class="clp-note">
+        <h3 data-i18n="demo.n2h">Timing stays put</h3>
+        <p data-i18n="demo.n2p">Removing punctuation changes the text only. Every in and out point stays exactly where it was.</p>
+      </div>
+      <div class="clp-note">
+        <h3 data-i18n="demo.n3h">Written next to your project</h3>
+        <p data-i18n="demo.n3p">A plain <code>.srt</code> with the language in its name, imported straight into the Premiere project panel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Wrapped: the page has its own globals, and this block must not add any. */
+(function(){
+"use strict";
+/* One example line per language, with the tag CaptionLab really writes into
+   the filename. `cling` lists the short words that bind to what FOLLOWS them
+   - the panel carries those into the next caption rather than leaving one
+   stranded on screen alone. */
+const SAMPLES = {
+  en: { tag: "ENG", rtl: false,
+    words: ["It","was","filmed","in","one","take.","Then","the","client","asked",
+            "for","subtitles,","in","three","languages."],
+    cling: ["the","a","an","and","but","or","in","on","at","to","of","for",
+            "with","it","is","was","we","they","that","this","as","so"] },
+
+  uk: { tag: "UA", rtl: false,
+    words: ["Ми","зняли","все","інтерв'ю","одним","дублем.","Потім","клієнт",
+            "попросив","субтитри,","трьома","мовами."],
+    cling: ["і","й","в","у","на","з","із","та","не","що","до","за","по","про",
+            "від","це","як","ми","він","вона"] },
+
+  pl: { tag: "PL", rtl: false,
+    words: ["Nagraliśmy","cały","wywiad","w","jednym","ujęciu.","Potem","klient",
+            "poprosił","o","napisy,","w","trzech","językach."],
+    cling: ["i","w","we","na","z","ze","o","do","za","po","że","nie","a","ale",
+            "od","przez","to","jest"] },
+
+  tr: { tag: "TR", rtl: false,
+    words: ["Röportajın","tamamını","tek","çekimde","aldık.","Sonra","müşteri",
+            "üç","dilde","altyazı","istedi."],
+    cling: ["ve","bir","bu","da","de","ile","için","ama","çok","o","şu","her"] },
+
+  es: { tag: "ES", rtl: false,
+    words: ["Grabamos","toda","la","entrevista","en","una","sola","toma.",
+            "Luego","el","cliente","pidió","subtítulos,","en","tres","idiomas."],
+    cling: ["el","la","los","las","un","una","y","o","de","del","en","a","al",
+            "con","por","para","que","se","es","su","lo"] },
+
+  ar: { tag: "AR", rtl: true,
+    words: ["صوّرنا","المقابلة","كاملة","في","مشهد","واحد.","ثم","طلب","العميل",
+            "ترجمة،","بثلاث","لغات."],
+    cling: ["في","من","إلى","على","عن","مع","أن","ثم","و","أو","هذا","التي"] },
+
+  ro: { tag: "RO", rtl: false,
+    words: ["Am","filmat","tot","interviul","într-o","singură","dublă.","Apoi",
+            "clientul","a","cerut","subtitrări,","în","trei","limbi."],
+    cling: ["și","in","în","la","de","cu","pe","un","o","a","al","ale","care",
+            "este","să","nu","din","pentru"] },
+
+  el: { tag: "EL", rtl: false,
+    words: ["Γυρίσαμε","όλη","τη","συνέντευξη","σε","ένα","πλάνο.","Μετά","ο",
+            "πελάτης","ζήτησε","υπότιτλους,","σε","τρεις","γλώσσες."],
+    cling: ["και","σε","με","από","για","το","τη","της","του","τα","οι","ένα",
+            "μια","να","δεν","στο","στη","ο","η"] },
+
+  cs: { tag: "CS", rtl: false,
+    words: ["Celý","rozhovor","jsme","natočili","na","jeden","záběr.","Potom",
+            "klient","požádal","o","titulky,","ve","třech","jazycích."],
+    cling: ["a","v","ve","na","s","se","z","ze","o","do","za","po","že","ne",
+            "k","pro","je","to"] },
+
+  hu: { tag: "HU", rtl: false,
+    words: ["Az","egész","interjút","egy","felvétellel","rögzítettük.","Aztán",
+            "a","kliens","feliratot","kért,","három","nyelven."],
+    cling: ["és","a","az","egy","de","hogy","nem","is","vagy","meg","már","csak"] },
+
+  bg: { tag: "BG", rtl: false,
+    words: ["Записахме","цялото","интервю","с","един","дубъл.","После",
+            "клиентът","поиска","субтитри,","на","три","езика."],
+    cling: ["и","в","на","с","от","за","до","по","че","не","е","се","а","но",
+            "това","към"] },
+
+  sl: { tag: "SL", rtl: false,
+    words: ["Cel","intervju","smo","posneli","v","enem","posnetku.","Potem","je",
+            "stranka","zahtevala","podnapise,","v","treh","jezikih."],
+    cling: ["in","v","na","z","s","iz","o","do","za","po","da","ne","je","so",
+            "pa","ki"] },
+
+  hr: { tag: "HR", rtl: false,
+    words: ["Cijeli","intervju","snimili","smo","u","jednom","kadru.","Zatim",
+            "je","klijent","zatražio","titlove,","na","tri","jezika."],
+    cling: ["i","u","na","s","sa","iz","o","do","za","po","da","ne","je","su",
+            "te","ali"] },
+
+  lt: { tag: "LT", rtl: false,
+    words: ["Visą","interviu","nufilmavome","vienu","kadru.","Paskui","klientas",
+            "paprašė","subtitrų,","trimis","kalbomis."],
+    cling: ["ir","į","iš","su","ant","po","už","apie","ne","kad","yra","tai",
+            "bet","o"] },
+
+  fi: { tag: "FI", rtl: false,
+    words: ["Kuvasimme","koko","haastattelun","yhdellä","otolla.","Sitten",
+            "asiakas","pyysi","tekstitykset,","kolmella","kielellä."],
+    cling: ["ja","on","se","ei","että","kuin","mutta","tai","kun","niin"] },
+
+  he: { tag: "HE", rtl: true,
+    words: ["צילמנו","את","כל","הראיון","בטייק","אחד.","אחר","כך","הלקוח",
+            "ביקש","כתוביות,","בשלוש","שפות."],
+    cling: ["את","של","על","עם","כל","לא","זה","גם","כי","אבל","או"] },
+
+  /* Simplified Chinese. The customer who first asked for a punctuation switch
+     wrote in Chinese - and 。and ，are exactly what he wanted gone. Tokens are
+     character-level, which is close to what the engines return here. */
+  zh: { tag: "ZH", rtl: false, sep: "",
+    words: ["一","镜","到","底","拍","完","了","采","访。","然","后","客","户",
+            "要","三","种","语","言","的","字","幕。"],
+    cling: ["的","了","和","在","是","与","及"] },
+
+  ja: { tag: "JA", rtl: false, sep: "",
+    words: ["ワンテイク","で","撮影","し","まし","た。","その後、","三","言語",
+            "の","字幕","を","頼ま","れ","まし","た。"],
+    cling: ["の","を","に","は","が","で","と","も","へ","や"] },
+
+  vi: { tag: "VI", rtl: false,
+    words: ["Chúng","tôi","quay","cả","buổi","phỏng","vấn","trong","một","lần.",
+            "Sau","đó","khách","hàng","yêu","cầu","phụ","đề,","bằng","ba",
+            "ngôn","ngữ."],
+    cling: ["và","của","trong","với","cho","từ","đến","là","một","các","những",
+            "này","đó","ở","về","thì"] },
+
+  hi: { tag: "HI", rtl: false,
+    words: ["हमने","पूरा","इंटरव्यू","एक","ही","टेक","में","शूट","किया।","फिर",
+            "क्लाइंट","ने","तीन","भाषाओं","में","सबटाइटल","मांगे।"],
+    cling: ["और","में","से","का","की","के","को","पर","एक","यह","ने","ही","तो",
+            "कि","भी"] }
+};
+
+/* Sentence and clause marks across the scripts on show: the Devanagari danda
+   ends a Hindi sentence, and Arabic has its own comma and question mark. None
+   of them is a full stop, and all of them have to count. */
+const SENT   = /[.!?…।؟。！？]["')\]]*$/;
+const CLAUSE = /[,;:،؛、，；：]["')\]]*$/;
+const PUNCT  = /[.,!?;:…।،؛؟。、，！？；：]/g;
+
+const state = { lang: "en", mode: "words", n: 3, strip: true, playing: true };
+
+/* Plausible word timings from word length, rather than a hundred hand-typed
+   floats: one generator keeps every language consistent, and a real pause
+   follows a sentence end. Example data - the panel gets these from Whisper. */
+function timeline(words) {
+  const out = [];
+  let t = 0.30;
+  for (const w of words) {
+    const core = w.replace(/[^\p{L}\p{N}]/gu, "");
+    const dur = Math.min(0.9, 0.14 + 0.052 * Math.max(1, core.length));
+    out.push([w, t, t + dur]);
+    t += dur + (SENT.test(w) ? 0.34 : 0.035);
+  }
+  return out;
+}
+
+/* The panel's own grouping, trimmed to what a demo can show: break after a
+   sentence end, after a clause end once the line has substance, and at the
+   word limit - except when the last word binds to what follows, which is
+   carried into the next caption instead. */
+function group(sample, n, useLimit) {
+  const words = sample.timed;
+  const cling = new Set(sample.cling);
+  const bare = (w) => w.replace(PUNCT, "").replace(/["')\]]/g, "").toLowerCase();
+  /* Chinese and Japanese put nothing between words, so the tokens join with
+     no separator — and "max words" counts the tokens Whisper returns, which
+     for those scripts are roughly single characters. */
+  const sep = sample.sep === undefined ? " " : sample.sep;
+  const joined = (c) => c.map((w) => w[0]).join(sep);
+
+  const chunks = [];
+  let cur = [];
+  for (const w of words) {
+    if (cur.length && w[1] - cur[cur.length - 1][2] > 0.5) { chunks.push(cur); cur = []; }
+    cur.push(w);
+    if (SENT.test(w[0])) { chunks.push(cur); cur = []; continue; }
+    if (useLimit && cur.length >= n) {
+      if (n > 1 && cur.length > 1 && cling.has(bare(cur[cur.length - 1][0]))) {
+        const carry = cur.pop();
+        chunks.push(cur);
+        cur = [carry];
+        continue;
+      }
+      chunks.push(cur); cur = [];
+      continue;
+    }
+    if (CLAUSE.test(w[0]) && joined(cur).length >= 12) { chunks.push(cur); cur = []; }
+  }
+  if (cur.length) chunks.push(cur);
+
+  return chunks.map((c) => ({
+    start: c[0][1], end: c[c.length - 1][2], text: joined(c)
+  }));
+}
+
+function tc(sec) {
+  const ms = Math.max(0, Math.round(sec * 1000));
+  const p = (v, n) => String(v).padStart(n, "0");
+  return p(Math.floor(ms / 3600000), 2) + ":" + p(Math.floor(ms / 60000) % 60, 2) +
+         ":" + p(Math.floor(ms / 1000) % 60, 2) + "," + p(ms % 1000, 3);
+}
+
+Object.values(SAMPLES).forEach((s) => { s.timed = timeline(s.words); });
+
+let caps = [];
+let duration = 6;
+
+const el = {
+  list: document.getElementById("list"),
+  count: document.getElementById("count"),
+  filename: document.getElementById("filename"),
+  burn: document.getElementById("burn"),
+  tcOut: document.getElementById("tc"),
+  bar: document.getElementById("bar"),
+  wordsOut: document.getElementById("words-out"),
+  rowWords: document.getElementById("row-words"),
+  hint: document.getElementById("words-hint"),
+  toggle: document.getElementById("toggle"),
+  playstate: document.getElementById("playstate"),
+  stateWord: document.getElementById("state")
+};
+
+function build() {
+  const sample = SAMPLES[state.lang];
+  caps = group(sample, state.n, state.mode === "words");
+  if (state.strip) {
+    caps = caps.map((c) => ({ ...c, text: c.text.replace(PUNCT, "").replace(/\s{2,}/g, " ").trim() }))
+               .filter((c) => c.text);
+  }
+  const last = sample.timed[sample.timed.length - 1];
+  duration = last[2] + 0.7;
+
+  const dir = sample.rtl ? "rtl" : "ltr";
+  el.burn.setAttribute("dir", dir);
+  el.filename.textContent = "interview_" + sample.tag + ".srt";
+  el.count.textContent = caps.length + (caps.length === 1 ? " caption" : " captions");
+
+  el.list.textContent = "";
+  caps.forEach((c, i) => {
+    const li = document.createElement("li");
+    li.dataset.live = "false";
+    const idx = document.createElement("span");
+    idx.className = "srt-idx";
+    idx.textContent = String(i + 1);
+    const body = document.createElement("span");
+    const time = document.createElement("div");
+    time.className = "srt-time";
+    time.textContent = tc(c.start) + "  →  " + tc(c.end);
+    const txt = document.createElement("div");
+    txt.className = "srt-text";
+    txt.setAttribute("dir", dir);
+    txt.textContent = c.text;
+    body.appendChild(time);
+    body.appendChild(txt);
+    li.appendChild(idx);
+    li.appendChild(body);
+    el.list.appendChild(li);
+  });
+
+  const wordsOn = state.mode === "words";
+  el.rowWords.hidden = !wordsOn;
+  el.hint.hidden = !wordsOn;
+  el.wordsOut.textContent = state.n + (state.n === 1 ? " word" : " words");
+}
+
+/* The headline mirrors the switch. "Remove punctuation" on means the
+   punctuation is off, so the marker sits on the word that states the RESULT,
+   not the setting. */
+function paintState() {
+  const box = el.stateWord;
+  box.querySelectorAll(".w").forEach((w) => {
+    w.dataset.on = String((w.dataset.w === "on") !== state.strip);
+  });
+  const live = box.querySelector('.w[data-on="true"]');
+  const pill = box.querySelector(".pill");
+  if (!live || !pill) return;
+  const a = live.getBoundingClientRect();
+  const b = box.getBoundingClientRect();
+  pill.style.width = a.width + "px";
+  pill.style.transform = "translateX(" + (a.left - b.left) + "px)";
+}
+
+let t = 0;
+let last = null;
+
+function paint() {
+  const live = caps.findIndex((c) => t >= c.start && t < c.end);
+  el.burn.textContent = live === -1 ? "" : caps[live].text;
+  el.tcOut.textContent = tc(t);
+  el.bar.style.width = Math.min(100, (t / duration) * 100) + "%";
+  const items = el.list.children;
+  for (let i = 0; i < items.length; i++) items[i].dataset.live = String(i === live);
+}
+
+function frame(now) {
+  if (last === null) last = now;
+  if (state.playing) {
+    t += (now - last) / 1000;
+    if (t > duration) t = 0;
+    paint();
+  }
+  last = now;
+  requestAnimationFrame(frame);
+}
+
+document.getElementById("lang").addEventListener("change", (e) => {
+  state.lang = e.target.value;
+  t = 0;
+  build(); paint();
+});
+
+document.getElementById("seg-mode").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-mode]");
+  if (!b) return;
+  state.mode = b.dataset.mode;
+  e.currentTarget.querySelectorAll("button").forEach((x) => {
+    x.setAttribute("aria-pressed", String(x.dataset.mode === state.mode));
+  });
+  build(); paint();
+});
+
+document.getElementById("words").addEventListener("input", (e) => {
+  state.n = parseInt(e.target.value, 10) || 1;
+  build(); paint();
+});
+
+const punct = document.getElementById("punct");
+punct.addEventListener("click", () => {
+  state.strip = !state.strip;
+  punct.setAttribute("aria-checked", String(state.strip));
+  paintState();
+  build(); paint();
+});
+
+el.toggle.addEventListener("click", () => {
+  state.playing = !state.playing;
+  el.toggle.textContent = state.playing ? "Pause" : "Play";
+  el.playstate.textContent = state.playing ? "Playing" : "Paused";
+});
+
+document.getElementById("regen").addEventListener("click", () => {
+  t = 0;
+  state.playing = true;
+  el.toggle.textContent = "Pause";
+  el.playstate.textContent = "Playing";
+  paint();
+});
+
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  state.playing = false;
+  el.toggle.textContent = "Play";
+  el.playstate.textContent = "Paused";
+  t = 2.4;
+}
+
+el.stateWord.querySelectorAll(".w").forEach((w) => {
+  w.addEventListener("click", () => {
+    const want = w.dataset.w === "off";      // "off" = punctuation removed
+    if (state.strip === want) return;
+    punct.click();
+  });
+});
+
+build();
+paint();
+paintState();
+window.addEventListener("resize", paintState);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintState);
+requestAnimationFrame(frame);})();
+</script>
+
 <!-- Language checker.
      The whole product exists because Premiere's built-in speech-to-text covers
      a short list and most of the world isn't on it. That argument is abstract
@@ -1587,6 +2330,37 @@ html[dir="rtl"] .micro{direction:rtl}
           <div class="cl-rv2-who-name">Özkan Hacıtahiroğulları</div>
         </div>
       </div>
+
+
+    <!-- Collected here rather than pointed at a third party, so the
+         testimonials and the rating live somewhere we control. Every
+         submission is held for approval - a public form without that gate
+         collects spam within a week, and our own page publishing unvetted
+         text would be worse than having no reviews at all. -->
+    <div class="rv-add reveal" id="rv-add">
+      <div class="rv-add-h" data-i18n="rv.add.h">Used CaptionLab? Tell people how it went.</div>
+      <div class="rv-add-sub" data-i18n="rv.add.sub">Reviews are read before they appear. Your email stays private — it is only so I can reply.</div>
+      <form id="rv-form" class="rv-form" novalidate>
+        <div class="rv-stars" id="rv-stars" role="radiogroup" aria-label="Rating">
+          <button type="button" data-v="1">★</button><button type="button" data-v="2">★</button
+          ><button type="button" data-v="3">★</button><button type="button" data-v="4">★</button
+          ><button type="button" data-v="5">★</button>
+        </div>
+        <textarea id="rv-text" rows="4" maxlength="2000" data-i18n-ph="rv.add.text"
+                  placeholder="What did it do for your edit?"></textarea>
+        <div class="rv-row">
+          <input id="rv-name" maxlength="80" data-i18n-ph="rv.add.name" placeholder="Name (optional)">
+          <input id="rv-role" maxlength="80" data-i18n-ph="rv.add.role" placeholder="Editor, studio… (optional)">
+        </div>
+        <input id="rv-email" type="email" maxlength="120" data-i18n-ph="rv.add.email" placeholder="Email (optional, never published)">
+        <button type="submit" class="btn-primary rv-send" data-i18n="rv.add.send">Send review</button>
+        <div id="rv-msg" class="rv-msg"></div>
+      </form>
+    </div>
+
+    <!-- Approved reviews, newest first. Hidden until there is something in
+         it, so an empty list never reads as "nobody likes this". -->
+    <div class="cl-rv2-cols reveal" id="rv-live" style="display:none"></div>
 
     </div>
   </div>
@@ -1995,6 +2769,27 @@ html[dir="rtl"] .micro{direction:rtl}
     </div>
   </div>
 </section>
+
+<!-- Education licences.
+     Deliberately a strip and not a section, and deliberately after the price
+     rather than beside it: the pricing block tells one clean story ("$39,
+     once"), and a second set of numbers next to it blurs that. No figure is
+     named here because the figure depends on how many machines a faculty
+     wants - asking by email gives us the contact and the room to quote. -->
+<div class="edu-strip">
+  <div class="wrap edu-inner">
+    <div class="edu-txt">
+      <div class="edu-h" data-i18n="edu.h">🎓 Universities, schools and studios</div>
+      <p class="edu-p" data-i18n="edu.p">One key for an agreed number of computers. Students and staff just open
+        Premiere and transcribe — no accounts, no activation screen, nothing to
+        enter. The AI engine installs once per machine rather than once per
+        person.</p>
+    </div>
+    <a class="edu-cta" data-i18n="edu.cta"
+       href="mailto:editlabtools@gmail.com?subject=CaptionLab%20EDU%20licence&amp;body=How%20many%20computers%3A%0AInstitution%3A%0ACountry%3A">Request a quote →</a>
+  </div>
+</div>
+
 <section class="section" id="try" style="padding-top:30px">
   <div class="wrap">
     <h2 class="try-title reveal" data-i18n="try.h">Try it first, or buy it now</h2>
@@ -2133,9 +2928,85 @@ html[dir="rtl"] .micro{direction:rtl}
 
     <div class="cl-cl-entry reveal">
       <div class="cl-cl-top">
+        <span class="cl-cl-ver">v1.0.6</span>
+        <span class="cl-cl-date">September 2026</span>
+        <span class="cl-cl-badge" data-i18n="cl.badge.v106">Just released</span>
+      </div>
+      <div class="cl-cl-card">
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v106.punct.label">✂️ Remove punctuation</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v106.punct.li1">A switch in the settings strips full stops and commas from the finished captions — the usual look for short-form video. <b>Timing and line breaks are unaffected</b>, so nothing moves on the timeline.</li>
+          </ul>
+          <!-- One switch, three captions. Not the full demo at the top of the
+               page: this only has to show the sentence above it is true. -->
+          <div class="mi">
+            <div class="mi-row">
+              <button type="button" class="mi-sw" id="miPunct" role="switch" aria-checked="true"
+                      aria-label="Remove punctuation"></button>
+              <span class="mi-lab">Remove punctuation</span>
+              <span class="mi-caps" id="miCaps"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v106.gpu.label">⚡ GPU and memory</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v106.gpu.li1">The graphics libraries are now verified by <b>loading</b> them, so a half-installed CUDA can no longer report success and quietly fall back to the processor — the usual cause of "it works, but slowly" on Windows.</li>
+            <li data-i18n="cl.v106.gpu.li2">Between jobs the model <b>releases graphics memory</b> instead of holding several gigabytes, leaving it free for playback and previews. And only one engine ever runs: a second copy could stay loaded after reopening the panel or switching Windows users, and two models on one card is what turned a long transcription into a crawl.</li>
+          </ul>
+        </div>
+
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v106.edu.label">🎓 Education licences</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v106.edu.li1">A separate version for universities, schools and studios: <b>one key for an agreed number of computers</b>, and nobody using them has to enter anything. <a href="mailto:editlabtools@gmail.com?subject=CaptionLab%20EDU%20licence" style="color:var(--cyan)">Ask for a quote</a>.</li>
+          </ul>
+        </div>
+
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v106.menu.label">⚙️ Settings menu</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v106.menu.li1">Everything that used to sit in different corners is now under the gear: <b>repair the engine</b>, open the install log, what's new, request a feature, leave a review, help. Repair re-checks every part of the engine and downloads only what is missing or damaged — your models are not re-downloaded.</li>
+            <li data-i18n="cl.v106.menu.li2">"Check for updates" sits at the bottom of the panel, on click only. And the CaptionLab logo now takes you back to the main screen from anywhere.</li>
+          </ul>
+          <div class="mi">
+            <div class="mi-bar">
+              <span class="mi-mark">C</span>
+              <span class="mi-name">CaptionLab</span>
+              <button type="button" class="mi-gear" id="miGear" aria-expanded="false"
+                      aria-label="Open settings menu">⚙</button>
+            </div>
+            <ul class="mi-list" id="miList" hidden>
+              <li class="g">Engine</li>
+              <li>Repair engine</li>
+              <li>Open install log</li>
+              <li class="g">CaptionLab</li>
+              <li>What&rsquo;s new</li>
+              <li>Suggest a feature</li>
+              <li>Leave a review</li>
+              <li>Help &amp; troubleshooting</li>
+            </ul>
+            <div class="mi-hint" id="miHint">Click the gear</div>
+          </div>
+        </div>
+
+        <div class="cl-cl-group">
+          <div class="cl-cl-group-label" data-i18n="cl.v106.fixes.label">🐛 Fixes</div>
+          <ul class="cl-cl-list">
+            <li data-i18n="cl.v106.fixes.li1">A failed GPU download no longer aborts the whole install — setup finishes and falls back to the processor, and a blocked download tries other routes automatically.</li>
+            <li data-i18n="cl.v106.fixes.li2">If an antivirus quarantines CaptionLab's files, the installer now names it as the cause and lists what to whitelist, instead of only reporting that files went missing.</li>
+            <li data-i18n="cl.v106.fixes.li3">"Max words" is now a strict limit. A caption could come out one word over the number you set — including when the model returned something like "39 dollars" as a single word — and no longer can.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-cl-entry reveal">
+      <div class="cl-cl-top">
         <span class="cl-cl-ver">v1.0.5</span>
         <span class="cl-cl-date">August 2026</span>
-        <span class="cl-cl-badge" data-i18n="cl.badge.v105">Just released</span>
       </div>
       <div class="cl-cl-card">
         <div class="cl-cl-group">
@@ -2332,7 +3203,6 @@ html[dir="rtl"] .micro{direction:rtl}
 @media (min-width: 861px) {
   header.hero{padding-top:34px}
   .hero .hero-price{margin:12px 0 14px;padding:12px 18px}
-  .hero #cd-hero{margin:0 0 10px}
   .hero .badge{margin-bottom:20px}
   .hero h1{margin-bottom:18px}
 }
@@ -2968,7 +3838,7 @@ function toggleLegal(scroll) {
     uk:{
       "hd.watch":"Дивитись повне демо — 60 секунд","hd.note":"Справжній запис — без макетів і без прискорення.",
       "pr.from":"З 1 ЖОВТНЯ",
-      "cd.short":"$39 до 1 жовтня ·",
+      "cd.short":"$39 до 1 жовтня ·","rv.add.h":"Користувався CaptionLab? Розкажи, як пішло.","rv.add.sub":"Відгуки читаються перед публікацією. Пошта лишається приватною — вона лише щоб я міг відповісти.","rv.add.text":"Що він дав твоєму монтажу?","rv.add.name":"Ім’я (необов’язково)","rv.add.role":"Монтажер, студія… (необов’язково)","rv.add.email":"Пошта (необов’язково, не публікується)","rv.add.send":"Надіслати відгук","rv.err.stars":"Спершу постав оцінку.","rv.err.short":"Хоч одне-два речення — щонайменше 20 символів.","rv.err.generic":"Не надіслалось. Спробуєш ще?","rv.sending":"Надсилаю…","rv.thanks":"Дякую — я читаю кожен. Зʼявиться тут після перевірки.","rv.anon":"Підтверджений клієнт",
       "cd.s":"СЕК",
       "cd.m":"ХВ",
       "cd.h":"ГОД",
@@ -2998,8 +3868,8 @@ function toggleLegal(scroll) {
       "hero.buyline":"Без картки й без акаунта. <a href='#try'>Або купи одразу — $39 разово</a>",
       "try.h":"Спробуй спершу — або купуй одразу","try.lede":"Точність сильно різниться від мови до мови. Якщо твоя — з тих, що Adobe не підтримує, три дні на власному матеріалі скажуть більше, ніж будь-яке демо.","try.badge":"БЕЗКОШТОВНИЙ ТРІАЛ","try.price":"3 дні безкоштовно","try.p":"Повноцінний плагін — усі моделі, усі мови, справжні субтитри на твоєму таймлайні. Без картки й без акаунта. <b>Три дні починаються з першої транскрипції</b>, а не із завантаження, тож встановлення й скачування моделі не коштують тобі нічого.","try.mac":"Завантажити для Mac","try.win":"Завантажити для Windows","try.buybadge":"ПОВНА ЛІЦЕНЗІЯ","try.buyprice":"$39 разово","try.buyp":"Уже знаєш, що це те, що треба? Пропусти тріал. Один платіж — і назавжди: без підписки, без оплати за хвилини, працює офлайн на <b>двох комп'ютерах</b>.","try.buycta":"Отримати CaptionLab →","cl.v105.trial.label":"🎬 Спробуй, перш ніж купувати","cl.v105.trial.li1":"Тепер є <b>безкоштовний 3-денний тріал</b> повноцінного плагіна — усі моделі, усі мови, справжні субтитри на таймлайні. Без картки й без акаунта.","cl.v105.trial.li2":"Три дні починаються з <b>першої транскрипції</b>, а не із завантаження. Встановлення движка й скачування багатогігабайтної моделі може забрати вечір — і жодна хвилина з цього не йде з твого тріалу.","cl.v105.myanmar.label":"🇲🇲 Модель для бірманської","cl.v105.myanmar.li1":"Бірманська — з тих мов, що стандартні моделі опрацьовують погано: на реальному відео вони видавали зовсім не те письмо або хвилинами повторювали один склад. Тепер у вкладці Models є <b>окрема модель для бірманської</b>, і на тих самих кліпах вона дає справжній, читабельний текст.","cl.v105.myanmar.li2":"Ця модель з'явилася завдяки клієнту, який попросив повернення, бо його мова не працювала. Якщо твоя теж не працює — <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>напиши мені</a>. Саме так це й було зроблено.","cl.v105.install.label":"🔧 Встановлення, що лагодить себе саме","cl.v105.install.li1":"Недокачаний файл раніше вважався справним назавжди: кожна повторна спроба бачила, що файл на місці, і пропускала його — тож те саме зламане встановлення поверталося, скільки б разів ти не тиснув. Тепер інсталятор перевіряє, що кожен компонент справді <b>запускається</b>, і перекачує його, якщо ні. Зависле завантаження обривається за таймаутом і повторюється.","cl.badge.v105":"Щойно вийшло","cl.badge.v103":"Попередній випуск","cl.v104.timing.label":"⏱ Титри влучають у слово","cl.v104.timing.li1":"Таймінг тепер вимірюється по <b>самому аудіо</b>, а не береться з таймкодів ШІ — тож титр більше не зʼявляється, поки людина ще мовчить. На реальному новинному сюжеті сумарна розсинхронізація впала приблизно на <b>60%</b>.","cl.v104.timing.li2":"Виправлено випадки, коли титри вискакували на секунди раніше: після довгих пауз, на футажі з фоновим шумом і після музики. Титр також тримається трохи довше, а не зникає в ту ж мить, коли людина замовкла.","cl.v104.words.label":"✂️ «Fixed words» тепер «Max words»","cl.v104.words.li1":"Це <b>стеля, а не норма</b>. Постав 4 — і титр буде з 3, 2 чи навіть 1 слова, якщо саме там закінчується думка. Титр ніколи не розривається посеред речення, ріже по комах, а короткі слова на кшталт «не» чи «це» більше не висять на екрані самі.","cl.v104.words.li2":"Звичайні титри теж стежать за структурою речення — коректна довжина рядка, швидкість читання, і слова через дефіс більше не розриваються на два екрани.","cl.v104.quiet.label":"🔊 Тиха мова більше не пропускається","cl.v104.quiet.li1":"Звук, записаний значно тихіше за решту відео — наприклад, інтервʼю з локації поруч із гучним студійним голосом — раніше просто зникав. Тепер рівні вирівнюються перед розшифровкою, і ці фрагменти теж отримують субтитри.",
       "nav.watchdemo":"▶ Дивитись демо","nav.reviews":"Відгуки","nav.languages":"Мови","nav.how":"Як це працює","nav.pricing":"Ціна","nav.whatsnew":"Що нового","nav.faq":"Питання","nav.cta":"Отримати плагін","nav.earn":"Знижка 50%","earn.eyebrow":"Розкажи про нас — заощадь","earn.h2":"Отримай CaptionLab <span class='hl'>ще дешевше</span> — за згадку","earn.lead":"Без реферальних лінків і форм. Постав щось реальне, надішли підтвердження — отримаєш промокод.","earn.c1h":"Згадай CaptionLab","earn.c1p":"Напиши про нас на Reddit, Adobe Community, AlternativeTo або ProductHunt — будь-де одне з цього.","earn.c2h":"Покажи у відео","earn.c2p":"Публічне відео, де ти реально користуєшся плагіном — YouTube, TikTok, Instagram, будь-де.","earn.how":"<b>Як це працює:</b> надішли лінк (і скріншот, якщо це пост) на <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> — я сам перевірю і надішлю промокод у відповідь, зазвичай того ж дня.","ex.earn":"💸 Або отримай знижку 25–50%, розповівши про нас →","toast.earn":"💸 <b>Знижка 25–50%</b> — згадай або покажи CaptionLab десь публічно →",
-      "launch.text":"<b>Стартова ціна</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> разово","launch.win":"✨ <b>Вийшла v1.0.5:</b> безкоштовні 3 дні + модель для бірманської",
-      "hero.badge":"<span class='pr-ic'>Pr</span> Рідний плагін для Adobe Premiere Pro · На базі OpenAI Whisper",
+      "demo.eyebrow":"Нове у 1.0.6","demo.h":"Пунктуація","demo.lede":"Монтажери вручну видаляли крапки після кожного замовлення. Тепер це перемикач у панелі — натисни <b>Remove punctuation</b> нижче, і субтитри перебудуються на очах, не зсунувши жодної точки входу чи виходу. Покрути й <b>Max words</b>: це справжні контроли зі справжньою логікою групування.","demo.settings":"Налаштування","demo.language":"Мова","demo.caplen":"Довжина субтитра","demo.default":"Звичайна","demo.maxwords":"Макс. слів","demo.words":"Слів","demo.hint":"1–3 добре працює для вертикального відео: субтитри спалахують у такт мовленню.","demo.punct":"Прибрати пунктуацію","demo.generate":"▶ Створити субтитри","demo.foot":"99 мов · офлайн","demo.n1h":"Max words — це стеля","demo.n1p":"Поставиш 3 — і субтитр буде 3, 2 або навіть 1 слово, якщо саме там закінчується думка. Але ніколи 4.","demo.n2h":"Таймінг не рухається","demo.n2p":"Прибирання пунктуації змінює лише текст. Кожна точка <code>in</code> і <code>out</code> лишається там, де була.","demo.n3h":"Файл поруч із проєктом","demo.n3p":"Звичайний <code>.srt</code> з мовою в назві, імпортується прямо в панель проєкту Premiere.","edu.h":"🎓 Університети, школи та студії","edu.p":"Один ключ на узгоджену кількість компʼютерів. Студенти й викладачі просто відкривають Premiere і розшифровують — без акаунтів, без екрана активації, вводити нічого не треба. AI-рушій встановлюється один раз на компʼютер, а не окремо для кожного.","edu.cta":"Запросити пропозицію →","cl.badge.v106":"Щойно вийшло","cl.v106.punct.label":"✂️ Прибирання пунктуації","cl.v106.punct.li1":"Перемикач у налаштуваннях прибирає крапки й коми з готових субтитрів — звичний вигляд для коротких відео. <b>Таймінг і розбиття на рядки не змінюються</b>, тому на таймлайні нічого не зсувається.","cl.v106.gpu.label":"⚡ Відеокарта і памʼять","cl.v106.gpu.li1":"Графічні бібліотеки тепер перевіряються <b>завантаженням</b>, тому недовстановлена CUDA більше не може повідомити про успіх і тихо перейти на процесор. Саме це було звичною причиною «працює, але повільно».","cl.v106.gpu.li2":"Між завданнями модель <b>віддає памʼять відеокарти</b>, а не тримає кілька гігабайтів — карта вільна для перегляду й прев'ю. І рушій тепер завжди один: друга копія могла лишитись у памʼяті після перевідкриття панелі або перемикання користувачів Windows, а дві моделі на одній карті й перетворювали довгу розшифровку на повзання.","cl.v106.edu.label":"🎓 Освітні ліцензії","cl.v106.edu.li1":"Зʼявилась окрема версія для університетів, шкіл і студій: <b>один ключ на узгоджену кількість компʼютерів</b>, і нікому з користувачів нічого вводити не потрібно. <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20EDU%20licence' style='color:var(--cyan)'>Запитати пропозицію</a>.","cl.v106.menu.label":"⚙️ Меню налаштувань","cl.v106.menu.li1":"Усе, що раніше було розкидано по кутах, тепер під шестернею: <b>ремонт рушія</b>, лог установлення, що нового, запит функції, відгук, довідка. Repair перевіряє кожну частину рушія й довантажує лише те, що зникло або побилось — моделі не перезавантажуються.","cl.v106.menu.li2":"«Перевірити оновлення» стоїть унизу панелі й працює лише по кліку. А логотип CaptionLab тепер повертає на головний екран з будь-якого місця.","cl.v106.fixes.label":"🐛 Виправлення","cl.v106.fixes.li1":"Невдале завантаження GPU-бібліотек більше не валить усю установку — вона доходить до кінця й переходить на процесор, а заблокований канал автоматично пробує інші маршрути.","cl.v106.fixes.li2":"Якщо антивірус відправляє файли CaptionLab у карантин, інсталятор тепер прямо називає його причиною і перелічує, що додати у винятки, замість того щоб просто повідомити про зниклі файли.","cl.v106.fixes.li3":"«Max words» тепер строгий ліміт. Субтитр міг вийти на слово довшим за вказане число — зокрема коли модель віддавала «39 доларів» одним словом — тепер не може.","rel.tag":"Нове","rel.text":"<b class='rel-v'>v1.0.6</b> — пунктуація on/off, спробуй","rel.more":", швидше на Windows","launch.text":"<b>Стартова ціна</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> разово","launch.win":"✨ <b>Вийшла v1.0.5:</b> безкоштовні 3 дні + модель для бірманської",
+      "hero.badge":"<span class='pr-ic'>Pr</span> Нативний плагін Premiere Pro · OpenAI Whisper",
       "hero.h1":"Автоматичні субтитри в Premiere&nbsp;Pro.<br>Нарешті <b>твоєю мовою</b>",
       "hero.sub":"Нативний плагін, який живе прямо всередині Premiere Pro. Працює <b>100% офлайн</b> на твоєму <b>Mac</b> чи <b>Win</b>: відео ніколи не покидає комп'ютер, без хмари, <b>без API-ключів</b>, без інтернету, <b>без підписки</b>. А ще розмовляє <b>99 мовами</b> — включно з тими, про які Adobe забула.",
       "hero.cta1":"Отримати CaptionLab — $39","hero.cta2":"Подивитись, як працює",
@@ -3046,7 +3916,7 @@ function toggleLegal(scroll) {
     pl:{
       "hd.watch":"Zobacz pełne demo — 60 sekund","hd.note":"Prawdziwe nagranie — bez makiet i bez przyspieszania.",
       "pr.from":"OD 1 PAŹDZIERNIKA",
-      "cd.short":"$39 do 1 października ·",
+      "cd.short":"$39 do 1 października ·","rv.add.h":"Używałeś CaptionLab? Napisz, jak było.","rv.add.sub":"Opinie są czytane przed publikacją. Twój e-mail pozostaje prywatny — służy tylko do odpowiedzi.","rv.add.text":"Co dał Twojemu montażowi?","rv.add.name":"Imię (opcjonalnie)","rv.add.role":"Montażysta, studio… (opcjonalnie)","rv.add.email":"E-mail (opcjonalnie, nie publikujemy)","rv.add.send":"Wyślij opinię","rv.err.stars":"Najpierw wybierz ocenę.","rv.err.short":"Zdanie lub dwa — co najmniej 20 znaków.","rv.err.generic":"Nie wysłano. Spróbujesz jeszcze raz?","rv.sending":"Wysyłanie…","rv.thanks":"Dziękuję — czytam każdą. Pojawi się tutaj po zatwierdzeniu.","rv.anon":"Zweryfikowany klient",
       "cd.s":"SEK",
       "cd.m":"MIN",
       "cd.h":"GODZ",
@@ -3076,8 +3946,8 @@ function toggleLegal(scroll) {
       "hero.buyline":"Bez karty, bez konta. <a href='#try'>Albo kup od razu — $39 jednorazowo</a>",
       "try.h":"Najpierw wypróbuj albo kup od razu","try.lede":"Dokładność mocno różni się między językami. Jeśli Twój jest jednym z tych, których Adobe nie obsługuje, trzy dni na własnym materiale powiedzą Ci więcej niż jakiekolwiek demo.","try.badge":"DARMOWY TRIAL","try.price":"3 dni za darmo","try.p":"Pełna wtyczka — wszystkie modele, wszystkie języki, prawdziwe napisy na Twojej osi czasu. Bez karty, bez konta. <b>Trzy dni startują przy pierwszej transkrypcji</b>, nie przy pobraniu, więc instalacja i ściąganie modelu AI nic Cię nie kosztują.","try.mac":"Pobierz na Maca","try.win":"Pobierz na Windows","try.buybadge":"PEŁNA LICENCJA","try.buyprice":"$39 jednorazowo","try.buyp":"Już wiesz, że tego potrzebujesz? Pomiń trial. Jedna płatność i masz na zawsze — bez subskrypcji, bez opłat za minutę, działa offline na <b>dwóch komputerach</b>.","try.buycta":"Pobierz CaptionLab →","cl.v105.trial.label":"🎬 Wypróbuj, zanim kupisz","cl.v105.trial.li1":"Jest już <b>darmowy 3-dniowy trial</b> pełnej wtyczki — wszystkie modele, wszystkie języki, prawdziwe napisy na osi czasu. Bez karty, bez konta.","cl.v105.trial.li2":"Trzy dni startują przy <b>pierwszej transkrypcji</b>, nie przy pobraniu. Instalacja silnika i ściągnięcie wielogigabajtowego modelu potrafi zająć wieczór — i nic z tego nie schodzi z Twojego triala.","cl.v105.myanmar.label":"🇲🇲 Model stworzony do birmańskiego","cl.v105.myanmar.li1":"Birmański to jeden z języków, z którymi standardowe modele radzą sobie źle — na prawdziwym materiale zwracały zupełnie inne pismo albo minutami powtarzały tę samą sylabę. W zakładce Models jest teraz <b>osobny model do birmańskiego</b>, który na tych samych klipach daje prawdziwy, czytelny tekst.","cl.v105.myanmar.li2":"Ten model powstał dzięki klientowi, który poprosił o zwrot, bo jego język nie działał. Jeśli Twój też nie działa — <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>napisz do mnie</a>. Właśnie tak to powstało.","cl.v105.install.label":"🔧 Instalacja, która sama się naprawia","cl.v105.install.li1":"Niedokończone pobieranie było kiedyś uznawane za dobre na zawsze: każda kolejna próba widziała, że plik istnieje, i go pomijała — więc ta sama zepsuta instalacja wracała bez względu na to, ile razy kliknąłeś. Teraz instalator sprawdza, czy każdy element faktycznie <b>się uruchamia</b>, i pobiera go ponownie, jeśli nie. Zawieszone pobierania kończą się timeoutem i są ponawiane.","cl.badge.v105":"Właśnie wydane","cl.badge.v103":"Poprzednie wydanie","cl.v104.timing.label":"⏱ Napisy trafiają w słowo","cl.v104.timing.li1":"Czas napisów jest teraz mierzony na podstawie <b>samego dźwięku</b>, a nie znaczników AI — napis nie pojawia się już, gdy mówca wciąż milczy. Na prawdziwym materiale informacyjnym łączne rozjechanie spadło o około <b>60%</b>.","cl.v104.timing.li2":"Naprawione przypadki, gdy napisy pojawiały się kilka sekund za wcześnie: po długich pauzach, na materiale z tłem dźwiękowym i po muzyce. Napis utrzymuje się też chwilę dłużej, zamiast znikać w momencie, gdy mówca kończy.","cl.v104.words.label":"✂️ „Fixed words” to teraz „Max words”","cl.v104.words.li1":"To <b>górna granica, nie norma</b>. Ustaw 4, a napis będzie miał 3, 2 albo nawet 1 słowo, jeśli właśnie tam kończy się myśl. Napis nigdy nie dzieli zdania, łamie się na przecinkach, a krótkie słowa jak „nie” czy „to” nie zostają same na ekranie.","cl.v104.words.li2":"Domyślne napisy też podążają za budową zdania — właściwa długość linii, tempo czytania, a słowa z myślnikiem nie są już dzielone na dwa ekrany.","cl.v104.quiet.label":"🔊 Ciche wypowiedzi nie są już pomijane","cl.v104.quiet.li1":"Dźwięk nagrany znacznie ciszej niż reszta filmu — na przykład wywiad w terenie zestawiony z głośnym głosem studyjnym — wcześniej po prostu znikał. Teraz poziomy są wyrównywane przed transkrypcją, więc te fragmenty również dostają napisy.",
       "nav.watchdemo":"▶ Zobacz demo","nav.reviews":"Opinie","nav.languages":"Języki","nav.how":"Jak to działa","nav.pricing":"Cennik","nav.whatsnew":"Co nowego","nav.faq":"FAQ","nav.cta":"Pobierz wtyczkę","nav.earn":"Zniżka 50%","earn.eyebrow":"Rozpowiedz dalej, zapłać mniej","earn.h2":"Zdobądź CaptionLab <span class='hl'>jeszcze taniej</span> — za wzmiankę","earn.lead":"Bez linków polecających, bez formularzy. Opublikuj coś prawdziwego, wyślij dowód, dostań kod.","earn.c1h":"Wspomnij o CaptionLab","earn.c1p":"Napisz o nim na Reddit, Adobe Community, AlternativeTo lub ProductHunt — dowolne jedno z nich.","earn.c2h":"Pokaż go w filmie","earn.c2p":"Publiczny film, w którym naprawdę go używasz — YouTube, TikTok, Instagram, gdziekolwiek.","earn.how":"<b>Jak to działa:</b> wyślij link (i zrzut ekranu, jeśli to post) na <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> — sam to sprawdzę i odeślę Twój kod, zwykle tego samego dnia.","ex.earn":"💸 Albo zdobądź 25–50% zniżki, dzieląc się nim →","toast.earn":"💸 <b>Zniżka 25–50%</b> — wspomnij lub pokaż CaptionLab publicznie →",
-      "launch.text":"<b>Cena startowa</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> jednorazowo","launch.win":"✨ <b>Wydano v1.0.5:</b> darmowe 3 dni + model do birmańskiego",
-      "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka do Adobe Premiere Pro · Napędzana przez OpenAI Whisper",
+      "demo.eyebrow":"Nowość w 1.0.6","demo.h":"Interpunkcja","demo.lede":"Montażyści ręcznie usuwali kropki po każdym zleceniu. Teraz to przełącznik w panelu — kliknij <b>Remove punctuation</b> poniżej i napisy przebudują się na oczach, bez przesunięcia ani jednego punktu wejścia czy wyjścia. Poruszaj też <b>Max words</b>: to prawdziwe kontrolki z prawdziwą logiką grupowania.","demo.settings":"Ustawienia","demo.language":"Język","demo.caplen":"Długość napisu","demo.default":"Domyślna","demo.maxwords":"Maks. słów","demo.words":"Słowa","demo.hint":"1–3 dobrze działa w wideo pionowym: napisy pojawiają się w rytm mowy.","demo.punct":"Usuń interpunkcję","demo.generate":"▶ Generuj napisy","demo.foot":"99 języków · offline","demo.n1h":"Max words to sufit","demo.n1p":"Ustaw 3 i napis będzie miał 3, 2 albo nawet 1 słowo, jeśli właśnie tam kończy się myśl. Ale nigdy 4.","demo.n2h":"Czas się nie zmienia","demo.n2p":"Usunięcie interpunkcji zmienia tylko tekst. Każdy punkt <code>in</code> i <code>out</code> zostaje tam, gdzie był.","demo.n3h":"Plik obok projektu","demo.n3p":"Zwykły <code>.srt</code> z językiem w nazwie, importowany wprost do panelu projektu Premiere.","edu.h":"🎓 Uniwersytety, szkoły i studia","edu.p":"Jeden klucz na ustaloną liczbę komputerów. Studenci i wykładowcy po prostu otwierają Premiere i transkrybują — bez kont, bez ekranu aktywacji, nie trzeba niczego wpisywać. Silnik AI instaluje się raz na komputer, a nie osobno dla każdej osoby.","edu.cta":"Poproś o wycenę →","cl.badge.v106":"Właśnie wydane","cl.v106.punct.label":"✂️ Usuwanie interpunkcji","cl.v106.punct.li1":"Przełącznik w ustawieniach usuwa kropki i przecinki z gotowych napisów — typowy wygląd dla krótkich wideo. <b>Czas i podział wierszy pozostają bez zmian</b>, więc na osi czasu nic się nie przesuwa.","cl.v106.gpu.label":"⚡ Karta graficzna i pamięć","cl.v106.gpu.li1":"Biblioteki graficzne są teraz sprawdzane przez ich <b>wczytanie</b>, więc niedokończona instalacja CUDA nie może już zgłosić sukcesu i po cichu przejść na procesor. To była typowa przyczyna „działa, ale wolno”.","cl.v106.gpu.li2":"Między zadaniami model <b>oddaje pamięć karty</b>, zamiast trzymać kilka gigabajtów — karta jest wolna na podgląd i odtwarzanie. I zawsze działa tylko jeden silnik: druga kopia mogła zostać w pamięci po ponownym otwarciu panelu lub przełączeniu użytkowników Windows, a dwa modele na jednej karcie zamieniały długą transkrypcję w mękę.","cl.v106.edu.label":"🎓 Licencje edukacyjne","cl.v106.edu.li1":"Jest już osobna wersja dla uniwersytetów, szkół i studiów: <b>jeden klucz na ustaloną liczbę komputerów</b>, a użytkownicy nie muszą nic wpisywać. <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20EDU%20licence' style='color:var(--cyan)'>Poproś o wycenę</a>.","cl.v106.menu.label":"⚙️ Menu ustawień","cl.v106.menu.li1":"Wszystko, co było rozrzucone po kątach, jest teraz pod kołem zębatym: <b>naprawa silnika</b>, log instalacji, co nowego, zgłoszenie funkcji, opinia, pomoc. Naprawa sprawdza każdą część silnika i dociąga tylko to, czego brakuje lub co jest uszkodzone — modele nie są pobierane ponownie.","cl.v106.menu.li2":"„Sprawdź aktualizacje” jest na dole panelu i działa tylko po kliknięciu. A logo CaptionLab wraca teraz do ekranu głównego z dowolnego miejsca.","cl.v106.fixes.label":"🐛 Poprawki","cl.v106.fixes.li1":"Nieudane pobranie bibliotek GPU nie przerywa już całej instalacji — kończy się ona i przechodzi na procesor, a zablokowane pobieranie automatycznie próbuje innych tras.","cl.v106.fixes.li2":"Jeśli antywirus przenosi pliki CaptionLab do kwarantanny, instalator wskazuje go teraz jako przyczynę i wypisuje, co dodać do wyjątków, zamiast tylko zgłaszać brakujące pliki.","cl.v106.fixes.li3":"„Max words” jest teraz twardym limitem. Napis mógł wyjść o jedno słowo dłuższy od ustawionej liczby — także gdy model zwrócił „39 dollars” jako jedno słowo — już nie może.","rel.tag":"Nowość","rel.text":"<b class='rel-v'>v1.0.6</b> — interpunkcja on/off, sprawdź","rel.more":", szybciej na Windows","launch.text":"<b>Cena startowa</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> jednorazowo","launch.win":"✨ <b>Wydano v1.0.5:</b> darmowe 3 dni + model do birmańskiego",
+      "hero.badge":"<span class='pr-ic'>Pr</span> Natywna wtyczka Premiere Pro · OpenAI Whisper",
       "hero.h1":"Automatyczne napisy w Premiere&nbsp;Pro —<br>wreszcie <b>w Twoim języku</b>",
       "hero.sub":"Natywna wtyczka, która działa bezpośrednio wewnątrz Premiere Pro. Działa w <b>100% offline</b> na Twoim własnym <b>Mac</b> lub <b>Win</b>: Twój materiał nigdy nie opuszcza komputera, bez chmury, <b>bez kluczy API</b>, bez internetu, <b>bez subskrypcji</b>. Do tego mówi w <b>99 językach</b> — łącznie z tymi, o których Adobe zapomniało.",
       "hero.cta1":"Kup CaptionLab — $39","hero.cta2":"Zobacz, jak działa",
@@ -3124,7 +3994,7 @@ function toggleLegal(scroll) {
     tr:{
       "hd.watch":"Tam demoyu izle — 60 saniye","hd.note":"Gerçek kayıt — maket yok, hızlandırma yok.",
       "pr.from":"1 EKİM'DEN İTİBAREN",
-      "cd.short":"1 Ekim'e kadar $39 ·",
+      "cd.short":"1 Ekim'e kadar $39 ·","rv.add.h":"CaptionLab kullandın mı? Nasıl gittiğini yaz.","rv.add.sub":"Yorumlar yayınlanmadan önce okunur. E-postan gizli kalır — sadece yanıt verebilmem için.","rv.add.text":"Kurgunda ne işe yaradı?","rv.add.name":"İsim (isteğe bağlı)","rv.add.role":"Kurgucu, stüdyo… (isteğe bağlı)","rv.add.email":"E-posta (isteğe bağlı, yayınlanmaz)","rv.add.send":"Yorumu gönder","rv.err.stars":"Önce bir puan seç.","rv.err.short":"Bir iki cümle — en az 20 karakter.","rv.err.generic":"Gönderilemedi. Tekrar dener misin?","rv.sending":"Gönderiliyor…","rv.thanks":"Teşekkürler — hepsini okuyorum. Onaylandıktan sonra burada görünecek.","rv.anon":"Doğrulanmış müşteri",
       "cd.s":"SN",
       "cd.m":"DK",
       "cd.h":"SA",
@@ -3154,8 +4024,8 @@ function toggleLegal(scroll) {
       "hero.buyline":"Kart yok, hesap yok. <a href='#try'>Ya da hemen al — tek seferlik $39</a>",
       "try.h":"Önce dene, ya da hemen al","try.lede":"Doğruluk dilden dile çok değişir. Seninki Adobe'nin desteklemediği dillerden biriyse, kendi görüntülerinde geçireceğin üç gün sana her demodan fazlasını anlatır.","try.badge":"ÜCRETSİZ DENEME","try.price":"3 gün ücretsiz","try.p":"Eksiksiz eklenti — bütün modeller, bütün diller, zaman çizelgende gerçek altyazılar. Kart yok, hesap yok. <b>Üç günün ilk transkripsiyonunda başlar</b>, indirmede değil; yani kurulum ve yapay zekâ modelini indirmek sana hiçbir şeye mal olmaz.","try.mac":"Mac için indir","try.win":"Windows için indir","try.buybadge":"TAM LİSANS","try.buyprice":"Tek seferlik $39","try.buyp":"İhtiyacın olduğunu zaten biliyor musun? Denemeyi atla. Tek ödeme, sonsuza dek senin — abonelik yok, dakika ücreti yok, <b>iki bilgisayarda</b> çevrimdışı çalışmaya devam eder.","try.buycta":"CaptionLab'i al →","cl.v105.trial.label":"🎬 Satın almadan önce dene","cl.v105.trial.li1":"Artık eksiksiz eklentinin <b>ücretsiz 3 günlük denemesi</b> var — bütün modeller, bütün diller, zaman çizelgende gerçek altyazılar. Kart yok, hesap yok.","cl.v105.trial.li2":"Üç gün <b>ilk transkripsiyonunda</b> başlar, indirmede değil. Motoru kurmak ve gigabaytlarca modeli indirmek bir akşamını alabilir; bunun hiçbiri denemenden düşmez.","cl.v105.myanmar.label":"🇲🇲 Birmanca için özel model","cl.v105.myanmar.li1":"Birmanca, standart modellerin kötü başa çıktığı dillerden biri — gerçek görüntülerde tamamen başka bir yazı üretiyor ya da aynı heceyi dakikalarca tekrarlıyorlardı. Models sekmesinde artık <b>Birmancaya özel bir model</b> var ve aynı kliplerde gerçek, okunabilir Birmanca üretiyor.","cl.v105.myanmar.li2":"Bu model, dili çalışmadığı için iade isteyen bir müşteri sayesinde çıktı. Seninki de çalışmıyorsa <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>bana yaz</a> — bu böyle ortaya çıktı.","cl.v105.install.label":"🔧 Kendini onaran kurulum","cl.v105.install.li1":"Yarım kalmış bir indirme eskiden sonsuza dek doğru sayılırdı: her yeniden deneme dosyanın orada olduğunu görüp atlıyordu, yani kaç kez tıklarsan tıkla aynı bozuk kurulum geri geliyordu. Kurulum artık her parçanın gerçekten <b>çalıştığını</b> kontrol ediyor, çalışmıyorsa yeniden indiriyor. Takılan indirmeler zaman aşımına uğrayıp yeniden deneniyor.","cl.badge.v105":"Yeni çıktı","cl.badge.v103":"Önceki sürüm","cl.v104.timing.label":"⏱ Altyazılar kelimeye oturuyor","cl.v104.timing.li1":"Altyazı zamanlaması artık yapay zekânın kendi zaman damgaları yerine <b>sesin kendisine</b> göre ölçülüyor — konuşmacı hâlâ sessizken altyazı çıkmıyor. Gerçek bir haber paketinde toplam kayma yaklaşık <b>%60</b> azaldı.","cl.v104.timing.li2":"Altyazıların saniyelerce erken çıktığı durumlar düzeltildi: uzun duraklamalardan sonra, ortam sesli B-roll üzerinde ve müzikten sonra. Altyazı ayrıca konuşmacı susar susmaz kaybolmak yerine biraz daha uzun kalıyor.","cl.v104.words.label":"✂️ „Fixed words” artık „Max words”","cl.v104.words.li1":"Bu bir <b>üst sınır, kota değil</b>. 4 seçin; cümle orada bitiyorsa altyazı 3, 2 hatta 1 kelime olur. Altyazı asla cümlenin ortasından bölünmez, virgüllerde kesilir ve „ve” ya „bu” gibi kısa kelimeler ekranda tek başına kalmaz.","cl.v104.words.li2":"Varsayılan altyazılar da cümle yapısını izler — doğru satır uzunluğu, okuma hızı ve tireli kelimeler artık iki ekrana bölünmez.","cl.v104.quiet.label":"🔊 Sessiz konuşmalar artık atlanmıyor","cl.v104.quiet.li1":"Videonun geri kalanından çok daha düşük seviyede kaydedilmiş ses — örneğin gürültülü bir stüdyo sesinin yanına kurgulanmış saha röportajı — eskiden sessizce atlanıyordu. Artık seviyeler deşifre öncesi dengeleniyor, bu bölümler de altyazı alıyor.",
       "nav.watchdemo":"▶ Demoyu izle","nav.reviews":"Yorumlar","nav.languages":"Diller","nav.how":"Nasıl çalışır","nav.pricing":"Fiyat","nav.whatsnew":"Yenilikler","nav.faq":"SSS","nav.cta":"Eklentiyi al","nav.earn":"%50 indirim","earn.eyebrow":"Bahset, daha az öde","earn.h2":"CaptionLab'i <span class='hl'>daha ucuza al</span> — ondan bahsederek","earn.lead":"Takip linki yok, form yok. Gerçek bir şey paylaş, kanıtını gönder, kodunu al.","earn.c1h":"CaptionLab'ten bahset","earn.c1p":"Reddit, Adobe Community, AlternativeTo veya ProductHunt'ta paylaş — herhangi birinde.","earn.c2h":"Bir videoda göster","earn.c2p":"Gerçekten kullandığın herkese açık bir video — YouTube, TikTok, Instagram, neresi olursa.","earn.how":"<b>Nasıl çalışır:</b> linki (ve bir gönderiyse ekran görüntüsünü) <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> adresine gönder — kendim kontrol edip kodunu geri yollarım, genelde aynı gün.","ex.earn":"💸 Ya da paylaşarak %25–50 indirim kazan →","toast.earn":"💸 <b>%25–50 indirim</b> — CaptionLab'ten bahset ya da göster →",
-      "launch.text":"<b>Lansman fiyatı</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> tek seferlik","launch.win":"✨ <b>v1.0.5 yayında:</b> 3 gün ücretsiz + Birmanca için model",
-      "hero.badge":"<span class='pr-ic'>Pr</span> Adobe Premiere Pro için yerel eklenti · OpenAI Whisper ile",
+      "demo.eyebrow":"1.0.6'da yeni","demo.h":"Noktalama","demo.lede":"Kurgucular her işten sonra noktaları elle siliyordu. Artık bu panelde bir anahtar — aşağıdaki <b>Remove punctuation</b>'a bas, altyazılar gözünün önünde yeniden kurulur, tek bir giriş veya çıkış noktası bile kaymadan. <b>Max words</b>'ü de oynat: bunlar gerçek kontroller, gerçek gruplama mantığıyla.","demo.settings":"Ayarlar","demo.language":"Dil","demo.caplen":"Altyazı uzunluğu","demo.default":"Varsayılan","demo.maxwords":"Maks. kelime","demo.words":"Kelime","demo.hint":"Dikey videoda 1–3 iyi çalışır: altyazılar konuşmayla aynı anda belirir.","demo.punct":"Noktalamayı kaldır","demo.generate":"▶ Altyazı oluştur","demo.foot":"99 dil · çevrimdışı","demo.n1h":"Max words bir üst sınırdır","demo.n1p":"3 yazarsan, cümle orada bitiyorsa altyazı 3, 2 ya da 1 kelime olur. Ama asla 4 olmaz.","demo.n2h":"Zamanlama yerinde kalır","demo.n2p":"Noktalamayı kaldırmak yalnızca metni değiştirir. Her <code>in</code> ve <code>out</code> noktası olduğu yerde kalır.","demo.n3h":"Dosya projenin yanında","demo.n3p":"Adında dili yazan sade bir <code>.srt</code>, doğrudan Premiere proje paneline aktarılır.","edu.h":"🎓 Üniversiteler, okullar ve stüdyolar","edu.p":"Belirlenen sayıda bilgisayar için tek anahtar. Öğrenciler ve eğitmenler Premiere'i açıp yazıya döküyor — hesap yok, etkinleştirme ekranı yok, girilecek hiçbir şey yok. Yapay zekâ motoru kişi başına değil, bilgisayar başına bir kez kurulur.","edu.cta":"Teklif isteyin →","cl.badge.v106":"Yeni çıktı","cl.v106.punct.label":"✂️ Noktalamayı kaldırma","cl.v106.punct.li1":"Ayarlardaki bir anahtar, bitmiş altyazılardan nokta ve virgülleri kaldırır — kısa videoların alışılmış görünümü. <b>Zamanlama ve satır bölümleri etkilenmez</b>, yani zaman çizelgesinde hiçbir şey kaymaz.","cl.v106.gpu.label":"⚡ Ekran kartı ve bellek","cl.v106.gpu.li1":"Grafik kütüphaneleri artık <b>yüklenerek</b> doğrulanıyor; yarım kalmış bir CUDA kurulumu başarılı olduğunu bildirip sessizce işlemciye düşemiyor. „Çalışıyor ama yavaş” şikâyetinin olağan nedeni buydu.","cl.v106.gpu.li2":"Model işler arasında <b>ekran kartı belleğini geri veriyor</b>, birkaç gigabaytı tutmak yerine — kart önizleme ve oynatma için serbest kalıyor. Ve artık tek motor çalışıyor: panel yeniden açıldığında ya da Windows kullanıcısı değiştiğinde ikinci bir kopya bellekte kalabiliyordu, aynı karttaki iki model de uzun bir çözümlemeyi kâbusa çeviriyordu.","cl.v106.edu.label":"🎓 Eğitim lisansları","cl.v106.edu.li1":"Üniversiteler, okullar ve stüdyolar için ayrı bir sürüm var: <b>belirlenen sayıda bilgisayar için tek anahtar</b> ve kullananların hiçbir şey girmesi gerekmiyor. <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20EDU%20licence' style='color:var(--cyan)'>Teklif isteyin</a>.","cl.v106.menu.label":"⚙️ Ayarlar menüsü","cl.v106.menu.li1":"Daha önce farklı köşelere dağılmış olan her şey artık dişli simgesinin altında: <b>motoru onar</b>, kurulum kaydını aç, neler yeni, özellik öner, yorum bırak, yardım. Onarma, motorun her parçasını denetler ve yalnızca eksik ya da bozuk olanı indirir — modelleriniz yeniden indirilmez.","cl.v106.menu.li2":"„Güncellemeleri denetle” panelin altında ve yalnızca tıklayınca çalışır. CaptionLab logosu ise artık her yerden ana ekrana döndürür.","cl.v106.fixes.label":"🐛 Düzeltmeler","cl.v106.fixes.li1":"Başarısız bir GPU indirmesi artık tüm kurulumu iptal etmiyor — kurulum tamamlanıp işlemciye geçiyor, engellenen bir indirme ise kendiliğinden başka yollar deniyor.","cl.v106.fixes.li2":"Bir antivirüs CaptionLab dosyalarını karantinaya alırsa, kurulum artık nedeni doğrudan söylüyor ve nelerin izin listesine ekleneceğini yazıyor; yalnızca „dosyalar eksik” demekle kalmıyor.","cl.v106.fixes.li3":"„Max words” artık kesin bir sınır. Altyazı, belirlediğin sayıdan bir kelime uzun çıkabiliyordu — model „39 dollars”ı tek kelime olarak döndürdüğünde de — artık çıkamıyor.","rel.tag":"Yeni","rel.text":"<b class='rel-v'>v1.0.6</b> — noktalama açık/kapalı, dene","rel.more":", Windows'ta daha hızlı","launch.text":"<b>Lansman fiyatı</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> tek seferlik","launch.win":"✨ <b>v1.0.5 yayında:</b> 3 gün ücretsiz + Birmanca için model",
+      "hero.badge":"<span class='pr-ic'>Pr</span> Premiere Pro için yerel eklenti · OpenAI Whisper",
       "hero.h1":"Premiere&nbsp;Pro'da otomatik altyazı —<br>nihayet <b>kendi dilinizde</b>",
       "hero.sub":"Doğrudan Premiere Pro içinde yaşayan yerel bir eklenti. Kendi <b>Mac</b>'inde ya da <b>Win</b>'inde <b>%100 çevrimdışı</b> çalışır: görüntülerin asla bilgisayarından çıkmaz, bulut yok, <b>API anahtarı yok</b>, internet yok, <b>abonelik yok</b>. Üstelik Adobe'nin unuttuğu diller dahil <b>99 dil</b> konuşur.",
       "hero.cta1":"CaptionLab'i al — $39","hero.cta2":"Nasıl çalıştığını gör",
@@ -3202,7 +4072,7 @@ function toggleLegal(scroll) {
     ar:{
       "hd.watch":"شاهد العرض الكامل — ٦٠ ثانية","hd.note":"تسجيل حقيقي — بلا نماذج وبلا تسريع.",
       "pr.from":"من ١ أكتوبر",
-      "cd.short":"$39 حتى ١ أكتوبر ·",
+      "cd.short":"$39 حتى ١ أكتوبر ·","rv.add.h":"استخدمت CaptionLab؟ اكتب لنا كيف كانت التجربة.","rv.add.sub":"تُقرأ المراجعات قبل نشرها. بريدك يبقى خاصًا — فقط لأتمكن من الرد.","rv.add.text":"ماذا أضاف إلى مونتاجك؟","rv.add.name":"الاسم (اختياري)","rv.add.role":"مونتير، استوديو… (اختياري)","rv.add.email":"البريد (اختياري، لا يُنشر)","rv.add.send":"إرسال المراجعة","rv.err.stars":"اختر تقييمًا أولًا.","rv.err.short":"جملة أو جملتان — 20 حرفًا على الأقل.","rv.err.generic":"لم يُرسل. تحاول مرة أخرى؟","rv.sending":"يجري الإرسال…","rv.thanks":"شكرًا — أقرأ كل واحدة منها. ستظهر هنا بعد الموافقة.","rv.anon":"عميل موثّق",
       "cd.s":"ثانية",
       "cd.m":"دقيقة",
       "cd.h":"ساعة",
@@ -3232,8 +4102,8 @@ function toggleLegal(scroll) {
       "hero.buyline":"بلا بطاقة وبلا حساب. <a href='#try'>أو اشترِه الآن — $39 مرة واحدة</a>",
       "try.h":"جرّبه أولًا، أو اشترِه الآن","try.lede":"تختلف الدقة كثيرًا من لغة إلى أخرى. إن كانت لغتك من التي لا يدعمها Adobe، فثلاثة أيام على موادك الخاصة ستخبرك أكثر من أي عرض توضيحي.","try.badge":"تجربة مجانية","try.price":"٣ أيام مجانًا","try.p":"الإضافة كاملة — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب. <b>تبدأ الأيام الثلاثة مع أول تفريغ</b>، لا مع التنزيل، فالتثبيت وتنزيل نموذج الذكاء الاصطناعي لا يكلّفانك شيئًا.","try.mac":"تنزيل لـ Mac","try.win":"تنزيل لـ Windows","try.buybadge":"ترخيص كامل","try.buyprice":"$39 مرة واحدة","try.buyp":"تعرف أصلًا أنه ما تحتاجه؟ تجاوز التجربة. دفعة واحدة، ويبقى لك للأبد — بلا اشتراك وبلا رسوم بالدقيقة، ويعمل دون إنترنت على <b>جهازين</b>.","try.buycta":"احصل على CaptionLab ←","cl.v105.trial.label":"🎬 جرّبه قبل أن تشتريه","cl.v105.trial.li1":"صارت هناك <b>تجربة مجانية لثلاثة أيام</b> للإضافة كاملة — كل النماذج، كل اللغات، ترجمة حقيقية على مسارك الزمني. بلا بطاقة وبلا حساب.","cl.v105.trial.li2":"تبدأ الأيام الثلاثة مع <b>أول تفريغ</b>، لا مع التنزيل. تثبيت المحرك وتنزيل نموذج بحجم غيغابايتات قد يستغرق أمسية كاملة، ولا شيء من ذلك يُخصم من تجربتك.","cl.v105.myanmar.label":"🇲🇲 نموذج مخصص للبورمية","cl.v105.myanmar.li1":"البورمية من اللغات التي تتعامل معها النماذج القياسية بشكل سيئ — على مواد حقيقية كانت تنتج كتابة مختلفة تمامًا، أو تكرّر المقطع نفسه لدقائق. صار في تبويب Models <b>نموذج مخصص للبورمية</b>، وهو ينتج نصًا بورميًا حقيقيًا ومقروءًا على المقاطع نفسها.","cl.v105.myanmar.li2":"جاء هذا النموذج بفضل عميل طلب استرداد ماله لأن لغته لم تعمل. إن كانت لغتك لا تعمل أيضًا، <a href='mailto:editlabtools@gmail.com' style='color:var(--cyan)'>راسلني</a> — هكذا وُلد هذا بالضبط.","cl.v105.install.label":"🔧 تثبيت يصلح نفسه","cl.v105.install.li1":"كان التنزيل الناقص يُعتبر سليمًا إلى الأبد: كل محاولة جديدة ترى أن الملف موجود فتتخطاه، فيعود التثبيت المعطوب نفسه مهما ضغطت. صار المثبّت يتحقق من أن كل جزء <b>يعمل</b> فعلًا، ويعيد تنزيله إن لم يكن كذلك. التنزيلات المتوقفة تنتهي مهلتها وتُعاد المحاولة.","cl.badge.v105":"صدر للتو","cl.badge.v103":"الإصدار السابق","cl.v104.timing.label":"⏱ الترجمات تتزامن مع الكلمة","cl.v104.timing.li1":"يُقاس توقيت الترجمة الآن من <b>الصوت نفسه</b> بدل الاعتماد على طوابع الذكاء الاصطناعي — فلم تعد الترجمة تظهر والمتحدث ما زال صامتًا. في تقرير إخباري حقيقي انخفض إجمالي الانحراف بنحو <b>60%</b>.","cl.v104.timing.li2":"عولجت الحالات التي كانت تظهر فيها الترجمة قبل ثوانٍ: بعد الوقفات الطويلة، وفوق اللقطات ذات الصوت المحيط، وبعد الموسيقى. كما تبقى الترجمة لحظة أطول بدل أن تختفي فور توقف المتحدث.","cl.v104.words.label":"✂️ ‏«Fixed words» صارت «Max words»","cl.v104.words.li1":"إنه <b>حدّ أقصى وليس حصة</b>. اختر 4، وستكون الترجمة 3 أو 2 أو حتى كلمة واحدة إذا انتهت الجملة هناك. لا تُقسَّم الترجمة أبدًا عبر جملة، وتُقطع عند الفواصل، ولا تبقى الكلمات القصيرة وحدها على الشاشة.","cl.v104.words.li2":"الترجمات الافتراضية تتبع بنية الجملة أيضًا — طول سطر مناسب، وسرعة قراءة، ولم تعد الكلمات الموصولة بشرطة تُقسَّم على شاشتين.","cl.v104.quiet.label":"🔊 لم يعد الكلام المنخفض يُتجاهل","cl.v104.quiet.li1":"الصوت المسجَّل بمستوى أقل بكثير من بقية الفيديو — كمقابلة ميدانية بجانب صوت استوديو عالٍ — كان يُسقَط بصمت. تُوازَن المستويات الآن قبل التفريغ، فتحصل هذه المقاطع على ترجمة أيضًا.",
       "nav.watchdemo":"▶ شاهد العرض","nav.reviews":"التقييمات","nav.languages":"اللغات","nav.how":"كيف يعمل","nav.pricing":"الأسعار","nav.whatsnew":"الجديد","nav.faq":"الأسئلة","nav.cta":"احصل على الإضافة","nav.earn":"خصم ٥٠٪","earn.eyebrow":"انشر الكلمة، وفّر أكثر","earn.h2":"احصل على CaptionLab <span class='hl'>بسعر أقل</span> — مقابل ذكره","earn.lead":"بلا روابط إحالة ولا نماذج. انشر شيئًا حقيقيًا، أرسل الدليل، واحصل على كود.","earn.c1h":"اذكر CaptionLab","earn.c1p":"انشر عنه على Reddit أو Adobe Community أو AlternativeTo أو ProductHunt — أيًا منها.","earn.c2h":"أظهره في فيديو","earn.c2p":"فيديو عام تستخدمه فيه فعليًا — YouTube أو TikTok أو Instagram أو أي مكان.","earn.how":"<b>كيف يعمل:</b> أرسل الرابط (ولقطة شاشة إن كان منشورًا) إلى <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20discount%20-%20I%20posted%20about%20it'>editlabtools@gmail.com</a> — سأتحقق بنفسي وأرسل الكود، عادة في نفس اليوم.","ex.earn":"💸 أو احصل على خصم ٢٥–٥٠٪ بمشاركته →","toast.earn":"💸 <b>خصم ٢٥–٥٠٪</b> — اذكر أو أظهر CaptionLab علنًا →",
-      "launch.text":"<b>سعر الإطلاق</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> دفعة واحدة","launch.win":"✨ <b>صدر الإصدار v1.0.5:</b> ٣ أيام مجانًا + نموذج للبورمية",
-      "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية داخل Adobe Premiere Pro · مدعومة بـ OpenAI Whisper",
+      "demo.eyebrow":"جديد في 1.0.6","demo.h":"علامات الترقيم","demo.lede":"كان المحرّرون يحذفون النقاط يدويًا بعد كل عمل. الآن أصبح الأمر مفتاحًا في اللوحة — اضغط <b>Remove punctuation</b> بالأسفل وسترى الترجمة تُبنى من جديد، دون أن تتزحزح أي نقطة بداية أو نهاية. جرّب <b>Max words</b> أيضًا: هذه أدوات حقيقية بمنطق التجميع نفسه.","demo.settings":"الإعدادات","demo.language":"اللغة","demo.caplen":"طول السطر","demo.default":"الافتراضي","demo.maxwords":"أقصى عدد كلمات","demo.words":"كلمات","demo.hint":"من ١ إلى ٣ مناسب للفيديو العمودي: تظهر الكلمات مع النطق تمامًا.","demo.punct":"إزالة علامات الترقيم","demo.generate":"▶ إنشاء الترجمة","demo.foot":"٩٩ لغة · بلا إنترنت","demo.n1h":"Max words حدٌّ أعلى","demo.n1p":"اختر ٣ وقد يكون السطر ٣ أو ٢ أو كلمة واحدة إن انتهى المعنى هناك. لكنه لن يكون ٤ أبدًا.","demo.n2h":"التوقيت لا يتغيّر","demo.n2p":"إزالة علامات الترقيم تغيّر النص فقط. كل نقطة <code>in</code> و<code>out</code> تبقى في موضعها.","demo.n3h":"الملف بجانب مشروعك","demo.n3p":"ملف <code>.srt</code> عادي يحمل اللغة في اسمه، ويُستورد مباشرة إلى لوحة مشروع Premiere.","edu.h":"🎓 الجامعات والمدارس والاستوديوهات","edu.p":"مفتاح واحد لعدد متفق عليه من الحواسيب. يفتح الطلبة والأساتذة Premiere ويحوّلون الكلام إلى نص — بلا حسابات، بلا شاشة تنشيط، ولا شيء لإدخاله. يُثبَّت محرّك الذكاء الاصطناعي مرة واحدة لكل حاسوب، لا لكل شخص.","edu.cta":"اطلب عرض سعر →","cl.badge.v106":"صدر الآن","cl.v106.punct.label":"✂️ إزالة علامات الترقيم","cl.v106.punct.li1":"مفتاح في الإعدادات يحذف النقاط والفواصل من الترجمة النهائية — الشكل المعتاد للفيديو القصير. <b>التوقيت وفواصل الأسطر لا تتغيّر</b>، فلا يتزحزح شيء على المسار الزمني.","cl.v106.gpu.label":"⚡ كرت الرسوم والذاكرة","cl.v106.gpu.li1":"تُتحقَّق مكتبات الرسوم الآن عبر <b>تحميلها فعليًا</b>، فلم يعد بإمكان تثبيت CUDA الناقص أن يُعلن النجاح ثم يعود بصمت إلى المعالج. كان هذا السبب المعتاد لشكوى «يعمل، لكن ببطء».","cl.v106.gpu.li2":"بين المهام <b>يعيد النموذج ذاكرة الكرت</b> بدلًا من الاحتفاظ بعدة غيغابايت، فيبقى الكرت متاحًا للعرض والمعاينة. والمحرّك الآن واحد دائمًا: كانت نسخة ثانية قد تبقى محمّلة بعد إعادة فتح اللوحة أو تبديل مستخدمي Windows، ونموذجان على كرت واحد هما ما كان يحوّل التحويل الطويل إلى زحف.","cl.v106.edu.label":"🎓 تراخيص التعليم","cl.v106.edu.li1":"صارت هناك نسخة منفصلة للجامعات والمدارس والاستوديوهات: <b>مفتاح واحد لعدد متفق عليه من الحواسيب</b>، ولا يحتاج أي مستخدم إلى إدخال شيء. <a href='mailto:editlabtools@gmail.com?subject=CaptionLab%20EDU%20licence' style='color:var(--cyan)'>اطلب عرض سعر</a>.","cl.v106.menu.label":"⚙️ قائمة الإعدادات","cl.v106.menu.li1":"كل ما كان موزّعًا في زوايا مختلفة صار تحت رمز الإعدادات: <b>إصلاح المحرّك</b>، فتح سجل التثبيت، ما الجديد، اقتراح ميزة، كتابة تقييم، المساعدة. الإصلاح يفحص كل جزء من المحرّك ويُنزّل ما هو ناقص أو تالف فقط — ولا يُعاد تنزيل نماذجك.","cl.v106.menu.li2":"«التحقّق من التحديثات» في أسفل اللوحة، ويعمل بالنقر فقط. وشعار CaptionLab يعيدك الآن إلى الشاشة الرئيسية من أي مكان.","cl.v106.fixes.label":"🐛 إصلاحات","cl.v106.fixes.li1":"فشل تنزيل مكتبات كرت الرسوم لم يُعد يُلغي التثبيت كله — يكتمل التثبيت ويعود إلى المعالج، وإن كان التنزيل محجوبًا يجرّب مسارات أخرى تلقائيًا.","cl.v106.fixes.li2":"إذا حجر برنامج مكافحة الفيروسات ملفات CaptionLab، يذكره المثبّت الآن كسبب ويسرد ما يجب استثناؤه، بدل الإبلاغ عن ملفات مفقودة فقط.","cl.v106.fixes.li3":"«Max words» صار حدًّا صارمًا. كان السطر قد يخرج بكلمة زائدة عن العدد الذي تحدّده — بما في ذلك عندما يعيد النموذج «39 dollars» ككلمة واحدة — ولم يعد ذلك ممكنًا.","rel.tag":"جديد","rel.text":"<b class='rel-v'>v1.0.6</b> — علامات الترقيم تشغيل/إيقاف، جرّبها","rel.more":"، أسرع على Windows","launch.text":"<b>سعر الإطلاق</b> · <span class='was'>$59</span><span class='launch-now'>$39</span> دفعة واحدة","launch.win":"✨ <b>صدر الإصدار v1.0.5:</b> ٣ أيام مجانًا + نموذج للبورمية",
+      "hero.badge":"<span class='pr-ic'>Pr</span> إضافة أصلية لـ Premiere Pro · OpenAI Whisper",
       "hero.h1":"ترجمة تلقائية في Premiere&nbsp;Pro —<br>أخيرًا <b>بلغتك</b>",
       "hero.sub":"إضافة أصلية تعيش مباشرة داخل Premiere Pro. تعمل <b>دون إنترنت بنسبة 100%</b> على جهاز <b>Mac</b> أو <b>Win</b> الخاص بك: لقطاتك لا تغادر جهازك أبدًا، بلا سحابة، <b>بلا مفاتيح API</b>، بلا إنترنت، <b>بلا اشتراك</b>. كما أنها تتحدث <b>99 لغة</b>، بما فيها تلك التي نسيتها Adobe.",
       "hero.cta1":"احصل على CaptionLab — $39","hero.cta2":"شاهد كيف يعمل",
@@ -3292,9 +4162,20 @@ function toggleLegal(scroll) {
   function apply(lang){
     current = lang;
     var d = DICT[lang] || null;
+    // Exposed so script that builds markup at runtime (the review form's
+    // messages) can translate too, instead of being stuck in English while
+    // the page around it switches.
+    window.I18N_ACTIVE = d || {};
     nodes.forEach(function(el){
       var k = el.getAttribute('data-i18n');
       el.innerHTML = (d && d[k] != null) ? d[k] : el._orig;
+    });
+    // Placeholders need translating as much as labels do - an English "Name
+    // (optional)" inside an otherwise Ukrainian form looks like a bug.
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      var k = el.getAttribute('data-i18n-ph');
+      if (el._origPh == null) el._origPh = el.getAttribute('placeholder') || '';
+      el.setAttribute('placeholder', (d && d[k] != null) ? d[k] : el._origPh);
     });
     document.documentElement.lang = lang;
     document.documentElement.dir = RTL[lang] ? 'rtl' : 'ltr';
@@ -3645,32 +4526,133 @@ function lcRender(){
   setTimeout(function () { document.addEventListener('mouseout', fire); }, 8000);
 })();
 
-/* Dwell nudge toward #earn — separate from exit intent above (fires on time,
-   not on leaving) and works on mobile too, since there's no pointer to read
-   there. Skipped if the exit modal already fired this session - one nudge per
-   visit is enough, two back-to-back reads as nagging. */
-(function () {
-  var KEY = 'cl_earn_toast_seen';
-  try { if (localStorage.getItem(KEY)) return; } catch (e) {}
-  setTimeout(function () {
-    try { if (localStorage.getItem(KEY)) return; } catch (e) {}
-    if (document.querySelector('.precheck-modal.open, .video-lightbox.open')) return;
-    if (document.getElementById('exitModal')?.classList.contains('open')) return;
-    var t = document.getElementById('earnToast');
-    if (t) t.classList.add('show');
-  }, 45000);
-})();
-
-function closeEarnToast() {
-  var t = document.getElementById('earnToast');
-  if (t) t.classList.remove('show');
-  try { localStorage.setItem('cl_earn_toast_seen', '1'); } catch (e) {}
-}
 
 function closeExit() {
   var m = document.getElementById('exitModal');
   if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
 }
+
+
+/* ── Reviews ───────────────────────────────────────────────────────────────
+   Submitting and showing reviews we collect ourselves. Both halves talk to the
+   same worker that already handles licences, so there is no new service to run
+   - just two endpoints.
+
+   Nothing here fails loudly: if the worker is unreachable the page keeps its
+   curated quotes and simply shows no form result. A review widget is not worth
+   breaking a sales page over. */
+var RV_API = "https://captionlab-license.editlabtools.workers.dev";
+
+// Translation with a literal fallback, so a missing key shows English rather
+// than the key itself.
+function RVT(key, fallback) {
+  try { return (window.I18N_ACTIVE || {})[key] || fallback; } catch (e) { return fallback; }
+}
+
+function rvEsc(x) {
+  return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+(function () {
+  var stars = document.getElementById("rv-stars");
+  var form  = document.getElementById("rv-form");
+  if (!stars || !form) return;
+  var rating = 0;
+
+  stars.querySelectorAll("button").forEach(function (b) {
+    b.onclick = function () {
+      rating = +b.dataset.v;
+      stars.querySelectorAll("button").forEach(function (x) {
+        x.classList.toggle("on", +x.dataset.v <= rating);
+      });
+    };
+  });
+
+  form.onsubmit = function (e) {
+    e.preventDefault();
+    var msg  = document.getElementById("rv-msg");
+    var text = document.getElementById("rv-text").value.trim();
+    var say = function (m, cls) { msg.className = "rv-msg " + (cls || ""); msg.textContent = m; };
+
+    // Checked here as well as on the server: an instant message beats a round
+    // trip to be told the same thing.
+    if (!rating)          return say(RVT("rv.err.stars", "Please pick a rating first."), "err");
+    if (text.length < 20) return say(RVT("rv.err.short", "A sentence or two, please - at least 20 characters."), "err");
+
+    var btn = form.querySelector(".rv-send");
+    btn.disabled = true;
+    say(RVT("rv.sending", "Sending..."));
+
+    fetch(RV_API + "/review", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        rating: rating, text: text,
+        name:  document.getElementById("rv-name").value.trim(),
+        role:  document.getElementById("rv-role").value.trim(),
+        email: document.getElementById("rv-email").value.trim(),
+        lang:  (document.documentElement.lang || "en")
+      })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (o) {
+        if (!o.ok || o.d.error) {
+          btn.disabled = false;
+          return say(o.d.error || RVT("rv.err.generic", "That did not send. Try again?"), "err");
+        }
+        form.querySelectorAll("textarea,input").forEach(function (i) { i.value = ""; });
+        stars.querySelectorAll("button").forEach(function (x) { x.classList.remove("on"); });
+        rating = 0;
+        // Honest about the delay: a person reads it before it appears.
+        say(RVT("rv.thanks", "Thank you - I read every one of these. It will appear here once approved."), "ok");
+      })
+      .catch(function () {
+        btn.disabled = false;
+        say(RVT("rv.err.generic", "That did not send. Try again?"), "err");
+      });
+  };
+})();
+
+/* Approved reviews, plus the rating Google may read.
+ *
+ * aggregateRating is injected ONLY when real reviews exist. Declaring a rating
+ * with nothing behind it would be a lie, and the kind that costs more than the
+ * stars are worth if anyone checks. */
+(function () {
+  var box = document.getElementById("rv-live");
+  if (!box) return;
+  fetch(RV_API + "/reviews")
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (!d || !d.count) return;
+      box.innerHTML = d.reviews.slice(0, 9).map(function (r) {
+        var initial = ((r.name || "").trim().charAt(0) || "?").toUpperCase();
+        var who = [r.name || RVT("rv.anon", "Verified customer"), r.role].filter(Boolean).join(" \u00b7 ");
+        return '<div class="cl-rv2-card">' +
+          '<div class="cl-rv2-stars">' + "\u2605".repeat(r.rating) + '</div>' +
+          '<p class="cl-rv2-txt">' + rvEsc(r.text) + '</p>' +
+          '<div class="cl-rv2-who"><div class="cl-rv2-av" style="background:#5CD8FF">' +
+            rvEsc(initial) + '</div>' +
+          '<div class="cl-rv2-who-name">' + rvEsc(who) + '</div></div></div>';
+      }).join("");
+      box.style.display = "";
+
+      var tag = document.querySelector('script[type="application/ld+json"]');
+      if (!tag) return;
+      try {
+        var ld = JSON.parse(tag.textContent);
+        ld.aggregateRating = {
+          "@type": "AggregateRating",
+          ratingValue: d.average,
+          reviewCount: d.count,
+          bestRating: 5,
+          worstRating: 1
+        };
+        tag.textContent = JSON.stringify(ld);
+      } catch (e) {}
+    })
+    .catch(function () {});
+})();
 
 
 /* ── Launch deadline ─────────────────────────────────────────────────────────
@@ -3755,6 +4737,42 @@ document.addEventListener('keydown', function(e){
     win.className = 'btn-primary try-dl';
     mac.className = 'btn-ghost try-dl';
   });
+})();
+</script>
+
+<script>
+/* The two changelog illustrations. Each does one thing and keeps no state
+   beyond its own element - they are figures in a list, not a second demo. */
+(function(){
+  var WITH = ["It was filmed,", "in one take.", "Then the client"];
+  var WITHOUT = ["It was filmed", "in one take", "Then the client"];
+  var sw = document.getElementById("miPunct"), box = document.getElementById("miCaps");
+  function draw(){
+    var off = sw.getAttribute("aria-checked") === "true";
+    box.textContent = "";
+    (off ? WITHOUT : WITH).forEach(function(t){
+      var s = document.createElement("span");
+      s.className = "mi-cap"; s.textContent = t; box.appendChild(s);
+    });
+  }
+  if (sw && box) {
+    sw.addEventListener("click", function(){
+      sw.setAttribute("aria-checked", sw.getAttribute("aria-checked") === "true" ? "false" : "true");
+      draw();
+    });
+    draw();
+  }
+
+  var gear = document.getElementById("miGear"), list = document.getElementById("miList"),
+      hint = document.getElementById("miHint");
+  if (gear && list) {
+    gear.addEventListener("click", function(){
+      var open = gear.getAttribute("aria-expanded") === "true";
+      gear.setAttribute("aria-expanded", String(!open));
+      list.hidden = open;
+      if (hint) hint.hidden = !open;
+    });
+  }
 })();
 </script>
 </body>
