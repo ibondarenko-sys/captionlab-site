@@ -2282,7 +2282,7 @@ requestAnimationFrame(frame);})();
       </div>
     </div>
 
-    <div class="cl-rv2-cols reveal">
+    <div class="cl-rv2-cols reveal" id="rv-grid">
 
       <div class="cl-rv2-card">
         <span class="cl-rv2-tag tag-ph">🚀 <span data-i18n="rv.tag.ph">Product Hunt</span></span>
@@ -2330,6 +2330,10 @@ requestAnimationFrame(frame);})();
           <div class="cl-rv2-who-name">Özkan Hacıtahiroğulları</div>
         </div>
       </div>
+    </div><!-- /#rv-grid. This close was missing: the review form and the live
+               reviews were flowing INSIDE the three-column layout, so the form
+               landed mid-column and a second three-column block got squeezed
+               into one narrow column - one word per line. -->
 
 
     <!-- Collected here rather than pointed at a third party, so the
@@ -2358,11 +2362,6 @@ requestAnimationFrame(frame);})();
       </form>
     </div>
 
-    <!-- Approved reviews, newest first. Hidden until there is something in
-         it, so an empty list never reads as "nobody likes this". -->
-    <div class="cl-rv2-cols reveal" id="rv-live" style="display:none"></div>
-
-    </div>
   </div>
 </section>
 
@@ -4619,13 +4618,15 @@ function rvEsc(x) {
  * with nothing behind it would be a lie, and the kind that costs more than the
  * stars are worth if anyone checks. */
 (function () {
-  var box = document.getElementById("rv-live");
+  // Approved reviews join the SAME grid as the imported ones, newest first -
+  // one wall of reviews, not a second block beneath it.
+  var box = document.getElementById("rv-grid");
   if (!box) return;
   fetch(RV_API + "/reviews")
     .then(function (r) { return r.json(); })
     .then(function (d) {
       if (!d || !d.count) return;
-      box.innerHTML = d.reviews.slice(0, 9).map(function (r) {
+      box.insertAdjacentHTML("afterbegin", d.reviews.slice(0, 9).map(function (r) {
         var initial = ((r.name || "").trim().charAt(0) || "?").toUpperCase();
         var who = [r.name || RVT("rv.anon", "Verified customer"), r.role].filter(Boolean).join(" \u00b7 ");
         return '<div class="cl-rv2-card">' +
@@ -4634,8 +4635,7 @@ function rvEsc(x) {
           '<div class="cl-rv2-who"><div class="cl-rv2-av" style="background:#5CD8FF">' +
             rvEsc(initial) + '</div>' +
           '<div class="cl-rv2-who-name">' + rvEsc(who) + '</div></div></div>';
-      }).join("");
-      box.style.display = "";
+      }).join(""));
 
       var tag = document.querySelector('script[type="application/ld+json"]');
       if (!tag) return;
